@@ -5,7 +5,7 @@ on:
   # Automatic triggers
   push:
     branches:
-      - 'users/rponnuru/strix_poc'      # Only rponnuru's strix_poc branch
+      - 'users/r/jipsv/x86_poc'      # Only rponnuru's strix_poc branch
     paths:
       - 'tests/strix_ai/**'     # Strix AI tests
       - '.github/workflows/strix_ai*.yml'  # This workflow
@@ -22,15 +22,19 @@ on:
   # Manual trigger with options
   workflow_dispatch:
     inputs:
-      platform:
-        description: 'Platform to test'
-        required: true
-        type: choice
-        options:
-          - linux
-          - windows
-        default: 'linux'
-      
+    branch:
+      description: 'Branch to run tests on'
+      required: true
+      default: 'users/rajipsv/x86_poc'
+    platform:
+      description: 'Platform to test'
+      required: true
+      type: choice
+      options:
+        - linux
+        - windows
+      default: 'linux'
+
       strix_variant:
         description: 'Strix GPU variant'
         required: true
