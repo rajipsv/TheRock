@@ -5,7 +5,7 @@ on:
   # Automatic triggers
   push:
     branches:
-      - 'users/rajipsv/x86_poc'      # Only rponnuru's strix_poc branch
+      - 'users/r/jipsv/x86_poc'      # Only rponnuru's strix_poc branch
     paths:
       - 'tests/strix_ai/**'     # Strix AI tests
       - '.github/workflows/strix_ai*.yml'  # This workflow
@@ -586,44 +586,3 @@ jobs:
         run: |
           python3 -m pytest tests/strix_ai/${{ matrix.category }}/ -v
 
-<<<<<<< HEAD
-      - name: Fetch Artifacts
-        run: |
-          echo "Fetching artifacts for build ${{ inputs.artifact_run_id }}"
-          python ./build_tools/fetch_artifacts.py \
-            --run-id=${{ env.ARTIFACT_RUN_ID }} \
-            --run-github-repo="ROCm/TheRock" \
-            --artifact-group=${{ inputs.artifact_group }} \
-            --output-dir=${{ env.ARTIFACTS_DIR }}
-
-      - name: Build Packages
-        id: build-packages
-        run: |
-          echo "Building ${{ inputs.native_package_type }} packages for ${{ inputs.artifact_group }} ${{ inputs.artifact_run_id }}"
-          python ./build_tools/packaging/linux/build_package.py \
-            --dest-dir ${{ env.PACKAGE_DIST_DIR }} \
-            --rocm-version  ${{ inputs.rocm_version }} \
-            --target  ${{ inputs.artifact_group }} \
-            --artifacts-dir ${{ env.ARTIFACTS_DIR }} \
-            --pkg-type ${{ inputs.native_package_type }} \
-            --version-suffix ${{ env.ARTIFACT_RUN_ID }}
-
-      - name: Install AWS CLI
-        run: bash ./dockerfiles/install_awscli.sh
-
-      - name: Configure AWS Credentials for non-forked repos
-        uses: aws-actions/configure-aws-credentials@61815dcd50bd041e203e49132bacad1fd04d2708 # v5.1.1
-        with:
-          aws-region: us-east-2
-          role-to-assume: arn:aws:iam::692859939525:role/therock-${{ inputs.release_type }}
-
-      - name: Upload Package repo to S3
-        id: upload-packages
-        run: |
-          echo "Uploading to s3 bucket : ${{ inputs.release_type }}"
-          python ./build_tools/packaging/linux/upload_package_repo.py \
-            --pkg-type ${{ inputs.native_package_type }} \
-            --s3-bucket ${{ env.S3_BUCKET_NATIVE }} \
-            --amdgpu-family ${{ inputs.artifact_group }} \
-            --artifact-id ${{ env.ARTIFACT_RUN_ID }} \
-            --job ${{ inputs.release_type }}
