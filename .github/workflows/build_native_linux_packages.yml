@@ -1,6 +1,9 @@
 name: Build Native Linux Packages
 
 on:
+  push: 
+  branches: 
+    - 'users/rajipsv/x86_poc'
   workflow_call:
     inputs:
       artifact_group:
