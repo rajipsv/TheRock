@@ -15,6 +15,11 @@ from pathlib import Path
 AGENT_DIR = Path(__file__).resolve().parent
 if str(AGENT_DIR) not in sys.path:
     sys.path.insert(0, str(AGENT_DIR))
+
+from env_loader import load_agent_env
+
+load_agent_env()
+
 DEFAULT_INPUT = AGENT_DIR / "out" / "report.json"
 DEFAULT_OUTPUT = AGENT_DIR / "out" / "executive_summary.md"
 
@@ -28,11 +33,66 @@ def template_summary(report: dict) -> str:
         "",
         "## What changed",
     ]
-    for item in report.get("changed_components", [])[:15]:
-        parent = f"{item['parent']}/" if item.get("parent") else ""
-        lines.append(f"- `{parent}{item['name']}` ({item['status']}, {item['kind']})")
-    if len(report.get("changed_components", [])) > 15:
-        lines.append(f"- ... and {len(report['changed_components']) - 15} more")
+    paths = report.get("changed_files", [])
+    if paths:
+        lines.append("")
+        lines.append("### Changed files (git diff)")
+        for path in paths[:20]:
+            lines.append(f"- `{path}`")
+        if len(paths) > 20:
+            lines.append(f"- ... and {len(paths) - 20} more files")
+
+    manifest_items = [
+        i for i in report.get("changed_components", []) if i.get("kind") != "path"
+    ]
+    if manifest_items:
+        lines.append("")
+        lines.append("### Manifest / submodule changes")
+        for item in manifest_items[:15]:
+            parent = f"{item['parent']}/" if item.get("parent") else ""
+            lines.append(
+                f"- `{parent}{item['name']}` ({item['status']}, {item['kind']})"
+            )
+        if len(manifest_items) > 15:
+            lines.append(f"- ... and {len(manifest_items) - 15} more")
+
+    content = report.get("content_insights") or {}
+    if content.get("notes"):
+        lines.append("")
+        lines.append("### Content insights (CI / packaging)")
+        for note in content["notes"]:
+            lines.append(f"- {note}")
+    timeout_changes = (content.get("test_matrix_changes") or {}).get(
+        "timeout_changes", []
+    )
+    if timeout_changes:
+        lines.append("")
+        lines.append("### GHA wrapper timeout changes")
+        for change in timeout_changes:
+            lines.append(
+                f"- `{change['job']}`: {change['old_minutes']} → "
+                f"{change['new_minutes']} minutes"
+            )
+
+    comp_paths = report.get("changed_paths_in_components") or {}
+    superrepo_diffs = report.get("superrepo_diffs") or {}
+    commit_meta: dict[str, dict] = {}
+    for info in superrepo_diffs.values():
+        for comp, meta in (info.get("components") or {}).items():
+            commit_meta[comp] = meta
+
+    if comp_paths:
+        lines.append("")
+        lines.append("### Changed superrepo components")
+        for comp, info in list(comp_paths.items())[:20]:
+            file_count = info.get("file_count", 0)
+            commit_count = commit_meta.get(comp, {}).get("commit_count")
+            detail = f"{file_count} file(s)"
+            if commit_count:
+                detail += f", {commit_count} commit(s) in range"
+            lines.append(f"- `{comp}`: {detail}")
+            for p in info.get("sample_paths", [])[:3]:
+                lines.append(f"  - `{p}`")
 
     lines.extend(
         [
@@ -56,8 +116,22 @@ def template_summary(report: dict) -> str:
     )
     ci = report.get("ci_recommendations", {})
     lines.append(f"- **test_type:** `{ci.get('test_type')}` — {ci.get('test_type_reason', '')}")
+    inference = ci.get("suite_inference")
+    if inference == "superrepo_file_diff":
+        lines.append(
+            "- **Suite inference:** from changed superrepo components "
+            "(file paths or per-directory commits)"
+        )
+    elif inference == "unresolved":
+        lines.append(
+            "- **Suite inference:** unresolved — superrepo SHA changed but inner "
+            "components unknown (set GITHUB_TOKEN, use --full-manifest)"
+        )
     lines.append(f"- **Suggested PR labels:** {', '.join(ci.get('suggested_pr_labels', []))}")
     lines.append(f"- **Suggested test suites:** {', '.join(ci.get('suggested_test_suites', []))}")
+    disabled = ci.get("disabled_test_jobs", [])
+    if disabled:
+        lines.append(f"- **Disabled CI jobs (do not label):** {', '.join(disabled)}")
     lines.append(f"- _{ci.get('notes', '')}_")
     return "\n".join(lines) + "\n"
 

@@ -1,49 +1,33 @@
-# AGENTS_030 Implementation Plan
+# AGENTS_030 — Implementation status
 
-See [README.md](README.md) for usage. This document summarizes scope, inputs, and dependencies.
+**Status:** Feature complete for hackathon / fork PR scope. See [SCOPE.md](SCOPE.md) for boundaries.
 
-## What we built
+## Implemented
 
-A **change briefing agent** on TheRock:
+- [x] `analyze.py` — manifest, topology, CI mapping, content parsers, `--pr`, `--full-manifest`
+- [x] `manifest_bridge.py`, `path_bridge.py`, `content_diff.py`, `component_diff_bridge.py`
+- [x] `impact_graph.py`, `ci_mapping.py` — component-scoped `test:*` labels (not whole math-libs default)
+- [x] `summarize.py` — template / ollama / openai / vllm
+- [x] `upstream_pr_scan.py`, `github_pr.py`
+- [x] `.github/workflows/change-impact-upstream-scan.yml`
+- [x] `.github/workflows/change-impact-agent.yml`
+- [x] Tests (14 passing)
+- [x] README, demo notebook, `run_demo.ps1`
 
-- Manifest diff (what changed)
-- `BUILD_TOPOLOGY.toml` (blast radius, build stages)
-- CI label **recommendations** (not auto-CI)
-- Executive summary (`template` | `ollama` | `openai` | `vllm`)
+## Deferred / out of scope
 
-## Inputs
+- [ ] ARVIL dashboard integration
+- [ ] Cross-repo “similar bug” pattern scanner
+- [ ] Comments on upstream `ROCm/TheRock` PRs (fork only today)
+- [ ] Per-ctest label mapping
 
-| Input | Required |
-|-------|----------|
-| `--end` ref | Yes |
-| `--start` or `--pr-base-ref` | One required |
-| `GITHUB_TOKEN` | Optional (GitHub API for superrepo components) |
-| `OPENAI_API_KEY` | Optional (openai backend) |
+## Quick commands
 
-## Dependencies
-
-- Python 3.10+, Git
-- `pip install -r agents/change-impact-agent/requirements.txt`
-- **Not required:** full ROCm build, `fetch_sources.py`, GPU (except vLLM summary)
-
-## Hackathon (MI300)
-
-- Clone fork, run `analyze.py` (CPU)
-- Run `summarize.py --backend vllm` on pre-installed vLLM + ROCm 7
-- See [notebook/demo.ipynb](notebook/demo.ipynb)
-
-## Differentiation
-
-TheRock CI already runs tests after build with rules + labels. This agent **recommends** labels and explains impact **before** merge — it does not replace `multi_arch_ci`.
-
-## Files
-
-| File | Role |
-|------|------|
-| `analyze.py` | Main CLI |
-| `manifest_bridge.py` | TheRock manifest diff |
-| `impact_graph.py` | Topology traversal |
-| `ci_mapping.py` | PR label suggestions |
-| `summarize.py` | LLM / template summary |
+```powershell
+pip install -r agents/change-impact-agent/requirements.txt
+python agents/change-impact-agent/analyze.py --pr 5688 --output-dir agents/change-impact-agent/out/pr-5688
+python agents/change-impact-agent/summarize.py --backend template --input agents/change-impact-agent/out/pr-5688/report.json
+python -m pytest agents/change-impact-agent/tests/ -q
+```
 
 Fork: https://github.com/rajipsv/TheRock branch `feature/change-impact-agent`

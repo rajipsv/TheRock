@@ -7,7 +7,8 @@ $AgentDir = Join-Path $RepoRoot "agents\change-impact-agent"
 $OutDir = Join-Path $AgentDir "out"
 
 Write-Host "=== Change Impact Agent Demo ===" -ForegroundColor Cyan
-python "$AgentDir\analyze.py" --start main~15 --end main --output-dir $OutDir
+# main~6 spans the rocm-libraries submodule bump (main~5..main has no pin changes)
+python "$AgentDir\analyze.py" --start main~6 --end main --output-dir $OutDir
 python "$AgentDir\summarize.py" --backend template --input (Join-Path $OutDir "report.json")
 Write-Host ""
 Write-Host "Open: $OutDir\report.html" -ForegroundColor Green

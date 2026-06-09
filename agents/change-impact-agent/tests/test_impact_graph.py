@@ -33,6 +33,25 @@ class ImpactGraphTest(unittest.TestCase):
         impact = analyze_impact([], repo_root)
         self.assertEqual(impact.severity, "LOW")
 
+    def test_hipdnn_path_change_detected(self):
+        repo_root = find_therock_root()
+        items = [
+            ChangedItem(
+                name="ml-libs/artifact-hipdnn.toml",
+                kind="path",
+                status="changed",
+            ),
+            ChangedItem(
+                name="build_tools/github_actions/fetch_test_configurations.py",
+                kind="path",
+                status="changed",
+            ),
+        ]
+        impact = analyze_impact(items, repo_root)
+        self.assertIn(impact.severity, ("MEDIUM", "MEDIUM-HIGH", "HIGH"))
+        self.assertGreater(impact.blast_radius_score, 40)
+        self.assertIn("ml-libs", impact.affected_artifact_groups)
+
 
 if __name__ == "__main__":
     unittest.main()

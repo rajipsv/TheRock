@@ -1,0 +1,74 @@
+name: Change Impact Upstream PR Scan
+
+on:
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: "Single upstream PR number (leave empty to scan open PRs)"
+        required: false
+        type: string
+      max_prs:
+        description: "Max open PRs when pr_number is empty"
+        required: false
+        type: string
+        default: "5"
+      full_manifest:
+        description: "GitHub API superrepo drill-down (needs GITHUB_TOKEN)"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout fork
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install agent dependencies
+        run: pip install -r agents/change-impact-agent/requirements.txt
+
+      - name: Analyze single upstream PR
+        if: inputs.pr_number != ''
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          FLAGS=()
+          if [ "${{ inputs.full_manifest }}" = "true" ]; then
+            FLAGS+=(--full-manifest)
+          fi
+          python agents/change-impact-agent/analyze.py \
+            --pr "${{ inputs.pr_number }}" \
+            --output-dir "agents/change-impact-agent/out/pr-${{ inputs.pr_number }}" \
+            "${FLAGS[@]}"
+
+      - name: Scan open upstream PRs
+        if: inputs.pr_number == ''
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          FLAGS=()
+          if [ "${{ inputs.full_manifest }}" = "true" ]; then
+            FLAGS+=(--full-manifest)
+          fi
+          python agents/change-impact-agent/upstream_pr_scan.py \
+            --analyze \
+            --max "${{ inputs.max_prs }}" \
+            "${FLAGS[@]}"
+
+      - name: Upload reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: change-impact-reports
+          path: agents/change-impact-agent/out/**
+          if-no-files-found: error

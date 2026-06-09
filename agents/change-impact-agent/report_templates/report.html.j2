@@ -29,22 +29,79 @@
     <span class="badge {{ report.severity }}">{{ report.severity }}</span>
     (score {{ report.blast_radius_score }}/100)
   </p>
+  <p><small>Manifest mode: {{ report.manifest_mode }}</small></p>
+  {% if report.manifest_notes %}
+  <ul>
+    {% for note in report.manifest_notes %}
+    <li><small>{{ note }}</small></li>
+    {% endfor %}
+  </ul>
+  {% endif %}
 
   <h2>What changed</h2>
   {% if report.changed_components %}
   <table>
-    <tr><th>Name</th><th>Kind</th><th>Status</th><th>Parent</th></tr>
+    <tr><th>Name</th><th>Kind</th><th>Status</th><th>Parent</th><th>SHA change</th></tr>
     {% for item in report.changed_components %}
     <tr>
       <td><code>{{ item.name }}</code></td>
       <td>{{ item.kind }}</td>
       <td>{{ item.status }}</td>
       <td>{{ item.parent or "—" }}</td>
+      <td><code>{{ item.old_sha[:8] if item.old_sha else "—" }}</code> → <code>{{ item.new_sha[:8] if item.new_sha else "—" }}</code></td>
     </tr>
     {% endfor %}
   </table>
   {% else %}
-  <p>No manifest changes in this range.</p>
+  <p>No submodule manifest changes in this range.</p>
+  {% endif %}
+  {% if report.changed_files %}
+  <h3>Changed repository paths (git diff)</h3>
+  <ul>
+    {% for path in report.changed_files %}
+    <li><code>{{ path }}</code></li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  {% if report.content_insights and report.content_insights.notes %}
+  <h3>Content insights (CI / packaging)</h3>
+  <ul>
+    {% for note in report.content_insights.notes %}
+    <li>{{ note }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% if report.content_insights.test_matrix_changes and report.content_insights.test_matrix_changes.timeout_changes %}
+  <h3>GHA wrapper timeout changes</h3>
+  <table>
+    <tr><th>Job</th><th>Old (min)</th><th>New (min)</th></tr>
+    {% for t in report.content_insights.test_matrix_changes.timeout_changes %}
+    <tr>
+      <td><code>{{ t.job }}</code></td>
+      <td>{{ t.old_minutes }}</td>
+      <td>{{ t.new_minutes }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+
+  {% if report.changed_paths_in_components %}
+  <h3>Superrepo file changes by component</h3>
+  <table>
+    <tr><th>Component</th><th>Files changed</th><th>Sample paths</th></tr>
+    {% for comp, info in report.changed_paths_in_components.items() %}
+    <tr>
+      <td><code>{{ comp }}</code></td>
+      <td>{{ info.file_count }}</td>
+      <td>
+        {% for p in info.sample_paths %}
+        <code>{{ p }}</code><br/>
+        {% endfor %}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
   {% endif %}
 
   <h2>Blast radius</h2>
