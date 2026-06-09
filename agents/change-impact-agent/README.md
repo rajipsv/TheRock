@@ -1,58 +1,120 @@
 # Change Impact Agent (AGENTS_030)
 
-Autonomous **change briefing** for [TheRock](https://github.com/ROCm/TheRock): manifest diff + `BUILD_TOPOLOGY.toml` → blast radius, rollout guidance, and **recommended** CI labels.
+A **pre-merge change briefing** tool for [TheRock](https://github.com/ROCm/TheRock). Given a git range or an upstream pull request, it answers:
 
-Does **not** build ROCm or trigger CI automatically.
+- **What changed?** — submodule pins, superrepo components, CI scripts, packaging manifests
+- **What breaks downstream?** — blast radius from `BUILD_TOPOLOGY.toml` (stages, severity score)
+- **What should CI run?** — suggested `test:*` labels and `test_filter:*` depth (`quick`, `standard`, `full`)
 
-**Scope:** Recommends `test_matrix` jobs (e.g. `test:miopen`, `test:hipdnn`) and `test_filter:*` depth (`quick`, `standard`, `full`). Does **not** enumerate individual ctest / UT cases.
+It produces `report.json`, `report.html`, and an optional executive summary. It **recommends** labels for humans to apply; it does not build ROCm, trigger CI, or apply labels automatically.
 
-See [SCOPE.md](SCOPE.md) for final in-scope / out-of-scope boundaries (ARVIL and cross-repo pattern scanning are **out of scope** for this branch).
+Recommendations target **test_matrix jobs** (e.g. `test:miopen`, `test:hipdnn`), not individual ctest cases.
 
-See [SCOPE.md](SCOPE.md) for final in-scope / out-of-scope boundaries (ARVIL and cross-repo pattern scanning are **out of scope** for this branch).
+## How it works
+
+1. **Manifest diff** — compares submodule / superrepo SHAs between two refs (local git or GitHub API with `--full-manifest`).
+2. **Path diff** — lists changed files in the TheRock repo (`git diff --name-only`).
+3. **Content diff** — parses CI test-matrix scripts and artifact TOML for timeout changes, disabled jobs, and packaging edits.
+4. **Superrepo drill-down** — on SHA bumps (e.g. `rocm-libraries`), uses GitHub compare and per-directory commit detection to name changed components (`miopen`, `hipblaslt`, …).
+5. **Topology impact** — maps changes onto `BUILD_TOPOLOGY.toml` for affected build stages and a severity score.
+6. **CI mapping** — turns the above into `test:*` suite labels and `test_filter:*` depth plus rollout guidance text.
+
+## Features
+
+- Analyze any upstream `ROCm/TheRock` PR with `--pr N` (auto-fetches `pull/N/head`)
+- Works from fork clones (auto-fetches `upstream-main` when local `main` is missing)
+- Component-scoped `test:*` labels for superrepo bumps (file compare + commit-by-directory)
+- List or batch-analyze open upstream PRs via `upstream_pr_scan.py`
+- Template or LLM summaries (`summarize.py`: Ollama, OpenAI, vLLM)
+- Pre-generated demo reports in [`sample-runs/`](sample-runs/) for reviewers
+- 15 unit tests; hackathon walkthrough in `notebook/hackathon_demo.ipynb`
 
 ## Secrets (`.env`)
 
 ```powershell
 copy agents\change-impact-agent\.env.example agents\change-impact-agent\.env
-# Edit .env and paste GITHUB_TOKEN=ghp_... (file is gitignored)
+# Edit .env: GITHUB_TOKEN=<your PAT>  (file is gitignored)
 ```
 
-`analyze.py`, `upstream_pr_scan.py`, and `summarize.py` load `agents/change-impact-agent/.env` automatically. Shell `GITHUB_TOKEN` wins if already set.
+`analyze.py`, `upstream_pr_scan.py`, and `summarize.py` load `.env` via `env_loader.py`. A shell `GITHUB_TOKEN` already in the environment wins.
 
-**Never commit `.env` or paste tokens in chat.**
+**Never commit `.env`, hardcode tokens in notebooks, or paste tokens in chat.**
 
-## Quick start (local)
+`GITHUB_TOKEN` is needed for:
+
+- Listing upstream PRs (anonymous API rate limits)
+- Full superrepo component drill-down (`--full-manifest`)
+- Reliable GitHub compare / commit-by-directory on `rocm-libraries`
+
+## Quick start
 
 ```powershell
 cd TheRock
 pip install -r agents/change-impact-agent/requirements.txt
 
-# Analyze a real upstream PR (--pr fetches pull/N/head automatically)
+# Analyze an upstream PR
 python agents/change-impact-agent/analyze.py --pr 5688 --output-dir agents/change-impact-agent/out/pr-5688
 python agents/change-impact-agent/summarize.py --backend template --input agents/change-impact-agent/out/pr-5688/report.json
 
-# List open upstream PRs (fork PR list is separate — see below)
-python agents/change-impact-agent/upstream_pr_scan.py --max 10
-python agents/change-impact-agent/upstream_pr_scan.py --analyze --max 3
+# Superrepo bump with full component lists
+python agents/change-impact-agent/analyze.py --pr 5718 --full-manifest --output-dir agents/change-impact-agent/out/pr-5718
 
-# Submodule bump demo (needs GITHUB_TOKEN for component file lists)
-$env:GITHUB_TOKEN = "<PAT>"
-python agents/change-impact-agent/analyze.py --start main~6 --end main --full-manifest
+# List or batch-analyze open upstream PRs
+python agents/change-impact-agent/upstream_pr_scan.py --max 10
+python agents/change-impact-agent/upstream_pr_scan.py --analyze --max 3 --full-manifest
+
+# Local git range (fork clones: use HEAD, not main)
+python agents/change-impact-agent/analyze.py --start HEAD~6 --end HEAD --output-dir agents/change-impact-agent/out/demo
 ```
 
-Open `agents/change-impact-agent/out/report.html`.
+Open `out/report.html`, or browse committed samples under `sample-runs/`.
 
-## What the agent analyzes
+**PowerShell:** `run_demo.ps1` runs `HEAD~6..HEAD` on the current branch.
 
-| Layer | Source | Example output |
-|-------|--------|----------------|
+## Sample runs
+
+Pre-generated reports in [`sample-runs/`](sample-runs/):
+
+| Folder | PR | What it shows |
+|--------|-----|----------------|
+| `pr-5572/` | [ROCm/TheRock#5572](https://github.com/ROCm/TheRock/pull/5572) | CI timeout change → `test:miopen`, `test_filter:quick` |
+| `pr-5688/` | [#5688](https://github.com/ROCm/TheRock/pull/5688) | hipDNN CI + artifact TOML → `test:hipdnn`, `test_filter:quick` |
+| `pr-5480/` | [#5480](https://github.com/ROCm/TheRock/pull/5480) | Third-party packaging → `test_filter:quick` |
+| `pr-5718/` | [#5718](https://github.com/ROCm/TheRock/pull/5718) | rocm-libraries bump → component-scoped `test:*` |
+
+Each folder has `report.json`, `report.html`, and `executive_summary.md`. Local runs write to `out/` (gitignored).
+
+## Analysis layers
+
+| Layer | Source | Example |
+|-------|--------|---------|
 | Submodule pins | Manifest diff | `rocm-libraries` SHA bump |
-| Superrepo components | `--full-manifest` + GitHub API | `miopen`, `hipblaslt` changed |
-| Superrepo file paths | GitHub compare on submodule SHAs | `projects/miopen/src/...` sample paths |
-| TheRock file paths | `git diff --name-only` | CI scripts, artifact TOML |
-| File content | Parsers for test matrix + artifact TOML | `hipdnn_python_bindings` disabled |
+| Superrepo components | GitHub compare + commits | `miopen`, `hipblaslt` |
+| Superrepo paths | Compare on old/new SHAs | `projects/miopen/...` |
+| TheRock paths | `git diff --name-only` | CI scripts, third-party CMake |
+| File content | Matrix + TOML parsers | timeout 60→120 min |
+| Topology | `BUILD_TOPOLOGY.toml` | stages, severity |
 
-## CLI
+## Project layout
+
+```
+agents/change-impact-agent/
+├── analyze.py               # Main entry — build report from git range or --pr
+├── summarize.py             # Executive summary (template or LLM)
+├── upstream_pr_scan.py      # List / analyze open upstream PRs
+├── manifest_bridge.py       # Submodule pin diff
+├── path_bridge.py           # TheRock file path diff
+├── content_diff.py          # CI matrix + artifact TOML
+├── component_diff_bridge.py # Superrepo compare + commit-by-directory
+├── impact_graph.py          # Topology blast radius
+├── ci_mapping.py            # test:* + test_filter:* labels
+├── github_pr.py             # Upstream PR fetch + GitHub API
+├── sample-runs/              # Committed demo outputs
+├── notebook/hackathon_demo.ipynb
+└── tests/
+```
+
+## CLI reference
 
 ### analyze.py
 
@@ -60,21 +122,22 @@ Open `agents/change-impact-agent/out/report.html`.
 |------|-------------|
 | `--end` | End ref (required unless `--pr`) |
 | `--start` | Start ref |
-| `--pr` | Upstream PR number — auto-fetch `pull/N/head` to `pr-N` |
+| `--pr` | Upstream PR — fetch `pull/N/head` to `pr-N` |
 | `--upstream-repo` | Default `ROCm/TheRock` |
-| `--pr-base-ref` | Use merge-base with branch as start (default: PR base from API) |
+| `--pr-base-ref` | Merge-base start; fetches upstream branch if missing locally |
 | `--refetch` | Force git fetch for `--pr` |
-| `--output-dir` | Default: `agents/change-impact-agent/out` |
-| `--full-manifest` | GitHub API superrepo drill-down (`GITHUB_TOKEN`) |
+| `--output-dir` | Default `agents/change-impact-agent/out` |
+| `--full-manifest` | GitHub superrepo drill-down |
+| `--therock-root` | TheRock repo root path |
 
 ### upstream_pr_scan.py
 
 | Flag | Description |
 |------|-------------|
-| `--max` | Max open upstream PRs to list or analyze (default 10) |
+| `--max` | Max open PRs to list or analyze (default 10) |
 | `--pr` | Single PR number |
-| `--analyze` | Run `analyze.py` for each listed PR |
-| `--upstream-repo` | Default `ROCm/TheRock` |
+| `--analyze` | Run `analyze.py` for each PR |
+| `--full-manifest` | Pass through to `analyze.py` |
 | `--refetch` | Force git fetch per PR |
 
 ### summarize.py
@@ -82,36 +145,34 @@ Open `agents/change-impact-agent/out/report.html`.
 | Flag | Description |
 |------|-------------|
 | `--backend` | `template`, `ollama`, `openai`, `vllm` |
-| `--input` | `out/report.json` |
+| `--input` / `--output` | `report.json` → `executive_summary.md` |
 | `--model` | LLM model name |
-| `--base-url` | Ollama or vLLM OpenAI-compatible URL |
+| `--base-url` | Ollama or vLLM URL |
 
 ## Outputs
 
-- `out/report.json` — structured impact data
-- `out/report.html` — visual report
-- `out/executive_summary.md` — after summarize
+| File | Contents |
+|------|----------|
+| `report.json` | Impact data, `ci_recommendations`, `content_insights`, `rollout_strategy` |
+| `report.html` | HTML report |
+| `executive_summary.md` | Human-readable summary from `summarize.py` |
 
-## Upstream PRs vs fork PR list
+## Upstream vs fork PRs
 
-Open PRs on **ROCm/TheRock** live on upstream. Your fork’s GitHub **Pull requests** tab only shows PRs **on the fork**, so it will look empty unless you open a PR from your branch.
-
-Use `upstream_pr_scan.py` or fork Actions **Change Impact Upstream PR Scan** to analyze upstream PRs without opening a fork PR.
-
-### GitHub Actions (fork)
+Open PRs on **ROCm/TheRock** are upstream. Your fork's Pull requests tab only shows PRs on the fork. Use `upstream_pr_scan.py` or the **Change Impact Upstream PR Scan** GitHub Action to analyze upstream PRs.
 
 | Workflow | Purpose |
 |----------|---------|
-| `change-impact-upstream-scan.yml` | Dispatch: analyze one upstream PR or batch open PRs; uploads `out/**` artifact |
-| `change-impact-agent.yml` | Comment on PRs opened **on your fork** with severity + label suggestions |
+| `change-impact-upstream-scan.yml` | Dispatch: analyze upstream PR(s); upload reports |
+| `change-impact-agent.yml` | Comment on fork PRs with severity + label suggestions |
 
-## Hackathon demo notebook
+## Demo notebook
 
 ```powershell
 jupyter notebook agents/change-impact-agent/notebook/hackathon_demo.ipynb
 ```
 
-Clones `rajipsv/TheRock` (`feature/change-impact-agent`), runs `pytest`, analyzes demo PRs #5572, #5688, #5480, #5718.
+Clones the fork, runs `pytest`, analyzes PRs #5572, #5688, #5480, #5718. Copy `.env` into the clone if `GITHUB_TOKEN` is not in the environment. Shallow clones lack `main` — the notebook fetches `upstream-main` and uses `HEAD~6..HEAD` for the local range demo.
 
 ## Tests
 
@@ -121,4 +182,4 @@ python -m pytest agents/change-impact-agent/tests/ -q
 
 ## Fork
 
-https://github.com/rajipsv/TheRock (branch: `feature/change-impact-agent`)
+https://github.com/rajipsv/TheRock (`feature/change-impact-agent`) — sample reports at `agents/change-impact-agent/sample-runs/`
