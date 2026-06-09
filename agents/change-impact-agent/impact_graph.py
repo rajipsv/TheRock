@@ -20,7 +20,6 @@ class ImpactResult:
     affected_build_stages: list[str] = field(default_factory=list)
     severity: str = "LOW"
     blast_radius_score: int = 0
-    rollout_strategy: str = ""
     rationale: list[str] = field(default_factory=list)
 
 
@@ -123,14 +122,6 @@ def _score_severity(
     return "LOW", 10, rationale
 
 
-def _rollout_for_severity(severity: str) -> str:
-    if severity in ("CRITICAL", "HIGH"):
-        return "Canary one GPU family (e.g. gfx110X) then full multi_arch_ci matrix"
-    if severity in ("MEDIUM", "MEDIUM-HIGH"):
-        return "Canary gfx family + component-specific test labels"
-    return "Quick or standard tests; manifest-diff sibling job sufficient"
-
-
 def analyze_impact(changed_items: list[ChangedItem], repo_root: Path | None = None) -> ImpactResult:
     repo_root = repo_root or find_therock_root()
     topology = _load_topology(repo_root)
@@ -193,7 +184,6 @@ def analyze_impact(changed_items: list[ChangedItem], repo_root: Path | None = No
         affected_build_stages=sorted(stages),
         severity=severity,
         blast_radius_score=score,
-        rollout_strategy=_rollout_for_severity(severity),
         rationale=rationale,
     )
 
@@ -205,6 +195,5 @@ def impact_to_dict(impact: ImpactResult) -> dict:
         "affected_build_stages": impact.affected_build_stages,
         "severity": impact.severity,
         "blast_radius_score": impact.blast_radius_score,
-        "rollout_strategy": impact.rollout_strategy,
         "rationale": impact.rationale,
     }

@@ -24,7 +24,6 @@ from github_pr import (
     ensure_pr_fetched,
     get_pull_request,
     list_open_pull_requests,
-    pr_local_ref,
 )
 from manifest_bridge import find_therock_root
 
@@ -138,15 +137,22 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     repo_root = args.therock_root or find_therock_root()
 
-    if args.pr is not None:
-        pr_info = get_pull_request(args.pr, args.upstream_repo)
-        prs = [pr_info]
-        if not args.analyze:
+    try:
+        if args.pr is not None:
+            pr_info = get_pull_request(args.pr, args.upstream_repo)
+            prs = [pr_info]
+            if not args.analyze:
+                print_pr_table(prs)
+        else:
+            print(f"Fetching open PRs from {args.upstream_repo} (max {args.max})...")
+            prs = list_open_pull_requests(args.upstream_repo, max_results=args.max)
             print_pr_table(prs)
-    else:
-        print(f"Fetching open PRs from {args.upstream_repo} (max {args.max})...")
-        prs = list_open_pull_requests(args.upstream_repo, max_results=args.max)
-        print_pr_table(prs)
+    except RuntimeError as exc:
+        print(f"Error: {exc}", file=sys.stderr)
+        return 1
+    except Exception as exc:
+        print(f"GitHub API error: {exc}", file=sys.stderr)
+        return 1
 
     if not args.analyze:
         if args.pr is None:

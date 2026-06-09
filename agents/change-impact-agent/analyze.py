@@ -59,7 +59,7 @@ def build_report(
     impact = analyze_impact(all_items, repo_root)
     if content_insights.get("notes"):
         impact.rationale.extend(content_insights["notes"])
-    ci = build_ci_recommendations(
+    ci, rollout_strategy = build_ci_recommendations(
         all_items,
         impact,
         repo_root,
@@ -84,7 +84,6 @@ def build_report(
         }
         for i in path_items
     ]
-
     report = {
         **manifest_dict,
         **path_dict,
@@ -94,8 +93,8 @@ def build_report(
         "ci_recommendations": ci,
         "executive_summary": "",
     }
-    if ci.get("rollout_strategy"):
-        report["rollout_strategy"] = ci["rollout_strategy"]
+    if rollout_strategy:
+        report["rollout_strategy"] = rollout_strategy
     return report
 
 

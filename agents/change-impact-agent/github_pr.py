@@ -22,10 +22,7 @@ class PullRequestInfo:
     number: int
     title: str
     author: str
-    head_sha: str
     base_ref: str
-    labels: list[str]
-    html_url: str
 
 
 def _token() -> str | None:
@@ -98,20 +95,16 @@ def get_pull_request(
     response = requests.get(url, headers=_headers(), timeout=60)
     if response.status_code == 403 and not _token():
         raise RuntimeError(
-            "GitHub API rate limit — set GITHUB_TOKEN for upstream PR metadata"
+            "GitHub API rate limit — set GITHUB_TOKEN in agents/change-impact-agent/.env"
         )
     response.raise_for_status()
     item = response.json()
     user = item.get("user") or {}
-    labels = [lbl.get("name", "") for lbl in item.get("labels", [])]
     return PullRequestInfo(
         number=item["number"],
         title=item.get("title", ""),
         author=user.get("login", ""),
-        head_sha=(item.get("head") or {}).get("sha", ""),
         base_ref=(item.get("base") or {}).get("ref", "main"),
-        labels=labels,
-        html_url=item.get("html_url", ""),
     )
 
 
@@ -158,7 +151,7 @@ def list_open_pull_requests(
         response = requests.get(url, headers=_headers(), params=params, timeout=60)
         if response.status_code == 403 and not _token():
             raise RuntimeError(
-                "GitHub API rate limit — set GITHUB_TOKEN for listing upstream PRs"
+                "GitHub API rate limit — set GITHUB_TOKEN in agents/change-impact-agent/.env"
             )
         response.raise_for_status()
         batch = response.json()
@@ -168,16 +161,12 @@ def list_open_pull_requests(
             if len(prs) >= max_results:
                 break
             user = item.get("user") or {}
-            labels = [lbl.get("name", "") for lbl in item.get("labels", [])]
             prs.append(
                 PullRequestInfo(
                     number=item["number"],
                     title=item.get("title", ""),
                     author=user.get("login", ""),
-                    head_sha=(item.get("head") or {}).get("sha", ""),
                     base_ref=(item.get("base") or {}).get("ref", "main"),
-                    labels=labels,
-                    html_url=item.get("html_url", ""),
                 )
             )
         url = None

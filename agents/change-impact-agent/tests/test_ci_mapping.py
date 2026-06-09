@@ -77,7 +77,7 @@ class CiMappingTest(unittest.TestCase):
             affected_artifact_groups=["math-libs", "ml-libs"],
             affected_build_stages=["math-libs"],
         )
-        ci = build_ci_recommendations(items, impact, repo_root=None)
+        ci, _ = build_ci_recommendations(items, impact, repo_root=None)
         self.assertEqual(ci["suite_inference"], "unresolved")
         self.assertEqual(ci["suggested_test_suites"], [])
         self.assertEqual(ci["suggested_pr_labels"], ["test_filter:standard"])
@@ -91,7 +91,7 @@ class CiMappingTest(unittest.TestCase):
             )
         ]
         impact = ImpactResult(severity="MEDIUM")
-        ci = build_ci_recommendations(
+        ci, _ = build_ci_recommendations(
             items,
             impact,
             repo_root=None,
@@ -114,7 +114,7 @@ class CiMappingTest(unittest.TestCase):
             )
         ]
         impact = ImpactResult(severity="MEDIUM")
-        ci = build_ci_recommendations(items, impact, repo_root=None)
+        ci, _ = build_ci_recommendations(items, impact, repo_root=None)
         self.assertEqual(ci["test_type"], "quick")
         self.assertIn("test_filter:quick", ci["suggested_pr_labels"])
 
@@ -133,7 +133,7 @@ class CiMappingTest(unittest.TestCase):
             ),
         ]
         impact = ImpactResult(severity="MEDIUM")
-        ci = build_ci_recommendations(items, impact, repo_root=None)
+        ci, _ = build_ci_recommendations(items, impact, repo_root=None)
         self.assertEqual(ci["suite_inference"], "keyword")
         self.assertEqual(ci["suggested_test_suites"], ["miopen"])
 

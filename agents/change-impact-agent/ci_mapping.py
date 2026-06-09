@@ -227,7 +227,7 @@ def build_ci_recommendations(
     content_insights: dict | None = None,
     changed_paths_in_components: dict | None = None,
     superrepo_diffs: dict | None = None,
-) -> dict:
+) -> tuple[dict, str]:
     repo_root = repo_root or find_therock_root()
     known_keys = _known_test_keys(repo_root)
     content_insights = content_insights or {}
@@ -284,14 +284,13 @@ def build_ci_recommendations(
             f" Do not label disabled jobs: {', '.join(sorted(disabled_jobs))}."
         )
 
-    return {
+    recommendations = {
         "test_type": test_type,
         "test_type_reason": test_type_reason,
         "suggested_pr_labels": labels,
         "suggested_test_suites": test_suites,
         "suite_inference": suite_inference,
-        "rollout_strategy": rollout_strategy,
         "disabled_test_jobs": sorted(disabled_jobs),
         "notes": notes,
-        "affected_build_stages": impact.affected_build_stages,
     }
+    return recommendations, rollout_strategy
