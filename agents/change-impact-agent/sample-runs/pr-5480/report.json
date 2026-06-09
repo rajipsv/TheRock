@@ -28,7 +28,6 @@
   "affected_build_stages": [],
   "severity": "MEDIUM",
   "blast_radius_score": 45,
-  "rollout_strategy": "Canary gfx family + test_filter:standard (no test:* inferred \u2014 set GITHUB_TOKEN and use --full-manifest)",
   "rationale": [
     "Changes detected with moderate default scoring"
   ],
@@ -49,12 +48,11 @@
     ],
     "suggested_test_suites": [],
     "suite_inference": "none",
-    "rollout_strategy": "Canary gfx family + test_filter:standard (no test:* inferred \u2014 set GITHUB_TOKEN and use --full-manifest)",
     "disabled_test_jobs": [],
-    "notes": "TheRock CI defaults to all test suites (PROJECTS_TO_TEST=*) unless test:* labels are set. These labels narrow scope to recommended suites. Recommendations are test_matrix jobs + test_filter depth \u2014 not individual ctest cases.",
-    "affected_build_stages": []
+    "notes": "TheRock CI defaults to all test suites (PROJECTS_TO_TEST=*) unless test:* labels are set. These labels narrow scope to recommended suites. Recommendations are test_matrix jobs + test_filter depth \u2014 not individual ctest cases."
   },
   "executive_summary": "# Change Impact Executive Summary\n\n**Range:** `42cdfac6` \u2192 `bdaf2213`\n**Severity:** MEDIUM (blast radius 45/100)\n\n## What changed\n\n### Changed files (git diff)\n- `third-party/openmpi/CMakeLists.txt`\n\n## Blast radius\n\n- Changes detected with moderate default scoring\n\n**Affected build stages:** none\n**Rollout:** Canary gfx family + test_filter:standard (no test:* inferred \u2014 set GITHUB_TOKEN and use --full-manifest)\n\n## CI recommendations (assistant \u2014 apply labels manually)\n\n- **test_type:** `quick` \u2014 Third-party packaging/config change \u2014 quick sanity per test_filtering.md\n- **Suggested PR labels:** test_filter:quick\n- **Suggested test suites:** \n- _TheRock CI defaults to all test suites (PROJECTS_TO_TEST=*) unless test:* labels are set. These labels narrow scope to recommended suites. Recommendations are test_matrix jobs + test_filter depth \u2014 not individual ctest cases._\n",
+  "rollout_strategy": "Canary gfx family + test_filter:standard (no test:* inferred \u2014 set GITHUB_TOKEN and use --full-manifest)",
   "pr_number": 5480,
   "upstream_repo": "ROCm/TheRock"
 }

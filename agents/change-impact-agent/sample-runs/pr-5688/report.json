@@ -41,7 +41,6 @@
   ],
   "severity": "MEDIUM-HIGH",
   "blast_radius_score": 70,
-  "rollout_strategy": "Canary gfx family + component-specific test labels",
   "rationale": [
     "ML library / hipDNN path change detected",
     "Test matrix jobs removed or commented out: hipdnn_python_bindings",
@@ -54,6 +53,8 @@
         "hipdnn_python_bindings"
       ],
       "enabled_test_jobs": [],
+      "timeout_changes": [],
+      "timeout_changed_jobs": [],
       "notes": [
         "Test matrix jobs removed or commented out: hipdnn_python_bindings"
       ]
@@ -73,6 +74,7 @@
     "disabled_test_jobs": [
       "hipdnn_python_bindings"
     ],
+    "timeout_changed_jobs": [],
     "notes": [
       "Test matrix jobs removed or commented out: hipdnn_python_bindings",
       "Artifact exclude patterns added: share/hipdnn/python/**"
@@ -90,13 +92,14 @@
     "suggested_test_suites": [
       "hipdnn"
     ],
+    "suite_inference": "keyword",
     "disabled_test_jobs": [
       "hipdnn_python_bindings"
     ],
-    "notes": "TheRock CI defaults to all test suites (PROJECTS_TO_TEST=*) unless test:* labels are set. These labels narrow scope to recommended suites. Recommendations are test_matrix jobs + test_filter depth \u2014 not individual ctest cases. Do not label disabled jobs: hipdnn_python_bindings.",
-    "affected_build_stages": [
-      "math-libs"
-    ]
+    "notes": "TheRock CI defaults to all test suites (PROJECTS_TO_TEST=*) unless test:* labels are set. These labels narrow scope to recommended suites. Recommendations are test_matrix jobs + test_filter depth \u2014 not individual ctest cases. Do not label disabled jobs: hipdnn_python_bindings."
   },
-  "executive_summary": "# Change Impact Executive Summary\n\n**Range:** `31b738c3` \u2192 `e5eed222`\n**Severity:** MEDIUM-HIGH (blast radius 70/100)\n\n## What changed\n\n### Changed files (git diff)\n- `build_tools/github_actions/fetch_test_configurations.py`\n- `ml-libs/artifact-hipdnn.toml`\n\n### Content insights (CI / packaging)\n- Test matrix jobs removed or commented out: hipdnn_python_bindings\n- Artifact exclude patterns added: share/hipdnn/python/**\n\n## Blast radius\n\n- ML library / hipDNN path change detected\n- Test matrix jobs removed or commented out: hipdnn_python_bindings\n- Artifact exclude patterns added: share/hipdnn/python/**\n\n**Affected build stages:** math-libs\n**Rollout:** Canary gfx family + component-specific test labels\n\n## CI recommendations (assistant \u2014 apply labels manually)\n\n- **test_type:** `quick` \u2014 CI config change with test jobs disabled \u2014 quick sanity per test_filtering.md\n- **Suggested PR labels:** test:hipdnn, test_filter:quick\n- **Suggested test suites:** hipdnn\n- **Disabled CI jobs (do not label):** hipdnn_python_bindings\n- _TheRock CI defaults to all test suites (PROJECTS_TO_TEST=*) unless test:* labels are set. These labels narrow scope to recommended suites. Recommendations are test_matrix jobs + test_filter depth \u2014 not individual ctest cases. Do not label disabled jobs: hipdnn_python_bindings._\n"
+  "executive_summary": "# Change Impact Executive Summary\n\n**Range:** `31b738c3` \u2192 `e5eed222`\n**Severity:** MEDIUM-HIGH (blast radius 70/100)\n\n## What changed\n\n### Changed files (git diff)\n- `build_tools/github_actions/fetch_test_configurations.py`\n- `ml-libs/artifact-hipdnn.toml`\n\n### Content insights (CI / packaging)\n- Test matrix jobs removed or commented out: hipdnn_python_bindings\n- Artifact exclude patterns added: share/hipdnn/python/**\n\n## Blast radius\n\n- ML library / hipDNN path change detected\n- Test matrix jobs removed or commented out: hipdnn_python_bindings\n- Artifact exclude patterns added: share/hipdnn/python/**\n\n**Affected build stages:** math-libs\n**Rollout:** Canary gfx family + component-specific test labels\n\n## CI recommendations (assistant \u2014 apply labels manually)\n\n- **test_type:** `quick` \u2014 CI config change with test jobs disabled \u2014 quick sanity per test_filtering.md\n- **Suggested PR labels:** test:hipdnn, test_filter:quick\n- **Suggested test suites:** hipdnn\n- **Disabled CI jobs (do not label):** hipdnn_python_bindings\n- _TheRock CI defaults to all test suites (PROJECTS_TO_TEST=*) unless test:* labels are set. These labels narrow scope to recommended suites. Recommendations are test_matrix jobs + test_filter depth \u2014 not individual ctest cases. Do not label disabled jobs: hipdnn_python_bindings._\n",
+  "rollout_strategy": "Canary gfx family + component-specific test labels",
+  "pr_number": 5688,
+  "upstream_repo": "ROCm/TheRock"
 }
