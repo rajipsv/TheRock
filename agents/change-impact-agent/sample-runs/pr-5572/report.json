@@ -1,0 +1,85 @@
+{
+  "start_ref": "7b7b238e3e0c2e98436ea230b5114a5b6b946abf",
+  "end_ref": "pr-5572",
+  "start_sha": "7b7b238e3e0c2e98436ea230b5114a5b6b946abf",
+  "end_sha": "c70f211c67426667395316cc9fd5c17eb511208c",
+  "manifest_mode": "local_git_pins",
+  "manifest_notes": [
+    "Local mode: compared top-level submodule SHAs via git (no GitHub API).",
+    "Superrepo internal component list requires --full-manifest and GITHUB_TOKEN.",
+    "Pick a range that spans submodule bumps (e.g. main~6..main not main~5..main)."
+  ],
+  "changed_components": [
+    {
+      "name": "build_tools/github_actions/fetch_test_configurations.py",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    }
+  ],
+  "changed_files": [
+    "build_tools/github_actions/fetch_test_configurations.py"
+  ],
+  "changed_file_count": 1,
+  "affected_source_sets": [],
+  "affected_artifact_groups": [],
+  "affected_build_stages": [],
+  "severity": "MEDIUM",
+  "blast_radius_score": 40,
+  "rollout_strategy": "Canary gfx family + component-specific test labels",
+  "rationale": [
+    "CI test matrix or GitHub Actions configuration changed",
+    "GHA wrapper timeout for `miopen`: 60 \u2192 120 minutes (per-test limits still from test_categories.yaml)"
+  ],
+  "content_insights": {
+    "test_matrix_changes": {
+      "file": "build_tools/github_actions/fetch_test_configurations.py",
+      "disabled_test_jobs": [],
+      "enabled_test_jobs": [],
+      "timeout_changes": [
+        {
+          "job": "miopen",
+          "old_minutes": 60,
+          "new_minutes": 120
+        }
+      ],
+      "timeout_changed_jobs": [
+        "miopen"
+      ],
+      "notes": [
+        "GHA wrapper timeout for `miopen`: 60 \u2192 120 minutes (per-test limits still from test_categories.yaml)"
+      ]
+    },
+    "artifact_toml_changes": [],
+    "disabled_test_jobs": [],
+    "timeout_changed_jobs": [
+      "miopen"
+    ],
+    "notes": [
+      "GHA wrapper timeout for `miopen`: 60 \u2192 120 minutes (per-test limits still from test_categories.yaml)"
+    ]
+  },
+  "superrepo_diffs": {},
+  "changed_paths_in_components": {},
+  "ci_recommendations": {
+    "test_type": "quick",
+    "test_type_reason": "CI or packaging manifest change only (no submodule bump)",
+    "suggested_pr_labels": [
+      "test:miopen",
+      "test_filter:quick"
+    ],
+    "suggested_test_suites": [
+      "miopen"
+    ],
+    "suite_inference": "keyword",
+    "rollout_strategy": "Canary gfx family + component-specific test labels",
+    "disabled_test_jobs": [],
+    "notes": "TheRock CI defaults to all test suites (PROJECTS_TO_TEST=*) unless test:* labels are set. These labels narrow scope to recommended suites. Recommendations are test_matrix jobs + test_filter depth \u2014 not individual ctest cases.",
+    "affected_build_stages": []
+  },
+  "executive_summary": "# Change Impact Executive Summary\n\n**Range:** `7b7b238e` \u2192 `c70f211c`\n**Severity:** MEDIUM (blast radius 40/100)\n\n## What changed\n\n### Changed files (git diff)\n- `build_tools/github_actions/fetch_test_configurations.py`\n\n### Content insights (CI / packaging)\n- GHA wrapper timeout for `miopen`: 60 \u2192 120 minutes (per-test limits still from test_categories.yaml)\n\n### GHA wrapper timeout changes\n- `miopen`: 60 \u2192 120 minutes\n\n## Blast radius\n\n- CI test matrix or GitHub Actions configuration changed\n- GHA wrapper timeout for `miopen`: 60 \u2192 120 minutes (per-test limits still from test_categories.yaml)\n\n**Affected build stages:** none\n**Rollout:** Canary gfx family + component-specific test labels\n\n## CI recommendations (assistant \u2014 apply labels manually)\n\n- **test_type:** `quick` \u2014 CI or packaging manifest change only (no submodule bump)\n- **Suggested PR labels:** test:miopen, test_filter:quick\n- **Suggested test suites:** miopen\n- _TheRock CI defaults to all test suites (PROJECTS_TO_TEST=*) unless test:* labels are set. These labels narrow scope to recommended suites. Recommendations are test_matrix jobs + test_filter depth \u2014 not individual ctest cases._\n",
+  "pr_number": 5572,
+  "upstream_repo": "ROCm/TheRock"
+}

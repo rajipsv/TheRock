@@ -1,0 +1,60 @@
+{
+  "start_ref": "42cdfac66fed8bcabe230611e6517d577a1127f9",
+  "end_ref": "pr-5480",
+  "start_sha": "42cdfac66fed8bcabe230611e6517d577a1127f9",
+  "end_sha": "bdaf2213051fe032b3906f40da96733a334e6c34",
+  "manifest_mode": "local_git_pins",
+  "manifest_notes": [
+    "Local mode: compared top-level submodule SHAs via git (no GitHub API).",
+    "Superrepo internal component list requires --full-manifest and GITHUB_TOKEN.",
+    "Pick a range that spans submodule bumps (e.g. main~6..main not main~5..main)."
+  ],
+  "changed_components": [
+    {
+      "name": "third-party/openmpi/CMakeLists.txt",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    }
+  ],
+  "changed_files": [
+    "third-party/openmpi/CMakeLists.txt"
+  ],
+  "changed_file_count": 1,
+  "affected_source_sets": [],
+  "affected_artifact_groups": [],
+  "affected_build_stages": [],
+  "severity": "MEDIUM",
+  "blast_radius_score": 45,
+  "rollout_strategy": "Canary gfx family + test_filter:standard (no test:* inferred \u2014 set GITHUB_TOKEN and use --full-manifest)",
+  "rationale": [
+    "Changes detected with moderate default scoring"
+  ],
+  "content_insights": {
+    "test_matrix_changes": null,
+    "artifact_toml_changes": [],
+    "disabled_test_jobs": [],
+    "timeout_changed_jobs": [],
+    "notes": []
+  },
+  "superrepo_diffs": {},
+  "changed_paths_in_components": {},
+  "ci_recommendations": {
+    "test_type": "quick",
+    "test_type_reason": "Third-party packaging/config change \u2014 quick sanity per test_filtering.md",
+    "suggested_pr_labels": [
+      "test_filter:quick"
+    ],
+    "suggested_test_suites": [],
+    "suite_inference": "none",
+    "rollout_strategy": "Canary gfx family + test_filter:standard (no test:* inferred \u2014 set GITHUB_TOKEN and use --full-manifest)",
+    "disabled_test_jobs": [],
+    "notes": "TheRock CI defaults to all test suites (PROJECTS_TO_TEST=*) unless test:* labels are set. These labels narrow scope to recommended suites. Recommendations are test_matrix jobs + test_filter depth \u2014 not individual ctest cases.",
+    "affected_build_stages": []
+  },
+  "executive_summary": "# Change Impact Executive Summary\n\n**Range:** `42cdfac6` \u2192 `bdaf2213`\n**Severity:** MEDIUM (blast radius 45/100)\n\n## What changed\n\n### Changed files (git diff)\n- `third-party/openmpi/CMakeLists.txt`\n\n## Blast radius\n\n- Changes detected with moderate default scoring\n\n**Affected build stages:** none\n**Rollout:** Canary gfx family + test_filter:standard (no test:* inferred \u2014 set GITHUB_TOKEN and use --full-manifest)\n\n## CI recommendations (assistant \u2014 apply labels manually)\n\n- **test_type:** `quick` \u2014 Third-party packaging/config change \u2014 quick sanity per test_filtering.md\n- **Suggested PR labels:** test_filter:quick\n- **Suggested test suites:** \n- _TheRock CI defaults to all test suites (PROJECTS_TO_TEST=*) unless test:* labels are set. These labels narrow scope to recommended suites. Recommendations are test_matrix jobs + test_filter depth \u2014 not individual ctest cases._\n",
+  "pr_number": 5480,
+  "upstream_repo": "ROCm/TheRock"
+}

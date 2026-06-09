@@ -1,0 +1,102 @@
+{
+  "start_ref": "31b738c3f3fc0bd7be498befe72a7920b2324853",
+  "end_ref": "pr-5688",
+  "start_sha": "31b738c3f3fc0bd7be498befe72a7920b2324853",
+  "end_sha": "e5eed22238b83431f31cadce1ed5bffbbabd47a2",
+  "manifest_mode": "local_git_pins",
+  "manifest_notes": [
+    "Local mode: compared top-level submodule SHAs via git (no GitHub API).",
+    "Superrepo internal component list requires --full-manifest and GITHUB_TOKEN.",
+    "Pick a range that spans submodule bumps (e.g. main~6..main not main~5..main)."
+  ],
+  "changed_components": [
+    {
+      "name": "build_tools/github_actions/fetch_test_configurations.py",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "ml-libs/artifact-hipdnn.toml",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    }
+  ],
+  "changed_files": [
+    "build_tools/github_actions/fetch_test_configurations.py",
+    "ml-libs/artifact-hipdnn.toml"
+  ],
+  "changed_file_count": 2,
+  "affected_source_sets": [],
+  "affected_artifact_groups": [
+    "ml-libs"
+  ],
+  "affected_build_stages": [
+    "math-libs"
+  ],
+  "severity": "MEDIUM-HIGH",
+  "blast_radius_score": 70,
+  "rollout_strategy": "Canary gfx family + component-specific test labels",
+  "rationale": [
+    "ML library / hipDNN path change detected",
+    "Test matrix jobs removed or commented out: hipdnn_python_bindings",
+    "Artifact exclude patterns added: share/hipdnn/python/**"
+  ],
+  "content_insights": {
+    "test_matrix_changes": {
+      "file": "build_tools/github_actions/fetch_test_configurations.py",
+      "disabled_test_jobs": [
+        "hipdnn_python_bindings"
+      ],
+      "enabled_test_jobs": [],
+      "notes": [
+        "Test matrix jobs removed or commented out: hipdnn_python_bindings"
+      ]
+    },
+    "artifact_toml_changes": [
+      {
+        "file": "ml-libs/artifact-hipdnn.toml",
+        "added_excludes": [
+          "share/hipdnn/python/**"
+        ],
+        "removed_excludes": [],
+        "notes": [
+          "Artifact exclude patterns added: share/hipdnn/python/**"
+        ]
+      }
+    ],
+    "disabled_test_jobs": [
+      "hipdnn_python_bindings"
+    ],
+    "notes": [
+      "Test matrix jobs removed or commented out: hipdnn_python_bindings",
+      "Artifact exclude patterns added: share/hipdnn/python/**"
+    ]
+  },
+  "superrepo_diffs": {},
+  "changed_paths_in_components": {},
+  "ci_recommendations": {
+    "test_type": "quick",
+    "test_type_reason": "CI config change with test jobs disabled \u2014 quick sanity per test_filtering.md",
+    "suggested_pr_labels": [
+      "test:hipdnn",
+      "test_filter:quick"
+    ],
+    "suggested_test_suites": [
+      "hipdnn"
+    ],
+    "disabled_test_jobs": [
+      "hipdnn_python_bindings"
+    ],
+    "notes": "TheRock CI defaults to all test suites (PROJECTS_TO_TEST=*) unless test:* labels are set. These labels narrow scope to recommended suites. Recommendations are test_matrix jobs + test_filter depth \u2014 not individual ctest cases. Do not label disabled jobs: hipdnn_python_bindings.",
+    "affected_build_stages": [
+      "math-libs"
+    ]
+  },
+  "executive_summary": "# Change Impact Executive Summary\n\n**Range:** `31b738c3` \u2192 `e5eed222`\n**Severity:** MEDIUM-HIGH (blast radius 70/100)\n\n## What changed\n\n### Changed files (git diff)\n- `build_tools/github_actions/fetch_test_configurations.py`\n- `ml-libs/artifact-hipdnn.toml`\n\n### Content insights (CI / packaging)\n- Test matrix jobs removed or commented out: hipdnn_python_bindings\n- Artifact exclude patterns added: share/hipdnn/python/**\n\n## Blast radius\n\n- ML library / hipDNN path change detected\n- Test matrix jobs removed or commented out: hipdnn_python_bindings\n- Artifact exclude patterns added: share/hipdnn/python/**\n\n**Affected build stages:** math-libs\n**Rollout:** Canary gfx family + component-specific test labels\n\n## CI recommendations (assistant \u2014 apply labels manually)\n\n- **test_type:** `quick` \u2014 CI config change with test jobs disabled \u2014 quick sanity per test_filtering.md\n- **Suggested PR labels:** test:hipdnn, test_filter:quick\n- **Suggested test suites:** hipdnn\n- **Disabled CI jobs (do not label):** hipdnn_python_bindings\n- _TheRock CI defaults to all test suites (PROJECTS_TO_TEST=*) unless test:* labels are set. These labels narrow scope to recommended suites. Recommendations are test_matrix jobs + test_filter depth \u2014 not individual ctest cases. Do not label disabled jobs: hipdnn_python_bindings._\n"
+}

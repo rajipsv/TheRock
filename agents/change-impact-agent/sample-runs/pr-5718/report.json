@@ -1,0 +1,232 @@
+{
+  "start_ref": "9100ec681955d4af7e1c720fb5c9b208fc838172",
+  "end_ref": "pr-5718",
+  "start_sha": "9100ec681955d4af7e1c720fb5c9b208fc838172",
+  "end_sha": "adbd8440509b35e4425e04c529f3dc59244037b6",
+  "manifest_mode": "local_git_pins",
+  "manifest_notes": [
+    "Local mode: compared top-level submodule SHAs via git (no GitHub API).",
+    "Superrepo internal component list requires --full-manifest and GITHUB_TOKEN.",
+    "Pick a range that spans submodule bumps (e.g. main~6..main not main~5..main)."
+  ],
+  "changed_components": [
+    {
+      "name": "rocm-libraries",
+      "kind": "superrepo",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "9d056e8e32874c7ca818886acc51c990727b0adc",
+      "new_sha": "e981611a34ed6b3baa3c11a6f0b4ec211a1f926f"
+    },
+    {
+      "name": "rocm-libraries",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    }
+  ],
+  "changed_files": [
+    "rocm-libraries"
+  ],
+  "changed_file_count": 1,
+  "affected_source_sets": [
+    "rocm-libraries"
+  ],
+  "affected_artifact_groups": [
+    "math-libs",
+    "ml-libs"
+  ],
+  "affected_build_stages": [
+    "math-libs"
+  ],
+  "severity": "MEDIUM",
+  "blast_radius_score": 45,
+  "rollout_strategy": "Canary gfx family + component-specific test labels",
+  "rationale": [
+    "Changes detected with moderate default scoring"
+  ],
+  "content_insights": {
+    "test_matrix_changes": null,
+    "artifact_toml_changes": [],
+    "disabled_test_jobs": [],
+    "timeout_changed_jobs": [],
+    "notes": []
+  },
+  "superrepo_diffs": {
+    "rocm-libraries": {
+      "github_repo": "ROCm/rocm-libraries",
+      "old_sha": "9d056e8e32874c7ca818886acc51c990727b0adc",
+      "new_sha": "e981611a34ed6b3baa3c11a6f0b4ec211a1f926f",
+      "total_files": 200,
+      "components": {
+        "composablekernel": {
+          "file_count": 0,
+          "sample_paths": [],
+          "commit_count": 7,
+          "detection": "commit_allocation"
+        },
+        "ctest": {
+          "file_count": 0,
+          "sample_paths": [],
+          "commit_count": 1,
+          "detection": "commit_allocation"
+        },
+        "hipblaslt": {
+          "file_count": 0,
+          "sample_paths": [],
+          "commit_count": 13,
+          "detection": "commit_allocation"
+        },
+        "hipdnn": {
+          "file_count": 0,
+          "sample_paths": [],
+          "commit_count": 5,
+          "detection": "commit_allocation"
+        },
+        "hiprand": {
+          "file_count": 0,
+          "sample_paths": [],
+          "commit_count": 1,
+          "detection": "commit_allocation"
+        },
+        "hipsolver": {
+          "file_count": 0,
+          "sample_paths": [],
+          "commit_count": 3,
+          "detection": "commit_allocation"
+        },
+        "hipsparselt": {
+          "file_count": 0,
+          "sample_paths": [],
+          "commit_count": 2,
+          "detection": "commit_allocation"
+        },
+        "miopen": {
+          "file_count": 0,
+          "sample_paths": [],
+          "commit_count": 5,
+          "detection": "commit_allocation"
+        },
+        "rocsolver": {
+          "file_count": 0,
+          "sample_paths": [],
+          "commit_count": 1,
+          "detection": "commit_allocation"
+        },
+        "rocsparse": {
+          "file_count": 0,
+          "sample_paths": [],
+          "commit_count": 1,
+          "detection": "commit_allocation"
+        },
+        "rpp": {
+          "file_count": 0,
+          "sample_paths": [],
+          "commit_count": 1,
+          "detection": "commit_allocation"
+        },
+        "stinkytofu": {
+          "file_count": 0,
+          "sample_paths": [],
+          "commit_count": 4,
+          "detection": "commit_allocation"
+        },
+        "tensile": {
+          "file_count": 0,
+          "sample_paths": [],
+          "commit_count": 2,
+          "detection": "commit_allocation"
+        }
+      }
+    }
+  },
+  "changed_paths_in_components": {
+    "composablekernel": {
+      "file_count": 0,
+      "sample_paths": []
+    },
+    "ctest": {
+      "file_count": 0,
+      "sample_paths": []
+    },
+    "hipblaslt": {
+      "file_count": 0,
+      "sample_paths": []
+    },
+    "hipdnn": {
+      "file_count": 0,
+      "sample_paths": []
+    },
+    "hiprand": {
+      "file_count": 0,
+      "sample_paths": []
+    },
+    "hipsolver": {
+      "file_count": 0,
+      "sample_paths": []
+    },
+    "hipsparselt": {
+      "file_count": 0,
+      "sample_paths": []
+    },
+    "miopen": {
+      "file_count": 0,
+      "sample_paths": []
+    },
+    "rocsolver": {
+      "file_count": 0,
+      "sample_paths": []
+    },
+    "rocsparse": {
+      "file_count": 0,
+      "sample_paths": []
+    },
+    "rpp": {
+      "file_count": 0,
+      "sample_paths": []
+    },
+    "stinkytofu": {
+      "file_count": 0,
+      "sample_paths": []
+    },
+    "tensile": {
+      "file_count": 0,
+      "sample_paths": []
+    }
+  },
+  "ci_recommendations": {
+    "test_type": "standard",
+    "test_type_reason": "Submodule or superrepo component change (matches TheRock CI policy)",
+    "suggested_pr_labels": [
+      "test:hipblaslt",
+      "test:hipdnn",
+      "test:hiprand",
+      "test:hipsolver",
+      "test:hipsparselt",
+      "test:miopen",
+      "test:rocsolver",
+      "test:rocsparse",
+      "test_filter:standard"
+    ],
+    "suggested_test_suites": [
+      "hipblaslt",
+      "hipdnn",
+      "hiprand",
+      "hipsolver",
+      "hipsparselt",
+      "miopen",
+      "rocsolver",
+      "rocsparse"
+    ],
+    "suite_inference": "superrepo_file_diff",
+    "rollout_strategy": "Canary gfx family + component-specific test labels",
+    "disabled_test_jobs": [],
+    "notes": "TheRock CI defaults to all test suites (PROJECTS_TO_TEST=*) unless test:* labels are set. These labels narrow scope to recommended suites. Recommendations are test_matrix jobs + test_filter depth \u2014 not individual ctest cases. test:* labels inferred from changed superrepo components (file compare or commit allocation). Use --full-manifest for manifest drill-down.",
+    "affected_build_stages": [
+      "math-libs"
+    ]
+  },
+  "executive_summary": "# Change Impact Executive Summary\n\n**Range:** `9100ec68` \u2192 `adbd8440`\n**Severity:** MEDIUM (blast radius 45/100)\n\n## What changed\n\n### Changed files (git diff)\n- `rocm-libraries`\n\n### Manifest / submodule changes\n- `rocm-libraries` (changed, superrepo)\n\n### Changed superrepo components\n- `composablekernel`: 0 file(s), 7 commit(s) in range\n- `ctest`: 0 file(s), 1 commit(s) in range\n- `hipblaslt`: 0 file(s), 13 commit(s) in range\n- `hipdnn`: 0 file(s), 5 commit(s) in range\n- `hiprand`: 0 file(s), 1 commit(s) in range\n- `hipsolver`: 0 file(s), 3 commit(s) in range\n- `hipsparselt`: 0 file(s), 2 commit(s) in range\n- `miopen`: 0 file(s), 5 commit(s) in range\n- `rocsolver`: 0 file(s), 1 commit(s) in range\n- `rocsparse`: 0 file(s), 1 commit(s) in range\n- `rpp`: 0 file(s), 1 commit(s) in range\n- `stinkytofu`: 0 file(s), 4 commit(s) in range\n- `tensile`: 0 file(s), 2 commit(s) in range\n\n## Blast radius\n\n- Changes detected with moderate default scoring\n\n**Affected build stages:** math-libs\n**Rollout:** Canary gfx family + component-specific test labels\n\n## CI recommendations (assistant \u2014 apply labels manually)\n\n- **test_type:** `standard` \u2014 Submodule or superrepo component change (matches TheRock CI policy)\n- **Suite inference:** from changed superrepo components (file paths or per-directory commits)\n- **Suggested PR labels:** test:hipblaslt, test:hipdnn, test:hiprand, test:hipsolver, test:hipsparselt, test:miopen, test:rocsolver, test:rocsparse, test_filter:standard\n- **Suggested test suites:** hipblaslt, hipdnn, hiprand, hipsolver, hipsparselt, miopen, rocsolver, rocsparse\n- _TheRock CI defaults to all test suites (PROJECTS_TO_TEST=*) unless test:* labels are set. These labels narrow scope to recommended suites. Recommendations are test_matrix jobs + test_filter depth \u2014 not individual ctest cases. test:* labels inferred from changed superrepo components (file compare or commit allocation). Use --full-manifest for manifest drill-down._\n"
+}
