@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>TheRock Log Analysis Report</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; max-width: 960px; line-height: 1.5; }
+    h1 { color: #c41230; }
+    .badge { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 600; }
+    .CRITICAL, .FATAL { background: #fee; color: #900; }
+    .HIGH, .ERROR { background: #ffe8cc; color: #a60; }
+    .MEDIUM { background: #fff3cd; color: #856404; }
+    .LOW { background: #e8f5e9; color: #2e7d32; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; vertical-align: top; }
+    th { background: #f5f5f5; }
+    code, pre { background: #f0f0f0; padding: 0.1rem 0.3rem; font-size: 0.9em; }
+    pre { padding: 1rem; overflow-x: auto; white-space: pre-wrap; }
+    .meta { color: #666; font-size: 0.95em; }
+  </style>
+</head>
+<body>
+  <h1>Log Analysis Report (AGENTS_030)</h1>
+  <p class="meta">
+    <strong>Log:</strong> <code>{{ report.log_path }}</code><br/>
+    {% if report.github_run_id %}
+    <strong>GitHub run:</strong>
+    {% if report.html_url %}<a href="{{ report.html_url }}">{{ report.github_run_id }}</a>{% else %}{{ report.github_run_id }}{% endif %}
+    | <strong>Job:</strong> {{ report.job_name or report.github_job_id }}<br/>
+    <strong>Repo:</strong> {{ report.repo }} | <strong>Branch:</strong> {{ report.branch or "—" }}<br/>
+    {% endif %}
+    <strong>Mode:</strong> {{ report.mode }}
+    {% if report.model %} | <strong>Model:</strong> {{ report.model }}{% endif %}<br/>
+    <strong>Preset:</strong> {{ report.preset_label or report.preset }}<br/>
+    <strong>Timestamp:</strong> {{ report.timestamp }}
+  </p>
+
+  <h2>Summary</h2>
+  <p>{{ report.summary }}</p>
+  {% if report.executive_summary %}
+  <pre>{{ report.executive_summary }}</pre>
+  {% endif %}
+
+  <h2>Stats</h2>
+  <pre>{{ report.stats }}</pre>
+
+  {% if report.errors %}
+  <h2>Errors ({{ report.errors_count or report.errors|length }})</h2>
+  <table>
+    <tr><th>Line</th><th>Type</th><th>Severity</th><th>Message</th><th>Category</th><th>Recommendation</th></tr>
+    {% for err in report.errors %}
+    <tr>
+      <td>{{ err.line_number or "—" }}</td>
+      <td>{{ err.type or "—" }}</td>
+      <td><span class="badge {{ err.severity or 'MEDIUM' }}">{{ err.severity or "—" }}</span></td>
+      <td><code>{{ err.message }}</code></td>
+      <td>{{ err.category or "—" }}</td>
+      <td>{{ err.recommendation or "—" }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+
+  {% if report.rag_lookups %}
+  <h2>Knowledge base lookups</h2>
+  {% for item in report.rag_lookups %}
+  <h3>{{ item.error_signature[:120] }}</h3>
+  <pre>{{ item.formatted }}</pre>
+  {% endfor %}
+  {% endif %}
+
+  {% if report.stack_traces %}
+  <h2>Stack traces</h2>
+  <pre>{{ report.stack_traces }}</pre>
+  {% endif %}
+
+  {% if report.tool_analysis and report.tool_analysis.preset_pattern_samples %}
+  <h2>Preset pattern samples</h2>
+  {% for pat, sample in report.tool_analysis.preset_pattern_samples.items() %}
+  <h3>Pattern: {{ pat }}</h3>
+  <pre>{{ sample }}</pre>
+  {% endfor %}
+  {% endif %}
+
+  {% if report.tool_analysis and report.tool_analysis.github_error_samples %}
+  <h2>GitHub Actions errors</h2>
+  <pre>{{ report.tool_analysis.github_error_samples }}</pre>
+  {% endif %}
+</body>
+</html>

@@ -17,7 +17,12 @@ Recommendations target **test_matrix jobs** (e.g. `test:miopen`, `test:hipdnn`),
 3. **Content diff** — parses CI test-matrix scripts and artifact TOML for timeout changes, disabled jobs, and packaging edits.
 4. **Superrepo drill-down** — on SHA bumps (e.g. `rocm-libraries`), uses GitHub compare and per-directory commit detection to name changed components (`miopen`, `hipblaslt`, …).
 5. **Topology impact** — maps changes onto `BUILD_TOPOLOGY.toml` for affected build stages and a severity score.
-6. **CI mapping** — turns the above into `test:*` suite labels and `test_filter:*` depth plus rollout guidance text.
+6. **Topology gap audit** — deterministic warnings when manifest entries or build paths are not covered by `BUILD_TOPOLOGY.toml` or CI keyword mapping (no LLM).
+7. **CI mapping** — turns the above into `test:*` suite labels and `test_filter:*` depth plus rollout guidance text.
+
+**Deterministic first:** blast radius, labels, and topology warnings are computed in `analyze.py`. `summarize.py` is optional prose only (`template` backend by default in CI; LLM backends rephrase pre-computed JSON and must not invent facts).
+
+**LLM guardrails:** When using `ollama`, `openai`, or `vllm`, `summarize.py` applies a system prompt plus deterministic validation (PR labels, severity, blast radius score). Failed validation triggers one retry, then falls back to the template summary. *Generative layer is constrained; authoritative JSON wins.*
 
 ## Features
 
@@ -36,15 +41,18 @@ copy agents\change-impact-agent\.env.example agents\change-impact-agent\.env
 # Edit .env: GITHUB_TOKEN=<your PAT>  (file is gitignored)
 ```
 
-`analyze.py`, `upstream_pr_scan.py`, and `summarize.py` load `.env` via `env_loader.py`. A shell `GITHUB_TOKEN` already in the environment wins.
+`analyze.py`, `upstream_pr_scan.py`, and `summarize.py` load `.env` via `env_loader.py` (`utf-8-sig`; fills empty env vars from `.env`). A non-empty shell `GITHUB_TOKEN` wins.
 
 **Never commit `.env`, hardcode tokens in notebooks, or paste tokens in chat.**
 
-`GITHUB_TOKEN` is needed for:
+`GITHUB_TOKEN` is required for:
 
-- Listing upstream PRs (anonymous API rate limits)
-- Full superrepo component drill-down (`--full-manifest`)
+- `--pr N` (upstream PR fetch — analyze.py exits with a clear message if missing)
+- `--full-manifest` superrepo component drill-down
+- Listing upstream PRs without anonymous rate limits
 - Reliable GitHub compare / commit-by-directory on `rocm-libraries`
+
+**PAT scopes:** classic token `public_repo` minimum; fine-grained token needs Contents (read), Pull requests (read), Metadata (read).
 
 ## Quick start
 
@@ -94,6 +102,7 @@ Each folder has `report.json`, `report.html`, and `executive_summary.md`. Local 
 | TheRock paths | `git diff --name-only` | CI scripts, third-party CMake |
 | File content | Matrix + TOML parsers | timeout 60→120 min |
 | Topology | `BUILD_TOPOLOGY.toml` | stages, severity |
+| Topology gaps | `topology_audit.py` | unmapped submodule/path warnings |
 
 ## Project layout
 
@@ -107,6 +116,7 @@ agents/change-impact-agent/
 ├── content_diff.py          # CI matrix + artifact TOML
 ├── component_diff_bridge.py # Superrepo compare + commit-by-directory
 ├── impact_graph.py          # Topology blast radius
+├── topology_audit.py        # Deterministic BUILD_TOPOLOGY.toml gap warnings
 ├── ci_mapping.py            # test:* + test_filter:* labels
 ├── github_pr.py             # Upstream PR fetch + GitHub API
 ├── sample-runs/              # Committed demo outputs
@@ -148,12 +158,15 @@ agents/change-impact-agent/
 | `--input` / `--output` | `report.json` → `executive_summary.md` |
 | `--model` | LLM model name |
 | `--base-url` | Ollama or vLLM URL |
+| `--validate-llm` / `--no-validate-llm` | Validate LLM output against report JSON (default: on) |
+| `--llm-max-retries` | Retries after validation failure (default: 1) |
+| `--fallback-template` / `--no-fallback-template` | Use template summary if validation fails (default: on) |
 
 ## Outputs
 
 | File | Contents |
 |------|----------|
-| `report.json` | Impact data, `ci_recommendations`, `content_insights`, `rollout_strategy` |
+| `report.json` | Impact data, `ci_recommendations`, `topology_warnings`, `content_insights`, `rollout_strategy` |
 | `report.html` | HTML report |
 | `executive_summary.md` | Human-readable summary from `summarize.py` |
 
@@ -164,7 +177,16 @@ Open PRs on **ROCm/TheRock** are upstream. Your fork's Pull requests tab only sh
 | Workflow | Purpose |
 |----------|---------|
 | `change-impact-upstream-scan.yml` | Dispatch: analyze upstream PR(s); upload reports |
-| `change-impact-agent.yml` | Comment on fork PRs with severity + label suggestions |
+| `change-impact-agent.yml` | Comment on fork PRs with severity + label suggestions (template summary) |
+
+## Pre-merge + post-failure loop
+
+| Phase | Agent | When |
+|-------|-------|------|
+| Pre-merge | **change-impact-agent** (`analyze.py`) | Before merge — blast radius, CI labels, topology gap warnings |
+| Post-failure | **log-analysis-agent** (`analyze_log.py`) | After CI fails — log grep + KB-backed triage |
+
+Both agents use deterministic tool pipelines by default; LLM is optional for human-readable summaries only.
 
 ## Demo notebook
 
@@ -179,6 +201,10 @@ Clones the fork, runs `pytest`, analyzes PRs #5572, #5688, #5480, #5718. Copy `.
 ```powershell
 python -m pytest agents/change-impact-agent/tests/ -q
 ```
+
+## Hackathon presentation
+
+Slide deck (5 slides): [PRESENTATION.md](PRESENTATION.md) — impact, innovation, demo, future work, and links. Copy into PowerPoint or Google Slides.
 
 ## Fork
 

@@ -21,6 +21,7 @@ load_agent_env()
 
 from ci_mapping import build_ci_recommendations
 from impact_graph import analyze_impact, impact_to_dict
+from topology_audit import audit_topology_gaps
 from manifest_bridge import (
     changeset_to_dict,
     compare_manifest,
@@ -57,6 +58,9 @@ def build_report(
     component_paths = build_component_path_changes(changeset.items)
 
     impact = analyze_impact(all_items, repo_root)
+    topology_warnings = audit_topology_gaps(all_items, changed_paths, repo_root)
+    if topology_warnings:
+        impact.rationale.extend(topology_warnings)
     if content_insights.get("notes"):
         impact.rationale.extend(content_insights["notes"])
     ci, rollout_strategy = build_ci_recommendations(
@@ -91,6 +95,7 @@ def build_report(
         "content_insights": content_insights,
         **component_paths,
         "ci_recommendations": ci,
+        "topology_warnings": topology_warnings,
         "executive_summary": "",
     }
     if rollout_strategy:
@@ -192,7 +197,14 @@ def prepare_pr_args(args: argparse.Namespace, repo_root: Path) -> None:
             raise ValueError("Provide --end or --pr")
         return
 
-    from github_pr import ensure_pr_fetched, get_pull_request, pr_local_ref
+    from github_pr import _token, ensure_pr_fetched, get_pull_request, pr_local_ref
+
+    if not _token():
+        raise SystemExit(
+            "GITHUB_TOKEN is required for --pr (upstream PR fetch). "
+            "Create agents/change-impact-agent/.env from .env.example "
+            "(PAT with public_repo; Contents read for superrepo drill-down)."
+        )
 
     ensure_pr_fetched(
         args.pr,
@@ -216,6 +228,14 @@ def main(argv: list[str] | None = None) -> int:
     output_dir.mkdir(parents=True, exist_ok=True)
 
     prepare_pr_args(args, repo_root)
+    if args.full_manifest:
+        from github_pr import _token
+
+        if not _token():
+            raise SystemExit(
+                "GITHUB_TOKEN is required for --full-manifest (superrepo component drill-down). "
+                "Create agents/change-impact-agent/.env from .env.example."
+            )
     start_ref = resolve_start_ref(args, repo_root)
     print(f"Analyzing {start_ref} -> {args.end} ...")
 

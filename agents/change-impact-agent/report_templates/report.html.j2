@@ -127,6 +127,18 @@
   <p><strong>Test suites:</strong> {{ report.ci_recommendations.suggested_test_suites | join(', ') or 'none' }}</p>
   <p><em>{{ report.ci_recommendations.notes }}</em></p>
 
+  <h2>Topology warnings</h2>
+  <p><small>Deterministic checks for gaps between changed files and BUILD_TOPOLOGY.toml (no LLM).</small></p>
+  {% if report.topology_warnings %}
+  <ul>
+    {% for warning in report.topology_warnings %}
+    <li>{{ warning }}</li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p><em>No topology gaps detected for this change range.</em></p>
+  {% endif %}
+
   {% if report.executive_summary %}
   <h2>Executive summary</h2>
   <pre>{{ report.executive_summary }}</pre>

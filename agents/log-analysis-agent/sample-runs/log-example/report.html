@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>TheRock Log Analysis Report</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; max-width: 960px; line-height: 1.5; }
+    h1 { color: #c41230; }
+    .badge { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 600; }
+    .CRITICAL, .FATAL { background: #fee; color: #900; }
+    .HIGH, .ERROR { background: #ffe8cc; color: #a60; }
+    .MEDIUM { background: #fff3cd; color: #856404; }
+    .LOW { background: #e8f5e9; color: #2e7d32; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; vertical-align: top; }
+    th { background: #f5f5f5; }
+    code, pre { background: #f0f0f0; padding: 0.1rem 0.3rem; font-size: 0.9em; }
+    pre { padding: 1rem; overflow-x: auto; white-space: pre-wrap; }
+    .meta { color: #666; font-size: 0.95em; }
+  </style>
+</head>
+<body>
+  <h1>Log Analysis Report (AGENTS_030)</h1>
+  <p class="meta">
+    <strong>Log:</strong> <code>C:\Users\Rajeswari\.gemini\antigravity\scratch\TheRock\TheRock\agents\log-analysis-agent\tests\fixtures\example.log</code><br/>
+    <strong>Mode:</strong> tool_only
+    <br/>
+    <strong>Preset:</strong> Custom / Other CI<br/>
+    <strong>Timestamp:</strong> 2026-06-10T21:01:01.950175
+  </p>
+
+  <h2>Summary</h2>
+  <p>Tool-only qualification pass found 7 highlighted error lines. Stats: path=C:\Users\Rajeswari\.gemini\antigravity\scratch\TheRock\TheRock\agents\log-analysis-agent\tests\fixtures\example.log; lines=21; bytes=1474; github_error=0; keyword_hits: ERROR=6, EXCEPTION=1, CRITICAL=1, FATAL=1, WARNING=2</p>
+  
+
+  <h2>Stats</h2>
+  <pre>path=C:\Users\Rajeswari\.gemini\antigravity\scratch\TheRock\TheRock\agents\log-analysis-agent\tests\fixtures\example.log
+lines=21
+bytes=1474
+github_error=0
+keyword_hits: ERROR=6, EXCEPTION=1, CRITICAL=1, FATAL=1, WARNING=2</pre>
+
+  
+  <h2>Errors (7)</h2>
+  <table>
+    <tr><th>Line</th><th>Type</th><th>Severity</th><th>Message</th><th>Category</th><th>Recommendation</th></tr>
+    
+    <tr>
+      <td>3</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2024-12-10 10:15:25 ERROR [Database] Connection failed: Connection timeout after 30s</code></td>
+      <td>Database</td>
+      <td>Check connectivity, firewall, restart DB, increase pool size</td>
+    </tr>
+    
+    <tr>
+      <td>8</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2024-12-10 10:18:33 ERROR [PaymentService] Payment processing failed: InvalidCardException</code></td>
+      <td>Runtime</td>
+      <td>Validate payment method, check gateway status, retry with idempotency</td>
+    </tr>
+    
+    <tr>
+      <td>11</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>Caused by: stripe.error.CardError: Your card was declined</code></td>
+      <td>Runtime</td>
+      <td>Validate payment method, check gateway status, retry with idempotency</td>
+    </tr>
+    
+    <tr>
+      <td>15</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2024-12-10 10:21:30 ERROR [FileSystem] Failed to write file: /data/reports/daily.pdf - Disk quota exceeded</code></td>
+      <td>FileSystem</td>
+      <td>Free space, log rotation, archive data, increase quota</td>
+    </tr>
+    
+    <tr>
+      <td>16</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2024-12-10 10:22:00 FATAL [Application] Out of memory error - shutting down</code></td>
+      <td>Memory</td>
+      <td>Increase heap, fix leaks, paginate data, add memory monitoring</td>
+    </tr>
+    
+    <tr>
+      <td>12</td>
+      <td>CRITICAL</td>
+      <td><span class="badge CRITICAL">CRITICAL</span></td>
+      <td><code>2024-12-10 10:19:01 CRITICAL [Security] Unauthorized access attempt detected from IP: 192.168.1.100</code></td>
+      <td>Security</td>
+      <td>Verify credentials, refresh tokens, fix RBAC</td>
+    </tr>
+    
+    <tr>
+      <td>16</td>
+      <td>FATAL</td>
+      <td><span class="badge CRITICAL">CRITICAL</span></td>
+      <td><code>2024-12-10 10:22:00 FATAL [Application] Out of memory error - shutting down</code></td>
+      <td>Memory</td>
+      <td>Increase heap, fix leaks, paginate data, add memory monitoring</td>
+    </tr>
+    
+  </table>
+  
+
+  
+  <h2>Knowledge base lookups</h2>
+  
+  <h3>2024-12-10 10:15:25 ERROR [Database] Connection failed: Connection timeout after 30s</h3>
+  <pre>Match 1 [keyword] score=51.0 id=db_connection_timeout
+  Pattern: Database connection timeout
+  Category: Database | Severity: HIGH
+  Causes: Network issues, firewall, DB down, pool exhausted
+  Solutions: Check connectivity, firewall, restart DB, increase pool size
+  Similar: Connection refused, Connection reset
+
+Match 2 [keyword] score=13.0 id=rocm_hip_error
+  Pattern: ROCm HIP API failure
+  Category: GPU/Driver | Severity: HIGH
+  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device
+  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages
+  Similar: HIP initialization failed</pre>
+  
+  <h3>2024-12-10 10:18:33 ERROR [PaymentService] Payment processing failed: InvalidCardException</h3>
+  <pre>Match 1 [keyword] score=34.5 id=payment_card_declined
+  Pattern: Payment / card processing failure
+  Category: Runtime | Severity: HIGH
+  Causes: Invalid card, fraud rules, gateway outage
+  Solutions: Validate payment method, check gateway status, retry with idempotency
+  Similar: Transaction failed
+
+Match 2 [keyword] score=13.0 id=rocm_hip_error
+  Pattern: ROCm HIP API failure
+  Category: GPU/Driver | Severity: HIGH
+  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device
+  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages
+  Similar: HIP initialization failed</pre>
+  
+  <h3>Caused by: stripe.error.CardError: Your card was declined</h3>
+  <pre>Match 1 [keyword] score=28.0 id=payment_card_declined
+  Pattern: Payment / card processing failure
+  Category: Runtime | Severity: HIGH
+  Causes: Invalid card, fraud rules, gateway outage
+  Solutions: Validate payment method, check gateway status, retry with idempotency
+  Similar: Transaction failed</pre>
+  
+  <h3>2024-12-10 10:19:01 CRITICAL [Security] Unauthorized access attempt detected from IP: 192.168.1.100</h3>
+  <pre>Match 1 [keyword] score=19.5 id=auth_failure
+  Pattern: Authentication / unauthorized access
+  Category: Security | Severity: HIGH
+  Causes: Bad credentials, expired token, wrong permissions
+  Solutions: Verify credentials, refresh tokens, fix RBAC
+  Similar: 403 forbidden, access denied
+
+Match 2 [resolution] score=2.0 id=res_1
+  Pattern: ROCm install failed dependency
+  Category: Other | Severity: MEDIUM
+  Causes: Prior triage
+  Solutions: Clean apt cache and reinstall rocm meta-package from staging repo
+  Similar: 
+
+  Prior resolution: Clean apt cache and reinstall rocm meta-package from staging repo</pre>
+  
+  <h3>2024-12-10 10:22:00 FATAL [Application] Out of memory error - shutting down</h3>
+  <pre>Match 1 [keyword] score=23.0 id=oom_heap
+  Pattern: Out of memory / Java heap space
+  Category: Memory | Severity: CRITICAL
+  Causes: Memory leak, insufficient heap, large in-memory processing
+  Solutions: Increase heap, fix leaks, paginate data, add memory monitoring
+  Similar: OutOfMemoryError, MemoryError
+
+Match 2 [keyword] score=11.5 id=rocm_hip_error
+  Pattern: ROCm HIP API failure
+  Category: GPU/Driver | Severity: HIGH
+  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device
+  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages
+  Similar: HIP initialization failed</pre>
+  
+  
+
+  
+  <h2>Stack traces</h2>
+  <pre>Stack traces (4):
+
+3: 2024-12-10 10:15:25 ERROR [Database] Connection failed: Connection timeout after 30s
+4: 2024-12-10 10:15:25 INFO [Application] Retrying database connection...
+
+---
+
+8: 2024-12-10 10:18:33 ERROR [PaymentService] Payment processing failed: InvalidCardException
+9:     at PaymentProcessor.process(PaymentProcessor.java:123)
+10:     at OrderService.checkout(OrderService.java:456)
+11:     Caused by: stripe.error.CardError: Your card was declined
+12: 2024-12-10 10:19:01 CRITICAL [Security] Unauthorized access attempt detected from IP: 192.168.1.100
+
+---
+
+15: 2024-12-10 10:21:30 ERROR [FileSystem] Failed to write file: /data/reports/daily.pdf - Disk quota exceeded
+16: 2024-12-10 10:22:00 FATAL [Application] Out of memory error - shutting down
+
+---
+
+17:     java.lang.OutOfMemoryError: Java heap space
+18:     at java.util.Arrays.copyOf(Arrays.java:3332)
+19:     at java.lang.AbstractStringBuilder.ensureCapacityInternal(AbstractStringBuilder.java:124)
+20: 2024-12-10 10:22:01 INFO [Application] Shutdown complete</pre>
+  
+
+  
+
+  
+  <h2>GitHub Actions errors</h2>
+  <pre>No matches for pattern: ##\[error\]</pre>
+  
+</body>
+</html>

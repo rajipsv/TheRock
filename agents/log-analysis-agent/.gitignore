@@ -1,0 +1,5 @@
+# Log Analysis Agent — local secrets (gitignored)
+.env
+out/
+tests/_cli_out/
+knowledge/faiss_index/

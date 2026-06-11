@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>TheRock Log Analysis Report</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; max-width: 960px; line-height: 1.5; }
+    h1 { color: #c41230; }
+    .badge { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 600; }
+    .CRITICAL, .FATAL { background: #fee; color: #900; }
+    .HIGH, .ERROR { background: #ffe8cc; color: #a60; }
+    .MEDIUM { background: #fff3cd; color: #856404; }
+    .LOW { background: #e8f5e9; color: #2e7d32; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; vertical-align: top; }
+    th { background: #f5f5f5; }
+    code, pre { background: #f0f0f0; padding: 0.1rem 0.3rem; font-size: 0.9em; }
+    pre { padding: 1rem; overflow-x: auto; white-space: pre-wrap; }
+    .meta { color: #666; font-size: 0.95em; }
+  </style>
+</head>
+<body>
+  <h1>Log Analysis Report (AGENTS_030)</h1>
+  <p class="meta">
+    <strong>Log:</strong> <code>C:\Users\Rajeswari\.gemini\antigravity\scratch\TheRock\TheRock\agents\log-analysis-agent\sample-runs\run-27270735424\job-80542543540.log</code><br/>
+    
+    <strong>GitHub run:</strong>
+    <a href="https://github.com/ROCm/TheRock/actions/runs/27270735424">27270735424</a>
+    | <strong>Job:</strong> Linux::release / Build Multi-Arch Stages / math-libs (gfx120X-all, gfx1200,gfx1201, false) / Stage - Math Libs (gfx120X-all)<br/>
+    <strong>Repo:</strong> ROCm/TheRock | <strong>Branch:</strong> users/kkhalasi/build-only-dispatch-input<br/>
+    
+    <strong>Mode:</strong> tool_only
+    <br/>
+    <strong>Preset:</strong> TheRock — Multi-Arch CI<br/>
+    <strong>Timestamp:</strong> 2026-06-10T23:33:30.868270
+  </p>
+
+  <h2>Summary</h2>
+  <p>Tool-only qualification pass found 5 highlighted error lines. Stats: path=C:\Users\Rajeswari\.gemini\antigravity\scratch\TheRock\TheRock\agents\log-analysis-agent\sample-runs\run-27270735424\job-80542543540.log; lines=1620; bytes=144577; github_error=3; keyword_hits: ERROR=4, EXCEPTION=0, CRITICAL=0, FATAL=1, WARNING=14</p>
+  
+
+  <h2>Stats</h2>
+  <pre>path=C:\Users\Rajeswari\.gemini\antigravity\scratch\TheRock\TheRock\agents\log-analysis-agent\sample-runs\run-27270735424\job-80542543540.log
+lines=1620
+bytes=144577
+github_error=3
+keyword_hits: ERROR=4, EXCEPTION=0, CRITICAL=0, FATAL=1, WARNING=14</pre>
+
+  
+  <h2>Errors (5)</h2>
+  <table>
+    <tr><th>Line</th><th>Type</th><th>Severity</th><th>Message</th><th>Category</th><th>Recommendation</th></tr>
+    
+    <tr>
+      <td>469</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-10T11:03:04.1415546Z         ===================          Compoments check [38;2;6;161;60m15[0m Passed, [38;2;184;166;48m0[0m Warning, [38;2;255;61;61m0[0m Fatal Error          ===================</code></td>
+      <td>GPU/Driver</td>
+      <td>Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages</td>
+    </tr>
+    
+    <tr>
+      <td>1617</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-10T11:54:19.1190758Z ##[error]Process completed with exit code 130.</code></td>
+      <td>Configuration</td>
+      <td>Check cluster events at failure time; review CPU/memory/disk; retry; contact runner admin — not a TheRock compile error</td>
+    </tr>
+    
+    <tr>
+      <td>1618</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-10T11:54:19.1234664Z ##[error]The runner has received a shutdown signal. This can happen when the runner service is stopped, or a manually started runner is canceled.</code></td>
+      <td>Configuration</td>
+      <td>Check cluster events at failure time; review CPU/memory/disk; retry; contact runner admin — not a TheRock compile error</td>
+    </tr>
+    
+    <tr>
+      <td>1619</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-10T11:54:19.1286322Z ##[error]Executing the custom container implementation failed. Please contact your self hosted runner administrator.</code></td>
+      <td>Configuration</td>
+      <td>Check cluster events at failure time; review CPU/memory/disk; retry; contact runner admin — not a TheRock compile error</td>
+    </tr>
+    
+    <tr>
+      <td>469</td>
+      <td>FATAL</td>
+      <td><span class="badge CRITICAL">CRITICAL</span></td>
+      <td><code>2026-06-10T11:03:04.1415546Z         ===================          Compoments check [38;2;6;161;60m15[0m Passed, [38;2;184;166;48m0[0m Warning, [38;2;255;61;61m0[0m Fatal Error          ===================</code></td>
+      <td>GPU/Driver</td>
+      <td>Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages</td>
+    </tr>
+    
+  </table>
+  
+
+  
+  <h2>Knowledge base lookups</h2>
+  
+  <h3>2026-06-10T11:03:04.1415546Z         ===================          Compoments check [38;2;6;161;60m15[0m Passed, [38;2</h3>
+  <pre>Match 1 [keyword] score=11.5 id=rocm_hip_error
+  Pattern: ROCm HIP API failure
+  Category: GPU/Driver | Severity: HIGH
+  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device
+  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages
+  Similar: HIP initialization failed
+
+Match 2 [keyword] score=8.0 id=rocm_hsa_status
+  Pattern: HSA runtime / ROCr failure
+  Category: GPU/Driver | Severity: CRITICAL
+  Causes: Firmware, KFD issues, incompatible kernel, GPU reset required
+  Solutions: Check dmesg, reboot GPU, validate kernel+ROCm matrix, escalate to driver team
+  Similar: HSA_STATUS_ERROR</pre>
+  
+  <h3>2026-06-10T11:54:19.1190758Z ##[error]Process completed with exit code 130.</h3>
+  <pre>Match 1 [keyword] score=24.0 id=gha_runner_shutdown_130
+  Pattern: GitHub Actions runner shutdown (exit 130)
+  Category: Configuration | Severity: HIGH
+  Causes: Runner/pod eviction, K8s node drain, resource limits, container runtime failure
+  Solutions: Check cluster events at failure time; review CPU/memory/disk; retry; contact runner admin — not a TheRock compile error
+  Similar: Process completed with exit code 130
+
+Match 2 [keyword] score=19.5 id=docker_install_test
+  Pattern: Containerized ROCm install test failure
+  Category: Configuration | Severity: MEDIUM
+  Causes: Image drift, missing privileges, stale cache layer
+  Solutions: Rebuild image, verify --device flags, rerun parallel matrix on clean containers
+  Similar: OCI runtime error</pre>
+  
+  <h3>2026-06-10T11:54:19.1234664Z ##[error]The runner has received a shutdown signal. This can happen when the runner service</h3>
+  <pre>Match 1 [keyword] score=24.5 id=gha_runner_shutdown_130
+  Pattern: GitHub Actions runner shutdown (exit 130)
+  Category: Configuration | Severity: HIGH
+  Causes: Runner/pod eviction, K8s node drain, resource limits, container runtime failure
+  Solutions: Check cluster events at failure time; review CPU/memory/disk; retry; contact runner admin — not a TheRock compile error
+  Similar: Process completed with exit code 130
+
+Match 2 [keyword] score=11.5 id=rocm_hip_error
+  Pattern: ROCm HIP API failure
+  Category: GPU/Driver | Severity: HIGH
+  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device
+  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages
+  Similar: HIP initialization failed</pre>
+  
+  <h3>2026-06-10T11:03:04.1415546Z         ===================          Compoments check [38;2;6;161;60m15[0m Passed, [38;2</h3>
+  <pre>Match 1 [keyword] score=11.5 id=rocm_hip_error
+  Pattern: ROCm HIP API failure
+  Category: GPU/Driver | Severity: HIGH
+  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device
+  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages
+  Similar: HIP initialization failed
+
+Match 2 [keyword] score=8.0 id=rocm_hsa_status
+  Pattern: HSA runtime / ROCr failure
+  Category: GPU/Driver | Severity: CRITICAL
+  Causes: Firmware, KFD issues, incompatible kernel, GPU reset required
+  Solutions: Check dmesg, reboot GPU, validate kernel+ROCm matrix, escalate to driver team
+  Similar: HSA_STATUS_ERROR</pre>
+  
+  <h3>2026-06-10T11:54:19.1190758Z ##[error]Process completed with exit code 130.</h3>
+  <pre>Match 1 [keyword] score=24.0 id=gha_runner_shutdown_130
+  Pattern: GitHub Actions runner shutdown (exit 130)
+  Category: Configuration | Severity: HIGH
+  Causes: Runner/pod eviction, K8s node drain, resource limits, container runtime failure
+  Solutions: Check cluster events at failure time; review CPU/memory/disk; retry; contact runner admin — not a TheRock compile error
+  Similar: Process completed with exit code 130
+
+Match 2 [keyword] score=19.5 id=docker_install_test
+  Pattern: Containerized ROCm install test failure
+  Category: Configuration | Severity: MEDIUM
+  Causes: Image drift, missing privileges, stale cache layer
+  Solutions: Rebuild image, verify --device flags, rerun parallel matrix on clean containers
+  Similar: OCI runtime error</pre>
+  
+  
+
+  
+  <h2>Stack traces</h2>
+  <pre>Stack traces (9):
+
+469: 2026-06-10T11:03:04.1415546Z         ===================          Compoments check [38;2;6;161;60m15[0m Passed, [38;2;184;166;48m0[0m Warning, [38;2;255;61;61m0[0m Fatal Error          ===================
+470: 2026-06-10T11:03:04.1415792Z
+
+---
+
+991: 2026-06-10T11:03:56.5827058Z -- Including subproject therock-libbacktrace (from /__w/TheRock/TheRock/third-party/sysdeps/common/libbacktrace/.)
+992: 2026-06-10T11:03:56.5871930Z --   DISABLING BUILD: Marked as pre-built
+
+---
+
+1083: 2026-06-10T11:04:05.4156749Z -- Including subproject rocprof-trace-decoder (from /__w/TheRock/TheRock/rocm-systems/projects/rocprof-trace-decoder)
+1084: 2026-06-10T11:04:06.4545496Z --   DISABLING BUILD: Marked as pre-built
+
+---
+
+1097: 2026-06-10T11:04:08.5716930Z -- Including subproject roctracer (from /__w/TheRock/TheRock/rocm-systems/projects/roctracer)
+1098: 2026-06-10T11:04:09.6107616Z --   DISABLING BUILD: Marked as pre-built
+
+---
+
+1100: 2026-06-10T11:04:09.6110620Z -- Cannot compute fprint for artifact rocprofiler-sdk (no fprint for roctracer)
+1101: 2026-06-10T11:04:09.6112820Z -- Including subproject rocprofiler-compute (from /__w/TheRock/TheRock/rocm-systems/projects/rocprofiler-compute)
+
+---
+
+1283: 2026-06-10T11:04:18.7036999Z [51/341] Generating rocprof-trace-decoder/stamp/stage.stamp
+1284: 2026-06-10T11:04:18.7037298Z [52/341] Performing download step (download, verify and extract) for 'therock-libdivide-sources'
+
+---
+
+1374: 2026-06-10T11:04:19.9177053Z [143/341] Generating roctracer/stamp/stage.stamp
+1375: 2026-06-10T11:04:19.9282167Z [144/341] Generating amd-comgr/stamp/stage.stamp
+
+---
+
+1617: 2026-06-10T11:54:19.1190758Z ##[error]Process completed with exit code 130.
+1618: 2026-06-10T11:54:19.1234664Z ##[error]The runner has received a shutdown signal. This can happen when the runner service is stopped, or a manually started runner is canceled.
+
+---
+
+1619: 2026-06-10T11:54:19.1286322Z ##[error]Executing the custom container implementation failed. Please contact your self hosted runner administrator.
+1620: 2026-06-10T11:54:19.1355817Z Cleaning up orphan processes</pre>
+  
+
+  
+  <h2>Preset pattern samples</h2>
+  
+  <h3>Pattern: therock</h3>
+  <pre>Matches for /therock/ (showing up to 10):
+
+   1: ﻿2026-06-10T11:02:49.3323366Z Current runner version: '2.334.0'
+   2: 2026-06-10T11:02:49.3326757Z Runner name: 'aws-linux-scale-rocm-prod-7lx62-runner-r97nn'
+>> 3: 2026-06-10T11:02:49.3327253Z Runner group name: 'therock-ci-aws-prod'
+   4: 2026-06-10T11:02:49.3327818Z Machine name: 'aws-linux-scale-rocm-prod-7lx62-runner-r97nn'
+   5: 2026-06-10T11:02:49.3329157Z ##[group]GITHUB_TOKEN Permissions
+
+---
+
+   11: 2026-06-10T11:02:49.3673153Z Getting action download info
+   12: 2026-06-10T11:02:49.6046897Z Download action repository 'actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10' (SHA:df4cb1c069e1874edd31b4311f1884172cec0e10)
+>> 13: 2026-06-10T11:02:49.7809952Z Uses: ROCm/TheRock/.github/workflows/multi_arch_build_portable_linux_artifacts.yml@refs/heads/users/kkhalasi/build-only-dispatch-input (0c4fc0f3e4f61442ddc8ef64f6222ab7be977a13)
+   14: 2026-06-10T11:02:49.7812509Z ##[group] Inputs
+   15: 2026-06-10T11:02:49.7812774Z   stage_name: math-libs
+
+---
+
+   34: 2026-06-10T11:02:55.8783333Z ##[group]Run actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+   35: 2026-06-10T11:02:55.8783607Z with:
+>> 36: 2026-06-10T11:02:55.8783749Z   repository: ROCm/TheRock
+   37: 2026-06-10T11:02:55.8785537Z   token: ***
+   38: 2026-06-10T11:02:55.8785671Z   ssh-strict: true
+
+---
+
+   52: 2026-06-10T11:02:55.8787819Z   AMDGPU_FAMILIES: gfx120X-all
+   53: 2026-06-10T11:02:55.8787991Z   BUILD_DIR: build
+>> 54: 2026-06-10T11:02:55.8788196Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf
+   55: 2026-06-10T11:02:55.8788460Z   CACHE_DIR: /home/runner/_work/TheRock/TheRock/.container-cache
+   56: 2026-06-10T11:02:55.8788665Z   TEATIME_FORCE_INTERACTIVE: 0
+
+---
+
+   53: 2026-06-10T11:02:55.8787991Z   BUILD_DIR: build
+   54: 2026-06-10T11:02:55.8788196Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf
+>> 55: 2026-06-10T11:02:55.8788460Z   CACHE_DIR: /home/runner/_work/TheRock/TheRock/.container-cache
+   56: 2026-06-10T11:02:55.8788665Z   TEATIME_FORCE_INTERACTIVE: 0
+   57: 2026-06-10T11:02:55.8788819Z   RELEASE_TYPE: ci
+
+---
+
+   61: 2026-06-10T11:02:55.8907451Z shell: /home/runner/externals/node20/bin/node {0}
+   62: 2026-06-10T11:02:55.8907632Z ##[endgroup]
+>> 63: 2026-06-10T11:02:56.2307193Z Syncing repository: ROCm/TheRock
+   64: 2026-06-10T11:02:56.2308042Z ##[group]Getting Git version info
+   65: 2026-06-10T11:02:56.2308485Z Working directory is '/__w/TheRock/TheRock'
+
+---
+
+   63: 2026-06-10T11:02:56.2307193Z Syncing repository: ROCm/TheRock
+   64: 2026-06-10T11:02:56.2308042Z ##[group]Getting Git version info
+>> 65: 2026-06-10T11:02:56.2308485Z Working directory is '/__w/TheRock/TheRock'
+   66: 2026-06-10T11:02:56.2308789Z [command]/usr/local/bin/git version
+   67: 2026-06-10T11:02:56.2308971Z git version 2.49.0
+
+---
+
+   70: 2026-06-10T11:02:56.2332199Z Temporarily overriding HOME='/__w/_temp/a8e20739-2d93-461a-bcfc-28df43d5ee06' before making global git config changes
+   71: 2026-06-10T11:02:56.2332591Z Adding repository directory to the temporary git global config as a safe directory
+>> 72: 2026-06-10T11:02:56.2334025Z [command]/usr/local/bin/git config --global --add safe.directory /__w/TheRock/TheRock
+   73: 2026-06-10T11:02:56.2354901Z Deleting the contents of '/__w/TheRock/TheRock'
+   74: 2026-06-10T11:02:56.2356498Z ##[group]Determining repository object format
+
+---
+
+   71: 2026-06-10T11:02:56.2332591Z Adding repository directory to the temporary git global config as a safe directory
+   72: 2026-06-10T11:02:56.2334025Z [command]/usr/local/bin/git config --global --add safe.directory /__w/TheRock/TheRock
+>> 73: 2026-06-10T11:02:56.2354901Z Deleting the contents of '/__w/TheRock/TheRock'
+   74: 2026-06-10T11:02:56.2356498Z ##[group]Determining repository object format
+   75: 2026-06-10T11:02:56.2357587Z ##[endgroup]
+
+---
+
+   75: 2026-06-10T11:02:56.2357587Z ##[endgroup]
+   76: 2026-06-10T11:02:56.2357829Z ##[group]Initializing the repository
+>> 77: 2026-06-10T11:02:56.2359716Z [command]/usr/local/bin/git init /__w/TheRock/TheRock
+   78: 2026-06-10T11:02:56.2391416Z hint: Using 'master' as the name for the initial branch. This default branch name
+   79: 2026-06-10T11:02:56.2391714Z hint: is subject to change. To configure the initial branch name to use in all</pre>
+  
+  <h3>Pattern: ninja</h3>
+  <pre>Matches for /ninja/ (showing up to 10):
+
+   457: 2026-06-10T11:03:04.1410807Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mCMake[0m] Found CMake 3.27.9 at /usr/local/therock-tools/bin/cmake
+   458: 2026-06-10T11:03:04.1411147Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mCCache[0m] Found CCache 4.11.2 at /usr/local/bin/ccache
+>> 459: 2026-06-10T11:03:04.1411495Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mNinja-Build[0m] Found Ninja-Build 1.12.1 at /usr/local/bin/ninja
+   460: 2026-06-10T11:03:04.1411962Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mGCC/gfortran[0m] Found GCC compiler program gfortran 13.3.1 at /opt/rh/gcc-toolset-13/root/usr/bin/gfortran
+   461: 2026-06-10T11:03:04.1412425Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mPython 3[0m] Found Python 3.12.10 at /opt/python/cp312-cp312/bin/python (Global ENV).
+
+---
+
+   868: 2026-06-10T11:03:55.8999136Z OUTPUT cmake_args=-DTHEROCK_AMDGPU_FAMILIES=gfx120X-all -DTHEROCK_DIST_AMDGPU_FAMILIES="gfx120X-all" -DTHEROCK_DIST_PYTHON_EXECUTABLES="/opt/python/cp310-cp310/bin/python;/opt/python/cp311-cp311/bin/python;/opt/python/cp312-cp312/bin/python;/opt/python/cp313-cp313/bin/python" -DTHEROCK_SHARED_PYTHON_EXECUTABLES="/opt/python-shared/cp310-cp310/bin/python3;/opt/python-shared/cp311-cp311/bin/python3;/opt/python-shared/cp312-cp312/bin/python3;/opt/python-shared/cp313-cp313/bin/python3;/opt/python-shared/cp314-cp314/bin/python3" -DTHEROCK_ENABLE_ALL=OFF -DTHEROCK_ENABLE_AQLPROFILE=ON -DTHEROCK_ENABLE_BASE=ON -DTHEROCK_ENABLE_BLAS=ON -DTHEROCK_ENABLE_COMPILER=ON -DTHEROCK_ENABLE_COMPOSABLE_KERNEL=ON -DTHEROCK_ENABLE_CORE_AMDSMI=ON -DTHEROCK_ENABLE_CORE_HIPINFO=ON -DTHEROCK_ENABLE_CORE_RUNTIME=ON -DTHEROCK_ENABLE_ELFIO=ON -DTHEROCK_ENABLE_FFT=ON -DTHEROCK_ENABLE_FFTW3=ON -DTHEROCK_ENABLE_HIPBLASLTPROVIDER=ON -DTHEROCK_ENABLE_HIPDNN=ON -DTHEROCK_ENABLE_HIPDNN_INTEGRATION_TESTS=ON -DTHEROCK_ENABLE_HIPDNN_SAMPLES=ON -DTHEROCK_ENABLE_HIPKERNELPROVIDER=ON -DTHEROCK_ENABLE_HIP_RUNTIME=ON -DTHEROCK_ENABLE_HOST_BLAS=ON -DTHEROCK_ENABLE_HOST_SUITE_SPARSE=ON -DTHEROCK_ENABLE_KPACK=ON -DTHEROCK_ENABLE_LIBHIPCXX=ON -DTHEROCK_ENABLE_MIOPEN=ON -DTHEROCK_ENABLE_MIOPENPROVIDER=ON -DTHEROCK_ENABLE_OPENMPI=ON -DTHEROCK_ENABLE_PRIM=ON -DTHEROCK_ENABLE_RAND=ON -DTHEROCK_ENABLE_ROCPROFILER_COMPUTE=ON -DTHEROCK_ENABLE_ROCPROFV3=ON -DTHEROCK_ENABLE_ROCWMMA=ON -DTHEROCK_ENABLE_SOLVER=ON -DTHEROCK_ENABLE_SPARSE=ON -DTHEROCK_ENABLE_SPDLOG=ON -DTHEROCK_ENABLE_SUPPORT=ON -DTHEROCK_ENABLE_SYSDEPS=ON -DTHEROCK_ENABLE_SYSDEPS_LIBMNL=ON -DTHEROCK_ENABLE_SYSDEPS_LIBNL=ON
+   869: 2026-06-10T11:03:55.9001996Z OUTPUT pip_install_cmd=
+>> 870: 2026-06-10T11:03:55.9252344Z ##[group]Run cmake -B "${BUILD_DIR}" -S . -GNinja \
+   871: 2026-06-10T11:03:55.9252567Z [36;1mcmake -B "${BUILD_DIR}" -S . -GNinja \[0m
+   872: 2026-06-10T11:03:55.9252816Z [36;1m  -DTHEROCK_PACKAGE_VERSION=7.14.0.dev0+0c4fc0f3e4f61442ddc8ef64f6222ab7be977a13 \[0m
+
+---
+
+   869: 2026-06-10T11:03:55.9001996Z OUTPUT pip_install_cmd=
+   870: 2026-06-10T11:03:55.9252344Z ##[group]Run cmake -B "${BUILD_DIR}" -S . -GNinja \
+>> 871: 2026-06-10T11:03:55.9252567Z [36;1mcmake -B "${BUILD_DIR}" -S . -GNinja \[0m
+   872: 2026-06-10T11:03:55.9252816Z [36;1m  -DTHEROCK_PACKAGE_VERSION=7.14.0.dev0+0c4fc0f3e4f61442ddc8ef64f6222ab7be977a13 \[0m
+   873: 2026-06-10T11:03:55.9253058Z [36;1m  -DCMAKE_C_COMPILER_LAUNCHER=ccache \[0m</pre>
+  
+  <h3>Pattern: cmake</h3>
+  <pre>Matches for /cmake/ (showing up to 10):
+
+   19: 2026-06-10T11:02:49.7814160Z   dist_amdgpu_families: gfx120X-all
+   20: 2026-06-10T11:02:49.7814540Z   rocm_package_version: 7.14.0.dev0+0c4fc0f3e4f61442ddc8ef64f6222ab7be977a13
+>> 21: 2026-06-10T11:02:49.7814933Z   build_variant_cmake_preset:
+   22: 2026-06-10T11:02:49.7815198Z   release_type: ci
+   23: 2026-06-10T11:02:49.7815451Z   build_runs_on: aws-linux-scale-rocm-prod
+
+---
+
+   158: 2026-06-10T11:02:57.6411453Z Collecting setuptools<82.0.0,>=80.9.0 (from -r requirements.txt (line 10))
+   159: 2026-06-10T11:02:57.6440958Z   Downloading setuptools-81.0.0-py3-none-any.whl.metadata (6.6 kB)
+>> 160: 2026-06-10T11:02:57.6627742Z Collecting pytest-cmake==0.13.0 (from -r requirements.txt (line 12))
+   161: 2026-06-10T11:02:57.6658244Z   Downloading pytest_cmake-0.13.0.tar.gz (7.5 kB)
+   162: 2026-06-10T11:02:57.6735923Z   Installing build dependencies: started
+
+---
+
+   159: 2026-06-10T11:02:57.6440958Z   Downloading setuptools-81.0.0-py3-none-any.whl.metadata (6.6 kB)
+   160: 2026-06-10T11:02:57.6627742Z Collecting pytest-cmake==0.13.0 (from -r requirements.txt (line 12))
+>> 161: 2026-06-10T11:02:57.6658244Z   Downloading pytest_cmake-0.13.0.tar.gz (7.5 kB)
+   162: 2026-06-10T11:02:57.6735923Z   Installing build dependencies: started
+   163: 2026-06-10T11:02:58.7501270Z   Installing build dependencies: finished with status 'done'
+
+---
+
+   186: 2026-06-10T11:02:59.9260271Z Collecting psutil==7.1.3 (from -r requirements.txt (line 33))
+   187: 2026-06-10T11:02:59.9288122Z   Downloading psutil-7.1.3-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl.metadata (23 kB)
+>> 188: 2026-06-10T11:02:59.9679458Z Collecting pytest<9,>=4 (from pytest-cmake==0.13.0->-r requirements.txt (line 12))
+   189: 2026-06-10T11:02:59.9685896Z   Using cached pytest-8.4.2-py3-none-any.whl.metadata (7.7 kB)
+   190: 2026-06-10T11:02:59.9712339Z Requirement already satisfied: botocore<1.43.0,>=1.42.84 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from boto3<1.42.85,>=1.42.79->-r requirements.txt (line 20)) (1.42.84)
+
+---
+
+   194: 2026-06-10T11:02:59.9887298Z Requirement already satisfied: python-dateutil<3.0.0,>=2.1 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from botocore<1.43.0,>=1.42.84->boto3<1.42.85,>=1.42.79->-r requirements.txt (line 20)) (2.9.0.post0)
+   195: 2026-06-10T11:02:59.9891151Z Requirement already satisfied: urllib3!=2.2.0,<3,>=1.25.4 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from botocore<1.43.0,>=1.42.84->boto3<1.42.85,>=1.42.79->-r requirements.txt (line 20)) (2.6.3)
+>> 196: 2026-06-10T11:02:59.9950887Z Collecting iniconfig>=1 (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12))
+   197: 2026-06-10T11:02:59.9956752Z   Using cached iniconfig-2.3.0-py3-none-any.whl.metadata (2.5 kB)
+   198: 2026-06-10T11:02:59.9964614Z Requirement already satisfied: packaging>=20 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12)) (25.0)
+
+---
+
+   196: 2026-06-10T11:02:59.9950887Z Collecting iniconfig>=1 (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12))
+   197: 2026-06-10T11:02:59.9956752Z   Using cached iniconfig-2.3.0-py3-none-any.whl.metadata (2.5 kB)
+>> 198: 2026-06-10T11:02:59.9964614Z Requirement already satisfied: packaging>=20 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12)) (25.0)
+   199: 2026-06-10T11:03:00.0024863Z Collecting pluggy<2,>=1.5 (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12))
+   200: 2026-06-10T11:03:00.0030391Z   Using cached pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+
+---
+
+   197: 2026-06-10T11:02:59.9956752Z   Using cached iniconfig-2.3.0-py3-none-any.whl.metadata (2.5 kB)
+   198: 2026-06-10T11:02:59.9964614Z Requirement already satisfied: packaging>=20 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12)) (25.0)
+>> 199: 2026-06-10T11:03:00.0024863Z Collecting pluggy<2,>=1.5 (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12))
+   200: 2026-06-10T11:03:00.0030391Z   Using cached pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+   201: 2026-06-10T11:03:00.0041255Z Requirement already satisfied: pygments>=2.7.2 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12)) (2.20.0)
+
+---
+
+   199: 2026-06-10T11:03:00.0024863Z Collecting pluggy<2,>=1.5 (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12))
+   200: 2026-06-10T11:03:00.0030391Z   Using cached pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+>> 201: 2026-06-10T11:03:00.0041255Z Requirement already satisfied: pygments>=2.7.2 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12)) (2.20.0)
+   202: 2026-06-10T11:03:00.0049334Z Requirement already satisfied: six>=1.5 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from python-dateutil<3.0.0,>=2.1->botocore<1.43.0,>=1.42.84->boto3<1.42.85,>=1.42.79->-r requirements.txt (line 20)) (1.17.0)
+   203: 2026-06-10T11:03:00.0064007Z Requirement already satisfied: ply in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from CppHeaderParser>=2.7.4->-r requirements.txt (line 1)) (3.11)
+
+---
+
+   250: 2026-06-10T11:03:00.4200705Z Downloading distlib-0.4.2-py2.py3-none-any.whl (470 kB)
+   251: 2026-06-10T11:03:00.4286695Z Downloading python_discovery-1.4.0-py3-none-any.whl (33 kB)
+>> 252: 2026-06-10T11:03:00.4512597Z Building wheels for collected packages: pytest-cmake
+   253: 2026-06-10T11:03:00.4524190Z   Building wheel for pytest-cmake (pyproject.toml): started
+   254: 2026-06-10T11:03:00.4706833Z   Building wheel for pytest-cmake (pyproject.toml): finished with status 'done'
+
+---
+
+   251: 2026-06-10T11:03:00.4286695Z Downloading python_discovery-1.4.0-py3-none-any.whl (33 kB)
+   252: 2026-06-10T11:03:00.4512597Z Building wheels for collected packages: pytest-cmake
+>> 253: 2026-06-10T11:03:00.4524190Z   Building wheel for pytest-cmake (pyproject.toml): started
+   254: 2026-06-10T11:03:00.4706833Z   Building wheel for pytest-cmake (pyproject.toml): finished with status 'done'
+   255: 2026-06-10T11:03:00.4707838Z   Created wheel for pytest-cmake: filename=pytest_cmake-0.13.0-py2.py3-none-any.whl size=9056 sha256=89b6aa624c77b7d39e19494c8689c0c7479669c41ae6fb67bb60e6f1824e99e4</pre>
+  
+  <h3>Pattern: gfx</h3>
+  <pre>Matches for /gfx/ (showing up to 10):
+
+   14: 2026-06-10T11:02:49.7812509Z ##[group] Inputs
+   15: 2026-06-10T11:02:49.7812774Z   stage_name: math-libs
+>> 16: 2026-06-10T11:02:49.7813069Z   stage_display_name: Stage - Math Libs (gfx120X-all)
+   17: 2026-06-10T11:02:49.7813641Z   timeout_minutes: 480
+   18: 2026-06-10T11:02:49.7813891Z   amdgpu_family: gfx120X-all
+
+---
+
+   16: 2026-06-10T11:02:49.7813069Z   stage_display_name: Stage - Math Libs (gfx120X-all)
+   17: 2026-06-10T11:02:49.7813641Z   timeout_minutes: 480
+>> 18: 2026-06-10T11:02:49.7813891Z   amdgpu_family: gfx120X-all
+   19: 2026-06-10T11:02:49.7814160Z   dist_amdgpu_families: gfx120X-all
+   20: 2026-06-10T11:02:49.7814540Z   rocm_package_version: 7.14.0.dev0+0c4fc0f3e4f61442ddc8ef64f6222ab7be977a13
+
+---
+
+   17: 2026-06-10T11:02:49.7813641Z   timeout_minutes: 480
+   18: 2026-06-10T11:02:49.7813891Z   amdgpu_family: gfx120X-all
+>> 19: 2026-06-10T11:02:49.7814160Z   dist_amdgpu_families: gfx120X-all
+   20: 2026-06-10T11:02:49.7814540Z   rocm_package_version: 7.14.0.dev0+0c4fc0f3e4f61442ddc8ef64f6222ab7be977a13
+   21: 2026-06-10T11:02:49.7814933Z   build_variant_cmake_preset:
+
+---
+
+   25: 2026-06-10T11:02:49.7815960Z   ref:
+   26: 2026-06-10T11:02:49.7816171Z   external_repo_config:
+>> 27: 2026-06-10T11:02:49.7816427Z   linux_amdgpu_families: gfx120X
+   28: 2026-06-10T11:02:49.7816819Z   build_only: true
+   29: 2026-06-10T11:02:49.7817051Z ##[endgroup]
+
+---
+
+   28: 2026-06-10T11:02:49.7816819Z   build_only: true
+   29: 2026-06-10T11:02:49.7817051Z ##[endgroup]
+>> 30: 2026-06-10T11:02:49.7817570Z Complete job name: Linux::release / Build Multi-Arch Stages / math-libs (gfx120X-all, gfx1200,gfx1201, false) / Stage - Math Libs (gfx120X-all)
+   31: 2026-06-10T11:02:49.9165715Z ##[group]Run '/home/runner/k8s/index.js'
+   32: 2026-06-10T11:02:49.9167614Z shell: /home/runner/externals/node20/bin/node {0}
+
+---
+
+   50: 2026-06-10T11:02:55.8787465Z   AWS_SHARED_CREDENTIALS_FILE: /home/awsconfig/credentials.ini
+   51: 2026-06-10T11:02:55.8787670Z   STAGE_NAME: math-libs
+>> 52: 2026-06-10T11:02:55.8787819Z   AMDGPU_FAMILIES: gfx120X-all
+   53: 2026-06-10T11:02:55.8787991Z   BUILD_DIR: build
+   54: 2026-06-10T11:02:55.8788196Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf
+
+---
+
+   134: 2026-06-10T11:02:56.9668400Z   AWS_SHARED_CREDENTIALS_FILE: /home/awsconfig/credentials.ini
+   135: 2026-06-10T11:02:56.9668586Z   STAGE_NAME: math-libs
+>> 136: 2026-06-10T11:02:56.9668724Z   AMDGPU_FAMILIES: gfx120X-all
+   137: 2026-06-10T11:02:56.9668854Z   BUILD_DIR: build
+   138: 2026-06-10T11:02:56.9669158Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf
+
+---
+
+   278: 2026-06-10T11:03:02.2732866Z   AWS_SHARED_CREDENTIALS_FILE: /home/awsconfig/credentials.ini
+   279: 2026-06-10T11:03:02.2733043Z   STAGE_NAME: math-libs
+>> 280: 2026-06-10T11:03:02.2733166Z   AMDGPU_FAMILIES: gfx120X-all
+   281: 2026-06-10T11:03:02.2733290Z   BUILD_DIR: build
+   282: 2026-06-10T11:03:02.2733460Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf
+
+---
+
+   298: 2026-06-10T11:03:02.5711931Z   AWS_SHARED_CREDENTIALS_FILE: /home/awsconfig/credentials.ini
+   299: 2026-06-10T11:03:02.5712111Z   STAGE_NAME: math-libs
+>> 300: 2026-06-10T11:03:02.5712232Z   AMDGPU_FAMILIES: gfx120X-all
+   301: 2026-06-10T11:03:02.5712355Z   BUILD_DIR: build
+   302: 2026-06-10T11:03:02.5712611Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf
+
+---
+
+   331: 2026-06-10T11:03:02.8998943Z   AWS_SHARED_CREDENTIALS_FILE: /home/awsconfig/credentials.ini
+   332: 2026-06-10T11:03:02.8999127Z   STAGE_NAME: math-libs
+>> 333: 2026-06-10T11:03:02.8999260Z   AMDGPU_FAMILIES: gfx120X-all
+   334: 2026-06-10T11:03:02.8999385Z   BUILD_DIR: build
+   335: 2026-06-10T11:03:02.8999556Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf</pre>
+  
+  
+
+  
+  <h2>GitHub Actions errors</h2>
+  <pre>Matches for /##\[error\]/ (showing up to 15):
+
+   1615: 2026-06-10T11:53:44.6842270Z [288/341] Building sub-project rocSPARSE (in background)
+   1616: 2026-06-10T11:53:46.0391519Z [289/341] Stage installing sub-project rocSPARSE
+>> 1617: 2026-06-10T11:54:19.1190758Z ##[error]Process completed with exit code 130.
+   1618: 2026-06-10T11:54:19.1234664Z ##[error]The runner has received a shutdown signal. This can happen when the runner service is stopped, or a manually started runner is canceled.
+   1619: 2026-06-10T11:54:19.1286322Z ##[error]Executing the custom container implementation failed. Please contact your self hosted runner administrator.
+
+---
+
+   1616: 2026-06-10T11:53:46.0391519Z [289/341] Stage installing sub-project rocSPARSE
+   1617: 2026-06-10T11:54:19.1190758Z ##[error]Process completed with exit code 130.
+>> 1618: 2026-06-10T11:54:19.1234664Z ##[error]The runner has received a shutdown signal. This can happen when the runner service is stopped, or a manually started runner is canceled.
+   1619: 2026-06-10T11:54:19.1286322Z ##[error]Executing the custom container implementation failed. Please contact your self hosted runner administrator.
+   1620: 2026-06-10T11:54:19.1355817Z Cleaning up orphan processes
+
+---
+
+   1617: 2026-06-10T11:54:19.1190758Z ##[error]Process completed with exit code 130.
+   1618: 2026-06-10T11:54:19.1234664Z ##[error]The runner has received a shutdown signal. This can happen when the runner service is stopped, or a manually started runner is canceled.
+>> 1619: 2026-06-10T11:54:19.1286322Z ##[error]Executing the custom container implementation failed. Please contact your self hosted runner administrator.
+   1620: 2026-06-10T11:54:19.1355817Z Cleaning up orphan processes</pre>
+  
+</body>
+</html>

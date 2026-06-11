@@ -50,6 +50,10 @@ jobs:
             --pr "${{ inputs.pr_number }}" \
             --output-dir "agents/change-impact-agent/out/pr-${{ inputs.pr_number }}" \
             "${FLAGS[@]}"
+          python agents/change-impact-agent/summarize.py \
+            --backend template \
+            --input "agents/change-impact-agent/out/pr-${{ inputs.pr_number }}/report.json" \
+            --output "agents/change-impact-agent/out/pr-${{ inputs.pr_number }}/executive_summary.md"
 
       - name: Scan open upstream PRs
         if: inputs.pr_number == ''

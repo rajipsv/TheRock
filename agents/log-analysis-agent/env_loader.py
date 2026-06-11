@@ -1,7 +1,7 @@
 # Copyright (c) 2026 Rajeswari / AGENTS_030 hackathon prototype
 # SPDX-License-Identifier: MIT
 
-"""Load agents/change-impact-agent/.env into os.environ (does not override existing vars)."""
+"""Load agents/log-analysis-agent/.env into os.environ (does not override existing vars)."""
 
 from __future__ import annotations
 

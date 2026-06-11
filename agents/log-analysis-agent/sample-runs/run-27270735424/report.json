@@ -1,0 +1,390 @@
+{
+  "log_path": "C:\\Users\\Rajeswari\\.gemini\\antigravity\\scratch\\TheRock\\TheRock\\agents\\log-analysis-agent\\sample-runs\\run-27270735424\\job-80542543540.log",
+  "timestamp": "2026-06-10T23:33:30.868270",
+  "mode": "tool_only",
+  "preset": "therock_multi_arch",
+  "preset_label": "TheRock \u2014 Multi-Arch CI",
+  "stats": "path=C:\\Users\\Rajeswari\\.gemini\\antigravity\\scratch\\TheRock\\TheRock\\agents\\log-analysis-agent\\sample-runs\\run-27270735424\\job-80542543540.log\nlines=1620\nbytes=144577\ngithub_error=3\nkeyword_hits: ERROR=4, EXCEPTION=0, CRITICAL=0, FATAL=1, WARNING=14",
+  "chunk_overview": "total_lines=1620, chunk_size=500, chunks=4\nchunk 1: lines 1-500, keyword_hits=3\nchunk 2: lines 501-1000, keyword_hits=0\nchunk 3: lines 1001-1500, keyword_hits=11\nchunk 4: lines 1501-1620, keyword_hits=3",
+  "errors": [
+    {
+      "type": "ERROR",
+      "line_number": 469,
+      "message": "2026-06-10T11:03:04.1415546Z         ===================          Compoments check \u001b[38;2;6;161;60m15\u001b[0m Passed, \u001b[38;2;184;166;48m0\u001b[0m Warning, \u001b[38;2;255;61;61m0\u001b[0m Fatal Error          ===================",
+      "severity": "HIGH",
+      "category": "GPU/Driver",
+      "recommendation": "Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages",
+      "kb_pattern_id": "rocm_hip_error"
+    },
+    {
+      "type": "ERROR",
+      "line_number": 1617,
+      "message": "2026-06-10T11:54:19.1190758Z ##[error]Process completed with exit code 130.",
+      "severity": "HIGH",
+      "category": "Configuration",
+      "recommendation": "Check cluster events at failure time; review CPU/memory/disk; retry; contact runner admin \u2014 not a TheRock compile error",
+      "kb_pattern_id": "gha_runner_shutdown_130"
+    },
+    {
+      "type": "ERROR",
+      "line_number": 1618,
+      "message": "2026-06-10T11:54:19.1234664Z ##[error]The runner has received a shutdown signal. This can happen when the runner service is stopped, or a manually started runner is canceled.",
+      "severity": "HIGH",
+      "category": "Configuration",
+      "recommendation": "Check cluster events at failure time; review CPU/memory/disk; retry; contact runner admin \u2014 not a TheRock compile error",
+      "kb_pattern_id": "gha_runner_shutdown_130"
+    },
+    {
+      "type": "ERROR",
+      "line_number": 1619,
+      "message": "2026-06-10T11:54:19.1286322Z ##[error]Executing the custom container implementation failed. Please contact your self hosted runner administrator.",
+      "severity": "HIGH",
+      "category": "Configuration",
+      "recommendation": "Check cluster events at failure time; review CPU/memory/disk; retry; contact runner admin \u2014 not a TheRock compile error",
+      "kb_pattern_id": "gha_runner_shutdown_130"
+    },
+    {
+      "type": "FATAL",
+      "line_number": 469,
+      "message": "2026-06-10T11:03:04.1415546Z         ===================          Compoments check \u001b[38;2;6;161;60m15\u001b[0m Passed, \u001b[38;2;184;166;48m0\u001b[0m Warning, \u001b[38;2;255;61;61m0\u001b[0m Fatal Error          ===================",
+      "severity": "CRITICAL",
+      "category": "GPU/Driver",
+      "recommendation": "Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages",
+      "kb_pattern_id": "rocm_hip_error"
+    }
+  ],
+  "errors_count": 5,
+  "stack_traces": "Stack traces (9):\n\n469: 2026-06-10T11:03:04.1415546Z         ===================          Compoments check \u001b[38;2;6;161;60m15\u001b[0m Passed, \u001b[38;2;184;166;48m0\u001b[0m Warning, \u001b[38;2;255;61;61m0\u001b[0m Fatal Error          ===================\n470: 2026-06-10T11:03:04.1415792Z\n\n---\n\n991: 2026-06-10T11:03:56.5827058Z -- Including subproject therock-libbacktrace (from /__w/TheRock/TheRock/third-party/sysdeps/common/libbacktrace/.)\n992: 2026-06-10T11:03:56.5871930Z --   DISABLING BUILD: Marked as pre-built\n\n---\n\n1083: 2026-06-10T11:04:05.4156749Z -- Including subproject rocprof-trace-decoder (from /__w/TheRock/TheRock/rocm-systems/projects/rocprof-trace-decoder)\n1084: 2026-06-10T11:04:06.4545496Z --   DISABLING BUILD: Marked as pre-built\n\n---\n\n1097: 2026-06-10T11:04:08.5716930Z -- Including subproject roctracer (from /__w/TheRock/TheRock/rocm-systems/projects/roctracer)\n1098: 2026-06-10T11:04:09.6107616Z --   DISABLING BUILD: Marked as pre-built\n\n---\n\n1100: 2026-06-10T11:04:09.6110620Z -- Cannot compute fprint for artifact rocprofiler-sdk (no fprint for roctracer)\n1101: 2026-06-10T11:04:09.6112820Z -- Including subproject rocprofiler-compute (from /__w/TheRock/TheRock/rocm-systems/projects/rocprofiler-compute)\n\n---\n\n1283: 2026-06-10T11:04:18.7036999Z [51/341] Generating rocprof-trace-decoder/stamp/stage.stamp\n1284: 2026-06-10T11:04:18.7037298Z [52/341] Performing download step (download, verify and extract) for 'therock-libdivide-sources'\n\n---\n\n1374: 2026-06-10T11:04:19.9177053Z [143/341] Generating roctracer/stamp/stage.stamp\n1375: 2026-06-10T11:04:19.9282167Z [144/341] Generating amd-comgr/stamp/stage.stamp\n\n---\n\n1617: 2026-06-10T11:54:19.1190758Z ##[error]Process completed with exit code 130.\n1618: 2026-06-10T11:54:19.1234664Z ##[error]The runner has received a shutdown signal. This can happen when the runner service is stopped, or a manually started runner is canceled.\n\n---\n\n1619: 2026-06-10T11:54:19.1286322Z ##[error]Executing the custom container implementation failed. Please contact your self hosted runner administrator.\n1620: 2026-06-10T11:54:19.1355817Z Cleaning up orphan processes",
+  "rag_lookups": [
+    {
+      "error_signature": "2026-06-10T11:03:04.1415546Z         ===================          Compoments check \u001b[38;2;6;161;60m15\u001b[0m Passed, \u001b[38;2;184;166;48m0\u001b[0m Warning, \u001b[38;2;255;61;61m0\u001b[0m Fatal Error          ===================",
+      "matches": [
+        {
+          "pattern_id": "rocm_hip_error",
+          "pattern": "ROCm HIP API failure",
+          "category": "GPU/Driver",
+          "severity": "HIGH",
+          "score": 11.5,
+          "causes": "Driver mismatch, wrong GPU visible, ROCm version skew, missing device",
+          "solutions": "Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages",
+          "similar_errors": "HIP initialization failed",
+          "source": "keyword",
+          "resolution_notes": ""
+        },
+        {
+          "pattern_id": "rocm_hsa_status",
+          "pattern": "HSA runtime / ROCr failure",
+          "category": "GPU/Driver",
+          "severity": "CRITICAL",
+          "score": 8.0,
+          "causes": "Firmware, KFD issues, incompatible kernel, GPU reset required",
+          "solutions": "Check dmesg, reboot GPU, validate kernel+ROCm matrix, escalate to driver team",
+          "similar_errors": "HSA_STATUS_ERROR",
+          "source": "keyword",
+          "resolution_notes": ""
+        }
+      ],
+      "formatted": "Match 1 [keyword] score=11.5 id=rocm_hip_error\n  Pattern: ROCm HIP API failure\n  Category: GPU/Driver | Severity: HIGH\n  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device\n  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages\n  Similar: HIP initialization failed\n\nMatch 2 [keyword] score=8.0 id=rocm_hsa_status\n  Pattern: HSA runtime / ROCr failure\n  Category: GPU/Driver | Severity: CRITICAL\n  Causes: Firmware, KFD issues, incompatible kernel, GPU reset required\n  Solutions: Check dmesg, reboot GPU, validate kernel+ROCm matrix, escalate to driver team\n  Similar: HSA_STATUS_ERROR"
+    },
+    {
+      "error_signature": "2026-06-10T11:54:19.1190758Z ##[error]Process completed with exit code 130.",
+      "matches": [
+        {
+          "pattern_id": "gha_runner_shutdown_130",
+          "pattern": "GitHub Actions runner shutdown (exit 130)",
+          "category": "Configuration",
+          "severity": "HIGH",
+          "score": 24.0,
+          "causes": "Runner/pod eviction, K8s node drain, resource limits, container runtime failure",
+          "solutions": "Check cluster events at failure time; review CPU/memory/disk; retry; contact runner admin \u2014 not a TheRock compile error",
+          "similar_errors": "Process completed with exit code 130",
+          "source": "keyword",
+          "resolution_notes": ""
+        },
+        {
+          "pattern_id": "docker_install_test",
+          "pattern": "Containerized ROCm install test failure",
+          "category": "Configuration",
+          "severity": "MEDIUM",
+          "score": 19.5,
+          "causes": "Image drift, missing privileges, stale cache layer",
+          "solutions": "Rebuild image, verify --device flags, rerun parallel matrix on clean containers",
+          "similar_errors": "OCI runtime error",
+          "source": "keyword",
+          "resolution_notes": ""
+        }
+      ],
+      "formatted": "Match 1 [keyword] score=24.0 id=gha_runner_shutdown_130\n  Pattern: GitHub Actions runner shutdown (exit 130)\n  Category: Configuration | Severity: HIGH\n  Causes: Runner/pod eviction, K8s node drain, resource limits, container runtime failure\n  Solutions: Check cluster events at failure time; review CPU/memory/disk; retry; contact runner admin \u2014 not a TheRock compile error\n  Similar: Process completed with exit code 130\n\nMatch 2 [keyword] score=19.5 id=docker_install_test\n  Pattern: Containerized ROCm install test failure\n  Category: Configuration | Severity: MEDIUM\n  Causes: Image drift, missing privileges, stale cache layer\n  Solutions: Rebuild image, verify --device flags, rerun parallel matrix on clean containers\n  Similar: OCI runtime error"
+    },
+    {
+      "error_signature": "2026-06-10T11:54:19.1234664Z ##[error]The runner has received a shutdown signal. This can happen when the runner service is stopped, or a manually started runner is canceled.",
+      "matches": [
+        {
+          "pattern_id": "gha_runner_shutdown_130",
+          "pattern": "GitHub Actions runner shutdown (exit 130)",
+          "category": "Configuration",
+          "severity": "HIGH",
+          "score": 24.5,
+          "causes": "Runner/pod eviction, K8s node drain, resource limits, container runtime failure",
+          "solutions": "Check cluster events at failure time; review CPU/memory/disk; retry; contact runner admin \u2014 not a TheRock compile error",
+          "similar_errors": "Process completed with exit code 130",
+          "source": "keyword",
+          "resolution_notes": ""
+        },
+        {
+          "pattern_id": "rocm_hip_error",
+          "pattern": "ROCm HIP API failure",
+          "category": "GPU/Driver",
+          "severity": "HIGH",
+          "score": 11.5,
+          "causes": "Driver mismatch, wrong GPU visible, ROCm version skew, missing device",
+          "solutions": "Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages",
+          "similar_errors": "HIP initialization failed",
+          "source": "keyword",
+          "resolution_notes": ""
+        }
+      ],
+      "formatted": "Match 1 [keyword] score=24.5 id=gha_runner_shutdown_130\n  Pattern: GitHub Actions runner shutdown (exit 130)\n  Category: Configuration | Severity: HIGH\n  Causes: Runner/pod eviction, K8s node drain, resource limits, container runtime failure\n  Solutions: Check cluster events at failure time; review CPU/memory/disk; retry; contact runner admin \u2014 not a TheRock compile error\n  Similar: Process completed with exit code 130\n\nMatch 2 [keyword] score=11.5 id=rocm_hip_error\n  Pattern: ROCm HIP API failure\n  Category: GPU/Driver | Severity: HIGH\n  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device\n  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages\n  Similar: HIP initialization failed"
+    },
+    {
+      "error_signature": "2026-06-10T11:03:04.1415546Z         ===================          Compoments check \u001b[38;2;6;161;60m15\u001b[0m Passed, \u001b[38;2;184;166;48m0\u001b[0m Warning, \u001b[38;2;255;61;61m0\u001b[0m Fatal Error          ===================",
+      "matches": [
+        {
+          "pattern_id": "rocm_hip_error",
+          "pattern": "ROCm HIP API failure",
+          "category": "GPU/Driver",
+          "severity": "HIGH",
+          "score": 11.5,
+          "causes": "Driver mismatch, wrong GPU visible, ROCm version skew, missing device",
+          "solutions": "Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages",
+          "similar_errors": "HIP initialization failed",
+          "source": "keyword",
+          "resolution_notes": ""
+        },
+        {
+          "pattern_id": "rocm_hsa_status",
+          "pattern": "HSA runtime / ROCr failure",
+          "category": "GPU/Driver",
+          "severity": "CRITICAL",
+          "score": 8.0,
+          "causes": "Firmware, KFD issues, incompatible kernel, GPU reset required",
+          "solutions": "Check dmesg, reboot GPU, validate kernel+ROCm matrix, escalate to driver team",
+          "similar_errors": "HSA_STATUS_ERROR",
+          "source": "keyword",
+          "resolution_notes": ""
+        }
+      ],
+      "formatted": "Match 1 [keyword] score=11.5 id=rocm_hip_error\n  Pattern: ROCm HIP API failure\n  Category: GPU/Driver | Severity: HIGH\n  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device\n  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages\n  Similar: HIP initialization failed\n\nMatch 2 [keyword] score=8.0 id=rocm_hsa_status\n  Pattern: HSA runtime / ROCr failure\n  Category: GPU/Driver | Severity: CRITICAL\n  Causes: Firmware, KFD issues, incompatible kernel, GPU reset required\n  Solutions: Check dmesg, reboot GPU, validate kernel+ROCm matrix, escalate to driver team\n  Similar: HSA_STATUS_ERROR"
+    },
+    {
+      "error_signature": "2026-06-10T11:54:19.1190758Z ##[error]Process completed with exit code 130.",
+      "matches": [
+        {
+          "pattern_id": "gha_runner_shutdown_130",
+          "pattern": "GitHub Actions runner shutdown (exit 130)",
+          "category": "Configuration",
+          "severity": "HIGH",
+          "score": 24.0,
+          "causes": "Runner/pod eviction, K8s node drain, resource limits, container runtime failure",
+          "solutions": "Check cluster events at failure time; review CPU/memory/disk; retry; contact runner admin \u2014 not a TheRock compile error",
+          "similar_errors": "Process completed with exit code 130",
+          "source": "keyword",
+          "resolution_notes": ""
+        },
+        {
+          "pattern_id": "docker_install_test",
+          "pattern": "Containerized ROCm install test failure",
+          "category": "Configuration",
+          "severity": "MEDIUM",
+          "score": 19.5,
+          "causes": "Image drift, missing privileges, stale cache layer",
+          "solutions": "Rebuild image, verify --device flags, rerun parallel matrix on clean containers",
+          "similar_errors": "OCI runtime error",
+          "source": "keyword",
+          "resolution_notes": ""
+        }
+      ],
+      "formatted": "Match 1 [keyword] score=24.0 id=gha_runner_shutdown_130\n  Pattern: GitHub Actions runner shutdown (exit 130)\n  Category: Configuration | Severity: HIGH\n  Causes: Runner/pod eviction, K8s node drain, resource limits, container runtime failure\n  Solutions: Check cluster events at failure time; review CPU/memory/disk; retry; contact runner admin \u2014 not a TheRock compile error\n  Similar: Process completed with exit code 130\n\nMatch 2 [keyword] score=19.5 id=docker_install_test\n  Pattern: Containerized ROCm install test failure\n  Category: Configuration | Severity: MEDIUM\n  Causes: Image drift, missing privileges, stale cache layer\n  Solutions: Rebuild image, verify --device flags, rerun parallel matrix on clean containers\n  Similar: OCI runtime error"
+    }
+  ],
+  "summary": "Tool-only qualification pass found 5 highlighted error lines. Stats: path=C:\\Users\\Rajeswari\\.gemini\\antigravity\\scratch\\TheRock\\TheRock\\agents\\log-analysis-agent\\sample-runs\\run-27270735424\\job-80542543540.log; lines=1620; bytes=144577; github_error=3; keyword_hits: ERROR=4, EXCEPTION=0, CRITICAL=0, FATAL=1, WARNING=14",
+  "executive_summary": "# Log Analysis Executive Summary\n\n**Log:** `C:\\Users\\Rajeswari\\.gemini\\antigravity\\scratch\\TheRock\\TheRock\\agents\\log-analysis-agent\\sample-runs\\run-27270735424\\job-80542543540.log`\n**GitHub run:** [27270735424](https://github.com/ROCm/TheRock/actions/runs/27270735424) (ROCm/TheRock, job: Linux::release / Build Multi-Arch Stages / math-libs (gfx120X-all, gfx1200,gfx1201, false) / Stage - Math Libs (gfx120X-all))\n**Mode:** tool_only\n**Preset:** therock_multi_arch\n**Errors found:** 5\n\n## Summary\nTool-only qualification pass found 5 highlighted error lines. Stats: path=C:\\Users\\Rajeswari\\.gemini\\antigravity\\scratch\\TheRock\\TheRock\\agents\\log-analysis-agent\\sample-runs\\run-27270735424\\job-80542543540.log; lines=1620; bytes=144577; github_error=3; keyword_hits: ERROR=4, EXCEPTION=0, CRITICAL=0, FATAL=1, WARNING=14\n\n## Top errors\n- **Line 469** (HIGH): 2026-06-10T11:03:04.1415546Z         ===================          Compoments check \u001b[38;2;6;161;60m15\u001b[0m Passed, \u001b[38;2\n  - Recommendation: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages\n- **Line 1617** (HIGH): 2026-06-10T11:54:19.1190758Z ##[error]Process completed with exit code 130.\n  - Recommendation: Check cluster events at failure time; review CPU/memory/disk; retry; contact runner admin \u2014 not a TheRock compile error\n- **Line 1618** (HIGH): 2026-06-10T11:54:19.1234664Z ##[error]The runner has received a shutdown signal. This can happen when the runner service\n  - Recommendation: Check cluster events at failure time; review CPU/memory/disk; retry; contact runner admin \u2014 not a TheRock compile error\n- **Line 1619** (HIGH): 2026-06-10T11:54:19.1286322Z ##[error]Executing the custom container implementation failed. Please contact your self hos\n  - Recommendation: Check cluster events at failure time; review CPU/memory/disk; retry; contact runner admin \u2014 not a TheRock compile error\n- **Line 469** (CRITICAL): 2026-06-10T11:03:04.1415546Z         ===================          Compoments check \u001b[38;2;6;161;60m15\u001b[0m Passed, \u001b[38;2\n  - Recommendation: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages\n\n## Knowledge base matches\n- `2026-06-10T11:03:04.1415546Z         ===================          Compoments che` \u2192 ROCm HIP API failure (GPU/Driver, score=11.5)\n- `2026-06-10T11:54:19.1190758Z ##[error]Process completed with exit code 130.` \u2192 GitHub Actions runner shutdown (exit 130) (Configuration, score=24.0)\n- `2026-06-10T11:54:19.1234664Z ##[error]The runner has received a shutdown signal.` \u2192 GitHub Actions runner shutdown (exit 130) (Configuration, score=24.5)",
+  "tool_analysis": {
+    "mode": "tool_only",
+    "stats": "path=C:\\Users\\Rajeswari\\.gemini\\antigravity\\scratch\\TheRock\\TheRock\\agents\\log-analysis-agent\\sample-runs\\run-27270735424\\job-80542543540.log\nlines=1620\nbytes=144577\ngithub_error=3\nkeyword_hits: ERROR=4, EXCEPTION=0, CRITICAL=0, FATAL=1, WARNING=14",
+    "chunk_overview": "total_lines=1620, chunk_size=500, chunks=4\nchunk 1: lines 1-500, keyword_hits=3\nchunk 2: lines 501-1000, keyword_hits=0\nchunk 3: lines 1001-1500, keyword_hits=11\nchunk 4: lines 1501-1620, keyword_hits=3",
+    "error_samples": "Matches for /\\bERROR\\b/ (showing up to 25):\n\n   466: 2026-06-10T11:03:04.1414597Z         [\u001b[38;2;6;161;60m\u2713\u001b[0m][\u001b[38;2;6;161;60mBinutils/Archiver\u001b[0m] Found GNU/Binutils Archiver 2.40.0 at /opt/rh/gcc-toolset-13/root/usr/bin/ar\n   467: 2026-06-10T11:03:04.1415056Z         [\u001b[38;2;6;161;60m\u2713\u001b[0m][\u001b[38;2;6;161;60mBinutils/Linker\u001b[0m] Found GNU/Binutils Linker 2.40.0 at /opt/rh/gcc-toolset-13/root/usr/bin/ld\n   468: 2026-06-10T11:03:04.1415278Z\n>> 469: 2026-06-10T11:03:04.1415546Z         ===================          Compoments check \u001b[38;2;6;161;60m15\u001b[0m Passed, \u001b[38;2;184;166;48m0\u001b[0m Warning, \u001b[38;2;255;61;61m0\u001b[0m Fatal Error          ===================\n   470: 2026-06-10T11:03:04.1415792Z\n   471: 2026-06-10T11:03:04.1415794Z\n   472: 2026-06-10T11:03:04.1415899Z         ===================                              Python List                               ===================\n\n---\n\n   1614: 2026-06-10T11:49:48.3021339Z [287/341] Configure sub-project rocSPARSE (in background)\n   1615: 2026-06-10T11:53:44.6842270Z [288/341] Building sub-project rocSPARSE (in background)\n   1616: 2026-06-10T11:53:46.0391519Z [289/341] Stage installing sub-project rocSPARSE\n>> 1617: 2026-06-10T11:54:19.1190758Z ##[error]Process completed with exit code 130.\n   1618: 2026-06-10T11:54:19.1234664Z ##[error]The runner has received a shutdown signal. This can happen when the runner service is stopped, or a manually started runner is canceled.\n   1619: 2026-06-10T11:54:19.1286322Z ##[error]Executing the custom container implementation failed. Please contact your self hosted runner administrator.\n   1620: 2026-06-10T11:54:19.1355817Z Cleaning up orphan processes\n\n---\n\n   1615: 2026-06-10T11:53:44.6842270Z [288/341] Building sub-project rocSPARSE (in background)\n   1616: 2026-06-10T11:53:46.0391519Z [289/341] Stage installing sub-project rocSPARSE\n   1617: 2026-06-10T11:54:19.1190758Z ##[error]Process completed with exit code 130.\n>> 1618: 2026-06-10T11:54:19.1234664Z ##[error]The runner has received a shutdown signal. This can happen when the runner service is stopped, or a manually started runner is canceled.\n   1619: 2026-06-10T11:54:19.1286322Z ##[error]Executing the custom container implementation failed. Please contact your self hosted runner administrator.\n   1620: 2026-06-10T11:54:19.1355817Z Cleaning up orphan processes\n\n---\n\n   1616: 2026-06-10T11:53:46.0391519Z [289/341] Stage installing sub-project rocSPARSE\n   1617: 2026-06-10T11:54:19.1190758Z ##[error]Process completed with exit code 130.\n   1618: 2026-06-10T11:54:19.1234664Z ##[error]The runner has received a shutdown signal. This can happen when the runner service is stopped, or a manually started runner is canceled.\n>> 1619: 2026-06-10T11:54:19.1286322Z ##[error]Executing the custom container implementation failed. Please contact your self hosted runner administrator.\n   1620: 2026-06-10T11:54:19.1355817Z Cleaning up orphan processes",
+    "critical_samples": "No matches for pattern: \\bCRITICAL\\b",
+    "fatal_samples": "Matches for /\\bFATAL\\b/ (showing up to 10):\n\n   466: 2026-06-10T11:03:04.1414597Z         [\u001b[38;2;6;161;60m\u2713\u001b[0m][\u001b[38;2;6;161;60mBinutils/Archiver\u001b[0m] Found GNU/Binutils Archiver 2.40.0 at /opt/rh/gcc-toolset-13/root/usr/bin/ar\n   467: 2026-06-10T11:03:04.1415056Z         [\u001b[38;2;6;161;60m\u2713\u001b[0m][\u001b[38;2;6;161;60mBinutils/Linker\u001b[0m] Found GNU/Binutils Linker 2.40.0 at /opt/rh/gcc-toolset-13/root/usr/bin/ld\n   468: 2026-06-10T11:03:04.1415278Z\n>> 469: 2026-06-10T11:03:04.1415546Z         ===================          Compoments check \u001b[38;2;6;161;60m15\u001b[0m Passed, \u001b[38;2;184;166;48m0\u001b[0m Warning, \u001b[38;2;255;61;61m0\u001b[0m Fatal Error          ===================\n   470: 2026-06-10T11:03:04.1415792Z\n   471: 2026-06-10T11:03:04.1415794Z\n   472: 2026-06-10T11:03:04.1415899Z         ===================                              Python List                               ===================",
+    "github_error_samples": "Matches for /##\\[error\\]/ (showing up to 15):\n\n   1615: 2026-06-10T11:53:44.6842270Z [288/341] Building sub-project rocSPARSE (in background)\n   1616: 2026-06-10T11:53:46.0391519Z [289/341] Stage installing sub-project rocSPARSE\n>> 1617: 2026-06-10T11:54:19.1190758Z ##[error]Process completed with exit code 130.\n   1618: 2026-06-10T11:54:19.1234664Z ##[error]The runner has received a shutdown signal. This can happen when the runner service is stopped, or a manually started runner is canceled.\n   1619: 2026-06-10T11:54:19.1286322Z ##[error]Executing the custom container implementation failed. Please contact your self hosted runner administrator.\n\n---\n\n   1616: 2026-06-10T11:53:46.0391519Z [289/341] Stage installing sub-project rocSPARSE\n   1617: 2026-06-10T11:54:19.1190758Z ##[error]Process completed with exit code 130.\n>> 1618: 2026-06-10T11:54:19.1234664Z ##[error]The runner has received a shutdown signal. This can happen when the runner service is stopped, or a manually started runner is canceled.\n   1619: 2026-06-10T11:54:19.1286322Z ##[error]Executing the custom container implementation failed. Please contact your self hosted runner administrator.\n   1620: 2026-06-10T11:54:19.1355817Z Cleaning up orphan processes\n\n---\n\n   1617: 2026-06-10T11:54:19.1190758Z ##[error]Process completed with exit code 130.\n   1618: 2026-06-10T11:54:19.1234664Z ##[error]The runner has received a shutdown signal. This can happen when the runner service is stopped, or a manually started runner is canceled.\n>> 1619: 2026-06-10T11:54:19.1286322Z ##[error]Executing the custom container implementation failed. Please contact your self hosted runner administrator.\n   1620: 2026-06-10T11:54:19.1355817Z Cleaning up orphan processes",
+    "stack_traces": "Stack traces (9):\n\n469: 2026-06-10T11:03:04.1415546Z         ===================          Compoments check \u001b[38;2;6;161;60m15\u001b[0m Passed, \u001b[38;2;184;166;48m0\u001b[0m Warning, \u001b[38;2;255;61;61m0\u001b[0m Fatal Error          ===================\n470: 2026-06-10T11:03:04.1415792Z\n\n---\n\n991: 2026-06-10T11:03:56.5827058Z -- Including subproject therock-libbacktrace (from /__w/TheRock/TheRock/third-party/sysdeps/common/libbacktrace/.)\n992: 2026-06-10T11:03:56.5871930Z --   DISABLING BUILD: Marked as pre-built\n\n---\n\n1083: 2026-06-10T11:04:05.4156749Z -- Including subproject rocprof-trace-decoder (from /__w/TheRock/TheRock/rocm-systems/projects/rocprof-trace-decoder)\n1084: 2026-06-10T11:04:06.4545496Z --   DISABLING BUILD: Marked as pre-built\n\n---\n\n1097: 2026-06-10T11:04:08.5716930Z -- Including subproject roctracer (from /__w/TheRock/TheRock/rocm-systems/projects/roctracer)\n1098: 2026-06-10T11:04:09.6107616Z --   DISABLING BUILD: Marked as pre-built\n\n---\n\n1100: 2026-06-10T11:04:09.6110620Z -- Cannot compute fprint for artifact rocprofiler-sdk (no fprint for roctracer)\n1101: 2026-06-10T11:04:09.6112820Z -- Including subproject rocprofiler-compute (from /__w/TheRock/TheRock/rocm-systems/projects/rocprofiler-compute)\n\n---\n\n1283: 2026-06-10T11:04:18.7036999Z [51/341] Generating rocprof-trace-decoder/stamp/stage.stamp\n1284: 2026-06-10T11:04:18.7037298Z [52/341] Performing download step (download, verify and extract) for 'therock-libdivide-sources'\n\n---\n\n1374: 2026-06-10T11:04:19.9177053Z [143/341] Generating roctracer/stamp/stage.stamp\n1375: 2026-06-10T11:04:19.9282167Z [144/341] Generating amd-comgr/stamp/stage.stamp\n\n---\n\n1617: 2026-06-10T11:54:19.1190758Z ##[error]Process completed with exit code 130.\n1618: 2026-06-10T11:54:19.1234664Z ##[error]The runner has received a shutdown signal. This can happen when the runner service is stopped, or a manually started runner is canceled.\n\n---\n\n1619: 2026-06-10T11:54:19.1286322Z ##[error]Executing the custom container implementation failed. Please contact your self hosted runner administrator.\n1620: 2026-06-10T11:54:19.1355817Z Cleaning up orphan processes",
+    "preset_pattern_samples": {
+      "therock": "Matches for /therock/ (showing up to 10):\n\n   1: \ufeff2026-06-10T11:02:49.3323366Z Current runner version: '2.334.0'\n   2: 2026-06-10T11:02:49.3326757Z Runner name: 'aws-linux-scale-rocm-prod-7lx62-runner-r97nn'\n>> 3: 2026-06-10T11:02:49.3327253Z Runner group name: 'therock-ci-aws-prod'\n   4: 2026-06-10T11:02:49.3327818Z Machine name: 'aws-linux-scale-rocm-prod-7lx62-runner-r97nn'\n   5: 2026-06-10T11:02:49.3329157Z ##[group]GITHUB_TOKEN Permissions\n\n---\n\n   11: 2026-06-10T11:02:49.3673153Z Getting action download info\n   12: 2026-06-10T11:02:49.6046897Z Download action repository 'actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10' (SHA:df4cb1c069e1874edd31b4311f1884172cec0e10)\n>> 13: 2026-06-10T11:02:49.7809952Z Uses: ROCm/TheRock/.github/workflows/multi_arch_build_portable_linux_artifacts.yml@refs/heads/users/kkhalasi/build-only-dispatch-input (0c4fc0f3e4f61442ddc8ef64f6222ab7be977a13)\n   14: 2026-06-10T11:02:49.7812509Z ##[group] Inputs\n   15: 2026-06-10T11:02:49.7812774Z   stage_name: math-libs\n\n---\n\n   34: 2026-06-10T11:02:55.8783333Z ##[group]Run actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10\n   35: 2026-06-10T11:02:55.8783607Z with:\n>> 36: 2026-06-10T11:02:55.8783749Z   repository: ROCm/TheRock\n   37: 2026-06-10T11:02:55.8785537Z   token: ***\n   38: 2026-06-10T11:02:55.8785671Z   ssh-strict: true\n\n---\n\n   52: 2026-06-10T11:02:55.8787819Z   AMDGPU_FAMILIES: gfx120X-all\n   53: 2026-06-10T11:02:55.8787991Z   BUILD_DIR: build\n>> 54: 2026-06-10T11:02:55.8788196Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf\n   55: 2026-06-10T11:02:55.8788460Z   CACHE_DIR: /home/runner/_work/TheRock/TheRock/.container-cache\n   56: 2026-06-10T11:02:55.8788665Z   TEATIME_FORCE_INTERACTIVE: 0\n\n---\n\n   53: 2026-06-10T11:02:55.8787991Z   BUILD_DIR: build\n   54: 2026-06-10T11:02:55.8788196Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf\n>> 55: 2026-06-10T11:02:55.8788460Z   CACHE_DIR: /home/runner/_work/TheRock/TheRock/.container-cache\n   56: 2026-06-10T11:02:55.8788665Z   TEATIME_FORCE_INTERACTIVE: 0\n   57: 2026-06-10T11:02:55.8788819Z   RELEASE_TYPE: ci\n\n---\n\n   61: 2026-06-10T11:02:55.8907451Z shell: /home/runner/externals/node20/bin/node {0}\n   62: 2026-06-10T11:02:55.8907632Z ##[endgroup]\n>> 63: 2026-06-10T11:02:56.2307193Z Syncing repository: ROCm/TheRock\n   64: 2026-06-10T11:02:56.2308042Z ##[group]Getting Git version info\n   65: 2026-06-10T11:02:56.2308485Z Working directory is '/__w/TheRock/TheRock'\n\n---\n\n   63: 2026-06-10T11:02:56.2307193Z Syncing repository: ROCm/TheRock\n   64: 2026-06-10T11:02:56.2308042Z ##[group]Getting Git version info\n>> 65: 2026-06-10T11:02:56.2308485Z Working directory is '/__w/TheRock/TheRock'\n   66: 2026-06-10T11:02:56.2308789Z [command]/usr/local/bin/git version\n   67: 2026-06-10T11:02:56.2308971Z git version 2.49.0\n\n---\n\n   70: 2026-06-10T11:02:56.2332199Z Temporarily overriding HOME='/__w/_temp/a8e20739-2d93-461a-bcfc-28df43d5ee06' before making global git config changes\n   71: 2026-06-10T11:02:56.2332591Z Adding repository directory to the temporary git global config as a safe directory\n>> 72: 2026-06-10T11:02:56.2334025Z [command]/usr/local/bin/git config --global --add safe.directory /__w/TheRock/TheRock\n   73: 2026-06-10T11:02:56.2354901Z Deleting the contents of '/__w/TheRock/TheRock'\n   74: 2026-06-10T11:02:56.2356498Z ##[group]Determining repository object format\n\n---\n\n   71: 2026-06-10T11:02:56.2332591Z Adding repository directory to the temporary git global config as a safe directory\n   72: 2026-06-10T11:02:56.2334025Z [command]/usr/local/bin/git config --global --add safe.directory /__w/TheRock/TheRock\n>> 73: 2026-06-10T11:02:56.2354901Z Deleting the contents of '/__w/TheRock/TheRock'\n   74: 2026-06-10T11:02:56.2356498Z ##[group]Determining repository object format\n   75: 2026-06-10T11:02:56.2357587Z ##[endgroup]\n\n---\n\n   75: 2026-06-10T11:02:56.2357587Z ##[endgroup]\n   76: 2026-06-10T11:02:56.2357829Z ##[group]Initializing the repository\n>> 77: 2026-06-10T11:02:56.2359716Z [command]/usr/local/bin/git init /__w/TheRock/TheRock\n   78: 2026-06-10T11:02:56.2391416Z hint: Using 'master' as the name for the initial branch. This default branch name\n   79: 2026-06-10T11:02:56.2391714Z hint: is subject to change. To configure the initial branch name to use in all",
+      "ninja": "Matches for /ninja/ (showing up to 10):\n\n   457: 2026-06-10T11:03:04.1410807Z         [\u001b[38;2;6;161;60m\u2713\u001b[0m][\u001b[38;2;6;161;60mCMake\u001b[0m] Found CMake 3.27.9 at /usr/local/therock-tools/bin/cmake\n   458: 2026-06-10T11:03:04.1411147Z         [\u001b[38;2;6;161;60m\u2713\u001b[0m][\u001b[38;2;6;161;60mCCache\u001b[0m] Found CCache 4.11.2 at /usr/local/bin/ccache\n>> 459: 2026-06-10T11:03:04.1411495Z         [\u001b[38;2;6;161;60m\u2713\u001b[0m][\u001b[38;2;6;161;60mNinja-Build\u001b[0m] Found Ninja-Build 1.12.1 at /usr/local/bin/ninja\n   460: 2026-06-10T11:03:04.1411962Z         [\u001b[38;2;6;161;60m\u2713\u001b[0m][\u001b[38;2;6;161;60mGCC/gfortran\u001b[0m] Found GCC compiler program gfortran 13.3.1 at /opt/rh/gcc-toolset-13/root/usr/bin/gfortran\n   461: 2026-06-10T11:03:04.1412425Z         [\u001b[38;2;6;161;60m\u2713\u001b[0m][\u001b[38;2;6;161;60mPython 3\u001b[0m] Found Python 3.12.10 at /opt/python/cp312-cp312/bin/python (Global ENV).\n\n---\n\n   868: 2026-06-10T11:03:55.8999136Z OUTPUT cmake_args=-DTHEROCK_AMDGPU_FAMILIES=gfx120X-all -DTHEROCK_DIST_AMDGPU_FAMILIES=\"gfx120X-all\" -DTHEROCK_DIST_PYTHON_EXECUTABLES=\"/opt/python/cp310-cp310/bin/python;/opt/python/cp311-cp311/bin/python;/opt/python/cp312-cp312/bin/python;/opt/python/cp313-cp313/bin/python\" -DTHEROCK_SHARED_PYTHON_EXECUTABLES=\"/opt/python-shared/cp310-cp310/bin/python3;/opt/python-shared/cp311-cp311/bin/python3;/opt/python-shared/cp312-cp312/bin/python3;/opt/python-shared/cp313-cp313/bin/python3;/opt/python-shared/cp314-cp314/bin/python3\" -DTHEROCK_ENABLE_ALL=OFF -DTHEROCK_ENABLE_AQLPROFILE=ON -DTHEROCK_ENABLE_BASE=ON -DTHEROCK_ENABLE_BLAS=ON -DTHEROCK_ENABLE_COMPILER=ON -DTHEROCK_ENABLE_COMPOSABLE_KERNEL=ON -DTHEROCK_ENABLE_CORE_AMDSMI=ON -DTHEROCK_ENABLE_CORE_HIPINFO=ON -DTHEROCK_ENABLE_CORE_RUNTIME=ON -DTHEROCK_ENABLE_ELFIO=ON -DTHEROCK_ENABLE_FFT=ON -DTHEROCK_ENABLE_FFTW3=ON -DTHEROCK_ENABLE_HIPBLASLTPROVIDER=ON -DTHEROCK_ENABLE_HIPDNN=ON -DTHEROCK_ENABLE_HIPDNN_INTEGRATION_TESTS=ON -DTHEROCK_ENABLE_HIPDNN_SAMPLES=ON -DTHEROCK_ENABLE_HIPKERNELPROVIDER=ON -DTHEROCK_ENABLE_HIP_RUNTIME=ON -DTHEROCK_ENABLE_HOST_BLAS=ON -DTHEROCK_ENABLE_HOST_SUITE_SPARSE=ON -DTHEROCK_ENABLE_KPACK=ON -DTHEROCK_ENABLE_LIBHIPCXX=ON -DTHEROCK_ENABLE_MIOPEN=ON -DTHEROCK_ENABLE_MIOPENPROVIDER=ON -DTHEROCK_ENABLE_OPENMPI=ON -DTHEROCK_ENABLE_PRIM=ON -DTHEROCK_ENABLE_RAND=ON -DTHEROCK_ENABLE_ROCPROFILER_COMPUTE=ON -DTHEROCK_ENABLE_ROCPROFV3=ON -DTHEROCK_ENABLE_ROCWMMA=ON -DTHEROCK_ENABLE_SOLVER=ON -DTHEROCK_ENABLE_SPARSE=ON -DTHEROCK_ENABLE_SPDLOG=ON -DTHEROCK_ENABLE_SUPPORT=ON -DTHEROCK_ENABLE_SYSDEPS=ON -DTHEROCK_ENABLE_SYSDEPS_LIBMNL=ON -DTHEROCK_ENABLE_SYSDEPS_LIBNL=ON\n   869: 2026-06-10T11:03:55.9001996Z OUTPUT pip_install_cmd=\n>> 870: 2026-06-10T11:03:55.9252344Z ##[group]Run cmake -B \"${BUILD_DIR}\" -S . -GNinja \\\n   871: 2026-06-10T11:03:55.9252567Z \u001b[36;1mcmake -B \"${BUILD_DIR}\" -S . -GNinja \\\u001b[0m\n   872: 2026-06-10T11:03:55.9252816Z \u001b[36;1m  -DTHEROCK_PACKAGE_VERSION=7.14.0.dev0+0c4fc0f3e4f61442ddc8ef64f6222ab7be977a13 \\\u001b[0m\n\n---\n\n   869: 2026-06-10T11:03:55.9001996Z OUTPUT pip_install_cmd=\n   870: 2026-06-10T11:03:55.9252344Z ##[group]Run cmake -B \"${BUILD_DIR}\" -S . -GNinja \\\n>> 871: 2026-06-10T11:03:55.9252567Z \u001b[36;1mcmake -B \"${BUILD_DIR}\" -S . -GNinja \\\u001b[0m\n   872: 2026-06-10T11:03:55.9252816Z \u001b[36;1m  -DTHEROCK_PACKAGE_VERSION=7.14.0.dev0+0c4fc0f3e4f61442ddc8ef64f6222ab7be977a13 \\\u001b[0m\n   873: 2026-06-10T11:03:55.9253058Z \u001b[36;1m  -DCMAKE_C_COMPILER_LAUNCHER=ccache \\\u001b[0m",
+      "cmake": "Matches for /cmake/ (showing up to 10):\n\n   19: 2026-06-10T11:02:49.7814160Z   dist_amdgpu_families: gfx120X-all\n   20: 2026-06-10T11:02:49.7814540Z   rocm_package_version: 7.14.0.dev0+0c4fc0f3e4f61442ddc8ef64f6222ab7be977a13\n>> 21: 2026-06-10T11:02:49.7814933Z   build_variant_cmake_preset:\n   22: 2026-06-10T11:02:49.7815198Z   release_type: ci\n   23: 2026-06-10T11:02:49.7815451Z   build_runs_on: aws-linux-scale-rocm-prod\n\n---\n\n   158: 2026-06-10T11:02:57.6411453Z Collecting setuptools<82.0.0,>=80.9.0 (from -r requirements.txt (line 10))\n   159: 2026-06-10T11:02:57.6440958Z   Downloading setuptools-81.0.0-py3-none-any.whl.metadata (6.6 kB)\n>> 160: 2026-06-10T11:02:57.6627742Z Collecting pytest-cmake==0.13.0 (from -r requirements.txt (line 12))\n   161: 2026-06-10T11:02:57.6658244Z   Downloading pytest_cmake-0.13.0.tar.gz (7.5 kB)\n   162: 2026-06-10T11:02:57.6735923Z   Installing build dependencies: started\n\n---\n\n   159: 2026-06-10T11:02:57.6440958Z   Downloading setuptools-81.0.0-py3-none-any.whl.metadata (6.6 kB)\n   160: 2026-06-10T11:02:57.6627742Z Collecting pytest-cmake==0.13.0 (from -r requirements.txt (line 12))\n>> 161: 2026-06-10T11:02:57.6658244Z   Downloading pytest_cmake-0.13.0.tar.gz (7.5 kB)\n   162: 2026-06-10T11:02:57.6735923Z   Installing build dependencies: started\n   163: 2026-06-10T11:02:58.7501270Z   Installing build dependencies: finished with status 'done'\n\n---\n\n   186: 2026-06-10T11:02:59.9260271Z Collecting psutil==7.1.3 (from -r requirements.txt (line 33))\n   187: 2026-06-10T11:02:59.9288122Z   Downloading psutil-7.1.3-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl.metadata (23 kB)\n>> 188: 2026-06-10T11:02:59.9679458Z Collecting pytest<9,>=4 (from pytest-cmake==0.13.0->-r requirements.txt (line 12))\n   189: 2026-06-10T11:02:59.9685896Z   Using cached pytest-8.4.2-py3-none-any.whl.metadata (7.7 kB)\n   190: 2026-06-10T11:02:59.9712339Z Requirement already satisfied: botocore<1.43.0,>=1.42.84 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from boto3<1.42.85,>=1.42.79->-r requirements.txt (line 20)) (1.42.84)\n\n---\n\n   194: 2026-06-10T11:02:59.9887298Z Requirement already satisfied: python-dateutil<3.0.0,>=2.1 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from botocore<1.43.0,>=1.42.84->boto3<1.42.85,>=1.42.79->-r requirements.txt (line 20)) (2.9.0.post0)\n   195: 2026-06-10T11:02:59.9891151Z Requirement already satisfied: urllib3!=2.2.0,<3,>=1.25.4 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from botocore<1.43.0,>=1.42.84->boto3<1.42.85,>=1.42.79->-r requirements.txt (line 20)) (2.6.3)\n>> 196: 2026-06-10T11:02:59.9950887Z Collecting iniconfig>=1 (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12))\n   197: 2026-06-10T11:02:59.9956752Z   Using cached iniconfig-2.3.0-py3-none-any.whl.metadata (2.5 kB)\n   198: 2026-06-10T11:02:59.9964614Z Requirement already satisfied: packaging>=20 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12)) (25.0)\n\n---\n\n   196: 2026-06-10T11:02:59.9950887Z Collecting iniconfig>=1 (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12))\n   197: 2026-06-10T11:02:59.9956752Z   Using cached iniconfig-2.3.0-py3-none-any.whl.metadata (2.5 kB)\n>> 198: 2026-06-10T11:02:59.9964614Z Requirement already satisfied: packaging>=20 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12)) (25.0)\n   199: 2026-06-10T11:03:00.0024863Z Collecting pluggy<2,>=1.5 (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12))\n   200: 2026-06-10T11:03:00.0030391Z   Using cached pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)\n\n---\n\n   197: 2026-06-10T11:02:59.9956752Z   Using cached iniconfig-2.3.0-py3-none-any.whl.metadata (2.5 kB)\n   198: 2026-06-10T11:02:59.9964614Z Requirement already satisfied: packaging>=20 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12)) (25.0)\n>> 199: 2026-06-10T11:03:00.0024863Z Collecting pluggy<2,>=1.5 (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12))\n   200: 2026-06-10T11:03:00.0030391Z   Using cached pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)\n   201: 2026-06-10T11:03:00.0041255Z Requirement already satisfied: pygments>=2.7.2 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12)) (2.20.0)\n\n---\n\n   199: 2026-06-10T11:03:00.0024863Z Collecting pluggy<2,>=1.5 (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12))\n   200: 2026-06-10T11:03:00.0030391Z   Using cached pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)\n>> 201: 2026-06-10T11:03:00.0041255Z Requirement already satisfied: pygments>=2.7.2 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12)) (2.20.0)\n   202: 2026-06-10T11:03:00.0049334Z Requirement already satisfied: six>=1.5 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from python-dateutil<3.0.0,>=2.1->botocore<1.43.0,>=1.42.84->boto3<1.42.85,>=1.42.79->-r requirements.txt (line 20)) (1.17.0)\n   203: 2026-06-10T11:03:00.0064007Z Requirement already satisfied: ply in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from CppHeaderParser>=2.7.4->-r requirements.txt (line 1)) (3.11)\n\n---\n\n   250: 2026-06-10T11:03:00.4200705Z Downloading distlib-0.4.2-py2.py3-none-any.whl (470 kB)\n   251: 2026-06-10T11:03:00.4286695Z Downloading python_discovery-1.4.0-py3-none-any.whl (33 kB)\n>> 252: 2026-06-10T11:03:00.4512597Z Building wheels for collected packages: pytest-cmake\n   253: 2026-06-10T11:03:00.4524190Z   Building wheel for pytest-cmake (pyproject.toml): started\n   254: 2026-06-10T11:03:00.4706833Z   Building wheel for pytest-cmake (pyproject.toml): finished with status 'done'\n\n---\n\n   251: 2026-06-10T11:03:00.4286695Z Downloading python_discovery-1.4.0-py3-none-any.whl (33 kB)\n   252: 2026-06-10T11:03:00.4512597Z Building wheels for collected packages: pytest-cmake\n>> 253: 2026-06-10T11:03:00.4524190Z   Building wheel for pytest-cmake (pyproject.toml): started\n   254: 2026-06-10T11:03:00.4706833Z   Building wheel for pytest-cmake (pyproject.toml): finished with status 'done'\n   255: 2026-06-10T11:03:00.4707838Z   Created wheel for pytest-cmake: filename=pytest_cmake-0.13.0-py2.py3-none-any.whl size=9056 sha256=89b6aa624c77b7d39e19494c8689c0c7479669c41ae6fb67bb60e6f1824e99e4",
+      "gfx": "Matches for /gfx/ (showing up to 10):\n\n   14: 2026-06-10T11:02:49.7812509Z ##[group] Inputs\n   15: 2026-06-10T11:02:49.7812774Z   stage_name: math-libs\n>> 16: 2026-06-10T11:02:49.7813069Z   stage_display_name: Stage - Math Libs (gfx120X-all)\n   17: 2026-06-10T11:02:49.7813641Z   timeout_minutes: 480\n   18: 2026-06-10T11:02:49.7813891Z   amdgpu_family: gfx120X-all\n\n---\n\n   16: 2026-06-10T11:02:49.7813069Z   stage_display_name: Stage - Math Libs (gfx120X-all)\n   17: 2026-06-10T11:02:49.7813641Z   timeout_minutes: 480\n>> 18: 2026-06-10T11:02:49.7813891Z   amdgpu_family: gfx120X-all\n   19: 2026-06-10T11:02:49.7814160Z   dist_amdgpu_families: gfx120X-all\n   20: 2026-06-10T11:02:49.7814540Z   rocm_package_version: 7.14.0.dev0+0c4fc0f3e4f61442ddc8ef64f6222ab7be977a13\n\n---\n\n   17: 2026-06-10T11:02:49.7813641Z   timeout_minutes: 480\n   18: 2026-06-10T11:02:49.7813891Z   amdgpu_family: gfx120X-all\n>> 19: 2026-06-10T11:02:49.7814160Z   dist_amdgpu_families: gfx120X-all\n   20: 2026-06-10T11:02:49.7814540Z   rocm_package_version: 7.14.0.dev0+0c4fc0f3e4f61442ddc8ef64f6222ab7be977a13\n   21: 2026-06-10T11:02:49.7814933Z   build_variant_cmake_preset:\n\n---\n\n   25: 2026-06-10T11:02:49.7815960Z   ref:\n   26: 2026-06-10T11:02:49.7816171Z   external_repo_config:\n>> 27: 2026-06-10T11:02:49.7816427Z   linux_amdgpu_families: gfx120X\n   28: 2026-06-10T11:02:49.7816819Z   build_only: true\n   29: 2026-06-10T11:02:49.7817051Z ##[endgroup]\n\n---\n\n   28: 2026-06-10T11:02:49.7816819Z   build_only: true\n   29: 2026-06-10T11:02:49.7817051Z ##[endgroup]\n>> 30: 2026-06-10T11:02:49.7817570Z Complete job name: Linux::release / Build Multi-Arch Stages / math-libs (gfx120X-all, gfx1200,gfx1201, false) / Stage - Math Libs (gfx120X-all)\n   31: 2026-06-10T11:02:49.9165715Z ##[group]Run '/home/runner/k8s/index.js'\n   32: 2026-06-10T11:02:49.9167614Z shell: /home/runner/externals/node20/bin/node {0}\n\n---\n\n   50: 2026-06-10T11:02:55.8787465Z   AWS_SHARED_CREDENTIALS_FILE: /home/awsconfig/credentials.ini\n   51: 2026-06-10T11:02:55.8787670Z   STAGE_NAME: math-libs\n>> 52: 2026-06-10T11:02:55.8787819Z   AMDGPU_FAMILIES: gfx120X-all\n   53: 2026-06-10T11:02:55.8787991Z   BUILD_DIR: build\n   54: 2026-06-10T11:02:55.8788196Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf\n\n---\n\n   134: 2026-06-10T11:02:56.9668400Z   AWS_SHARED_CREDENTIALS_FILE: /home/awsconfig/credentials.ini\n   135: 2026-06-10T11:02:56.9668586Z   STAGE_NAME: math-libs\n>> 136: 2026-06-10T11:02:56.9668724Z   AMDGPU_FAMILIES: gfx120X-all\n   137: 2026-06-10T11:02:56.9668854Z   BUILD_DIR: build\n   138: 2026-06-10T11:02:56.9669158Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf\n\n---\n\n   278: 2026-06-10T11:03:02.2732866Z   AWS_SHARED_CREDENTIALS_FILE: /home/awsconfig/credentials.ini\n   279: 2026-06-10T11:03:02.2733043Z   STAGE_NAME: math-libs\n>> 280: 2026-06-10T11:03:02.2733166Z   AMDGPU_FAMILIES: gfx120X-all\n   281: 2026-06-10T11:03:02.2733290Z   BUILD_DIR: build\n   282: 2026-06-10T11:03:02.2733460Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf\n\n---\n\n   298: 2026-06-10T11:03:02.5711931Z   AWS_SHARED_CREDENTIALS_FILE: /home/awsconfig/credentials.ini\n   299: 2026-06-10T11:03:02.5712111Z   STAGE_NAME: math-libs\n>> 300: 2026-06-10T11:03:02.5712232Z   AMDGPU_FAMILIES: gfx120X-all\n   301: 2026-06-10T11:03:02.5712355Z   BUILD_DIR: build\n   302: 2026-06-10T11:03:02.5712611Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf\n\n---\n\n   331: 2026-06-10T11:03:02.8998943Z   AWS_SHARED_CREDENTIALS_FILE: /home/awsconfig/credentials.ini\n   332: 2026-06-10T11:03:02.8999127Z   STAGE_NAME: math-libs\n>> 333: 2026-06-10T11:03:02.8999260Z   AMDGPU_FAMILIES: gfx120X-all\n   334: 2026-06-10T11:03:02.8999385Z   BUILD_DIR: build\n   335: 2026-06-10T11:03:02.8999556Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf"
+    },
+    "rag_lookups": [
+      {
+        "error_signature": "2026-06-10T11:03:04.1415546Z         ===================          Compoments check \u001b[38;2;6;161;60m15\u001b[0m Passed, \u001b[38;2;184;166;48m0\u001b[0m Warning, \u001b[38;2;255;61;61m0\u001b[0m Fatal Error          ===================",
+        "matches": [
+          {
+            "pattern_id": "rocm_hip_error",
+            "pattern": "ROCm HIP API failure",
+            "category": "GPU/Driver",
+            "severity": "HIGH",
+            "score": 11.5,
+            "causes": "Driver mismatch, wrong GPU visible, ROCm version skew, missing device",
+            "solutions": "Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages",
+            "similar_errors": "HIP initialization failed",
+            "source": "keyword",
+            "resolution_notes": ""
+          },
+          {
+            "pattern_id": "rocm_hsa_status",
+            "pattern": "HSA runtime / ROCr failure",
+            "category": "GPU/Driver",
+            "severity": "CRITICAL",
+            "score": 8.0,
+            "causes": "Firmware, KFD issues, incompatible kernel, GPU reset required",
+            "solutions": "Check dmesg, reboot GPU, validate kernel+ROCm matrix, escalate to driver team",
+            "similar_errors": "HSA_STATUS_ERROR",
+            "source": "keyword",
+            "resolution_notes": ""
+          }
+        ],
+        "formatted": "Match 1 [keyword] score=11.5 id=rocm_hip_error\n  Pattern: ROCm HIP API failure\n  Category: GPU/Driver | Severity: HIGH\n  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device\n  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages\n  Similar: HIP initialization failed\n\nMatch 2 [keyword] score=8.0 id=rocm_hsa_status\n  Pattern: HSA runtime / ROCr failure\n  Category: GPU/Driver | Severity: CRITICAL\n  Causes: Firmware, KFD issues, incompatible kernel, GPU reset required\n  Solutions: Check dmesg, reboot GPU, validate kernel+ROCm matrix, escalate to driver team\n  Similar: HSA_STATUS_ERROR"
+      },
+      {
+        "error_signature": "2026-06-10T11:54:19.1190758Z ##[error]Process completed with exit code 130.",
+        "matches": [
+          {
+            "pattern_id": "gha_runner_shutdown_130",
+            "pattern": "GitHub Actions runner shutdown (exit 130)",
+            "category": "Configuration",
+            "severity": "HIGH",
+            "score": 24.0,
+            "causes": "Runner/pod eviction, K8s node drain, resource limits, container runtime failure",
+            "solutions": "Check cluster events at failure time; review CPU/memory/disk; retry; contact runner admin \u2014 not a TheRock compile error",
+            "similar_errors": "Process completed with exit code 130",
+            "source": "keyword",
+            "resolution_notes": ""
+          },
+          {
+            "pattern_id": "docker_install_test",
+            "pattern": "Containerized ROCm install test failure",
+            "category": "Configuration",
+            "severity": "MEDIUM",
+            "score": 19.5,
+            "causes": "Image drift, missing privileges, stale cache layer",
+            "solutions": "Rebuild image, verify --device flags, rerun parallel matrix on clean containers",
+            "similar_errors": "OCI runtime error",
+            "source": "keyword",
+            "resolution_notes": ""
+          }
+        ],
+        "formatted": "Match 1 [keyword] score=24.0 id=gha_runner_shutdown_130\n  Pattern: GitHub Actions runner shutdown (exit 130)\n  Category: Configuration | Severity: HIGH\n  Causes: Runner/pod eviction, K8s node drain, resource limits, container runtime failure\n  Solutions: Check cluster events at failure time; review CPU/memory/disk; retry; contact runner admin \u2014 not a TheRock compile error\n  Similar: Process completed with exit code 130\n\nMatch 2 [keyword] score=19.5 id=docker_install_test\n  Pattern: Containerized ROCm install test failure\n  Category: Configuration | Severity: MEDIUM\n  Causes: Image drift, missing privileges, stale cache layer\n  Solutions: Rebuild image, verify --device flags, rerun parallel matrix on clean containers\n  Similar: OCI runtime error"
+      },
+      {
+        "error_signature": "2026-06-10T11:54:19.1234664Z ##[error]The runner has received a shutdown signal. This can happen when the runner service is stopped, or a manually started runner is canceled.",
+        "matches": [
+          {
+            "pattern_id": "gha_runner_shutdown_130",
+            "pattern": "GitHub Actions runner shutdown (exit 130)",
+            "category": "Configuration",
+            "severity": "HIGH",
+            "score": 24.5,
+            "causes": "Runner/pod eviction, K8s node drain, resource limits, container runtime failure",
+            "solutions": "Check cluster events at failure time; review CPU/memory/disk; retry; contact runner admin \u2014 not a TheRock compile error",
+            "similar_errors": "Process completed with exit code 130",
+            "source": "keyword",
+            "resolution_notes": ""
+          },
+          {
+            "pattern_id": "rocm_hip_error",
+            "pattern": "ROCm HIP API failure",
+            "category": "GPU/Driver",
+            "severity": "HIGH",
+            "score": 11.5,
+            "causes": "Driver mismatch, wrong GPU visible, ROCm version skew, missing device",
+            "solutions": "Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages",
+            "similar_errors": "HIP initialization failed",
+            "source": "keyword",
+            "resolution_notes": ""
+          }
+        ],
+        "formatted": "Match 1 [keyword] score=24.5 id=gha_runner_shutdown_130\n  Pattern: GitHub Actions runner shutdown (exit 130)\n  Category: Configuration | Severity: HIGH\n  Causes: Runner/pod eviction, K8s node drain, resource limits, container runtime failure\n  Solutions: Check cluster events at failure time; review CPU/memory/disk; retry; contact runner admin \u2014 not a TheRock compile error\n  Similar: Process completed with exit code 130\n\nMatch 2 [keyword] score=11.5 id=rocm_hip_error\n  Pattern: ROCm HIP API failure\n  Category: GPU/Driver | Severity: HIGH\n  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device\n  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages\n  Similar: HIP initialization failed"
+      },
+      {
+        "error_signature": "2026-06-10T11:03:04.1415546Z         ===================          Compoments check \u001b[38;2;6;161;60m15\u001b[0m Passed, \u001b[38;2;184;166;48m0\u001b[0m Warning, \u001b[38;2;255;61;61m0\u001b[0m Fatal Error          ===================",
+        "matches": [
+          {
+            "pattern_id": "rocm_hip_error",
+            "pattern": "ROCm HIP API failure",
+            "category": "GPU/Driver",
+            "severity": "HIGH",
+            "score": 11.5,
+            "causes": "Driver mismatch, wrong GPU visible, ROCm version skew, missing device",
+            "solutions": "Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages",
+            "similar_errors": "HIP initialization failed",
+            "source": "keyword",
+            "resolution_notes": ""
+          },
+          {
+            "pattern_id": "rocm_hsa_status",
+            "pattern": "HSA runtime / ROCr failure",
+            "category": "GPU/Driver",
+            "severity": "CRITICAL",
+            "score": 8.0,
+            "causes": "Firmware, KFD issues, incompatible kernel, GPU reset required",
+            "solutions": "Check dmesg, reboot GPU, validate kernel+ROCm matrix, escalate to driver team",
+            "similar_errors": "HSA_STATUS_ERROR",
+            "source": "keyword",
+            "resolution_notes": ""
+          }
+        ],
+        "formatted": "Match 1 [keyword] score=11.5 id=rocm_hip_error\n  Pattern: ROCm HIP API failure\n  Category: GPU/Driver | Severity: HIGH\n  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device\n  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages\n  Similar: HIP initialization failed\n\nMatch 2 [keyword] score=8.0 id=rocm_hsa_status\n  Pattern: HSA runtime / ROCr failure\n  Category: GPU/Driver | Severity: CRITICAL\n  Causes: Firmware, KFD issues, incompatible kernel, GPU reset required\n  Solutions: Check dmesg, reboot GPU, validate kernel+ROCm matrix, escalate to driver team\n  Similar: HSA_STATUS_ERROR"
+      },
+      {
+        "error_signature": "2026-06-10T11:54:19.1190758Z ##[error]Process completed with exit code 130.",
+        "matches": [
+          {
+            "pattern_id": "gha_runner_shutdown_130",
+            "pattern": "GitHub Actions runner shutdown (exit 130)",
+            "category": "Configuration",
+            "severity": "HIGH",
+            "score": 24.0,
+            "causes": "Runner/pod eviction, K8s node drain, resource limits, container runtime failure",
+            "solutions": "Check cluster events at failure time; review CPU/memory/disk; retry; contact runner admin \u2014 not a TheRock compile error",
+            "similar_errors": "Process completed with exit code 130",
+            "source": "keyword",
+            "resolution_notes": ""
+          },
+          {
+            "pattern_id": "docker_install_test",
+            "pattern": "Containerized ROCm install test failure",
+            "category": "Configuration",
+            "severity": "MEDIUM",
+            "score": 19.5,
+            "causes": "Image drift, missing privileges, stale cache layer",
+            "solutions": "Rebuild image, verify --device flags, rerun parallel matrix on clean containers",
+            "similar_errors": "OCI runtime error",
+            "source": "keyword",
+            "resolution_notes": ""
+          }
+        ],
+        "formatted": "Match 1 [keyword] score=24.0 id=gha_runner_shutdown_130\n  Pattern: GitHub Actions runner shutdown (exit 130)\n  Category: Configuration | Severity: HIGH\n  Causes: Runner/pod eviction, K8s node drain, resource limits, container runtime failure\n  Solutions: Check cluster events at failure time; review CPU/memory/disk; retry; contact runner admin \u2014 not a TheRock compile error\n  Similar: Process completed with exit code 130\n\nMatch 2 [keyword] score=19.5 id=docker_install_test\n  Pattern: Containerized ROCm install test failure\n  Category: Configuration | Severity: MEDIUM\n  Causes: Image drift, missing privileges, stale cache layer\n  Solutions: Rebuild image, verify --device flags, rerun parallel matrix on clean containers\n  Similar: OCI runtime error"
+      }
+    ]
+  },
+  "repo": "ROCm/TheRock",
+  "github_run_id": 27270735424,
+  "github_job_id": 80542543540,
+  "workflow_name": "Multi-Arch CI",
+  "job_name": "Linux::release / Build Multi-Arch Stages / math-libs (gfx120X-all, gfx1200,gfx1201, false) / Stage - Math Libs (gfx120X-all)",
+  "html_url": "https://github.com/ROCm/TheRock/actions/runs/27270735424",
+  "branch": "users/kkhalasi/build-only-dispatch-input",
+  "head_sha": "0c4fc0f3e4f61442ddc8ef64f6222ab7be977a13",
+  "run_conclusion": "failure",
+  "job_conclusion": "failure"
+}

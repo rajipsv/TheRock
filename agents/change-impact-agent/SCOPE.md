@@ -10,10 +10,11 @@
 | Path + content diff | TheRock file paths; `fetch_test_configurations.py` timeouts/disabled jobs; artifact TOML |
 | Superrepo component scope | GitHub compare + per-directory commit detection on submodule SHA bumps |
 | Topology blast radius | `BUILD_TOPOLOGY.toml` → stages, severity, rollout text |
+| Topology gap warnings | Deterministic `topology_audit.py` — unmapped submodules/paths; no LLM |
 | CI label recommendations | `test:*` suites + `test_filter:*` depth (not individual ctest cases) |
-| Executive summary | Template / Ollama / OpenAI / vLLM via `summarize.py` |
+| Executive summary | Template (default in CI) / Ollama / OpenAI / vLLM via `summarize.py` |
 | Upstream PR workflow | `--pr N`, `upstream_pr_scan.py`, fork GHA workflows |
-| Tests | 14 unit tests (`impact_graph`, `content_diff`, `ci_mapping`) |
+| Tests | Unit tests (`impact_graph`, `content_diff`, `ci_mapping`, `topology_audit`) |
 
 ### Deliverables
 
@@ -26,15 +27,26 @@
 ### Positioning
 
 - **Before merge:** impact briefing + recommended CI labels (assistant — human applies labels)
+- **After CI failure:** [log-analysis-agent](../log-analysis-agent/) — build log triage + KB-backed fixes (tool-only default)
 - **Complements:** `manifest-diff.yml` CI, `assistant-librarian` (creates bump PRs; this agent **analyzes** any PR)
 - **Does not replace:** `multi_arch_ci`, full ROCm build, or per-ctest mapping
+
+## Related agent (sibling package)
+
+| Agent | When | CLI |
+|-------|------|-----|
+| [log-analysis-agent](../log-analysis-agent/) | Post-CI failure | `analyze_log.py --log job.log` or `--github-run-id N` |
+
+Python log analyzer with GitHub Actions integration (`log-analysis-agent.yml` reactive on fork; `log-analysis-upstream.yml` poll upstream). ARVIL Next.js / Neon web dashboard remains a separate project.
 
 ## Out of scope (explicitly not in this branch)
 
 | Item | Reason |
 |------|--------|
-| **ARVIL integration** | Separate Vercel/Neon app; no shared implementation in this PR |
-| **Pattern / similar-bug scanner** | Future idea (PR-derived rules across component repos); deferred |
+| **ARVIL web dashboard merge** | Separate Vercel/Neon app; Python analyzer lives in `log-analysis-agent/` |
+| **Dynamic runtime TOML nodes** | `BUILD_TOPOLOGY.toml` stays human-reviewed source of truth |
+| **LLM topology auditor** | Deterministic gap warnings only (`topology_audit.py`) |
+| **Auto-edit BUILD_TOPOLOGY.toml** | Warnings in report; human follow-up PR |
 | **Full clone of all ROCm component repos** | Heavy; use sparse API/commit detection instead |
 | **Auto-apply PR labels or trigger CI** | Recommendations only |
 | **Per-ctest / UT name mapping** | TheRock uses `test_matrix` + `TEST_TYPE` |
@@ -44,7 +56,7 @@
 
 - Python 3.10+, Git, TheRock repo clone
 - `pip install -r agents/change-impact-agent/requirements.txt`
-- `GITHUB_TOKEN` recommended for upstream PR fetch, superrepo component detection, `--full-manifest`
+- `GITHUB_TOKEN` required for `--pr` and `--full-manifest`; recommended for upstream PR fetch and superrepo component detection
 - GPU optional (vLLM summary on MI300 hackathon path)
 
 ## Fork

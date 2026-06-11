@@ -1,0 +1,369 @@
+{
+  "log_path": "C:\\Users\\Rajeswari\\.gemini\\antigravity\\scratch\\TheRock\\TheRock\\agents\\log-analysis-agent\\tests\\fixtures\\example.log",
+  "timestamp": "2026-06-10T21:01:01.950175",
+  "mode": "tool_only",
+  "preset": "custom",
+  "preset_label": "Custom / Other CI",
+  "stats": "path=C:\\Users\\Rajeswari\\.gemini\\antigravity\\scratch\\TheRock\\TheRock\\agents\\log-analysis-agent\\tests\\fixtures\\example.log\nlines=21\nbytes=1474\ngithub_error=0\nkeyword_hits: ERROR=6, EXCEPTION=1, CRITICAL=1, FATAL=1, WARNING=2",
+  "chunk_overview": "total_lines=21, chunk_size=500, chunks=1\nchunk 1: lines 1-21, keyword_hits=9",
+  "errors": [
+    {
+      "type": "ERROR",
+      "line_number": 3,
+      "message": "2024-12-10 10:15:25 ERROR [Database] Connection failed: Connection timeout after 30s",
+      "severity": "HIGH",
+      "category": "Database",
+      "recommendation": "Check connectivity, firewall, restart DB, increase pool size",
+      "kb_pattern_id": "db_connection_timeout"
+    },
+    {
+      "type": "ERROR",
+      "line_number": 8,
+      "message": "2024-12-10 10:18:33 ERROR [PaymentService] Payment processing failed: InvalidCardException",
+      "severity": "HIGH",
+      "category": "Runtime",
+      "recommendation": "Validate payment method, check gateway status, retry with idempotency",
+      "kb_pattern_id": "payment_card_declined"
+    },
+    {
+      "type": "ERROR",
+      "line_number": 11,
+      "message": "Caused by: stripe.error.CardError: Your card was declined",
+      "severity": "HIGH",
+      "category": "Runtime",
+      "recommendation": "Validate payment method, check gateway status, retry with idempotency",
+      "kb_pattern_id": "payment_card_declined"
+    },
+    {
+      "type": "ERROR",
+      "line_number": 15,
+      "message": "2024-12-10 10:21:30 ERROR [FileSystem] Failed to write file: /data/reports/daily.pdf - Disk quota exceeded",
+      "severity": "HIGH",
+      "category": "FileSystem",
+      "recommendation": "Free space, log rotation, archive data, increase quota",
+      "kb_pattern_id": "disk_quota"
+    },
+    {
+      "type": "ERROR",
+      "line_number": 16,
+      "message": "2024-12-10 10:22:00 FATAL [Application] Out of memory error - shutting down",
+      "severity": "HIGH",
+      "category": "Memory",
+      "recommendation": "Increase heap, fix leaks, paginate data, add memory monitoring",
+      "kb_pattern_id": "oom_heap"
+    },
+    {
+      "type": "CRITICAL",
+      "line_number": 12,
+      "message": "2024-12-10 10:19:01 CRITICAL [Security] Unauthorized access attempt detected from IP: 192.168.1.100",
+      "severity": "CRITICAL",
+      "category": "Security",
+      "recommendation": "Verify credentials, refresh tokens, fix RBAC",
+      "kb_pattern_id": "auth_failure"
+    },
+    {
+      "type": "FATAL",
+      "line_number": 16,
+      "message": "2024-12-10 10:22:00 FATAL [Application] Out of memory error - shutting down",
+      "severity": "CRITICAL",
+      "category": "Memory",
+      "recommendation": "Increase heap, fix leaks, paginate data, add memory monitoring",
+      "kb_pattern_id": "oom_heap"
+    }
+  ],
+  "errors_count": 7,
+  "stack_traces": "Stack traces (4):\n\n3: 2024-12-10 10:15:25 ERROR [Database] Connection failed: Connection timeout after 30s\n4: 2024-12-10 10:15:25 INFO [Application] Retrying database connection...\n\n---\n\n8: 2024-12-10 10:18:33 ERROR [PaymentService] Payment processing failed: InvalidCardException\n9:     at PaymentProcessor.process(PaymentProcessor.java:123)\n10:     at OrderService.checkout(OrderService.java:456)\n11:     Caused by: stripe.error.CardError: Your card was declined\n12: 2024-12-10 10:19:01 CRITICAL [Security] Unauthorized access attempt detected from IP: 192.168.1.100\n\n---\n\n15: 2024-12-10 10:21:30 ERROR [FileSystem] Failed to write file: /data/reports/daily.pdf - Disk quota exceeded\n16: 2024-12-10 10:22:00 FATAL [Application] Out of memory error - shutting down\n\n---\n\n17:     java.lang.OutOfMemoryError: Java heap space\n18:     at java.util.Arrays.copyOf(Arrays.java:3332)\n19:     at java.lang.AbstractStringBuilder.ensureCapacityInternal(AbstractStringBuilder.java:124)\n20: 2024-12-10 10:22:01 INFO [Application] Shutdown complete",
+  "rag_lookups": [
+    {
+      "error_signature": "2024-12-10 10:15:25 ERROR [Database] Connection failed: Connection timeout after 30s",
+      "matches": [
+        {
+          "pattern_id": "db_connection_timeout",
+          "pattern": "Database connection timeout",
+          "category": "Database",
+          "severity": "HIGH",
+          "score": 51.0,
+          "causes": "Network issues, firewall, DB down, pool exhausted",
+          "solutions": "Check connectivity, firewall, restart DB, increase pool size",
+          "similar_errors": "Connection refused, Connection reset",
+          "source": "keyword",
+          "resolution_notes": ""
+        },
+        {
+          "pattern_id": "rocm_hip_error",
+          "pattern": "ROCm HIP API failure",
+          "category": "GPU/Driver",
+          "severity": "HIGH",
+          "score": 13.0,
+          "causes": "Driver mismatch, wrong GPU visible, ROCm version skew, missing device",
+          "solutions": "Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages",
+          "similar_errors": "HIP initialization failed",
+          "source": "keyword",
+          "resolution_notes": ""
+        }
+      ],
+      "formatted": "Match 1 [keyword] score=51.0 id=db_connection_timeout\n  Pattern: Database connection timeout\n  Category: Database | Severity: HIGH\n  Causes: Network issues, firewall, DB down, pool exhausted\n  Solutions: Check connectivity, firewall, restart DB, increase pool size\n  Similar: Connection refused, Connection reset\n\nMatch 2 [keyword] score=13.0 id=rocm_hip_error\n  Pattern: ROCm HIP API failure\n  Category: GPU/Driver | Severity: HIGH\n  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device\n  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages\n  Similar: HIP initialization failed"
+    },
+    {
+      "error_signature": "2024-12-10 10:18:33 ERROR [PaymentService] Payment processing failed: InvalidCardException",
+      "matches": [
+        {
+          "pattern_id": "payment_card_declined",
+          "pattern": "Payment / card processing failure",
+          "category": "Runtime",
+          "severity": "HIGH",
+          "score": 34.5,
+          "causes": "Invalid card, fraud rules, gateway outage",
+          "solutions": "Validate payment method, check gateway status, retry with idempotency",
+          "similar_errors": "Transaction failed",
+          "source": "keyword",
+          "resolution_notes": ""
+        },
+        {
+          "pattern_id": "rocm_hip_error",
+          "pattern": "ROCm HIP API failure",
+          "category": "GPU/Driver",
+          "severity": "HIGH",
+          "score": 13.0,
+          "causes": "Driver mismatch, wrong GPU visible, ROCm version skew, missing device",
+          "solutions": "Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages",
+          "similar_errors": "HIP initialization failed",
+          "source": "keyword",
+          "resolution_notes": ""
+        }
+      ],
+      "formatted": "Match 1 [keyword] score=34.5 id=payment_card_declined\n  Pattern: Payment / card processing failure\n  Category: Runtime | Severity: HIGH\n  Causes: Invalid card, fraud rules, gateway outage\n  Solutions: Validate payment method, check gateway status, retry with idempotency\n  Similar: Transaction failed\n\nMatch 2 [keyword] score=13.0 id=rocm_hip_error\n  Pattern: ROCm HIP API failure\n  Category: GPU/Driver | Severity: HIGH\n  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device\n  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages\n  Similar: HIP initialization failed"
+    },
+    {
+      "error_signature": "Caused by: stripe.error.CardError: Your card was declined",
+      "matches": [
+        {
+          "pattern_id": "payment_card_declined",
+          "pattern": "Payment / card processing failure",
+          "category": "Runtime",
+          "severity": "HIGH",
+          "score": 28.0,
+          "causes": "Invalid card, fraud rules, gateway outage",
+          "solutions": "Validate payment method, check gateway status, retry with idempotency",
+          "similar_errors": "Transaction failed",
+          "source": "keyword",
+          "resolution_notes": ""
+        }
+      ],
+      "formatted": "Match 1 [keyword] score=28.0 id=payment_card_declined\n  Pattern: Payment / card processing failure\n  Category: Runtime | Severity: HIGH\n  Causes: Invalid card, fraud rules, gateway outage\n  Solutions: Validate payment method, check gateway status, retry with idempotency\n  Similar: Transaction failed"
+    },
+    {
+      "error_signature": "2024-12-10 10:19:01 CRITICAL [Security] Unauthorized access attempt detected from IP: 192.168.1.100",
+      "matches": [
+        {
+          "pattern_id": "auth_failure",
+          "pattern": "Authentication / unauthorized access",
+          "category": "Security",
+          "severity": "HIGH",
+          "score": 19.5,
+          "causes": "Bad credentials, expired token, wrong permissions",
+          "solutions": "Verify credentials, refresh tokens, fix RBAC",
+          "similar_errors": "403 forbidden, access denied",
+          "source": "keyword",
+          "resolution_notes": ""
+        },
+        {
+          "pattern_id": "res_1",
+          "pattern": "ROCm install failed dependency",
+          "category": "Other",
+          "severity": "MEDIUM",
+          "score": 2.0,
+          "causes": "Prior triage",
+          "solutions": "Clean apt cache and reinstall rocm meta-package from staging repo",
+          "similar_errors": "",
+          "source": "resolution",
+          "resolution_notes": "Clean apt cache and reinstall rocm meta-package from staging repo"
+        }
+      ],
+      "formatted": "Match 1 [keyword] score=19.5 id=auth_failure\n  Pattern: Authentication / unauthorized access\n  Category: Security | Severity: HIGH\n  Causes: Bad credentials, expired token, wrong permissions\n  Solutions: Verify credentials, refresh tokens, fix RBAC\n  Similar: 403 forbidden, access denied\n\nMatch 2 [resolution] score=2.0 id=res_1\n  Pattern: ROCm install failed dependency\n  Category: Other | Severity: MEDIUM\n  Causes: Prior triage\n  Solutions: Clean apt cache and reinstall rocm meta-package from staging repo\n  Similar: \n\n  Prior resolution: Clean apt cache and reinstall rocm meta-package from staging repo"
+    },
+    {
+      "error_signature": "2024-12-10 10:22:00 FATAL [Application] Out of memory error - shutting down",
+      "matches": [
+        {
+          "pattern_id": "oom_heap",
+          "pattern": "Out of memory / Java heap space",
+          "category": "Memory",
+          "severity": "CRITICAL",
+          "score": 23.0,
+          "causes": "Memory leak, insufficient heap, large in-memory processing",
+          "solutions": "Increase heap, fix leaks, paginate data, add memory monitoring",
+          "similar_errors": "OutOfMemoryError, MemoryError",
+          "source": "keyword",
+          "resolution_notes": ""
+        },
+        {
+          "pattern_id": "rocm_hip_error",
+          "pattern": "ROCm HIP API failure",
+          "category": "GPU/Driver",
+          "severity": "HIGH",
+          "score": 11.5,
+          "causes": "Driver mismatch, wrong GPU visible, ROCm version skew, missing device",
+          "solutions": "Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages",
+          "similar_errors": "HIP initialization failed",
+          "source": "keyword",
+          "resolution_notes": ""
+        }
+      ],
+      "formatted": "Match 1 [keyword] score=23.0 id=oom_heap\n  Pattern: Out of memory / Java heap space\n  Category: Memory | Severity: CRITICAL\n  Causes: Memory leak, insufficient heap, large in-memory processing\n  Solutions: Increase heap, fix leaks, paginate data, add memory monitoring\n  Similar: OutOfMemoryError, MemoryError\n\nMatch 2 [keyword] score=11.5 id=rocm_hip_error\n  Pattern: ROCm HIP API failure\n  Category: GPU/Driver | Severity: HIGH\n  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device\n  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages\n  Similar: HIP initialization failed"
+    }
+  ],
+  "summary": "Tool-only qualification pass found 7 highlighted error lines. Stats: path=C:\\Users\\Rajeswari\\.gemini\\antigravity\\scratch\\TheRock\\TheRock\\agents\\log-analysis-agent\\tests\\fixtures\\example.log; lines=21; bytes=1474; github_error=0; keyword_hits: ERROR=6, EXCEPTION=1, CRITICAL=1, FATAL=1, WARNING=2",
+  "executive_summary": "# Log Analysis Executive Summary\n\n**Log:** `C:\\Users\\Rajeswari\\.gemini\\antigravity\\scratch\\TheRock\\TheRock\\agents\\log-analysis-agent\\tests\\fixtures\\example.log`\n**Mode:** tool_only\n**Preset:** custom\n**Errors found:** 7\n\n## Summary\nTool-only qualification pass found 7 highlighted error lines. Stats: path=C:\\Users\\Rajeswari\\.gemini\\antigravity\\scratch\\TheRock\\TheRock\\agents\\log-analysis-agent\\tests\\fixtures\\example.log; lines=21; bytes=1474; github_error=0; keyword_hits: ERROR=6, EXCEPTION=1, CRITICAL=1, FATAL=1, WARNING=2\n\n## Top errors\n- **Line 3** (HIGH): 2024-12-10 10:15:25 ERROR [Database] Connection failed: Connection timeout after 30s\n  - Recommendation: Check connectivity, firewall, restart DB, increase pool size\n- **Line 8** (HIGH): 2024-12-10 10:18:33 ERROR [PaymentService] Payment processing failed: InvalidCardException\n  - Recommendation: Validate payment method, check gateway status, retry with idempotency\n- **Line 11** (HIGH): Caused by: stripe.error.CardError: Your card was declined\n  - Recommendation: Validate payment method, check gateway status, retry with idempotency\n- **Line 15** (HIGH): 2024-12-10 10:21:30 ERROR [FileSystem] Failed to write file: /data/reports/daily.pdf - Disk quota exceeded\n  - Recommendation: Free space, log rotation, archive data, increase quota\n- **Line 16** (HIGH): 2024-12-10 10:22:00 FATAL [Application] Out of memory error - shutting down\n  - Recommendation: Increase heap, fix leaks, paginate data, add memory monitoring\n- ... and 2 more\n\n## Knowledge base matches\n- `2024-12-10 10:15:25 ERROR [Database] Connection failed: Connection timeout after` \u2192 Database connection timeout (Database, score=51.0)\n- `2024-12-10 10:18:33 ERROR [PaymentService] Payment processing failed: InvalidCar` \u2192 Payment / card processing failure (Runtime, score=34.5)\n- `Caused by: stripe.error.CardError: Your card was declined` \u2192 Payment / card processing failure (Runtime, score=28.0)",
+  "tool_analysis": {
+    "mode": "tool_only",
+    "stats": "path=C:\\Users\\Rajeswari\\.gemini\\antigravity\\scratch\\TheRock\\TheRock\\agents\\log-analysis-agent\\tests\\fixtures\\example.log\nlines=21\nbytes=1474\ngithub_error=0\nkeyword_hits: ERROR=6, EXCEPTION=1, CRITICAL=1, FATAL=1, WARNING=2",
+    "chunk_overview": "total_lines=21, chunk_size=500, chunks=1\nchunk 1: lines 1-21, keyword_hits=9",
+    "error_samples": "Matches for /\\bERROR\\b/ (showing up to 25):\n\n   1: 2024-12-10 10:15:23 INFO [Application] Starting application...\n   2: 2024-12-10 10:15:24 INFO [Database] Connecting to database: postgres://localhost:5432/mydb\n>> 3: 2024-12-10 10:15:25 ERROR [Database] Connection failed: Connection timeout after 30s\n   4: 2024-12-10 10:15:25 INFO [Application] Retrying database connection...\n   5: 2024-12-10 10:15:30 INFO [Database] Connected successfully\n   6: 2024-12-10 10:16:45 WARNING [API] Rate limit approaching: 95% of quota used\n\n---\n\n   5: 2024-12-10 10:15:30 INFO [Database] Connected successfully\n   6: 2024-12-10 10:16:45 WARNING [API] Rate limit approaching: 95% of quota used\n   7: 2024-12-10 10:17:12 INFO [UserService] User login: user_id=12345\n>> 8: 2024-12-10 10:18:33 ERROR [PaymentService] Payment processing failed: InvalidCardException\n   9:     at PaymentProcessor.process(PaymentProcessor.java:123)\n   10:     at OrderService.checkout(OrderService.java:456)\n   11:     Caused by: stripe.error.CardError: Your card was declined\n\n---\n\n   8: 2024-12-10 10:18:33 ERROR [PaymentService] Payment processing failed: InvalidCardException\n   9:     at PaymentProcessor.process(PaymentProcessor.java:123)\n   10:     at OrderService.checkout(OrderService.java:456)\n>> 11:     Caused by: stripe.error.CardError: Your card was declined\n   12: 2024-12-10 10:19:01 CRITICAL [Security] Unauthorized access attempt detected from IP: 192.168.1.100\n   13: 2024-12-10 10:19:02 INFO [Security] IP blocked: 192.168.1.100\n   14: 2024-12-10 10:20:15 WARNING [Cache] Redis connection unstable, switching to fallback\n\n---\n\n   12: 2024-12-10 10:19:01 CRITICAL [Security] Unauthorized access attempt detected from IP: 192.168.1.100\n   13: 2024-12-10 10:19:02 INFO [Security] IP blocked: 192.168.1.100\n   14: 2024-12-10 10:20:15 WARNING [Cache] Redis connection unstable, switching to fallback\n>> 15: 2024-12-10 10:21:30 ERROR [FileSystem] Failed to write file: /data/reports/daily.pdf - Disk quota exceeded\n   16: 2024-12-10 10:22:00 FATAL [Application] Out of memory error - shutting down\n   17:     java.lang.OutOfMemoryError: Java heap space\n   18:     at java.util.Arrays.copyOf(Arrays.java:3332)\n\n---\n\n   13: 2024-12-10 10:19:02 INFO [Security] IP blocked: 192.168.1.100\n   14: 2024-12-10 10:20:15 WARNING [Cache] Redis connection unstable, switching to fallback\n   15: 2024-12-10 10:21:30 ERROR [FileSystem] Failed to write file: /data/reports/daily.pdf - Disk quota exceeded\n>> 16: 2024-12-10 10:22:00 FATAL [Application] Out of memory error - shutting down\n   17:     java.lang.OutOfMemoryError: Java heap space\n   18:     at java.util.Arrays.copyOf(Arrays.java:3332)\n   19:     at java.lang.AbstractStringBuilder.ensureCapacityInternal(AbstractStringBuilder.java:124)",
+    "critical_samples": "Matches for /\\bCRITICAL\\b/ (showing up to 10):\n\n   9:     at PaymentProcessor.process(PaymentProcessor.java:123)\n   10:     at OrderService.checkout(OrderService.java:456)\n   11:     Caused by: stripe.error.CardError: Your card was declined\n>> 12: 2024-12-10 10:19:01 CRITICAL [Security] Unauthorized access attempt detected from IP: 192.168.1.100\n   13: 2024-12-10 10:19:02 INFO [Security] IP blocked: 192.168.1.100\n   14: 2024-12-10 10:20:15 WARNING [Cache] Redis connection unstable, switching to fallback\n   15: 2024-12-10 10:21:30 ERROR [FileSystem] Failed to write file: /data/reports/daily.pdf - Disk quota exceeded",
+    "fatal_samples": "Matches for /\\bFATAL\\b/ (showing up to 10):\n\n   13: 2024-12-10 10:19:02 INFO [Security] IP blocked: 192.168.1.100\n   14: 2024-12-10 10:20:15 WARNING [Cache] Redis connection unstable, switching to fallback\n   15: 2024-12-10 10:21:30 ERROR [FileSystem] Failed to write file: /data/reports/daily.pdf - Disk quota exceeded\n>> 16: 2024-12-10 10:22:00 FATAL [Application] Out of memory error - shutting down\n   17:     java.lang.OutOfMemoryError: Java heap space\n   18:     at java.util.Arrays.copyOf(Arrays.java:3332)\n   19:     at java.lang.AbstractStringBuilder.ensureCapacityInternal(AbstractStringBuilder.java:124)",
+    "github_error_samples": "No matches for pattern: ##\\[error\\]",
+    "stack_traces": "Stack traces (4):\n\n3: 2024-12-10 10:15:25 ERROR [Database] Connection failed: Connection timeout after 30s\n4: 2024-12-10 10:15:25 INFO [Application] Retrying database connection...\n\n---\n\n8: 2024-12-10 10:18:33 ERROR [PaymentService] Payment processing failed: InvalidCardException\n9:     at PaymentProcessor.process(PaymentProcessor.java:123)\n10:     at OrderService.checkout(OrderService.java:456)\n11:     Caused by: stripe.error.CardError: Your card was declined\n12: 2024-12-10 10:19:01 CRITICAL [Security] Unauthorized access attempt detected from IP: 192.168.1.100\n\n---\n\n15: 2024-12-10 10:21:30 ERROR [FileSystem] Failed to write file: /data/reports/daily.pdf - Disk quota exceeded\n16: 2024-12-10 10:22:00 FATAL [Application] Out of memory error - shutting down\n\n---\n\n17:     java.lang.OutOfMemoryError: Java heap space\n18:     at java.util.Arrays.copyOf(Arrays.java:3332)\n19:     at java.lang.AbstractStringBuilder.ensureCapacityInternal(AbstractStringBuilder.java:124)\n20: 2024-12-10 10:22:01 INFO [Application] Shutdown complete",
+    "preset_pattern_samples": {},
+    "rag_lookups": [
+      {
+        "error_signature": "2024-12-10 10:15:25 ERROR [Database] Connection failed: Connection timeout after 30s",
+        "matches": [
+          {
+            "pattern_id": "db_connection_timeout",
+            "pattern": "Database connection timeout",
+            "category": "Database",
+            "severity": "HIGH",
+            "score": 51.0,
+            "causes": "Network issues, firewall, DB down, pool exhausted",
+            "solutions": "Check connectivity, firewall, restart DB, increase pool size",
+            "similar_errors": "Connection refused, Connection reset",
+            "source": "keyword",
+            "resolution_notes": ""
+          },
+          {
+            "pattern_id": "rocm_hip_error",
+            "pattern": "ROCm HIP API failure",
+            "category": "GPU/Driver",
+            "severity": "HIGH",
+            "score": 13.0,
+            "causes": "Driver mismatch, wrong GPU visible, ROCm version skew, missing device",
+            "solutions": "Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages",
+            "similar_errors": "HIP initialization failed",
+            "source": "keyword",
+            "resolution_notes": ""
+          }
+        ],
+        "formatted": "Match 1 [keyword] score=51.0 id=db_connection_timeout\n  Pattern: Database connection timeout\n  Category: Database | Severity: HIGH\n  Causes: Network issues, firewall, DB down, pool exhausted\n  Solutions: Check connectivity, firewall, restart DB, increase pool size\n  Similar: Connection refused, Connection reset\n\nMatch 2 [keyword] score=13.0 id=rocm_hip_error\n  Pattern: ROCm HIP API failure\n  Category: GPU/Driver | Severity: HIGH\n  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device\n  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages\n  Similar: HIP initialization failed"
+      },
+      {
+        "error_signature": "2024-12-10 10:18:33 ERROR [PaymentService] Payment processing failed: InvalidCardException",
+        "matches": [
+          {
+            "pattern_id": "payment_card_declined",
+            "pattern": "Payment / card processing failure",
+            "category": "Runtime",
+            "severity": "HIGH",
+            "score": 34.5,
+            "causes": "Invalid card, fraud rules, gateway outage",
+            "solutions": "Validate payment method, check gateway status, retry with idempotency",
+            "similar_errors": "Transaction failed",
+            "source": "keyword",
+            "resolution_notes": ""
+          },
+          {
+            "pattern_id": "rocm_hip_error",
+            "pattern": "ROCm HIP API failure",
+            "category": "GPU/Driver",
+            "severity": "HIGH",
+            "score": 13.0,
+            "causes": "Driver mismatch, wrong GPU visible, ROCm version skew, missing device",
+            "solutions": "Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages",
+            "similar_errors": "HIP initialization failed",
+            "source": "keyword",
+            "resolution_notes": ""
+          }
+        ],
+        "formatted": "Match 1 [keyword] score=34.5 id=payment_card_declined\n  Pattern: Payment / card processing failure\n  Category: Runtime | Severity: HIGH\n  Causes: Invalid card, fraud rules, gateway outage\n  Solutions: Validate payment method, check gateway status, retry with idempotency\n  Similar: Transaction failed\n\nMatch 2 [keyword] score=13.0 id=rocm_hip_error\n  Pattern: ROCm HIP API failure\n  Category: GPU/Driver | Severity: HIGH\n  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device\n  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages\n  Similar: HIP initialization failed"
+      },
+      {
+        "error_signature": "Caused by: stripe.error.CardError: Your card was declined",
+        "matches": [
+          {
+            "pattern_id": "payment_card_declined",
+            "pattern": "Payment / card processing failure",
+            "category": "Runtime",
+            "severity": "HIGH",
+            "score": 28.0,
+            "causes": "Invalid card, fraud rules, gateway outage",
+            "solutions": "Validate payment method, check gateway status, retry with idempotency",
+            "similar_errors": "Transaction failed",
+            "source": "keyword",
+            "resolution_notes": ""
+          }
+        ],
+        "formatted": "Match 1 [keyword] score=28.0 id=payment_card_declined\n  Pattern: Payment / card processing failure\n  Category: Runtime | Severity: HIGH\n  Causes: Invalid card, fraud rules, gateway outage\n  Solutions: Validate payment method, check gateway status, retry with idempotency\n  Similar: Transaction failed"
+      },
+      {
+        "error_signature": "2024-12-10 10:19:01 CRITICAL [Security] Unauthorized access attempt detected from IP: 192.168.1.100",
+        "matches": [
+          {
+            "pattern_id": "auth_failure",
+            "pattern": "Authentication / unauthorized access",
+            "category": "Security",
+            "severity": "HIGH",
+            "score": 19.5,
+            "causes": "Bad credentials, expired token, wrong permissions",
+            "solutions": "Verify credentials, refresh tokens, fix RBAC",
+            "similar_errors": "403 forbidden, access denied",
+            "source": "keyword",
+            "resolution_notes": ""
+          },
+          {
+            "pattern_id": "res_1",
+            "pattern": "ROCm install failed dependency",
+            "category": "Other",
+            "severity": "MEDIUM",
+            "score": 2.0,
+            "causes": "Prior triage",
+            "solutions": "Clean apt cache and reinstall rocm meta-package from staging repo",
+            "similar_errors": "",
+            "source": "resolution",
+            "resolution_notes": "Clean apt cache and reinstall rocm meta-package from staging repo"
+          }
+        ],
+        "formatted": "Match 1 [keyword] score=19.5 id=auth_failure\n  Pattern: Authentication / unauthorized access\n  Category: Security | Severity: HIGH\n  Causes: Bad credentials, expired token, wrong permissions\n  Solutions: Verify credentials, refresh tokens, fix RBAC\n  Similar: 403 forbidden, access denied\n\nMatch 2 [resolution] score=2.0 id=res_1\n  Pattern: ROCm install failed dependency\n  Category: Other | Severity: MEDIUM\n  Causes: Prior triage\n  Solutions: Clean apt cache and reinstall rocm meta-package from staging repo\n  Similar: \n\n  Prior resolution: Clean apt cache and reinstall rocm meta-package from staging repo"
+      },
+      {
+        "error_signature": "2024-12-10 10:22:00 FATAL [Application] Out of memory error - shutting down",
+        "matches": [
+          {
+            "pattern_id": "oom_heap",
+            "pattern": "Out of memory / Java heap space",
+            "category": "Memory",
+            "severity": "CRITICAL",
+            "score": 23.0,
+            "causes": "Memory leak, insufficient heap, large in-memory processing",
+            "solutions": "Increase heap, fix leaks, paginate data, add memory monitoring",
+            "similar_errors": "OutOfMemoryError, MemoryError",
+            "source": "keyword",
+            "resolution_notes": ""
+          },
+          {
+            "pattern_id": "rocm_hip_error",
+            "pattern": "ROCm HIP API failure",
+            "category": "GPU/Driver",
+            "severity": "HIGH",
+            "score": 11.5,
+            "causes": "Driver mismatch, wrong GPU visible, ROCm version skew, missing device",
+            "solutions": "Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages",
+            "similar_errors": "HIP initialization failed",
+            "source": "keyword",
+            "resolution_notes": ""
+          }
+        ],
+        "formatted": "Match 1 [keyword] score=23.0 id=oom_heap\n  Pattern: Out of memory / Java heap space\n  Category: Memory | Severity: CRITICAL\n  Causes: Memory leak, insufficient heap, large in-memory processing\n  Solutions: Increase heap, fix leaks, paginate data, add memory monitoring\n  Similar: OutOfMemoryError, MemoryError\n\nMatch 2 [keyword] score=11.5 id=rocm_hip_error\n  Pattern: ROCm HIP API failure\n  Category: GPU/Driver | Severity: HIGH\n  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device\n  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages\n  Similar: HIP initialization failed"
+      }
+    ]
+  }
+}

@@ -1,0 +1,83 @@
+name: Log Analysis Upstream Failed Runs
+
+# Poll or analyze specific failed runs on upstream ROCm/TheRock.
+# Requires a PAT with Actions read stored as GITHUB_TOKEN repo secret.
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: "Single upstream workflow run ID (leave empty to poll recent failures)"
+        required: false
+        type: string
+      preset:
+        description: "Workflow preset filter for poll mode"
+        required: false
+        type: choice
+        options:
+          - custom
+          - therock_multi_arch
+          - therock_install
+          - therock_pytorch
+          - therock_unit_tests
+        default: therock_multi_arch
+      max_runs:
+        description: "Max new runs when run_id is empty"
+        required: false
+        type: string
+        default: "3"
+  schedule:
+    - cron: "0 */6 * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout fork
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install log-analysis-agent dependencies
+        run: pip install -r agents/log-analysis-agent/requirements.txt
+
+      - name: Analyze single upstream run
+        if: github.event_name == 'workflow_dispatch' && inputs.run_id != ''
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          OUT="agents/log-analysis-agent/out/upstream-run-${{ inputs.run_id }}"
+          python agents/log-analysis-agent/analyze_log.py \
+            --github-run-id "${{ inputs.run_id }}" \
+            --repo "ROCm/TheRock" \
+            --output-dir "${OUT}" \
+            --max-jobs 2
+
+      - name: Poll upstream failed runs
+        if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.run_id == '')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          PRESET="${{ github.event_name == 'schedule' && 'therock_multi_arch' || inputs.preset }}"
+          MAX="${{ github.event_name == 'schedule' && '3' || inputs.max_runs }}"
+          python agents/log-analysis-agent/fetch_failed_runs.py \
+            --repo "ROCm/TheRock" \
+            --preset "${PRESET}" \
+            --max-runs "${MAX}" \
+            --analyze \
+            --output-dir agents/log-analysis-agent/out/upstream
+
+      - name: Upload log analysis reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: log-analysis-upstream-reports
+          path: agents/log-analysis-agent/out/**
+          if-no-files-found: warn

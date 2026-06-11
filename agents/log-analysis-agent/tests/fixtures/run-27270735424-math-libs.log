@@ -1,0 +1,12 @@
+2026-06-10T11:03:04.0000000Z ##[group]Runner Image
+2026-06-10T11:03:04.0000000Z ##[endgroup]
+2026-06-10T11:03:04.0000000Z Component checks completed (15 passed, 0 warnings, 0 errors)
+2026-06-10T11:15:00.0000000Z [280/341] Building sub-project rocBLAS
+2026-06-10T11:30:00.0000000Z [285/341] Building sub-project rocSOLVER
+2026-06-10T11:50:00.0000000Z [286/341] Configure sub-project rocWMMA
+2026-06-10T11:52:00.0000000Z [287/341] Configure sub-project rocSPARSE
+2026-06-10T11:53:00.0000000Z [288/341] Building sub-project rocSPARSE
+2026-06-10T11:54:19.0000000Z [289/341] Stage installing sub-project rocSPARSE
+2026-06-10T11:54:19.0000000Z ##[error]The runner has received a shutdown signal. This can happen when the runner service is stopped or when a self-hosted runner is removed from service while a job is running.
+2026-06-10T11:54:19.0000000Z ##[error]Executing the custom container implementation failed. Please contact your self hosted runner administrator.
+2026-06-10T11:54:19.0000000Z ##[error]Process completed with exit code 130.
