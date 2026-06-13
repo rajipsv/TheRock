@@ -6,3 +6,4 @@ Hackathon and experimental agents built on top of TheRock (not part of upstream 
 |-------|------|-------------|
 | AGENTS_030 Change Impact | [change-impact-agent/](change-impact-agent/) | Pre-merge: manifest + topology blast radius and CI label recommendations |
 | AGENTS_030 Log Analysis | [log-analysis-agent/](log-analysis-agent/) | Post-CI failure: log triage, KB-backed fixes; reactive GHA on fork + upstream poll |
+| AGENTS_003 Document Comparison | [document-comparison-agent/](document-comparison-agent/) | Legacy vs modernized PDF diff, semantic analysis, regulatory impact |
