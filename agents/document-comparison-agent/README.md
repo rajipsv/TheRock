@@ -81,8 +81,12 @@ vllm serve Qwen/Qwen3-30B-A3B \
   --served-model-name Qwen3-30B-A3B \
   --api-key abc-123 \
   --port 8000 \
+  --enable-auto-tool-choice \
+  --tool-call-parser hermes \
   --trust-remote-code
 ```
+
+Tool-calling flags are **required** for the notebook’s Pydantic AI `@Tool` demo (Step 4). CLI and direct pipeline work without them.
 
 Set `USE_LLM=false` for rule-based fallback when vLLM is unavailable.
 
