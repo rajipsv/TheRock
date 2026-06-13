@@ -60,14 +60,26 @@ def ref_exists(repo_root: Path, ref: str) -> bool:
     return result.returncode == 0
 
 
+def _looks_like_sha(ref: str) -> bool:
+    return len(ref) >= 7 and all(c in "0123456789abcdef" for c in ref.lower())
+
+
 def ensure_upstream_ref_fetched(
     ref: str,
     repo_root: Path,
     upstream_repo: str = DEFAULT_UPSTREAM,
     force: bool = False,
+    depth: int | None = None,
 ) -> str:
-    """Fetch upstream branch/tag if missing locally. Returns a ref usable for merge-base."""
-    if not force and ref_exists(repo_root, ref):
+    """Fetch upstream branch/tag if missing locally. Returns a ref usable for merge-base.
+
+    Fork clones often have a local ``main`` that does not share history with upstream PR
+    heads. Branch names are mapped to ``upstream-<branch>`` after fetching from
+    ``upstream_repo`` — local branch tips are not used for merge-base.
+    """
+    if not force and ref.startswith("upstream-") and ref_exists(repo_root, ref):
+        return ref
+    if not force and _looks_like_sha(ref) and ref_exists(repo_root, ref):
         return ref
 
     local_ref = upstream_tracking_ref(ref)
@@ -75,14 +87,29 @@ def ensure_upstream_ref_fetched(
         return local_ref
 
     fetch_spec = f"{ref}:{local_ref}"
+    cmd = ["git", "fetch", fetch_url_for_repo(upstream_repo), fetch_spec]
+    if depth is not None:
+        cmd.append(f"--depth={depth}")
     subprocess.run(
-        ["git", "fetch", fetch_url_for_repo(upstream_repo), fetch_spec],
+        cmd,
         cwd=repo_root,
         check=True,
         capture_output=True,
         text=True,
     )
     return local_ref
+
+
+def git_merge_base(repo_root: Path, base_ref: str, end_ref: str) -> str | None:
+    result = subprocess.run(
+        ["git", "merge-base", base_ref, end_ref],
+        cwd=repo_root,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        return None
+    return result.stdout.strip() or None
 
 
 def get_pull_request(

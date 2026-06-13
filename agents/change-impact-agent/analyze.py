@@ -168,25 +168,35 @@ def resolve_start_ref(args: argparse.Namespace, repo_root: Path) -> str:
     if args.start:
         return args.start
     if args.pr_base_ref:
-        from github_pr import ensure_upstream_ref_fetched
+        from github_pr import ensure_upstream_ref_fetched, git_merge_base
         from manifest_bridge import resolve_git_ref
-
-        import subprocess
 
         base_ref = ensure_upstream_ref_fetched(
             args.pr_base_ref,
             repo_root,
             upstream_repo=args.upstream_repo,
+            depth=200,
         )
         end_sha = resolve_git_ref(args.end, repo_root)
-        result = subprocess.run(
-            ["git", "merge-base", base_ref, end_sha],
-            cwd=repo_root,
-            capture_output=True,
-            text=True,
-            check=True,
-        )
-        return result.stdout.strip()
+        merge_base = git_merge_base(repo_root, base_ref, end_sha)
+        if merge_base is None:
+            # Shallow fork clone or stale local branch — refetch upstream base deeper.
+            base_ref = ensure_upstream_ref_fetched(
+                args.pr_base_ref,
+                repo_root,
+                upstream_repo=args.upstream_repo,
+                force=True,
+                depth=500,
+            )
+            merge_base = git_merge_base(repo_root, base_ref, end_sha)
+        if merge_base is None:
+            raise RuntimeError(
+                f"git merge-base failed for base={base_ref} end={end_sha}. "
+                f"Re-run upstream fetch (e.g. git fetch {args.upstream_repo} "
+                f"{args.pr_base_ref}:upstream-{args.pr_base_ref.replace('/', '-')} "
+                "--depth=500) and retry."
+            )
+        return merge_base
     raise ValueError("Provide --start or --pr-base-ref")
 
 
