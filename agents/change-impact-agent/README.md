@@ -22,7 +22,7 @@ Recommendations target **test_matrix jobs** (e.g. `test:miopen`, `test:hipdnn`),
 
 **Deterministic first:** blast radius, labels, and topology warnings are computed in `analyze.py`. `summarize.py` is optional prose only (`template` backend by default in CI; LLM backends rephrase pre-computed JSON and must not invent facts).
 
-**LLM guardrails:** When using `ollama`, `openai`, or `vllm`, `summarize.py` applies a system prompt plus deterministic validation (PR labels, severity, blast radius score). Failed validation triggers one retry, then falls back to the template summary. *Generative layer is constrained; authoritative JSON wins.*
+**LLM guardrails:** When using `ollama`, `openai`, or `vllm`, `summarize.py` writes a **reviewer brief** (not a JSON echo), strips Qwen3 chain-of-thought blocks, and validates PR labels, severity, and blast radius score. Default `--llm-mode brief` appends the brief under the template summary; `standalone` writes LLM prose only. Failed validation triggers one retry, then falls back to the template summary.
 
 ## Features
 
@@ -159,6 +159,7 @@ agents/change-impact-agent/
 | `--model` | LLM model name |
 | `--base-url` | Ollama or vLLM URL |
 | `--validate-llm` / `--no-validate-llm` | Validate LLM output against report JSON (default: on) |
+| `--llm-mode` | `brief` (template + reviewer brief) or `standalone` (LLM only) |
 | `--llm-max-retries` | Retries after validation failure (default: 1) |
 | `--fallback-template` / `--no-fallback-template` | Use template summary if validation fails (default: on) |
 
@@ -168,7 +169,8 @@ agents/change-impact-agent/
 |------|----------|
 | `report.json` | Impact data, `ci_recommendations`, `topology_warnings`, `content_insights`, `rollout_strategy` |
 | `report.html` | HTML report |
-| `executive_summary.md` | Human-readable summary from `summarize.py` |
+| `executive_summary.md` | Template summary from `summarize.py` |
+| `executive_summary_llm.md` | Optional LLM reviewer brief (notebook section 5 when vLLM/OpenAI is up) |
 
 ## Upstream vs fork PRs
 
@@ -194,7 +196,7 @@ Both agents use deterministic tool pipelines by default; LLM is optional for hum
 jupyter notebook agents/change-impact-agent/notebook/hackathon_demo.ipynb
 ```
 
-Clones the fork, runs `pytest`, analyzes PRs #5572, #5688, #5480, #5718. Copy `.env` into the clone if `GITHUB_TOKEN` is not in the environment. Shallow clones lack `main` — the notebook fetches `upstream-main` and uses `HEAD~6..HEAD` for the local range demo.
+Clones the fork, runs `pytest`, analyzes PRs #5572, #5688, #5480. Section 5 writes template `executive_summary.md` per PR; when vLLM is running (`ENABLE_LLM_IN_SECTION_5=1`), it also writes `executive_summary_llm.md`. Start vLLM (section 9a) before section 5 for LLM briefs. Copy `.env` if `GITHUB_TOKEN` is not in the environment.
 
 ## Tests
 

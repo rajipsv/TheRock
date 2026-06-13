@@ -34,6 +34,24 @@ SCORE_PATTERN = re.compile(
     re.IGNORECASE,
 )
 FALLBACK_FOOTNOTE = "\n\n_LLM summary rejected; showing deterministic template._\n"
+REVIEWER_BRIEF_HEADING = "## Reviewer brief (LLM)\n\n"
+
+_THINKING_BLOCK_RE = re.compile(
+    r"<think(?:ing)?>.*?</think(?:ing)?>",
+    re.IGNORECASE | re.DOTALL,
+)
+_REDACTED_THINKING_RE = re.compile(
+    r"<think>.*?</think>",
+    re.IGNORECASE | re.DOTALL,
+)
+
+
+def sanitize_llm_text(text: str) -> str:
+    """Remove chain-of-thought / thinking blocks from model output."""
+    cleaned = text
+    for pattern in (_THINKING_BLOCK_RE, _REDACTED_THINKING_RE):
+        cleaned = pattern.sub("", cleaned)
+    return cleaned.strip()
 
 
 def template_summary(report: dict) -> str:
@@ -171,35 +189,52 @@ def extract_mentioned_labels(summary: str) -> set[str]:
     return set(LABEL_PATTERN.findall(summary))
 
 
-def llm_system_message(report: dict) -> str:
-    labels = ", ".join(sorted(allowed_pr_labels(report))) or "none"
-    severity = report.get("severity", "UNKNOWN")
-    score = report.get("blast_radius_score", 0)
-    return (
-        "You summarize pre-computed change impact JSON for ROCm/TheRock reviewers. "
-        f"Severity must be exactly {severity}. "
-        f"Blast radius score must be exactly {score}/100. "
-        f"You may only mention these PR labels: {labels}. "
-        "Do not invent build stages, test suites, topology facts, or extra labels. "
-        "If no labels are listed, do not suggest test:* or test_filter:* labels."
-    )
-
-
-def llm_prompt(report: dict) -> str:
-    compact = {
+def llm_compact_context(report: dict) -> dict:
+    content = report.get("content_insights") or {}
+    return {
         "severity": report.get("severity"),
         "blast_radius_score": report.get("blast_radius_score"),
+        "changed_files": report.get("changed_files", [])[:20],
         "changed_components": report.get("changed_components", [])[:20],
+        "content_insights": {
+            "notes": content.get("notes"),
+            "timeout_changes": (content.get("test_matrix_changes") or {}).get(
+                "timeout_changes"
+            ),
+        },
         "affected_build_stages": report.get("affected_build_stages"),
         "rollout_strategy": report.get("rollout_strategy"),
         "ci_recommendations": report.get("ci_recommendations"),
         "topology_warnings": report.get("topology_warnings", []),
         "rationale": report.get("rationale"),
     }
+
+
+def llm_system_message(report: dict) -> str:
+    labels = ", ".join(sorted(allowed_pr_labels(report))) or "none"
+    severity = report.get("severity", "UNKNOWN")
+    score = report.get("blast_radius_score", 0)
     return (
-        "Write a concise executive summary (3-5 bullets) for reviewers based on this "
-        "structured change impact JSON. Mention severity, rollout, and CI label "
-        "recommendations exactly as given. Do not invent facts.\n\n"
+        "You write a short reviewer brief for ROCm/TheRock pull requests based on "
+        "pre-computed impact JSON. Focus on what changed, CI impact, and what the "
+        "reviewer should verify. "
+        f"If you mention severity it must be {severity}. "
+        f"If you mention blast radius score it must be {score}/100. "
+        f"You may only mention these PR labels: {labels}. "
+        "Do not invent build stages, test suites, topology facts, or extra labels. "
+        "Do not include chain-of-thought or internal reasoning. Output only the brief."
+    )
+
+
+def llm_prompt(report: dict) -> str:
+    compact = llm_compact_context(report)
+    return (
+        "Write a reviewer brief (2-4 short bullets or paragraphs) for a busy maintainer.\n"
+        "- Explain what changed in plain language (files, CI timeouts, packaging).\n"
+        "- State what CI labels or test scope to apply (use only labels from JSON).\n"
+        "- Note rollout implications if present.\n"
+        "- Do not restate severity/score as standalone bullets unless needed for context.\n"
+        "- Do not invent facts.\n\n"
         f"{json.dumps(compact, indent=2)}"
     )
 
@@ -275,12 +310,19 @@ def call_openai_compatible(
         messages.append({"role": "system", "content": system})
     messages.append({"role": "user", "content": prompt})
 
+    extra_body: dict | None = None
+    if os.environ.get("VLLM_DISABLE_THINKING", "").lower() in ("1", "true", "yes"):
+        extra_body = {"chat_template_kwargs": {"enable_thinking": False}}
+
     client = OpenAI(base_url=base_url, api_key=api_key or "not-needed")
-    response = client.chat.completions.create(
-        model=model,
-        messages=messages,
-        max_tokens=800,
-    )
+    kwargs: dict = {
+        "model": model,
+        "messages": messages,
+        "max_tokens": 800,
+    }
+    if extra_body is not None:
+        kwargs["extra_body"] = extra_body
+    response = client.chat.completions.create(**kwargs)
     return response.choices[0].message.content or ""
 
 
@@ -343,6 +385,7 @@ def generate_llm_summary(
     validate: bool = True,
     max_retries: int = 1,
     fallback_template: bool = True,
+    llm_mode: str = "brief",
     llm_call: Callable[[str], str] | None = None,
 ) -> tuple[str, bool]:
     """Return (summary, used_fallback). used_fallback is True when template replaced LLM."""
@@ -350,24 +393,32 @@ def generate_llm_summary(
     prompt = llm_prompt(report)
 
     def default_call(user_prompt: str) -> str:
-        return _invoke_llm(
+        raw = _invoke_llm(
             backend,
             user_prompt,
             model=model,
             base_url=base_url,
             system=system,
         )
+        return sanitize_llm_text(raw)
 
     caller = llm_call or default_call
     summary = caller(prompt)
 
     if not validate:
+        if llm_mode == "brief":
+            return template_summary(report) + "\n\n" + REVIEWER_BRIEF_HEADING + summary, False
         return summary, False
 
     attempts = 0
     while True:
         errors = validate_llm_summary(summary, report)
         if not errors:
+            if llm_mode == "brief":
+                return (
+                    template_summary(report) + "\n\n" + REVIEWER_BRIEF_HEADING + summary,
+                    False,
+                )
             return summary, False
         if attempts >= max_retries:
             break
@@ -436,6 +487,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         action="store_false",
         help="Exit with error if LLM validation fails",
     )
+    parser.add_argument(
+        "--llm-mode",
+        choices=["brief", "standalone"],
+        default="brief",
+        help="brief: template + reviewer brief (default); standalone: LLM prose only",
+    )
     return parser.parse_args(argv)
 
 
@@ -454,6 +511,7 @@ def main(argv: list[str] | None = None) -> int:
             validate=args.validate_llm,
             max_retries=args.llm_max_retries,
             fallback_template=args.fallback_template,
+            llm_mode=args.llm_mode,
         )
         if args.validate_llm and not used_fallback:
             errors = validate_llm_summary(summary, report)

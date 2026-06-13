@@ -11,8 +11,11 @@ sys.path.insert(0, str(AGENT_DIR))
 
 from summarize import (
     FALLBACK_FOOTNOTE,
+    REVIEWER_BRIEF_HEADING,
     extract_mentioned_labels,
     generate_llm_summary,
+    llm_prompt,
+    sanitize_llm_text,
     template_summary,
     validate_llm_summary,
 )
@@ -28,6 +31,14 @@ SAMPLE_REPORT = {
     "rollout_strategy": "Canary gfx family + test_filter:quick",
     "rationale": ["CI test matrix configuration changed"],
     "topology_warnings": [],
+    "content_insights": {
+        "notes": ["GHA wrapper timeout for miopen: 60 → 120 minutes"],
+        "test_matrix_changes": {
+            "timeout_changes": [
+                {"job": "miopen", "old_minutes": 60, "new_minutes": 120}
+            ]
+        },
+    },
     "ci_recommendations": {
         "test_type": "quick",
         "test_type_reason": "CI matrix change",
@@ -75,6 +86,28 @@ class ValidateSummaryTest(unittest.TestCase):
         self.assertTrue(any("Blast radius score mismatch" in e for e in errors))
 
 
+class SanitizeLlmTextTest(unittest.TestCase):
+    def test_removes_redacted_thinking(self):
+        raw = (
+            "<think>internal reasoning</think>\n"
+            "- Apply test:miopen."
+        )
+        self.assertEqual(sanitize_llm_text(raw), "- Apply test:miopen.")
+
+    def test_removes_think_tags(self):
+        t = "think"
+        raw = "<" + t + ">hidden</" + t + ">Visible text."
+        self.assertEqual(sanitize_llm_text(raw), "Visible text.")
+
+
+class LlmPromptTest(unittest.TestCase):
+    def test_includes_content_insights(self):
+        prompt = llm_prompt(SAMPLE_REPORT)
+        self.assertIn("content_insights", prompt)
+        self.assertIn("timeout_changes", prompt)
+        self.assertIn("60", prompt)
+
+
 class GenerateLlmSummaryTest(unittest.TestCase):
     def test_retry_then_template_fallback(self):
         calls: list[str] = []
@@ -90,6 +123,7 @@ class GenerateLlmSummaryTest(unittest.TestCase):
             "openai",
             model="test",
             base_url="http://localhost",
+            llm_mode="standalone",
             max_retries=1,
             llm_call=fake_llm,
         )
@@ -110,9 +144,27 @@ class GenerateLlmSummaryTest(unittest.TestCase):
             "openai",
             model="test",
             base_url="http://localhost",
+            llm_mode="standalone",
             llm_call=fake_llm,
         )
         self.assertFalse(used_fallback)
+        self.assertIn("test:miopen", summary)
+
+    def test_brief_mode_appends_to_template(self):
+        def fake_llm(prompt: str) -> str:
+            return "Apply test:miopen and test_filter:quick for miopen timeout."
+
+        summary, used_fallback = generate_llm_summary(
+            SAMPLE_REPORT,
+            "openai",
+            model="test",
+            base_url="http://localhost",
+            llm_mode="brief",
+            llm_call=fake_llm,
+        )
+        self.assertFalse(used_fallback)
+        self.assertIn(REVIEWER_BRIEF_HEADING.strip(), summary)
+        self.assertIn("## What changed", summary)
         self.assertIn("test:miopen", summary)
 
     def test_no_validation_skips_checks(self):
@@ -125,6 +177,7 @@ class GenerateLlmSummaryTest(unittest.TestCase):
             model="test",
             base_url="http://localhost",
             validate=False,
+            llm_mode="standalone",
             llm_call=fake_llm,
         )
         self.assertFalse(used_fallback)
