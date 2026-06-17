@@ -16,7 +16,9 @@ Hackathon and experimental agents built on top of TheRock (not part of upstream 
 | Pydantic AI notebook | [notebook/multi_agent_triage_demo.ipynb](notebook/multi_agent_triage_demo.ipynb) |
 | Shared tools | [multi_agent_tools.py](multi_agent_tools.py) |
 
-Coordinates **change-impact-agent** (pre-merge) + **log-analysis-agent** (post-CI) via Pydantic AI on vLLM.
+Coordinates **change-impact-agent** (Step 5) + **log-analysis-agent** (Step 6) on MI300 with vLLM executive summaries for log triage.
+
+Notebook flow: launch vLLM → config → **Step 5** PR 5572 impact briefing → **Step 6** GHA run `27710372755` rocSPARSE log. Step 4 combined smoke test is commented out.
 
 ```powershell
 pip install -r agents/requirements-notebook.txt

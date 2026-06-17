@@ -37,24 +37,22 @@ def code(source: str) -> dict:
 def main() -> None:
     cells = [
         md(
-            """# AGENTS_030 — Multi-Agent Infrastructure Triage (Pydantic AI)
+            """# AGENTS_030 — Multi-Agent Infrastructure Triage (MI300 / vLLM)
 
-Orchestrates **change-impact-agent** (pre-merge) and **log-analysis-agent** (post-CI) via Pydantic AI tools on vLLM / MI300.
+Runs **change-impact-agent** (pre-merge) and **log-analysis-agent** (post-CI) as separate notebook steps.
 
-| Agent | When | Tool |
-|-------|------|------|
-| change-impact-agent | Before merge | `analyze_upstream_pr` |
-| log-analysis-agent | After CI fails | `triage_ci_log` |
-| Orchestrator | User chat | picks tools at runtime |
-
-**Demo CI run:** [27710372755](https://github.com/ROCm/TheRock/actions/runs/27710372755) — rocSPARSE `hipErrorOutOfMemory` (job `81992436725`).
+| Step | Agent | Demo asset |
+|------|-------|------------|
+| 5 | change-impact-agent | PR **5572** (sample briefing) |
+| 6 | log-analysis-agent | GHA run **[27710372755](https://github.com/ROCm/TheRock/actions/runs/27710372755)** job `81992436725` (rocSPARSE OOM) |
 
 ## Steps
 1. Launch vLLM (terminal)
-2. Config + verify
+2. Config + verify vLLM
 3. Install deps
-4. Direct tool smoke test (no LLM)
-5. Pydantic AI orchestrator demo
+4. *(commented out)* combined direct smoke test — use Steps 5–6 instead
+5. **change-impact-agent** — pre-merge blast radius / rollout
+6. **log-analysis-agent** — post-CI log triage + vLLM executive summary
 """
         ),
         md(
@@ -66,10 +64,10 @@ vllm serve Qwen/Qwen3-30B-A3B \\
   --served-model-name Qwen3-30B-A3B \\
   --api-key abc-123 \\
   --port 8000 \\
-  --enable-auto-tool-choice \\
-  --tool-call-parser hermes \\
   --trust-remote-code
 ```
+
+For optional Pydantic orchestrator later, add: `--enable-auto-tool-choice --tool-call-parser hermes`
 
 Monitor: `watch rocm-smi`
 """
@@ -129,18 +127,18 @@ print("THEROCK_ROOT =", THEROCK_ROOT)
 print("USE_VLLM     =", USE_VLLM)
 print("BASE_URL     =", BASE_URL)
 print("LLM_MODEL    =", LLM_MODEL)
-print("DEMO_PRS      =", DEMO_PRS)
-print("DEMO_RUN_ID   =", DEFAULT_DEMO_RUN_ID)
-print("DEMO_JOB_ID   =", DEFAULT_DEMO_JOB_ID)
-print("DEFAULT_LOG   =", DEFAULT_DEMO_LOG)
-print("RUN URL       =", DEFAULT_DEMO_LOG_URL)
+print("DEMO_PRS     =", DEMO_PRS)
+print("DEMO_PR      =", DEFAULT_DEMO_PR)
+print("DEMO_RUN_ID  =", DEFAULT_DEMO_RUN_ID)
+print("DEMO_JOB_ID  =", DEFAULT_DEMO_JOB_ID)
+print("DEFAULT_LOG  =", DEFAULT_DEMO_LOG)
+print("RUN URL      =", DEFAULT_DEMO_LOG_URL)
 """
         ),
         code(
             """import httpx
 
 VLLM_REACHABLE = False
-VLLM_TOOL_SUPPORT = False
 headers = {"Authorization": f"Bearer {OPENAI_API_KEY}"}
 
 try:
@@ -152,23 +150,7 @@ try:
         print("vLLM models endpoint:", r.status_code, r.text[:200])
 except Exception as exc:
     print("vLLM not reachable:", exc)
-    print("Start vLLM in a terminal (Step 1) — direct tool tests still work below.")
-
-if VLLM_REACHABLE:
-    probe = httpx.post(
-        f"{BASE_URL}/chat/completions",
-        headers={**headers, "Content-Type": "application/json"},
-        json={
-            "model": LLM_MODEL,
-            "messages": [{"role": "user", "content": "ping"}],
-            "tools": [{"type": "function", "function": {"name": "ping", "parameters": {"type": "object", "properties": {}}}}],
-            "tool_choice": "auto",
-            "max_tokens": 16,
-        },
-        timeout=60.0,
-    )
-    VLLM_TOOL_SUPPORT = probe.status_code < 400
-    print("Tool calling:", "OK" if VLLM_TOOL_SUPPORT else probe.text[:300])
+    print("Start vLLM in Step 1. Step 5 still works; Step 6 needs vLLM for executive summary.")
 """
         ),
         code(
@@ -176,85 +158,80 @@ if VLLM_REACHABLE:
 !{sys.executable} -m pip install -q -r "{AGENTS_DIR / 'requirements-notebook.txt'}"
 """
         ),
-        md("## Step 4: Direct tool smoke test (deterministic errors + vLLM summary when USE_VLLM=True)"),
-        code(
-            """from multi_agent_tools import (
-    list_demo_assets,
-    run_change_impact_for_pr,
-    run_log_analysis_for_path,
-    run_infrastructure_triage_loop,
-)
+        md(
+            """## Step 4: Direct combined smoke test *(commented out)*
 
-print(list_demo_assets())
-print()
-print(run_change_impact_for_pr(DEFAULT_DEMO_PR))
-print()
-print(run_log_analysis_for_path(str(DEFAULT_DEMO_LOG), use_vllm_summary=USE_VLLM))
-print()
-print(run_infrastructure_triage_loop(DEFAULT_DEMO_PR, str(DEFAULT_DEMO_LOG), use_vllm_summary=USE_VLLM)[:1600], "...")
+Skipped in the MI300 / vLLM workflow — run **Step 5** (change-impact) and **Step 6** (log-analysis) instead.
+"""
+        ),
+        code(
+            """# # Step 4 — combined direct smoke test (offline / no vLLM orchestrator)
+# from multi_agent_tools import (
+#     list_demo_assets,
+#     run_change_impact_for_pr,
+#     run_log_analysis_for_path,
+#     run_infrastructure_triage_loop,
+# )
+#
+# print(list_demo_assets())
+# print(run_change_impact_for_pr(DEFAULT_DEMO_PR))
+# print(run_log_analysis_for_path(str(DEFAULT_DEMO_LOG), use_vllm_summary=USE_VLLM))
+# print(run_infrastructure_triage_loop(DEFAULT_DEMO_PR, str(DEFAULT_DEMO_LOG), use_vllm_summary=USE_VLLM))
 """
         ),
         md(
-            """## Step 5: Pydantic AI orchestrator
+            """## Step 5: change-impact-agent (pre-merge)
 
-The orchestrator LLM chooses which specialist tool to call based on your prompt.
+Loads committed sample `sample-runs/pr-5572/report.json` — blast radius, CI labels, rollout strategy.
 
-**Requires vLLM** with `--enable-auto-tool-choice --tool-call-parser hermes`.
+**Output:** `agents/notebook/out/pr-5572/report.json`
 """
         ),
         code(
-            """from multi_agent_tools import build_agent_model, build_orchestrator_agent
+            """from multi_agent_tools import run_change_impact_for_pr
 
-orchestrator = None
-if globals().get("VLLM_TOOL_SUPPORT"):
-    model = build_agent_model(BASE_URL, OPENAI_API_KEY, LLM_MODEL)
-    orchestrator = build_orchestrator_agent(model)
-    print("Orchestrator ready (Pydantic AI + multi-agent tools).")
-else:
-    print(
-        "Skipping orchestrator — vLLM needs tool calling. "
-        "Re-run Step 1 with --enable-auto-tool-choice --tool-call-parser hermes"
+change_impact_summary = run_change_impact_for_pr(DEFAULT_DEMO_PR, use_sample=True)
+print(change_impact_summary)
+"""
+        ),
+        md(
+            """## Step 6: log-analysis-agent (post-CI)
+
+Analyzes bundled log for GHA run **27710372755** / job **81992436725** (rocSPARSE `hipErrorOutOfMemory`).
+
+- **Errors:** deterministic tool-only pass (grep + KB)
+- **Executive summary:** vLLM when `USE_VLLM=True` (Step 2)
+
+**Output:** `agents/notebook/out/log-job-81992436725/report.json` + `executive_summary.md`
+"""
+        ),
+        code(
+            """from multi_agent_tools import run_log_analysis_for_path
+
+if not DEFAULT_DEMO_LOG.is_file():
+    raise FileNotFoundError(
+        f"Demo log missing: {DEFAULT_DEMO_LOG}\\n"
+        f"git pull and ensure sample-runs/run-{DEFAULT_DEMO_RUN_ID}/ is present."
     )
-"""
-        ),
-        code(
-            """from pydantic_ai.exceptions import ModelHTTPError
 
-async def ask_orchestrator(prompt: str):
-    if orchestrator is None:
-        print("Orchestrator not available — use Step 4 direct tools.")
-        return None
-    try:
-        result = await orchestrator.run(prompt)
-        print(result.output)
-        return result
-    except ModelHTTPError as exc:
-        print("ModelHTTPError:", exc)
-        return None
-
-# Scenario A: pre-merge only
-# await ask_orchestrator("Analyze upstream TheRock PR 5572 for blast radius and rollout labels.")
-
-# Scenario B: post-CI only
-# await ask_orchestrator(f"Triage this CI log for errors: {DEFAULT_DEMO_LOG}")
-
-# Scenario C: full infrastructure loop (hackathon use case)
-await ask_orchestrator(
-    f"We planned infrastructure change PR {DEFAULT_DEMO_PR}. CI failed afterward. "
-    f"Run full infrastructure triage using log {DEFAULT_DEMO_LOG}. "
-    "Summarize impact, historical-style fixes, and safer rollout."
+log_analysis_summary = run_log_analysis_for_path(
+    str(DEFAULT_DEMO_LOG),
+    preset="therock_multi_arch",
+    use_vllm_summary=USE_VLLM,
 )
+print(log_analysis_summary)
 """
         ),
         md(
             """## Outputs
 
-Artifacts land in `agents/notebook/out/`:
+| Step | Artifact |
+|------|----------|
+| 5 | `agents/notebook/out/pr-<N>/report.json` |
+| 6 | `agents/notebook/out/log-job-81992436725/report.json` |
+| 6 | `agents/notebook/out/log-job-81992436725/executive_summary.md` |
 
-- `pr-<N>/report.json` — change-impact briefing
-- `log-<name>/report.json` — log triage
-
-Open HTML reports from change-impact `sample-runs/` or re-run with live `GITHUB_TOKEN`.
+Bundled samples also live under `change-impact-agent/sample-runs/` and `log-analysis-agent/sample-runs/run-27710372755/`.
 """
         ),
     ]
