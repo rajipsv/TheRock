@@ -236,7 +236,7 @@ def main() -> None:
             "Infrastructure source of truth: ROCm/TheRock — BUILD_TOPOLOGY.toml, manifests, CI scripts.",
             "Validated change sets: PR #5572 (config), #5688 (config+packaging), #5480 (packaging), #5718 (patch).",
             "Historical incidents: log-analysis-agent/knowledge/patterns.json + resolutions.jsonl.",
-            "Real GHA log corpus: upstream run-27270735424; keyword + optional FAISS hybrid retrieval.",
+            "Real GHA log corpus: upstream run-27697860238 (kfdtest PR #8864); keyword + optional FAISS hybrid retrieval.",
             "Committed sample-runs/ — full reports per PR for judges (no live API needed).",
         ],
         font_size=16,

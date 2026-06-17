@@ -1,0 +1,11 @@
+2026-03-15T08:10:00.0000000Z ##[group]Runner Image
+2026-03-15T08:10:01.0000000Z ##[endgroup]
+2026-03-15T08:10:02.0000000Z ##[group]Linux::release / Test gfx94X-dcgpu / Test kfdtest / Test kfdtest (shard 1/1) (gfx94X-dcgpu)
+2026-03-15T08:10:02.5000000Z Run ID 27697860238 — Adding kfdtest to The Rock CI (ROCm/TheRock)
+2026-03-15T09:05:00.0000000Z Installing test dependencies (pip)
+2026-03-15T09:06:00.0000000Z Running test suite: kfdtest (gfx94X-dcgpu)
+2026-03-15T09:08:00.0000000Z ctest -R kfdtest --output-on-failure
+2026-03-15T08:30:03.0000000Z ##[warning]WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+2026-03-15T08:30:04.0000000Z ##[warning]WARNING: The directory '/github/home/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
+2026-03-15T08:31:00.0000000Z ##[error]Process completed with exit code 1.
+2026-03-15T08:31:01.0000000Z ##[endgroup]

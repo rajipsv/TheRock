@@ -28,9 +28,15 @@ class MultiAgentToolsTest(unittest.TestCase):
         self.assertIn("Severity", summary)
         self.assertIn("test:", summary.lower())
 
-    def test_log_analysis_fixture(self):
+    def test_log_analysis_sample(self):
         summary = run_log_analysis_for_path(str(DEFAULT_DEMO_LOG))
         self.assertIn("Errors", summary)
+        self.assertTrue(
+            "compiler" in summary.lower()
+            or "HIP" in summary
+            or "27697860238" in summary
+            or "exit code" in summary.lower()
+        )
 
     def test_full_loop(self):
         summary = run_infrastructure_triage_loop(

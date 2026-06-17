@@ -95,7 +95,7 @@ NOTEBOOK_OUT = AGENTS_DIR / "notebook" / "out"
 if str(AGENTS_DIR) not in sys.path:
     sys.path.insert(0, str(AGENTS_DIR))
 
-from multi_agent_tools import DEFAULT_DEMO_LOG, DEFAULT_DEMO_PR, DEMO_PRS
+from multi_agent_tools import DEFAULT_DEMO_LOG, DEFAULT_DEMO_LOG_URL, DEFAULT_DEMO_PR, DEMO_PRS
 
 BASE_URL = os.environ.get("VLLM_BASE_URL", os.environ.get("BASE_URL", "http://localhost:8000/v1"))
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "abc-123")
@@ -111,6 +111,7 @@ print("BASE_URL     =", BASE_URL)
 print("LLM_MODEL    =", LLM_MODEL)
 print("DEMO_PRS     =", DEMO_PRS)
 print("DEFAULT_LOG  =", DEFAULT_DEMO_LOG)
+print("RUN URL      =", DEFAULT_DEMO_LOG_URL)
 """
         ),
         code(

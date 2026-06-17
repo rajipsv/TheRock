@@ -10,8 +10,9 @@ Complements [change-impact-agent](../change-impact-agent/) (pre-merge blast radi
 pip install -r agents/log-analysis-agent/requirements.txt
 
 python agents/log-analysis-agent/analyze_log.py `
-  --log agents/log-analysis-agent/tests/fixtures/example.log `
-  --output-dir agents/log-analysis-agent/out/example
+  --log agents/log-analysis-agent/sample-runs/run-27697860238/job-81925995968.log `
+  --preset therock_multi_arch `
+  --output-dir agents/log-analysis-agent/out/demo
 ```
 
 ## TheRock presets
@@ -105,7 +106,7 @@ Tool-calling flags are required for LangGraph ReAct agent mode with Qwen3 on vLL
 
 ```powershell
 python agents/log-analysis-agent/analyze_log.py `
-  --log agents/log-analysis-agent/tests/fixtures/example.log `
+  --log agents/log-analysis-agent/sample-runs/run-27697860238/job-81925995968.log `
   --output-dir out/example --summary-backend vllm
 
 # Or standalone:
@@ -141,4 +142,4 @@ python -m pytest agents/log-analysis-agent/tests/ -q
 
 ## Sample run
 
-See [sample-runs/log-example/](sample-runs/log-example/) for a tool-only report on the bundled example log.
+See [sample-runs/run-27697860238/](sample-runs/run-27697860238/) for a tool-only report on upstream [Multi-Arch CI run #8864](https://github.com/ROCm/TheRock/actions/runs/27697860238) (Adding kfdtest to The Rock CI).

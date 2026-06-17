@@ -16,7 +16,16 @@ NOTEBOOK_OUT = AGENTS_DIR / "notebook" / "out"
 
 DEMO_PRS = (5572, 5688, 5480, 5718)
 DEFAULT_DEMO_PR = 5572
-DEFAULT_DEMO_LOG = LOG_ANALYSIS_DIR / "tests" / "fixtures" / "example.log"
+
+# Primary log-analysis demo: ROCm/TheRock Multi-Arch CI run (kfdtest PR #8864)
+DEFAULT_DEMO_RUN_ID = 27697860238
+DEFAULT_DEMO_JOB_ID = 81925995968
+DEFAULT_DEMO_LOG = (
+    LOG_ANALYSIS_DIR / "sample-runs" / f"run-{DEFAULT_DEMO_RUN_ID}" / f"job-{DEFAULT_DEMO_JOB_ID}.log"
+)
+DEFAULT_DEMO_LOG_URL = (
+    f"https://github.com/ROCm/TheRock/actions/runs/{DEFAULT_DEMO_RUN_ID}"
+)
 
 
 def resolve_therock_root() -> Path:
@@ -205,9 +214,10 @@ def list_demo_assets() -> str:
     pr_lines = [f"  - PR #{pr} (sample-runs/pr-{pr}/)" for pr in DEMO_PRS]
     logs = [
         DEFAULT_DEMO_LOG,
-        LOG_ANALYSIS_DIR / "sample-runs" / "log-example" / "example.log",
+        LOG_ANALYSIS_DIR / "tests" / "fixtures" / "run-27697860238-compiler-runtime.log",
+        LOG_ANALYSIS_DIR / "tests" / "fixtures" / "run-27697860238-kfdtest.log",
     ]
-    log_lines = [f"  - {p}" for p in logs if p.is_file()]
+    log_lines = [f"  - {p} ({DEFAULT_DEMO_LOG_URL})" if p == DEFAULT_DEMO_LOG else f"  - {p}" for p in logs if p.is_file()]
     return (
         "Demo PRs (change-impact):\n"
         + "\n".join(pr_lines)
