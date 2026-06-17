@@ -1,0 +1,256 @@
+{
+  "github_run_id": 27710372755,
+  "repo": "ROCm/TheRock",
+  "html_url": "https://github.com/ROCm/TheRock/actions/runs/27710372755",
+  "workflow_name": "Multi-Arch CI",
+  "branch": "users/geomin12/fix-configure-aws-external",
+  "head_sha": "bb6d7fef6f13b48f912eb03defea95ccb51557fe",
+  "run_conclusion": "cancelled",
+  "jobs_total": 71,
+  "jobs_failed_or_cancelled": 8,
+  "jobs_analyzed": 8,
+  "total_errors": 88,
+  "job_summaries": [
+    {
+      "github_job_id": 81975007413,
+      "job_name": "Linux::release / Build Multi-Arch Stages / comm-libs / Stage - Comm Libs",
+      "job_conclusion": "cancelled",
+      "errors_count": 4,
+      "summary": "Tool-only qualification pass found 4 highlighted error lines. Stats: path=C:\\Users\\Rajeswari\\.gemini\\antigravity\\scratch\\TheRock\\TheRock\\agents\\log-analysis-agent\\sample-runs\\run-27710372755\\job-81975007413\\job-81975007413.log; lines=1706; bytes=143563; github_error=1; keyword_hits: ERROR=2, EXCEPTION=0, CRITICAL=0, FATAL=1, WARNING=22",
+      "top_errors": [
+        {
+          "line_number": 765,
+          "severity": "HIGH",
+          "message": "2026-06-17T18:56:41.2935176Z         ===================          Compoments check \u001b[38;2;6;161;60m15\u001b[0m Passed, \u001b[38;2;184;166;48m0\u001b[0m Warning, \u001b[38;2;255;61;61m0\u001b[0m Fatal Error          =========",
+          "recommendation": "Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE",
+          "kb_pattern_id": "rocm_hip_gpu_oom"
+        },
+        {
+          "line_number": 1534,
+          "severity": "HIGH",
+          "message": "2026-06-17T20:36:48.3343455Z ##[error]The operation was canceled.",
+          "recommendation": "Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE",
+          "kb_pattern_id": "rocm_hip_gpu_oom"
+        },
+        {
+          "line_number": 765,
+          "severity": "CRITICAL",
+          "message": "2026-06-17T18:56:41.2935176Z         ===================          Compoments check \u001b[38;2;6;161;60m15\u001b[0m Passed, \u001b[38;2;184;166;48m0\u001b[0m Warning, \u001b[38;2;255;61;61m0\u001b[0m Fatal Error          =========",
+          "recommendation": "Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE",
+          "kb_pattern_id": "rocm_hip_gpu_oom"
+        }
+      ],
+      "report_path": "sample-runs/run-27710372755/job-81975007413/report.json"
+    },
+    {
+      "github_job_id": 81975007686,
+      "job_name": "Linux::release / Build Multi-Arch Stages / math-libs (gfx94X-dcgpu, gfx942, linux-gfx942-1gpu-core42-ossci-rocm, false) / Stage - Math Libs (gfx94X-dcgpu)",
+      "job_conclusion": "cancelled",
+      "errors_count": 4,
+      "summary": "Tool-only qualification pass found 4 highlighted error lines. Stats: path=C:\\Users\\Rajeswari\\.gemini\\antigravity\\scratch\\TheRock\\TheRock\\agents\\log-analysis-agent\\sample-runs\\run-27710372755\\job-81975007686\\job-81975007686.log; lines=2233; bytes=193194; github_error=1; keyword_hits: ERROR=2, EXCEPTION=0, CRITICAL=0, FATAL=1, WARNING=20",
+      "top_errors": [
+        {
+          "line_number": 761,
+          "severity": "HIGH",
+          "message": "2026-06-17T18:57:34.9106303Z         ===================          Compoments check \u001b[38;2;6;161;60m15\u001b[0m Passed, \u001b[38;2;184;166;48m0\u001b[0m Warning, \u001b[38;2;255;61;61m0\u001b[0m Fatal Error          =========",
+          "recommendation": "Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE",
+          "kb_pattern_id": "rocm_hip_gpu_oom"
+        },
+        {
+          "line_number": 1952,
+          "severity": "HIGH",
+          "message": "2026-06-17T20:36:48.5684534Z ##[error]The operation was canceled.",
+          "recommendation": "Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE",
+          "kb_pattern_id": "rocm_hip_gpu_oom"
+        },
+        {
+          "line_number": 761,
+          "severity": "CRITICAL",
+          "message": "2026-06-17T18:57:34.9106303Z         ===================          Compoments check \u001b[38;2;6;161;60m15\u001b[0m Passed, \u001b[38;2;184;166;48m0\u001b[0m Warning, \u001b[38;2;255;61;61m0\u001b[0m Fatal Error          =========",
+          "recommendation": "Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE",
+          "kb_pattern_id": "rocm_hip_gpu_oom"
+        }
+      ],
+      "report_path": "sample-runs/run-27710372755/job-81975007686/report.json"
+    },
+    {
+      "github_job_id": 81992436676,
+      "job_name": "Windows::release / Test gfx110X-all / Test rocblas / Test rocblas (shard 1/1) (gfx110X-all)",
+      "job_conclusion": "cancelled",
+      "errors_count": 4,
+      "summary": "Tool-only qualification pass found 4 highlighted error lines. Stats: path=C:\\Users\\Rajeswari\\.gemini\\antigravity\\scratch\\TheRock\\TheRock\\agents\\log-analysis-agent\\sample-runs\\run-27710372755\\job-81992436676\\job-81992436676.log; lines=3920; bytes=171374; github_error=1; keyword_hits: ERROR=2, EXCEPTION=0, CRITICAL=0, FATAL=1, WARNING=4",
+      "top_errors": [
+        {
+          "line_number": 1781,
+          "severity": "HIGH",
+          "message": "2026-06-17T20:17:41.1397989Z         ===================          Compoments check \u001b[38;2;6;161;60m12\u001b[0m Passed, \u001b[38;2;184;166;48m0\u001b[0m Warning, \u001b[38;2;255;61;61m6\u001b[0m Fatal Error          =========",
+          "recommendation": "Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE",
+          "kb_pattern_id": "rocm_hip_gpu_oom"
+        },
+        {
+          "line_number": 3741,
+          "severity": "HIGH",
+          "message": "2026-06-17T20:36:56.0158814Z ##[error]The operation was canceled.",
+          "recommendation": "Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE",
+          "kb_pattern_id": "rocm_hip_gpu_oom"
+        },
+        {
+          "line_number": 1781,
+          "severity": "CRITICAL",
+          "message": "2026-06-17T20:17:41.1397989Z         ===================          Compoments check \u001b[38;2;6;161;60m12\u001b[0m Passed, \u001b[38;2;184;166;48m0\u001b[0m Warning, \u001b[38;2;255;61;61m6\u001b[0m Fatal Error          =========",
+          "recommendation": "Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE",
+          "kb_pattern_id": "rocm_hip_gpu_oom"
+        }
+      ],
+      "report_path": "sample-runs/run-27710372755/job-81992436676/report.json"
+    },
+    {
+      "github_job_id": 81992436725,
+      "job_name": "Windows::release / Test gfx110X-all / Test rocsparse / Test rocsparse (shard 1/1) (gfx110X-all)",
+      "job_conclusion": "failure",
+      "errors_count": 50,
+      "summary": "Tool-only qualification pass found 59 highlighted error lines. Stats: path=C:\\Users\\Rajeswari\\.gemini\\antigravity\\scratch\\TheRock\\TheRock\\agents\\log-analysis-agent\\sample-runs\\run-27710372755\\job-81992436725\\job-81992436725.log; lines=32324; bytes=1992027; github_error=1; keyword_hits: ERROR=840, EXCEPTION=201, CRITICAL=0, FATAL=1, WARNING=6",
+      "top_errors": [
+        {
+          "line_number": 1769,
+          "severity": "HIGH",
+          "message": "2026-06-17T20:17:42.3517629Z         ===================          Compoments check \u001b[38;2;6;161;60m12\u001b[0m Passed, \u001b[38;2;184;166;48m0\u001b[0m Warning, \u001b[38;2;255;61;61m6\u001b[0m Fatal Error          =========",
+          "recommendation": "Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE",
+          "kb_pattern_id": "rocm_hip_gpu_oom"
+        },
+        {
+          "line_number": 26537,
+          "severity": "HIGH",
+          "message": "2026-06-17T20:19:36.4705507Z 1: unknown file: error: SEH exception with code 0xc0000005 thrown in the test body.",
+          "recommendation": "Rebuild image, verify --device flags, rerun parallel matrix on clean containers",
+          "kb_pattern_id": "docker_install_test"
+        },
+        {
+          "line_number": 26551,
+          "severity": "HIGH",
+          "message": "2026-06-17T20:19:37.4793080Z 1: C:/home/runner/_work/TheRock/TheRock/rocm-libraries/projects/rocsparse/clients/tests/test_bsric0.cpp(39): error: Expected equality of these values:",
+          "recommendation": "Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE",
+          "kb_pattern_id": "rocm_hip_gpu_oom"
+        }
+      ],
+      "report_path": "sample-runs/run-27710372755/job-81992436725/report.json"
+    },
+    {
+      "github_job_id": 81992436788,
+      "job_name": "Windows::release / Test gfx110X-all / Test libhipcxx_hipcc / Test libhipcxx_hipcc (shard 1/1) (gfx110X-all)",
+      "job_conclusion": "failure",
+      "errors_count": 7,
+      "summary": "Tool-only qualification pass found 7 highlighted error lines. Stats: path=C:\\Users\\Rajeswari\\.gemini\\antigravity\\scratch\\TheRock\\TheRock\\agents\\log-analysis-agent\\sample-runs\\run-27710372755\\job-81992436788\\job-81992436788.log; lines=2376; bytes=99042; github_error=1; keyword_hits: ERROR=8, EXCEPTION=0, CRITICAL=0, FATAL=1, WARNING=7",
+      "top_errors": [
+        {
+          "line_number": 1721,
+          "severity": "HIGH",
+          "message": "2026-06-17T20:18:32.4668035Z         ===================          Compoments check \u001b[38;2;6;161;60m12\u001b[0m Passed, \u001b[38;2;184;166;48m0\u001b[0m Warning, \u001b[38;2;255;61;61m6\u001b[0m Fatal Error          =========",
+          "recommendation": "Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE",
+          "kb_pattern_id": "rocm_hip_gpu_oom"
+        },
+        {
+          "line_number": 1997,
+          "severity": "HIGH",
+          "message": "2026-06-17T20:18:32.9512404Z Error executing offload-arch: Command '['./build/lib/llvm/bin/offload-arch.exe']' returned non-zero exit status 1.",
+          "recommendation": "Check dmesg, reboot GPU, validate kernel+ROCm matrix, escalate to driver team",
+          "kb_pattern_id": "rocm_hsa_status"
+        },
+        {
+          "line_number": 2063,
+          "severity": "HIGH",
+          "message": "2026-06-17T20:18:41.8515155Z CMake Error at C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeTestHIPCompiler.cmake:73 (message):",
+          "recommendation": "Match torch+ROCm versions, reduce batch size, rocm-smi memory check",
+          "kb_pattern_id": "pytorch_cuda_rocm"
+        }
+      ],
+      "report_path": "sample-runs/run-27710372755/job-81992436788/report.json"
+    },
+    {
+      "github_job_id": 81992436901,
+      "job_name": "Windows::release / Test gfx110X-all / Test hipsparse / Test hipsparse (shard 1/1) (gfx110X-all)",
+      "job_conclusion": "failure",
+      "errors_count": 11,
+      "summary": "Tool-only qualification pass found 11 highlighted error lines. Stats: path=C:\\Users\\Rajeswari\\.gemini\\antigravity\\scratch\\TheRock\\TheRock\\agents\\log-analysis-agent\\sample-runs\\run-27710372755\\job-81992436901\\job-81992436901.log; lines=112796; bytes=6370190; github_error=1; keyword_hits: ERROR=7, EXCEPTION=1, CRITICAL=0, FATAL=1, WARNING=4",
+      "top_errors": [
+        {
+          "line_number": 1769,
+          "severity": "HIGH",
+          "message": "2026-06-17T20:17:42.6506429Z         ===================          Compoments check \u001b[38;2;6;161;60m12\u001b[0m Passed, \u001b[38;2;184;166;48m0\u001b[0m Warning, \u001b[38;2;255;61;61m6\u001b[0m Fatal Error          =========",
+          "recommendation": "Throttle clients, exponential backoff, cache, upgrade plan",
+          "kb_pattern_id": "rate_limit"
+        },
+        {
+          "line_number": 92545,
+          "severity": "HIGH",
+          "message": "2026-06-17T20:18:59.7142035Z 1: C:/home/runner/_work/TheRock/TheRock/rocm-libraries/projects/hipsparse/clients/common/arg_check.cpp(156): error: Expected equality of these values:",
+          "recommendation": "Match torch+ROCm versions, reduce batch size, rocm-smi memory check",
+          "kb_pattern_id": "pytorch_cuda_rocm"
+        },
+        {
+          "line_number": 92559,
+          "severity": "HIGH",
+          "message": "2026-06-17T20:18:59.7146799Z 1: C:/home/runner/_work/TheRock/TheRock/rocm-libraries/projects/hipsparse/clients/include\\testing_csr2csr_compress.hpp(368): error: Expected equality of these values:",
+          "recommendation": "Match torch+ROCm versions, reduce batch size, rocm-smi memory check",
+          "kb_pattern_id": "pytorch_cuda_rocm"
+        }
+      ],
+      "report_path": "sample-runs/run-27710372755/job-81992436901/report.json"
+    },
+    {
+      "github_job_id": 81995075999,
+      "job_name": "Windows::release / Build PyTorch (fat + split) / Build PyTorch | multi-arch-release | torch release/2.10 | py3.12",
+      "job_conclusion": "cancelled",
+      "errors_count": 6,
+      "summary": "Tool-only qualification pass found 6 highlighted error lines. Stats: path=C:\\Users\\Rajeswari\\.gemini\\antigravity\\scratch\\TheRock\\TheRock\\agents\\log-analysis-agent\\sample-runs\\run-27710372755\\job-81995075999\\job-81995075999.log; lines=20358; bytes=1055252; github_error=1; keyword_hits: ERROR=20, EXCEPTION=30, CRITICAL=0, FATAL=0, WARNING=18",
+      "top_errors": [
+        {
+          "line_number": 1519,
+          "severity": "HIGH",
+          "message": "2026-06-17T20:32:01.8778318Z -a----          4/8/2025  12:57 PM          23451 urllib.error.html",
+          "recommendation": "Inspect surrounding context and stack traces; check recent CI changes.",
+          "kb_pattern_id": null
+        },
+        {
+          "line_number": 12889,
+          "severity": "HIGH",
+          "message": "2026-06-17T20:32:06.8394907Z -a----          4/8/2025  12:56 PM           2489 error.py",
+          "recommendation": "Inspect surrounding context and stack traces; check recent CI changes.",
+          "kb_pattern_id": null
+        },
+        {
+          "line_number": 12915,
+          "severity": "HIGH",
+          "message": "2026-06-17T20:32:06.8489420Z -a----         6/17/2026   8:31 PM           3678 error.cpython-312.pyc",
+          "recommendation": "Inspect surrounding context and stack traces; check recent CI changes.",
+          "kb_pattern_id": null
+        }
+      ],
+      "report_path": "sample-runs/run-27710372755/job-81995075999/report.json"
+    },
+    {
+      "github_job_id": 81996346805,
+      "job_name": "CI Summary",
+      "job_conclusion": "failure",
+      "errors_count": 2,
+      "summary": "Tool-only qualification pass found 2 highlighted error lines. Stats: path=C:\\Users\\Rajeswari\\.gemini\\antigravity\\scratch\\TheRock\\TheRock\\agents\\log-analysis-agent\\sample-runs\\run-27710372755\\job-81996346805\\job-81996346805.log; lines=214; bytes=20225; github_error=1; keyword_hits: ERROR=1, EXCEPTION=0, CRITICAL=0, FATAL=0, WARNING=1",
+      "top_errors": [
+        {
+          "line_number": 181,
+          "severity": "HIGH",
+          "message": "2026-06-17T20:38:13.2811474Z ##[error]Process completed with exit code 1.",
+          "recommendation": "Rebuild image, verify --device flags, rerun parallel matrix on clean containers",
+          "kb_pattern_id": "docker_install_test"
+        },
+        {
+          "line_number": 181,
+          "severity": "HIGH",
+          "message": "2026-06-17T20:38:13.2811474Z ##[error]Process completed with exit code 1.",
+          "recommendation": "Rebuild image, verify --device flags, rerun parallel matrix on clean containers",
+          "kb_pattern_id": "docker_install_test"
+        }
+      ],
+      "report_path": "sample-runs/run-27710372755/job-81996346805/report.json"
+    }
+  ]
+}

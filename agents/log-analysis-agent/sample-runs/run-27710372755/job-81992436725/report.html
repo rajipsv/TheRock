@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>TheRock Log Analysis Report</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; max-width: 960px; line-height: 1.5; }
+    h1 { color: #c41230; }
+    .badge { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 600; }
+    .CRITICAL, .FATAL { background: #fee; color: #900; }
+    .HIGH, .ERROR { background: #ffe8cc; color: #a60; }
+    .MEDIUM { background: #fff3cd; color: #856404; }
+    .LOW { background: #e8f5e9; color: #2e7d32; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; vertical-align: top; }
+    th { background: #f5f5f5; }
+    code, pre { background: #f0f0f0; padding: 0.1rem 0.3rem; font-size: 0.9em; }
+    pre { padding: 1rem; overflow-x: auto; white-space: pre-wrap; }
+    .meta { color: #666; font-size: 0.95em; }
+  </style>
+</head>
+<body>
+  <h1>Log Analysis Report (AGENTS_030)</h1>
+  <p class="meta">
+    <strong>Log:</strong> <code>C:\Users\Rajeswari\.gemini\antigravity\scratch\TheRock\TheRock\agents\log-analysis-agent\sample-runs\run-27710372755\job-81992436725\job-81992436725.log</code><br/>
+    
+    <strong>GitHub run:</strong>
+    <a href="https://github.com/ROCm/TheRock/actions/runs/27710372755">27710372755</a>
+    | <strong>Job:</strong> Windows::release / Test gfx110X-all / Test rocsparse / Test rocsparse (shard 1/1) (gfx110X-all)<br/>
+    <strong>Repo:</strong> ROCm/TheRock | <strong>Branch:</strong> users/geomin12/fix-configure-aws-external<br/>
+    
+    <strong>Mode:</strong> tool_only
+    <br/>
+    <strong>Preset:</strong> TheRock — Multi-Arch CI<br/>
+    <strong>Timestamp:</strong> 2026-06-18T03:14:55.102199
+  </p>
+
+  <h2>Summary</h2>
+  <p>Tool-only qualification pass found 59 highlighted error lines. Stats: path=C:\Users\Rajeswari\.gemini\antigravity\scratch\TheRock\TheRock\agents\log-analysis-agent\sample-runs\run-27710372755\job-81992436725\job-81992436725.log; lines=32324; bytes=1992027; github_error=1; keyword_hits: ERROR=840, EXCEPTION=201, CRITICAL=0, FATAL=1, WARNING=6</p>
+  
+
+  <h2>Stats</h2>
+  <pre>path=C:\Users\Rajeswari\.gemini\antigravity\scratch\TheRock\TheRock\agents\log-analysis-agent\sample-runs\run-27710372755\job-81992436725\job-81992436725.log
+lines=32324
+bytes=1992027
+github_error=1
+keyword_hits: ERROR=840, EXCEPTION=201, CRITICAL=0, FATAL=1, WARNING=6</pre>
+
+  
+  <h2>Errors (50)</h2>
+  <table>
+    <tr><th>Line</th><th>Type</th><th>Severity</th><th>Message</th><th>Category</th><th>Recommendation</th></tr>
+    
+    <tr>
+      <td>1769</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:17:42.3517629Z         ===================          Compoments check [38;2;6;161;60m12[0m Passed, [38;2;184;166;48m0[0m Warning, [38;2;255;61;61m6[0m Fatal Error          ===================</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26537</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:36.4705507Z 1: unknown file: error: SEH exception with code 0xc0000005 thrown in the test body.</code></td>
+      <td>Configuration</td>
+      <td>Rebuild image, verify --device flags, rerun parallel matrix on clean containers</td>
+    </tr>
+    
+    <tr>
+      <td>26551</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:37.4793080Z 1: C:/home/runner/_work/TheRock/TheRock/rocm-libraries/projects/rocsparse/clients/tests/test_bsric0.cpp(39): error: Expected equality of these values:</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26563</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:37.4794527Z 1: // rocSPARSE.error.trace:   { "function": "rocsparse::blas_create_handle",</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26569</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:37.4795605Z 1: //                            "status"  : "memory error",</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26573</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:37.4796384Z 1: // rocSPARSE.error.trace:   { "function": "_rocsparse_handle::_rocsparse_handle",</code></td>
+      <td>Runtime</td>
+      <td>Inspect surrounding context and stack traces; check recent CI changes.</td>
+    </tr>
+    
+    <tr>
+      <td>26579</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:37.4797696Z 1: //                            "status"  : "memory error",</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26581</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:37.4798013Z 1: //                            "msg"     : "rocSPARSE error detected, throwing exception" }</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26583</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:37.4798463Z 1: // rocSPARSE.error.trace:   { "function": "rocsparse::blas_destroy_handle",</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26593</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:37.4800302Z 1: // rocSPARSE.error.trace:   { "function": "_rocsparse_handle::_rocsparse_handle",</code></td>
+      <td>Runtime</td>
+      <td>Inspect surrounding context and stack traces; check recent CI changes.</td>
+    </tr>
+    
+    <tr>
+      <td>26601</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:37.4801560Z 1: //                            "msg"     : "handle error" }</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26603</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:37.4801805Z 1: // rocSPARSE.error.trace:   { "function": "rocsparse_create_handle",</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26609</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:37.4802837Z 1: //                            "status"  : "memory error",</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26621</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:37.4812519Z 1: C:/home/runner/_work/TheRock/TheRock/rocm-libraries/projects/rocsparse/clients/tests/test_bsric0.cpp(39): error: Expected equality of these values:</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26633</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:37.4813786Z 1: // rocSPARSE.error.trace:   { "function": "_rocsparse_handle::_rocsparse_handle",</code></td>
+      <td>Runtime</td>
+      <td>Inspect surrounding context and stack traces; check recent CI changes.</td>
+    </tr>
+    
+    <tr>
+      <td>26639</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:37.4814823Z 1: //                            "status"  : "memory error",</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26641</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:37.4815262Z 1: //                            "msg"     : "prior to hipLaunchKernelGGL, throwing exception due to hip error detected: code '2', name 'hipErrorOutOfMemory', description 'out of memory'" }</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26643</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:37.4815739Z 1: // rocSPARSE.error.trace:   { "function": "rocsparse_create_handle",</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26649</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:37.4816768Z 1: //                            "status"  : "memory error",</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26661</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:38.4829012Z 1: C:/home/runner/_work/TheRock/TheRock/rocm-libraries/projects/rocsparse/clients/tests/test_bsric0.cpp(39): error: Expected equality of these values:</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26673</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:38.4830812Z 1: // rocSPARSE.error.trace:   { "function": "rocsparse::blas_create_handle",</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26679</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:38.4832464Z 1: //                            "status"  : "memory error",</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26683</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:38.4833155Z 1: // rocSPARSE.error.trace:   { "function": "_rocsparse_handle::_rocsparse_handle",</code></td>
+      <td>Runtime</td>
+      <td>Inspect surrounding context and stack traces; check recent CI changes.</td>
+    </tr>
+    
+    <tr>
+      <td>26689</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:38.4834352Z 1: //                            "status"  : "memory error",</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26691</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:38.4834601Z 1: //                            "msg"     : "rocSPARSE error detected, throwing exception" }</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>1769</td>
+      <td>FATAL</td>
+      <td><span class="badge CRITICAL">CRITICAL</span></td>
+      <td><code>2026-06-17T20:17:42.3517629Z         ===================          Compoments check [38;2;6;161;60m12[0m Passed, [38;2;184;166;48m0[0m Warning, [38;2;255;61;61m6[0m Fatal Error          ===================</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>32083</td>
+      <td>GITHUB_ACTIONS</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:20:37.6287213Z ##[error]Process completed with exit code 127.</code></td>
+      <td>Configuration</td>
+      <td>Rebuild image, verify --device flags, rerun parallel matrix on clean containers</td>
+    </tr>
+    
+    <tr>
+      <td>26641</td>
+      <td>HIPERROROUTOFMEMORY</td>
+      <td><span class="badge CRITICAL">CRITICAL</span></td>
+      <td><code>2026-06-17T20:19:37.4815262Z 1: //                            "msg"     : "prior to hipLaunchKernelGGL, throwing exception due to hip error detected: code '2', name 'hipErrorOutOfMemory', description 'out of memory'" }</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26751</td>
+      <td>HIPERROROUTOFMEMORY</td>
+      <td><span class="badge CRITICAL">CRITICAL</span></td>
+      <td><code>2026-06-17T20:19:38.4851735Z 1: //                            "msg"     : "prior to hipLaunchKernelGGL, throwing exception due to hip error detected: code '2', name 'hipErrorOutOfMemory', description 'out of memory'" }</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26865</td>
+      <td>HIPERROROUTOFMEMORY</td>
+      <td><span class="badge CRITICAL">CRITICAL</span></td>
+      <td><code>2026-06-17T20:19:39.4959771Z 1: //                            "msg"     : "prior to hipLaunchKernelGGL, throwing exception due to hip error detected: code '2', name 'hipErrorOutOfMemory', description 'out of memory'" }</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26975</td>
+      <td>HIPERROROUTOFMEMORY</td>
+      <td><span class="badge CRITICAL">CRITICAL</span></td>
+      <td><code>2026-06-17T20:19:40.5093513Z 1: //                            "msg"     : "prior to hipLaunchKernelGGL, throwing exception due to hip error detected: code '2', name 'hipErrorOutOfMemory', description 'out of memory'" }</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>27085</td>
+      <td>HIPERROROUTOFMEMORY</td>
+      <td><span class="badge CRITICAL">CRITICAL</span></td>
+      <td><code>2026-06-17T20:19:41.5181608Z 1: //                            "msg"     : "prior to hipLaunchKernelGGL, throwing exception due to hip error detected: code '2', name 'hipErrorOutOfMemory', description 'out of memory'" }</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>27195</td>
+      <td>HIPERROROUTOFMEMORY</td>
+      <td><span class="badge CRITICAL">CRITICAL</span></td>
+      <td><code>2026-06-17T20:19:42.5287057Z 1: //                            "msg"     : "prior to hipLaunchKernelGGL, throwing exception due to hip error detected: code '2', name 'hipErrorOutOfMemory', description 'out of memory'" }</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>27309</td>
+      <td>HIPERROROUTOFMEMORY</td>
+      <td><span class="badge CRITICAL">CRITICAL</span></td>
+      <td><code>2026-06-17T20:19:43.5393839Z 1: //                            "msg"     : "prior to hipLaunchKernelGGL, throwing exception due to hip error detected: code '2', name 'hipErrorOutOfMemory', description 'out of memory'" }</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>27419</td>
+      <td>HIPERROROUTOFMEMORY</td>
+      <td><span class="badge CRITICAL">CRITICAL</span></td>
+      <td><code>2026-06-17T20:19:44.5531190Z 1: //                            "msg"     : "prior to hipLaunchKernelGGL, throwing exception due to hip error detected: code '2', name 'hipErrorOutOfMemory', description 'out of memory'" }</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>27529</td>
+      <td>HIPERROROUTOFMEMORY</td>
+      <td><span class="badge CRITICAL">CRITICAL</span></td>
+      <td><code>2026-06-17T20:19:45.5613075Z 1: //                            "msg"     : "prior to hipLaunchKernelGGL, throwing exception due to hip error detected: code '2', name 'hipErrorOutOfMemory', description 'out of memory'" }</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>27639</td>
+      <td>HIPERROROUTOFMEMORY</td>
+      <td><span class="badge CRITICAL">CRITICAL</span></td>
+      <td><code>2026-06-17T20:19:46.5725954Z 1: //                            "msg"     : "prior to hipLaunchKernelGGL, throwing exception due to hip error detected: code '2', name 'hipErrorOutOfMemory', description 'out of memory'" }</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>27753</td>
+      <td>HIPERROROUTOFMEMORY</td>
+      <td><span class="badge CRITICAL">CRITICAL</span></td>
+      <td><code>2026-06-17T20:19:47.5838202Z 1: //                            "msg"     : "prior to hipLaunchKernelGGL, throwing exception due to hip error detected: code '2', name 'hipErrorOutOfMemory', description 'out of memory'" }</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>27863</td>
+      <td>HIPERROROUTOFMEMORY</td>
+      <td><span class="badge CRITICAL">CRITICAL</span></td>
+      <td><code>2026-06-17T20:19:48.5947953Z 1: //                            "msg"     : "prior to hipLaunchKernelGGL, throwing exception due to hip error detected: code '2', name 'hipErrorOutOfMemory', description 'out of memory'" }</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26603</td>
+      <td>ROCSPARSE_CREATE_HANDLE</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:37.4801805Z 1: // rocSPARSE.error.trace:   { "function": "rocsparse_create_handle",</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26643</td>
+      <td>ROCSPARSE_CREATE_HANDLE</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:37.4815739Z 1: // rocSPARSE.error.trace:   { "function": "rocsparse_create_handle",</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26713</td>
+      <td>ROCSPARSE_CREATE_HANDLE</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:38.4838604Z 1: // rocSPARSE.error.trace:   { "function": "rocsparse_create_handle",</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26753</td>
+      <td>ROCSPARSE_CREATE_HANDLE</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:38.4852268Z 1: // rocSPARSE.error.trace:   { "function": "rocsparse_create_handle",</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26827</td>
+      <td>ROCSPARSE_CREATE_HANDLE</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:39.4946649Z 1: // rocSPARSE.error.trace:   { "function": "rocsparse_create_handle",</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26867</td>
+      <td>ROCSPARSE_CREATE_HANDLE</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:39.4960254Z 1: // rocSPARSE.error.trace:   { "function": "rocsparse_create_handle",</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26937</td>
+      <td>ROCSPARSE_CREATE_HANDLE</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:40.5065199Z 1: // rocSPARSE.error.trace:   { "function": "rocsparse_create_handle",</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>26977</td>
+      <td>ROCSPARSE_CREATE_HANDLE</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:40.5094522Z 1: // rocSPARSE.error.trace:   { "function": "rocsparse_create_handle",</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>27047</td>
+      <td>ROCSPARSE_CREATE_HANDLE</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:41.5167731Z 1: // rocSPARSE.error.trace:   { "function": "rocsparse_create_handle",</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>27087</td>
+      <td>ROCSPARSE_CREATE_HANDLE</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:41.5182088Z 1: // rocSPARSE.error.trace:   { "function": "rocsparse_create_handle",</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>27157</td>
+      <td>ROCSPARSE_CREATE_HANDLE</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:42.5272886Z 1: // rocSPARSE.error.trace:   { "function": "rocsparse_create_handle",</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+  </table>
+  
+
+  
+  <h2>Knowledge base lookups</h2>
+  
+  <h3>2026-06-17T20:17:42.3517629Z         ===================          Compoments check [38;2;6;161;60m12[0m Passed, [38;2</h3>
+  <pre>Match 1 [keyword] score=13.0 id=rocm_hip_gpu_oom
+  Pattern: HIP GPU out of memory (hipErrorOutOfMemory)
+  Category: Memory | Severity: CRITICAL
+  Causes: GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test
+  Solutions: Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits
+  Similar: CUDA out of memory, HSA_STATUS_ERROR_MEMORY
+
+Match 2 [keyword] score=11.5 id=rocm_hip_error
+  Pattern: ROCm HIP API failure
+  Category: GPU/Driver | Severity: HIGH
+  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device
+  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages
+  Similar: HIP initialization failed</pre>
+  
+  <h3>2026-06-17T20:19:36.4705507Z 1: unknown file: error: SEH exception with code 0xc0000005 thrown in the test body.</h3>
+  <pre>Match 1 [keyword] score=14.5 id=docker_install_test
+  Pattern: Containerized ROCm install test failure
+  Category: Configuration | Severity: MEDIUM
+  Causes: Image drift, missing privileges, stale cache layer
+  Solutions: Rebuild image, verify --device flags, rerun parallel matrix on clean containers
+  Similar: OCI runtime error
+
+Match 2 [keyword] score=13.0 id=rocm_hip_gpu_oom
+  Pattern: HIP GPU out of memory (hipErrorOutOfMemory)
+  Category: Memory | Severity: CRITICAL
+  Causes: GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test
+  Solutions: Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits
+  Similar: CUDA out of memory, HSA_STATUS_ERROR_MEMORY</pre>
+  
+  <h3>2026-06-17T20:19:37.4793080Z 1: C:/home/runner/_work/TheRock/TheRock/rocm-libraries/projects/rocsparse/clients/tests/tes</h3>
+  <pre>Match 1 [keyword] score=11.5 id=rocm_hip_gpu_oom
+  Pattern: HIP GPU out of memory (hipErrorOutOfMemory)
+  Category: Memory | Severity: CRITICAL
+  Causes: GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test
+  Solutions: Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits
+  Similar: CUDA out of memory, HSA_STATUS_ERROR_MEMORY
+
+Match 2 [keyword] score=11.5 id=rocm_hip_error
+  Pattern: ROCm HIP API failure
+  Category: GPU/Driver | Severity: HIGH
+  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device
+  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages
+  Similar: HIP initialization failed</pre>
+  
+  <h3>2026-06-17T20:17:42.3517629Z         ===================          Compoments check [38;2;6;161;60m12[0m Passed, [38;2</h3>
+  <pre>Match 1 [keyword] score=13.0 id=rocm_hip_gpu_oom
+  Pattern: HIP GPU out of memory (hipErrorOutOfMemory)
+  Category: Memory | Severity: CRITICAL
+  Causes: GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test
+  Solutions: Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits
+  Similar: CUDA out of memory, HSA_STATUS_ERROR_MEMORY
+
+Match 2 [keyword] score=11.5 id=rocm_hip_error
+  Pattern: ROCm HIP API failure
+  Category: GPU/Driver | Severity: HIGH
+  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device
+  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages
+  Similar: HIP initialization failed</pre>
+  
+  <h3>2026-06-17T20:20:37.6287213Z ##[error]Process completed with exit code 127.</h3>
+  <pre>Match 1 [keyword] score=19.5 id=docker_install_test
+  Pattern: Containerized ROCm install test failure
+  Category: Configuration | Severity: MEDIUM
+  Causes: Image drift, missing privileges, stale cache layer
+  Solutions: Rebuild image, verify --device flags, rerun parallel matrix on clean containers
+  Similar: OCI runtime error
+
+Match 2 [keyword] score=14.0 id=gha_runner_shutdown_130
+  Pattern: GitHub Actions runner shutdown (exit 130)
+  Category: Configuration | Severity: HIGH
+  Causes: Runner/pod eviction, K8s node drain, resource limits, container runtime failure
+  Solutions: Check cluster events at failure time; review CPU/memory/disk; retry; contact runner admin — not a TheRock compile error
+  Similar: Process completed with exit code 130</pre>
+  
+  
+
+  
+  <h2>Stack traces</h2>
+  <pre>Stack traces (10):
+
+1655: 2026-06-17T20:17:42.3375973Z         traceback:  TheRock on Windows build requires Visual Studio 2022/2019/2017/2015 environment
+1656:
+
+---
+
+1681: 2026-06-17T20:17:42.3378902Z         traceback: Required MSVC compiler not found
+1682:
+
+---
+
+1693: 2026-06-17T20:17:42.3506397Z         traceback: MSVC ATL not found
+1694:
+
+---
+
+1721: 2026-06-17T20:17:42.3509539Z         traceback: Required MSVC Assembler not found
+1722:
+
+---
+
+1733: 2026-06-17T20:17:42.3511097Z         traceback: Missing MSVC required linker compoments lib.exe
+1734:
+
+---
+
+1761: 2026-06-17T20:17:42.3516685Z         traceback: Microsoft Resource Compiler not found in Windows SDK or Windows SDK not installed
+1762:
+
+---
+
+1769: 2026-06-17T20:17:42.3517629Z         ===================          Compoments check [38;2;6;161;60m12[0m Passed, [38;2;184;166;48m0[0m Warning, [38;2;255;61;61m6[0m Fatal Error          ===================
+1770:
+
+---
+
+26537: 2026-06-17T20:19:36.4705507Z 1: unknown file: error: SEH exception with code 0xc0000005 thrown in the test body.
+26538:
+
+---
+
+26539: 2026-06-17T20:19:36.4706096Z 1: Stack trace:
+26540:
+
+---
+
+26551: 2026-06-17T20:19:37.4793080Z 1: C:/home/runner/_work/TheRock/TheRock/rocm-libraries/projects/rocsparse/clients/tests/test_bsric0.cpp(39): error: Expected equality of these values:
+26552:</pre>
+  
+
+  
+  <h2>Preset pattern samples</h2>
+  
+  <h3>Pattern: therock</h3>
+  <pre>Matches for /therock/ (showing up to 10):
+
+   25: 2026-06-17T20:17:06.3913343Z Download action repository 'actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10' (SHA:df4cb1c069e1874edd31b4311f1884172cec0e10)
+   26: 
+>> 27: 2026-06-17T20:17:06.6585185Z Uses: ROCm/TheRock/.github/workflows/test_component.yml@refs/pull/5923/merge (669115c7a973bd7dffee5b0a1a0266ebb846b1e3)
+   28: 
+   29: 2026-06-17T20:17:06.6588388Z ##[group] Inputs
+
+---
+
+   79: 2026-06-17T20:17:06.7169182Z with:
+   80: 
+>> 81: 2026-06-17T20:17:06.7169533Z   repository: ROCm/TheRock
+   82: 
+   83: 2026-06-17T20:17:06.7169908Z   sparse-checkout: build_tools
+
+---
+
+   111: 2026-06-17T20:17:06.7177616Z env:
+   112: 
+>> 113: 2026-06-17T20:17:06.7178015Z   VENV_DIR: B:\runner\_work\TheRock\TheRock/.venv
+   114: 
+   115: 2026-06-17T20:17:06.7178515Z   ARTIFACT_RUN_ID: 27710372755
+
+---
+
+   117: 2026-06-17T20:17:06.7178875Z   OUTPUT_ARTIFACTS_DIR: ./build
+   118: 
+>> 119: 2026-06-17T20:17:06.7179238Z   THEROCK_BIN_DIR: ./build/bin
+   120: 
+   121: 2026-06-17T20:17:06.7179648Z   AMDGPU_FAMILIES: gfx110X-all
+
+---
+
+   131: 2026-06-17T20:17:06.7181549Z ##[endgroup]
+   132: 
+>> 133: 2026-06-17T20:17:06.8119173Z Syncing repository: ROCm/TheRock
+   134: 
+   135: 2026-06-17T20:17:06.8120424Z ##[group]Getting Git version info
+
+---
+
+   135: 2026-06-17T20:17:06.8120424Z ##[group]Getting Git version info
+   136: 
+>> 137: 2026-06-17T20:17:06.8120948Z Working directory is 'B:\runner\_work\TheRock\TheRock\prejob'
+   138: 
+   139: 2026-06-17T20:17:06.8250889Z [command]"C:\Program Files\Git\cmd\git.exe" version
+
+---
+
+   147: 2026-06-17T20:17:06.8607887Z Adding repository directory to the temporary git global config as a safe directory
+   148: 
+>> 149: 2026-06-17T20:17:06.8612988Z [command]"C:\Program Files\Git\cmd\git.exe" config --global --add safe.directory B:\runner\_work\TheRock\TheRock\prejob
+   150: 
+   151: 2026-06-17T20:17:06.8857829Z ##[group]Determining repository object format
+
+---
+
+   155: 2026-06-17T20:17:06.8860070Z ##[group]Initializing the repository
+   156: 
+>> 157: 2026-06-17T20:17:06.8866955Z [command]"C:\Program Files\Git\cmd\git.exe" init B:\runner\_work\TheRock\TheRock\prejob
+   158: 
+   159: 2026-06-17T20:17:06.9199433Z Initialized empty Git repository in B:/runner/_work/TheRock/TheRock/prejob/.git/
+
+---
+
+   157: 2026-06-17T20:17:06.8866955Z [command]"C:\Program Files\Git\cmd\git.exe" init B:\runner\_work\TheRock\TheRock\prejob
+   158: 
+>> 159: 2026-06-17T20:17:06.9199433Z Initialized empty Git repository in B:/runner/_work/TheRock/TheRock/prejob/.git/
+   160: 
+   161: 2026-06-17T20:17:06.9237040Z [command]"C:\Program Files\Git\cmd\git.exe" remote add origin https://github.com/ROCm/TheRock
+
+---
+
+   159: 2026-06-17T20:17:06.9199433Z Initialized empty Git repository in B:/runner/_work/TheRock/TheRock/prejob/.git/
+   160: 
+>> 161: 2026-06-17T20:17:06.9237040Z [command]"C:\Program Files\Git\cmd\git.exe" remote add origin https://github.com/ROCm/TheRock
+   162: 
+   163: 2026-06-17T20:17:06.9512506Z ##[endgroup]</pre>
+  
+  <h3>Pattern: ninja</h3>
+  <pre>Matches for /ninja/ (showing up to 10):
+
+   1003: 2026-06-17T20:17:21.7249652Z wcwidth==0.8.1
+   1004: 
+>> 1005: 2026-06-17T20:17:21.7399154Z ##[group]Run choco install --no-progress -y ninja
+   1006: 
+   1007: 2026-06-17T20:17:21.7399401Z [36;1mchoco install --no-progress -y ninja[0m
+
+---
+
+   1005: 2026-06-17T20:17:21.7399154Z ##[group]Run choco install --no-progress -y ninja
+   1006: 
+>> 1007: 2026-06-17T20:17:21.7399401Z [36;1mchoco install --no-progress -y ninja[0m
+   1008: 
+   1009: 2026-06-17T20:17:21.7419919Z shell: C:\Program Files\Git\usr\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+
+---
+
+   1051: 2026-06-17T20:17:22.5770163Z Installing the following packages:
+   1052: 
+>> 1053: 2026-06-17T20:17:22.5775025Z ninja
+   1054: 
+   1055: 2026-06-17T20:17:22.5779252Z By installing, you accept licenses for the packages.
+
+---
+
+   1055: 2026-06-17T20:17:22.5779252Z By installing, you accept licenses for the packages.
+   1056: 
+>> 1057: 2026-06-17T20:17:22.8699197Z ninja v1.13.2 already installed.
+   1058: 
+   1059: 2026-06-17T20:17:22.8699528Z  Use --force to reinstall, specify a version to install, or try upgrade.
+
+---
+
+   1069: 2026-06-17T20:17:22.8768305Z Warnings:
+   1070: 
+>> 1071: 2026-06-17T20:17:22.8773716Z  - ninja - ninja v1.13.2 already installed.
+   1072: 
+   1073: 2026-06-17T20:17:22.8773998Z  Use --force to reinstall, specify a version to install, or try upgrade.
+
+---
+
+   1639: 2026-06-17T20:17:42.3371840Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mCCache[0m] Found CCache 4.12.3 at C:/ProgramData/chocolatey/bin/ccache.exe
+   1640: 
+>> 1641: 2026-06-17T20:17:42.3372353Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mNinja-Build[0m] Found Ninja-Build 1.13.2 at C:/ProgramData/chocolatey/bin/ninja.exe
+   1642: 
+   1643: 2026-06-17T20:17:42.3373069Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mGCC/gfortran[0m] Found GCC compiler program gfortran 13.2.0 at C:/Strawberry/c/bin/gfortran.exe</pre>
+  
+  <h3>Pattern: cmake</h3>
+  <pre>Matches for /cmake/ (showing up to 10):
+
+   417: 2026-06-17T20:17:11.8518898Z -207ee58595a64b5c4a70df221f1e6e704b807811 base/half
+   418: 
+>> 419: 2026-06-17T20:17:11.8519503Z -10155d7272ea1bf79f6b5a9dbc339657af1aa372 base/rocm-cmake
+   420: 
+   421: 2026-06-17T20:17:11.8519806Z -2abe93d58c833c804914bed3ffcebb3a6a01e237 compiler/amd-llvm
+
+---
+
+   1635: 2026-06-17T20:17:42.3370945Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mGit[0m] Found Git 2.53.0 at C:/Program Files/Git/cmd/git.exe
+   1636: 
+>> 1637: 2026-06-17T20:17:42.3371376Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mCMake[0m] Found CMake 3.31.0 at C:/Program Files/CMake/bin/cmake.exe
+   1638: 
+   1639: 2026-06-17T20:17:42.3371840Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mCCache[0m] Found CCache 4.12.3 at C:/ProgramData/chocolatey/bin/ccache.exe
+
+---
+
+   1673: 2026-06-17T20:17:42.3378409Z         - Windows SDK 10.0.XXXXX
+   1674: 
+>> 1675: 2026-06-17T20:17:42.3378566Z         - CMake for Windows
+   1676: 
+   1677: 2026-06-17T20:17:42.3378721Z         - C++ Address Sanitizer
+
+---
+
+   1713: 2026-06-17T20:17:42.3508979Z         - Windows SDK 10.0.XXXXX
+   1714: 
+>> 1715: 2026-06-17T20:17:42.3509147Z         - CMake for Windows
+   1716: 
+   1717: 2026-06-17T20:17:42.3509319Z         - C++ Address Sanitizer
+
+---
+
+   1755: 2026-06-17T20:17:42.3515850Z             - Windows SDK 10.0.XXXXX
+   1756: 
+>> 1757: 2026-06-17T20:17:42.3516147Z             - CMake for Windows
+   1758: 
+   1759: 2026-06-17T20:17:42.3516387Z             - C++ Address Sanitizer
+
+---
+
+   32229: 2026-06-17T20:20:41.6166150Z       removing compiler/amd-llvm
+   32230: 
+>> 32231: 2026-06-17T20:20:41.6175425Z       removing base/rocm-cmake
+   32232: 
+   32233: 2026-06-17T20:20:41.6184673Z       removing rocm-libraries</pre>
+  
+  <h3>Pattern: gfx</h3>
+  <pre>Matches for /gfx/ (showing up to 10):
+
+   1: ﻿2026-06-17T20:17:06.1570004Z Current runner version: '2.335.1'
+   2: 
+>> 3: 2026-06-17T20:17:06.1575052Z Runner name: 'azure-windows-11-gfx1101-gpu-rocm-runner-13'
+   4: 
+   5: 2026-06-17T20:17:06.1575647Z Runner group name: 'default'
+
+---
+
+   5: 2026-06-17T20:17:06.1575647Z Runner group name: 'default'
+   6: 
+>> 7: 2026-06-17T20:17:06.1576363Z Machine name: 'azw11gfx1101r13'
+   8: 
+   9: 2026-06-17T20:17:06.1578319Z ##[group]GITHUB_TOKEN Permissions
+
+---
+
+   31: 2026-06-17T20:17:06.6588794Z   artifact_run_id:
+   32: 
+>> 33: 2026-06-17T20:17:06.6589158Z   artifact_group: gfx110X-all
+   34: 
+   35: 2026-06-17T20:17:06.6589556Z   amdgpu_families: gfx110X-all
+
+---
+
+   33: 2026-06-17T20:17:06.6589158Z   artifact_group: gfx110X-all
+   34: 
+>> 35: 2026-06-17T20:17:06.6589556Z   amdgpu_families: gfx110X-all
+   36: 
+   37: 2026-06-17T20:17:06.6589945Z   amdgpu_targets: gfx1100,gfx1101,gfx1102,gfx1103
+
+---
+
+   35: 2026-06-17T20:17:06.6589556Z   amdgpu_families: gfx110X-all
+   36: 
+>> 37: 2026-06-17T20:17:06.6589945Z   amdgpu_targets: gfx1100,gfx1101,gfx1102,gfx1103
+   38: 
+   39: 2026-06-17T20:17:06.6590424Z   test_runs_on: windows-gfx110X-gpu-rocm
+
+---
+
+   37: 2026-06-17T20:17:06.6589945Z   amdgpu_targets: gfx1100,gfx1101,gfx1102,gfx1103
+   38: 
+>> 39: 2026-06-17T20:17:06.6590424Z   test_runs_on: windows-gfx110X-gpu-rocm
+   40: 
+   41: 2026-06-17T20:17:06.6591031Z   platform: windows
+
+---
+
+   59:   ],
+   60:   "total_shards": 1,
+>> 61:   "test_runner": "windows-gfx110X-gpu-rocm",
+   62:   "container_options": ""
+   63: }
+
+---
+
+   73: 2026-06-17T20:17:06.6596589Z ##[endgroup]
+   74: 
+>> 75: 2026-06-17T20:17:06.6597190Z Complete job name: Windows::release / Test gfx110X-all / Test rocsparse / Test rocsparse (shard 1/1) (gfx110X-all)
+   76: 
+   77: 2026-06-17T20:17:06.7168189Z ##[group]Run actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+
+---
+
+   119: 2026-06-17T20:17:06.7179238Z   THEROCK_BIN_DIR: ./build/bin
+   120: 
+>> 121: 2026-06-17T20:17:06.7179648Z   AMDGPU_FAMILIES: gfx110X-all
+   122: 
+   123: 2026-06-17T20:17:06.7180029Z   AMDGPU_TARGETS: gfx1100,gfx1101,gfx1102,gfx1103
+
+---
+
+   121: 2026-06-17T20:17:06.7179648Z   AMDGPU_FAMILIES: gfx110X-all
+   122: 
+>> 123: 2026-06-17T20:17:06.7180029Z   AMDGPU_TARGETS: gfx1100,gfx1101,gfx1102,gfx1103
+   124: 
+   125: 2026-06-17T20:17:06.7180470Z   ARTIFACT_GROUP: gfx110X-all</pre>
+  
+  <h3>Pattern: hipErrorOutOfMemory</h3>
+  <pre>Matches for /hipErrorOutOfMemory/ (showing up to 10):
+
+   26639: 2026-06-17T20:19:37.4814823Z 1: //                            "status"  : "memory error",
+   26640: 
+>> 26641: 2026-06-17T20:19:37.4815262Z 1: //                            "msg"     : "prior to hipLaunchKernelGGL, throwing exception due to hip error detected: code '2', name 'hipErrorOutOfMemory', description 'out of memory'" }
+   26642: 
+   26643: 2026-06-17T20:19:37.4815739Z 1: // rocSPARSE.error.trace:   { "function": "rocsparse_create_handle",
+
+---
+
+   26749: 2026-06-17T20:19:38.4851290Z 1: //                            "status"  : "memory error",
+   26750: 
+>> 26751: 2026-06-17T20:19:38.4851735Z 1: //                            "msg"     : "prior to hipLaunchKernelGGL, throwing exception due to hip error detected: code '2', name 'hipErrorOutOfMemory', description 'out of memory'" }
+   26752: 
+   26753: 2026-06-17T20:19:38.4852268Z 1: // rocSPARSE.error.trace:   { "function": "rocsparse_create_handle",
+
+---
+
+   26863: 2026-06-17T20:19:39.4959324Z 1: //                            "status"  : "memory error",
+   26864: 
+>> 26865: 2026-06-17T20:19:39.4959771Z 1: //                            "msg"     : "prior to hipLaunchKernelGGL, throwing exception due to hip error detected: code '2', name 'hipErrorOutOfMemory', description 'out of memory'" }
+   26866: 
+   26867: 2026-06-17T20:19:39.4960254Z 1: // rocSPARSE.error.trace:   { "function": "rocsparse_create_handle",
+
+---
+
+   26973: 2026-06-17T20:19:40.5092599Z 1: //                            "status"  : "memory error",
+   26974: 
+>> 26975: 2026-06-17T20:19:40.5093513Z 1: //                            "msg"     : "prior to hipLaunchKernelGGL, throwing exception due to hip error detected: code '2', name 'hipErrorOutOfMemory', description 'out of memory'" }
+   26976: 
+   26977: 2026-06-17T20:19:40.5094522Z 1: // rocSPARSE.error.trace:   { "function": "rocsparse_create_handle",
+
+---
+
+   27083: 2026-06-17T20:19:41.5181165Z 1: //                            "status"  : "memory error",
+   27084: 
+>> 27085: 2026-06-17T20:19:41.5181608Z 1: //                            "msg"     : "prior to hipLaunchKernelGGL, throwing exception due to hip error detected: code '2', name 'hipErrorOutOfMemory', description 'out of memory'" }
+   27086: 
+   27087: 2026-06-17T20:19:41.5182088Z 1: // rocSPARSE.error.trace:   { "function": "rocsparse_create_handle",
+
+---
+
+   27193: 2026-06-17T20:19:42.5286583Z 1: //                            "status"  : "memory error",
+   27194: 
+>> 27195: 2026-06-17T20:19:42.5287057Z 1: //                            "msg"     : "prior to hipLaunchKernelGGL, throwing exception due to hip error detected: code '2', name 'hipErrorOutOfMemory', description 'out of memory'" }
+   27196: 
+   27197: 2026-06-17T20:19:42.5287542Z 1: // rocSPARSE.error.trace:   { "function": "rocsparse_create_handle",
+
+---
+
+   27307: 2026-06-17T20:19:43.5393386Z 1: //                            "status"  : "memory error",
+   27308: 
+>> 27309: 2026-06-17T20:19:43.5393839Z 1: //                            "msg"     : "prior to hipLaunchKernelGGL, throwing exception due to hip error detected: code '2', name 'hipErrorOutOfMemory', description 'out of memory'" }
+   27310: 
+   27311: 2026-06-17T20:19:43.5394325Z 1: // rocSPARSE.error.trace:   { "function": "rocsparse_create_handle",
+
+---
+
+   27417: 2026-06-17T20:19:44.5530736Z 1: //                            "status"  : "memory error",
+   27418: 
+>> 27419: 2026-06-17T20:19:44.5531190Z 1: //                            "msg"     : "prior to hipLaunchKernelGGL, throwing exception due to hip error detected: code '2', name 'hipErrorOutOfMemory', description 'out of memory'" }
+   27420: 
+   27421: 2026-06-17T20:19:44.5531699Z 1: // rocSPARSE.error.trace:   { "function": "rocsparse_create_handle",
+
+---
+
+   27527: 2026-06-17T20:19:45.5612634Z 1: //                            "status"  : "memory error",
+   27528: 
+>> 27529: 2026-06-17T20:19:45.5613075Z 1: //                            "msg"     : "prior to hipLaunchKernelGGL, throwing exception due to hip error detected: code '2', name 'hipErrorOutOfMemory', description 'out of memory'" }
+   27530: 
+   27531: 2026-06-17T20:19:45.5613546Z 1: // rocSPARSE.error.trace:   { "function": "rocsparse_create_handle",
+
+---
+
+   27637: 2026-06-17T20:19:46.5725508Z 1: //                            "status"  : "memory error",
+   27638: 
+>> 27639: 2026-06-17T20:19:46.5725954Z 1: //                            "msg"     : "prior to hipLaunchKernelGGL, throwing exception due to hip error detected: code '2', name 'hipErrorOutOfMemory', description 'out of memory'" }
+   27640: 
+   27641: 2026-06-17T20:19:46.5726428Z 1: // rocSPARSE.error.trace:   { "function": "rocsparse_create_handle",</pre>
+  
+  <h3>Pattern: rocsparse</h3>
+  <pre>Matches for /rocsparse/ (showing up to 10):
+
+   42: 
+   43: 2026-06-17T20:17:06.6592741Z   component: {
+>> 44:   "job_name": "rocsparse",
+   45:   "fetch_artifact_args": "--blas --tests",
+   46:   "timeout_minutes": 30,
+
+---
+
+   73: 2026-06-17T20:17:06.6596589Z ##[endgroup]
+   74: 
+>> 75: 2026-06-17T20:17:06.6597190Z Complete job name: Windows::release / Test gfx110X-all / Test rocsparse / Test rocsparse (shard 1/1) (gfx110X-all)
+   76: 
+   77: 2026-06-17T20:17:06.7168189Z ##[group]Run actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+
+---
+
+   2025: 2026-06-17T20:17:42.7076157Z   TEST_TYPE: quick
+   2026: 
+>> 2027: 2026-06-17T20:17:42.7076294Z   TEST_COMPONENT: rocsparse
+   2028: 
+   2029: 2026-06-17T20:17:42.7076442Z   ROCM_KPACK_DEBUG: 1
+
+---
+
+   2039: 2026-06-17T20:17:42.7077062Z   STEP_TIMEOUT_MINUTES: 30
+   2040: 
+>> 2041: 2026-06-17T20:17:42.7077240Z   STEP_NAME: Test rocsparse (shard 1/1) (gfx110X-all)
+   2042: 
+   2043: 2026-06-17T20:17:42.7077431Z ##[endgroup]
+
+---
+
+   2043: 2026-06-17T20:17:42.7077431Z ##[endgroup]
+   2044: 
+>> 2045: 2026-06-17T20:17:42.8503769Z INFO:root:++ Exec [B:\runner\_work\TheRock\TheRock]$ ctest -L quick -LE ex_gpu --output-on-failure --parallel 8 --timeout 7200 --test-dir 'build\bin\rocsparse' -V --tests-information 1,,1
+   2046: 
+   2047: 2026-06-17T20:17:42.8618292Z Internal ctest changing into directory: B:/runner/_work/TheRock/TheRock/build/bin/rocsparse
+
+---
+
+   2045: 2026-06-17T20:17:42.8503769Z INFO:root:++ Exec [B:\runner\_work\TheRock\TheRock]$ ctest -L quick -LE ex_gpu --output-on-failure --parallel 8 --timeout 7200 --test-dir 'build\bin\rocsparse' -V --tests-information 1,,1
+   2046: 
+>> 2047: 2026-06-17T20:17:42.8618292Z Internal ctest changing into directory: B:/runner/_work/TheRock/TheRock/build/bin/rocsparse
+   2048: 
+   2049: 2026-06-17T20:17:42.8619035Z UpdateCTestConfiguration  from :B:/runner/_work/TheRock/TheRock/build/bin/rocsparse/DartConfiguration.tcl
+
+---
+
+   2047: 2026-06-17T20:17:42.8618292Z Internal ctest changing into directory: B:/runner/_work/TheRock/TheRock/build/bin/rocsparse
+   2048: 
+>> 2049: 2026-06-17T20:17:42.8619035Z UpdateCTestConfiguration  from :B:/runner/_work/TheRock/TheRock/build/bin/rocsparse/DartConfiguration.tcl
+   2050: 
+   2051: 2026-06-17T20:17:42.8621408Z UpdateCTestConfiguration  from :B:/runner/_work/TheRock/TheRock/build/bin/rocsparse/DartConfiguration.tcl
+
+---
+
+   2049: 2026-06-17T20:17:42.8619035Z UpdateCTestConfiguration  from :B:/runner/_work/TheRock/TheRock/build/bin/rocsparse/DartConfiguration.tcl
+   2050: 
+>> 2051: 2026-06-17T20:17:42.8621408Z UpdateCTestConfiguration  from :B:/runner/_work/TheRock/TheRock/build/bin/rocsparse/DartConfiguration.tcl
+   2052: 
+   2053: 2026-06-17T20:17:42.8621807Z Test project B:/runner/_work/TheRock/TheRock/build/bin/rocsparse
+
+---
+
+   2051: 2026-06-17T20:17:42.8621408Z UpdateCTestConfiguration  from :B:/runner/_work/TheRock/TheRock/build/bin/rocsparse/DartConfiguration.tcl
+   2052: 
+>> 2053: 2026-06-17T20:17:42.8621807Z Test project B:/runner/_work/TheRock/TheRock/build/bin/rocsparse
+   2054: 
+   2055: 2026-06-17T20:17:42.8623440Z Constructing a list of tests
+
+---
+
+   2067: 2026-06-17T20:17:42.8631240Z test 1
+   2068: 
+>> 2069: 2026-06-17T20:17:42.8631891Z     Start 1: rocsparse-test_quick_suite
+   2070: 
+   2071: 2026-06-17T20:17:42.8632521Z</pre>
+  
+  <h3>Pattern: ctest</h3>
+  <pre>Matches for /ctest/ (showing up to 10):
+
+   2043: 2026-06-17T20:17:42.7077431Z ##[endgroup]
+   2044: 
+>> 2045: 2026-06-17T20:17:42.8503769Z INFO:root:++ Exec [B:\runner\_work\TheRock\TheRock]$ ctest -L quick -LE ex_gpu --output-on-failure --parallel 8 --timeout 7200 --test-dir 'build\bin\rocsparse' -V --tests-information 1,,1
+   2046: 
+   2047: 2026-06-17T20:17:42.8618292Z Internal ctest changing into directory: B:/runner/_work/TheRock/TheRock/build/bin/rocsparse
+
+---
+
+   2045: 2026-06-17T20:17:42.8503769Z INFO:root:++ Exec [B:\runner\_work\TheRock\TheRock]$ ctest -L quick -LE ex_gpu --output-on-failure --parallel 8 --timeout 7200 --test-dir 'build\bin\rocsparse' -V --tests-information 1,,1
+   2046: 
+>> 2047: 2026-06-17T20:17:42.8618292Z Internal ctest changing into directory: B:/runner/_work/TheRock/TheRock/build/bin/rocsparse
+   2048: 
+   2049: 2026-06-17T20:17:42.8619035Z UpdateCTestConfiguration  from :B:/runner/_work/TheRock/TheRock/build/bin/rocsparse/DartConfiguration.tcl
+
+---
+
+   2047: 2026-06-17T20:17:42.8618292Z Internal ctest changing into directory: B:/runner/_work/TheRock/TheRock/build/bin/rocsparse
+   2048: 
+>> 2049: 2026-06-17T20:17:42.8619035Z UpdateCTestConfiguration  from :B:/runner/_work/TheRock/TheRock/build/bin/rocsparse/DartConfiguration.tcl
+   2050: 
+   2051: 2026-06-17T20:17:42.8621408Z UpdateCTestConfiguration  from :B:/runner/_work/TheRock/TheRock/build/bin/rocsparse/DartConfiguration.tcl
+
+---
+
+   2049: 2026-06-17T20:17:42.8619035Z UpdateCTestConfiguration  from :B:/runner/_work/TheRock/TheRock/build/bin/rocsparse/DartConfiguration.tcl
+   2050: 
+>> 2051: 2026-06-17T20:17:42.8621408Z UpdateCTestConfiguration  from :B:/runner/_work/TheRock/TheRock/build/bin/rocsparse/DartConfiguration.tcl
+   2052: 
+   2053: 2026-06-17T20:17:42.8621807Z Test project B:/runner/_work/TheRock/TheRock/build/bin/rocsparse
+
+---
+
+   32077: 2026-06-17T20:20:30.2707713Z # No GPU suite found for gfx110X, excluding all ex_gpu tests
+   32078: 
+>> 32079: 2026-06-17T20:20:30.2708177Z # Running: ctest -L quick -LE ex_gpu --output-on-failure --parallel 8 --timeout 7200 --test-dir build\bin\rocsparse -V --tests-information 1,,1
+   32080: 
+   32081: 2026-06-17T20:20:30.2708508Z</pre>
+  
+  <h3>Pattern: FAILED</h3>
+  <pre>Matches for /FAILED/ (showing up to 10):
+
+   827: 2026-06-17T20:17:19.5874689Z Resolved 42 packages in 175ms
+   828: 
+>> 829: 2026-06-17T20:17:19.6249904Z warning: Failed to hardlink files; falling back to full copy. This may lead to degraded performance.
+   830: 
+   831: 2026-06-17T20:17:19.6250497Z          If the cache and target directories are on different filesystems, hardlinking may not be supported.
+
+---
+
+   26543: 2026-06-17T20:19:36.4706544Z 1:
+   26544: 
+>> 26545: 2026-06-17T20:19:36.4715476Z 1: [  FAILED  ] quick/bsric0.precond/f64_c_1_16_column_NT_0b_force_auto_rand_0, where GetParam() = { function: "bsric0", index_type_I: "i32", index_type_J: "i32", a_type: "f64_c", b_type: "f64_c", c_type: "f64_c", x_type: "f64_c", y_type: "f64_c", compute_type: "f64_c", A_row_indextype: "i32", A_col_indextype: "i32", B_row_indextype: "i32", B_col_indextype: "i32", C_row_indextype: "i32", C_col_indextype: "i32", transA: "NT", transB: "NT", baseA: "0b", baseB: "0b", baseC: "0b", baseD: "0b", M: 1, N: 1, K: -1, nnz: -1, block_dim: 16, row_block_dimA: 2, col_block_dimA: 2, row_block_dimB: 2, col_block_dimB: 2, sell_slice_size: 2, dim_x: 1, dim_y: 1, dim_z: 1, ll: -2, l: -1, u: 1, uu: 2, alpha: 1.0, alphai: 0.0, beta: 0.0, betai: 0.0, threshold: 1.0, percentage: 0.0, action: "num", part: "auto", matrix_type: "general", diag: "ND", uplo: "L", storage: "sorted", analysis_policy: "force", solve_policy: "auto", direction: "column", order: "col", orderB: "col", orderC: "col", formatA: "bsr", formatB: "coo", formatC: "coo", itilu0_alg: "async_inplace", sddmm_alg: "default", spmv_alg: "default", spsv_alg: "default", sptrsv_alg: "default", spitsv_alg: "default", spsm_alg: "default", sptrsm_alg: "default", spmm_alg: "default", spgemm_alg: "default", spgeam_alg: "default", sparse_to_dense_alg: "default", dense_to_sparse_alg: "default", gtsv_interleaved_alg: "default", gpsv_interleaved_alg: "default", matrix: "rand", matrix_init_kind: "default", file: "*", algo: 0, numeric_boost: 0, boost_tol: 0.0, boost_val: 1.0, boost_vali: 0.0, tolm: 1.0, rand_gen_min: 0.0, rand_gen_max: 1.0, graph_test: false, skip_reproducibility: false, sparsity_pattern_statistics: false, call_stage_analysis: true, convert_to_int: false, integer_based_manufactured_solution: false, name: "bsric0_math", category: "quick", hardware: "all", skip_hardware: "none", host_memory_gb: 4, device_memory_gb: 4, unit_check: 1, timing: 0, iters: 10, iters_inner: 50, nfreeiter: 20, nmaxiter: 1000, denseld: -1, batch_count: -1, batch_count_A: -1, batch_count_B: -1, batch_count_C: -1, batch_stride: -1, ld_multiplier_B: 2, ld_multiplier_C: 2 }
+   26546: 
+   26547: 2026-06-17T20:19:36.4725682Z 1:  (3453 ms)
+
+---
+
+   26613: 2026-06-17T20:19:37.4803362Z 1:
+   26614: 
+>> 26615: 2026-06-17T20:19:37.4807630Z 1: [  FAILED  ] quick/bsric0.precond/f64_c_1_17_row_NT_0b_force_auto_rand_0, where GetParam() = { function: "bsric0", index_type_I: "i32", index_type_J: "i32", a_type: "f64_c", b_type: "f64_c", c_type: "f64_c", x_type: "f64_c", y_type: "f64_c", compute_type: "f64_c", A_row_indextype: "i32", A_col_indextype: "i32", B_row_indextype: "i32", B_col_indextype: "i32", C_row_indextype: "i32", C_col_indextype: "i32", transA: "NT", transB: "NT", baseA: "0b", baseB: "0b", baseC: "0b", baseD: "0b", M: 1, N: 1, K: -1, nnz: -1, block_dim: 17, row_block_dimA: 2, col_block_dimA: 2, row_block_dimB: 2, col_block_dimB: 2, sell_slice_size: 2, dim_x: 1, dim_y: 1, dim_z: 1, ll: -2, l: -1, u: 1, uu: 2, alpha: 1.0, alphai: 0.0, beta: 0.0, betai: 0.0, threshold: 1.0, percentage: 0.0, action: "num", part: "auto", matrix_type: "general", diag: "ND", uplo: "L", storage: "sorted", analysis_policy: "force", solve_policy: "auto", direction: "row", order: "col", orderB: "col", orderC: "col", formatA: "bsr", formatB: "coo", formatC: "coo", itilu0_alg: "async_inplace", sddmm_alg: "default", spmv_alg: "default", spsv_alg: "default", sptrsv_alg: "default", spitsv_alg: "default", spsm_alg: "default", sptrsm_alg: "default", spmm_alg: "default", spgemm_alg: "default", spgeam_alg: "default", sparse_to_dense_alg: "default", dense_to_sparse_alg: "default", gtsv_interleaved_alg: "default", gpsv_interleaved_alg: "default", matrix: "rand", matrix_init_kind: "default", file: "*", algo: 0, numeric_boost: 0, boost_tol: 0.0, boost_val: 1.0, boost_vali: 0.0, tolm: 1.0, rand_gen_min: 0.0, rand_gen_max: 1.0, graph_test: false, skip_reproducibility: false, sparsity_pattern_statistics: false, call_stage_analysis: true, convert_to_int: false, integer_based_manufactured_solution: false, name: "bsric0_math", category: "quick", hardware: "all", skip_hardware: "none", host_memory_gb: 4, device_memory_gb: 4, unit_check: 1, timing: 0, iters: 10, iters_inner: 50, nfreeiter: 20, nmaxiter: 1000, denseld: -1, batch_count: -1, batch_count_A: -1, batch_count_B: -1, batch_count_C: -1, batch_stride: -1, ld_multiplier_B: 2, ld_multiplier_C: 2 }
+   26616: 
+   26617: 2026-06-17T20:19:37.4811821Z 1:  (1008 ms)
+
+---
+
+   26653: 2026-06-17T20:19:37.4817147Z 1:
+   26654: 
+>> 26655: 2026-06-17T20:19:37.4821151Z 1: [  FAILED  ] quick/bsric0.precond/f64_c_1_17_column_NT_0b_force_auto_rand_0, where GetParam() = { function: "bsric0", index_type_I: "i32", index_type_J: "i32", a_type: "f64_c", b_type: "f64_c", c_type: "f64_c", x_type: "f64_c", y_type: "f64_c", compute_type: "f64_c", A_row_indextype: "i32", A_col_indextype: "i32", B_row_indextype: "i32", B_col_indextype: "i32", C_row_indextype: "i32", C_col_indextype: "i32", transA: "NT", transB: "NT", baseA: "0b", baseB: "0b", baseC: "0b", baseD: "0b", M: 1, N: 1, K: -1, nnz: -1, block_dim: 17, row_block_dimA: 2, col_block_dimA: 2, row_block_dimB: 2, col_block_dimB: 2, sell_slice_size: 2, dim_x: 1, dim_y: 1, dim_z: 1, ll: -2, l: -1, u: 1, uu: 2, alpha: 1.0, alphai: 0.0, beta: 0.0, betai: 0.0, threshold: 1.0, percentage: 0.0, action: "num", part: "auto", matrix_type: "general", diag: "ND", uplo: "L", storage: "sorted", analysis_policy: "force", solve_policy: "auto", direction: "column", order: "col", orderB: "col", orderC: "col", formatA: "bsr", formatB: "coo", formatC: "coo", itilu0_alg: "async_inplace", sddmm_alg: "default", spmv_alg: "default", spsv_alg: "default", sptrsv_alg: "default", spitsv_alg: "default", spsm_alg: "default", sptrsm_alg: "default", spmm_alg: "default", spgemm_alg: "default", spgeam_alg: "default", sparse_to_dense_alg: "default", dense_to_sparse_alg: "default", gtsv_interleaved_alg: "default", gpsv_interleaved_alg: "default", matrix: "rand", matrix_init_kind: "default", file: "*", algo: 0, numeric_boost: 0, boost_tol: 0.0, boost_val: 1.0, boost_vali: 0.0, tolm: 1.0, rand_gen_min: 0.0, rand_gen_max: 1.0, graph_test: false, skip_reproducibility: false, sparsity_pattern_statistics: false, call_stage_analysis: true, convert_to_int: false, integer_based_manufactured_solution: false, name: "bsric0_math", category: "quick", hardware: "all", skip_hardware: "none", host_memory_gb: 4, device_memory_gb: 4, unit_check: 1, timing: 0, iters: 10, iters_inner: 50, nfreeiter: 20, nmaxiter: 1000, denseld: -1, batch_count: -1, batch_count_A: -1, batch_count_B: -1, batch_count_C: -1, batch_stride: -1, ld_multiplier_B: 2, ld_multiplier_C: 2 }
+   26656: 
+   26657: 2026-06-17T20:19:37.4825424Z 1:  (0 ms)
+
+---
+
+   26723: 2026-06-17T20:19:38.4840016Z 1:
+   26724: 
+>> 26725: 2026-06-17T20:19:38.4844074Z 1: [  FAILED  ] quick/bsric0.precond/f64_c_1_32_row_NT_0b_force_auto_rand_0, where GetParam() = { function: "bsric0", index_type_I: "i32", index_type_J: "i32", a_type: "f64_c", b_type: "f64_c", c_type: "f64_c", x_type: "f64_c", y_type: "f64_c", compute_type: "f64_c", A_row_indextype: "i32", A_col_indextype: "i32", B_row_indextype: "i32", B_col_indextype: "i32", C_row_indextype: "i32", C_col_indextype: "i32", transA: "NT", transB: "NT", baseA: "0b", baseB: "0b", baseC: "0b", baseD: "0b", M: 1, N: 1, K: -1, nnz: -1, block_dim: 32, row_block_dimA: 2, col_block_dimA: 2, row_block_dimB: 2, col_block_dimB: 2, sell_slice_size: 2, dim_x: 1, dim_y: 1, dim_z: 1, ll: -2, l: -1, u: 1, uu: 2, alpha: 1.0, alphai: 0.0, beta: 0.0, betai: 0.0, threshold: 1.0, percentage: 0.0, action: "num", part: "auto", matrix_type: "general", diag: "ND", uplo: "L", storage: "sorted", analysis_policy: "force", solve_policy: "auto", direction: "row", order: "col", orderB: "col", orderC: "col", formatA: "bsr", formatB: "coo", formatC: "coo", itilu0_alg: "async_inplace", sddmm_alg: "default", spmv_alg: "default", spsv_alg: "default", sptrsv_alg: "default", spitsv_alg: "default", spsm_alg: "default", sptrsm_alg: "default", spmm_alg: "default", spgemm_alg: "default", spgeam_alg: "default", sparse_to_dense_alg: "default", dense_to_sparse_alg: "default", gtsv_interleaved_alg: "default", gpsv_interleaved_alg: "default", matrix: "rand", matrix_init_kind: "default", file: "*", algo: 0, numeric_boost: 0, boost_tol: 0.0, boost_val: 1.0, boost_vali: 0.0, tolm: 1.0, rand_gen_min: 0.0, rand_gen_max: 1.0, graph_test: false, skip_reproducibility: false, sparsity_pattern_statistics: false, call_stage_analysis: true, convert_to_int: false, integer_based_manufactured_solution: false, name: "bsric0_math", category: "quick", hardware: "all", skip_hardware: "none", host_memory_gb: 4, device_memory_gb: 4, unit_check: 1, timing: 0, iters: 10, iters_inner: 50, nfreeiter: 20, nmaxiter: 1000, denseld: -1, batch_count: -1, batch_count_A: -1, batch_count_B: -1, batch_count_C: -1, batch_stride: -1, ld_multiplier_B: 2, ld_multiplier_C: 2 }
+   26726: 
+   26727: 2026-06-17T20:19:38.4848331Z 1:  (1003 ms)
+
+---
+
+   26763: 2026-06-17T20:19:38.4853718Z 1:
+   26764: 
+>> 26765: 2026-06-17T20:19:38.4857771Z 1: [  FAILED  ] quick/bsric0.precond/f64_c_1_32_column_NT_0b_force_auto_rand_0, where GetParam() = { function: "bsric0", index_type_I: "i32", index_type_J: "i32", a_type: "f64_c", b_type: "f64_c", c_type: "f64_c", x_type: "f64_c", y_type: "f64_c", compute_type: "f64_c", A_row_indextype: "i32", A_col_indextype: "i32", B_row_indextype: "i32", B_col_indextype: "i32", C_row_indextype: "i32", C_col_indextype: "i32", transA: "NT", transB: "NT", baseA: "0b", baseB: "0b", baseC: "0b", baseD: "0b", M: 1, N: 1, K: -1, nnz: -1, block_dim: 32, row_block_dimA: 2, col_block_dimA: 2, row_block_dimB: 2, col_block_dimB: 2, sell_slice_size: 2, dim_x: 1, dim_y: 1, dim_z: 1, ll: -2, l: -1, u: 1, uu: 2, alpha: 1.0, alphai: 0.0, beta: 0.0, betai: 0.0, threshold: 1.0, percentage: 0.0, action: "num", part: "auto", matrix_type: "general", diag: "ND", uplo: "L", storage: "sorted", analysis_policy: "force", solve_policy: "auto", direction: "column", order: "col", orderB: "col", orderC: "col", formatA: "bsr", formatB: "coo", formatC: "coo", itilu0_alg: "async_inplace", sddmm_alg: "default", spmv_alg: "default", spsv_alg: "default", sptrsv_alg: "default", spitsv_alg: "default", spsm_alg: "default", sptrsm_alg: "default", spmm_alg: "default", spgemm_alg: "default", spgeam_alg: "default", sparse_to_dense_alg: "default", dense_to_sparse_alg: "default", gtsv_interleaved_alg: "default", gpsv_interleaved_alg: "default", matrix: "rand", matrix_init_kind: "default", file: "*", algo: 0, numeric_boost: 0, boost_tol: 0.0, boost_val: 1.0, boost_vali: 0.0, tolm: 1.0, rand_gen_min: 0.0, rand_gen_max: 1.0, graph_test: false, skip_reproducibility: false, sparsity_pattern_statistics: false, call_stage_analysis: true, convert_to_int: false, integer_based_manufactured_solution: false, name: "bsric0_math", category: "quick", hardware: "all", skip_hardware: "none", host_memory_gb: 4, device_memory_gb: 4, unit_check: 1, timing: 0, iters: 10, iters_inner: 50, nfreeiter: 20, nmaxiter: 1000, denseld: -1, batch_count: -1, batch_count_A: -1, batch_count_B: -1, batch_count_C: -1, batch_stride: -1, ld_multiplier_B: 2, ld_multiplier_C: 2 }
+   26766: 
+   26767: 2026-06-17T20:19:38.4861816Z 1:  (0 ms)
+
+---
+
+   26837: 2026-06-17T20:19:39.4948100Z 1:
+   26838: 
+>> 26839: 2026-06-17T20:19:39.4952262Z 1: [  FAILED  ] quick/bsric0.precond/f64_c_1_33_row_NT_0b_force_auto_rand_0, where GetParam() = { functi
+... [truncated, 8899 more chars]</pre>
+  
+  
+
+  
+  <h2>GitHub Actions errors</h2>
+  <pre>Matches for /##\[error\]/ (showing up to 15):
+
+   32081: 2026-06-17T20:20:30.2708508Z
+   32082: 
+>> 32083: 2026-06-17T20:20:37.6287213Z ##[error]Process completed with exit code 127.
+   32084: 
+   32085: 2026-06-17T20:20:39.8809604Z ##[group]Run python ./build_tools/github_actions/reproduce_test_failure.py \</pre>
+  
+</body>
+</html>

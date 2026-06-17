@@ -67,6 +67,12 @@ class GithubLogsTest(unittest.TestCase):
         text = _extract_log_from_bytes(buf.getvalue())
         self.assertIn("ERROR build failed", text)
 
+    def test_extract_plain_text_not_truncated_at_500k(self):
+        payload = b"X" * 600_000 + b"\nhipErrorOutOfMemory tail marker\n"
+        text = _extract_log_from_bytes(payload)
+        self.assertIn("hipErrorOutOfMemory tail marker", text)
+        self.assertGreater(len(text), 500_000)
+
     def test_select_failed_jobs(self):
         jobs = [
             WorkflowJob(id=1, name="ok", conclusion="success"),

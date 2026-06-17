@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>TheRock Log Analysis Report</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; max-width: 960px; line-height: 1.5; }
+    h1 { color: #c41230; }
+    .badge { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 600; }
+    .CRITICAL, .FATAL { background: #fee; color: #900; }
+    .HIGH, .ERROR { background: #ffe8cc; color: #a60; }
+    .MEDIUM { background: #fff3cd; color: #856404; }
+    .LOW { background: #e8f5e9; color: #2e7d32; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; vertical-align: top; }
+    th { background: #f5f5f5; }
+    code, pre { background: #f0f0f0; padding: 0.1rem 0.3rem; font-size: 0.9em; }
+    pre { padding: 1rem; overflow-x: auto; white-space: pre-wrap; }
+    .meta { color: #666; font-size: 0.95em; }
+  </style>
+</head>
+<body>
+  <h1>Log Analysis Report (AGENTS_030)</h1>
+  <p class="meta">
+    <strong>Log:</strong> <code>C:\Users\Rajeswari\.gemini\antigravity\scratch\TheRock\TheRock\agents\log-analysis-agent\sample-runs\run-27710372755\job-81992436901\job-81992436901.log</code><br/>
+    
+    <strong>GitHub run:</strong>
+    <a href="https://github.com/ROCm/TheRock/actions/runs/27710372755">27710372755</a>
+    | <strong>Job:</strong> Windows::release / Test gfx110X-all / Test hipsparse / Test hipsparse (shard 1/1) (gfx110X-all)<br/>
+    <strong>Repo:</strong> ROCm/TheRock | <strong>Branch:</strong> users/geomin12/fix-configure-aws-external<br/>
+    
+    <strong>Mode:</strong> tool_only
+    <br/>
+    <strong>Preset:</strong> TheRock — Multi-Arch CI<br/>
+    <strong>Timestamp:</strong> 2026-06-18T03:15:06.000427
+  </p>
+
+  <h2>Summary</h2>
+  <p>Tool-only qualification pass found 11 highlighted error lines. Stats: path=C:\Users\Rajeswari\.gemini\antigravity\scratch\TheRock\TheRock\agents\log-analysis-agent\sample-runs\run-27710372755\job-81992436901\job-81992436901.log; lines=112796; bytes=6370190; github_error=1; keyword_hits: ERROR=7, EXCEPTION=1, CRITICAL=0, FATAL=1, WARNING=4</p>
+  
+
+  <h2>Stats</h2>
+  <pre>path=C:\Users\Rajeswari\.gemini\antigravity\scratch\TheRock\TheRock\agents\log-analysis-agent\sample-runs\run-27710372755\job-81992436901\job-81992436901.log
+lines=112796
+bytes=6370190
+github_error=1
+keyword_hits: ERROR=7, EXCEPTION=1, CRITICAL=0, FATAL=1, WARNING=4</pre>
+
+  
+  <h2>Errors (11)</h2>
+  <table>
+    <tr><th>Line</th><th>Type</th><th>Severity</th><th>Message</th><th>Category</th><th>Recommendation</th></tr>
+    
+    <tr>
+      <td>1769</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:17:42.6506429Z         ===================          Compoments check [38;2;6;161;60m12[0m Passed, [38;2;184;166;48m0[0m Warning, [38;2;255;61;61m6[0m Fatal Error          ===================</code></td>
+      <td>API</td>
+      <td>Throttle clients, exponential backoff, cache, upgrade plan</td>
+    </tr>
+    
+    <tr>
+      <td>92545</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:18:59.7142035Z 1: C:/home/runner/_work/TheRock/TheRock/rocm-libraries/projects/hipsparse/clients/common/arg_check.cpp(156): error: Expected equality of these values:</code></td>
+      <td>Runtime</td>
+      <td>Match torch+ROCm versions, reduce batch size, rocm-smi memory check</td>
+    </tr>
+    
+    <tr>
+      <td>92559</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:18:59.7146799Z 1: C:/home/runner/_work/TheRock/TheRock/rocm-libraries/projects/hipsparse/clients/include\testing_csr2csr_compress.hpp(368): error: Expected equality of these values:</code></td>
+      <td>Runtime</td>
+      <td>Match torch+ROCm versions, reduce batch size, rocm-smi memory check</td>
+    </tr>
+    
+    <tr>
+      <td>112473</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:10.5391804Z C:/home/runner/_work/TheRock/TheRock/rocm-libraries/projects/hipsparse/clients/common/arg_check.cpp(156): error: Expected equality of these values:</code></td>
+      <td>Runtime</td>
+      <td>Match torch+ROCm versions, reduce batch size, rocm-smi memory check</td>
+    </tr>
+    
+    <tr>
+      <td>112487</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:10.5392885Z C:/home/runner/_work/TheRock/TheRock/rocm-libraries/projects/hipsparse/clients/include\testing_csr2csr_compress.hpp(368): error: Expected equality of these values:</code></td>
+      <td>Runtime</td>
+      <td>Match torch+ROCm versions, reduce batch size, rocm-smi memory check</td>
+    </tr>
+    
+    <tr>
+      <td>112555</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:10.5416316Z ##[error]Process completed with exit code 8.</code></td>
+      <td>Configuration</td>
+      <td>Rebuild image, verify --device flags, rerun parallel matrix on clean containers</td>
+    </tr>
+    
+    <tr>
+      <td>1769</td>
+      <td>FATAL</td>
+      <td><span class="badge CRITICAL">CRITICAL</span></td>
+      <td><code>2026-06-17T20:17:42.6506429Z         ===================          Compoments check [38;2;6;161;60m12[0m Passed, [38;2;184;166;48m0[0m Warning, [38;2;255;61;61m6[0m Fatal Error          ===================</code></td>
+      <td>API</td>
+      <td>Throttle clients, exponential backoff, cache, upgrade plan</td>
+    </tr>
+    
+    <tr>
+      <td>112555</td>
+      <td>GITHUB_ACTIONS</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:10.5416316Z ##[error]Process completed with exit code 8.</code></td>
+      <td>Configuration</td>
+      <td>Rebuild image, verify --device flags, rerun parallel matrix on clean containers</td>
+    </tr>
+    
+    <tr>
+      <td>112549</td>
+      <td>NO_GPU_SUITE</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:10.5395338Z # No GPU suite found for gfx110X, excluding all ex_gpu tests</code></td>
+      <td>Runtime</td>
+      <td>Match torch+ROCm versions, reduce batch size, rocm-smi memory check</td>
+    </tr>
+    
+    <tr>
+      <td>112507</td>
+      <td>CTEST_FAILED</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:10.5393621Z 50% tests passed, 1 tests failed out of 2</code></td>
+      <td>Database</td>
+      <td>Check connectivity, firewall, restart DB, increase pool size</td>
+    </tr>
+    
+    <tr>
+      <td>112527</td>
+      <td>CTEST_FAILED</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:19:10.5394310Z The following tests FAILED:</code></td>
+      <td>Database</td>
+      <td>Check connectivity, firewall, restart DB, increase pool size</td>
+    </tr>
+    
+  </table>
+  
+
+  
+  <h2>Knowledge base lookups</h2>
+  
+  <h3>2026-06-17T20:17:42.6506429Z         ===================          Compoments check [38;2;6;161;60m12[0m Passed, [38;2</h3>
+  <pre>Match 1 [keyword] score=15.0 id=rate_limit
+  Pattern: API rate limit approaching or exceeded
+  Category: API | Severity: MEDIUM
+  Causes: Traffic spike, missing backoff, low API tier
+  Solutions: Throttle clients, exponential backoff, cache, upgrade plan
+  Similar: Quota exceeded
+
+Match 2 [keyword] score=13.0 id=rocm_hip_gpu_oom
+  Pattern: HIP GPU out of memory (hipErrorOutOfMemory)
+  Category: Memory | Severity: CRITICAL
+  Causes: GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test
+  Solutions: Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits
+  Similar: CUDA out of memory, HSA_STATUS_ERROR_MEMORY</pre>
+  
+  <h3>2026-06-17T20:18:59.7142035Z 1: C:/home/runner/_work/TheRock/TheRock/rocm-libraries/projects/hipsparse/clients/common/ar</h3>
+  <pre>Match 1 [keyword] score=21.5 id=pytorch_cuda_rocm
+  Pattern: PyTorch / training framework device error on ROCm
+  Category: Runtime | Severity: HIGH
+  Causes: Framework build mismatch, wrong torch-rocm wheel, OOM on GPU
+  Solutions: Match torch+ROCm versions, reduce batch size, rocm-smi memory check
+  Similar: HIP out of memory
+
+Match 2 [keyword] score=11.5 id=rocm_hip_gpu_oom
+  Pattern: HIP GPU out of memory (hipErrorOutOfMemory)
+  Category: Memory | Severity: CRITICAL
+  Causes: GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test
+  Solutions: Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits
+  Similar: CUDA out of memory, HSA_STATUS_ERROR_MEMORY</pre>
+  
+  <h3>2026-06-17T20:18:59.7146799Z 1: C:/home/runner/_work/TheRock/TheRock/rocm-libraries/projects/hipsparse/clients/include\t</h3>
+  <pre>Match 1 [keyword] score=21.5 id=pytorch_cuda_rocm
+  Pattern: PyTorch / training framework device error on ROCm
+  Category: Runtime | Severity: HIGH
+  Causes: Framework build mismatch, wrong torch-rocm wheel, OOM on GPU
+  Solutions: Match torch+ROCm versions, reduce batch size, rocm-smi memory check
+  Similar: HIP out of memory
+
+Match 2 [keyword] score=11.5 id=rocm_hip_gpu_oom
+  Pattern: HIP GPU out of memory (hipErrorOutOfMemory)
+  Category: Memory | Severity: CRITICAL
+  Causes: GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test
+  Solutions: Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits
+  Similar: CUDA out of memory, HSA_STATUS_ERROR_MEMORY</pre>
+  
+  <h3>2026-06-17T20:17:42.6506429Z         ===================          Compoments check [38;2;6;161;60m12[0m Passed, [38;2</h3>
+  <pre>Match 1 [keyword] score=15.0 id=rate_limit
+  Pattern: API rate limit approaching or exceeded
+  Category: API | Severity: MEDIUM
+  Causes: Traffic spike, missing backoff, low API tier
+  Solutions: Throttle clients, exponential backoff, cache, upgrade plan
+  Similar: Quota exceeded
+
+Match 2 [keyword] score=13.0 id=rocm_hip_gpu_oom
+  Pattern: HIP GPU out of memory (hipErrorOutOfMemory)
+  Category: Memory | Severity: CRITICAL
+  Causes: GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test
+  Solutions: Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits
+  Similar: CUDA out of memory, HSA_STATUS_ERROR_MEMORY</pre>
+  
+  <h3>2026-06-17T20:19:10.5416316Z ##[error]Process completed with exit code 8.</h3>
+  <pre>Match 1 [keyword] score=19.5 id=docker_install_test
+  Pattern: Containerized ROCm install test failure
+  Category: Configuration | Severity: MEDIUM
+  Causes: Image drift, missing privileges, stale cache layer
+  Solutions: Rebuild image, verify --device flags, rerun parallel matrix on clean containers
+  Similar: OCI runtime error
+
+Match 2 [keyword] score=14.0 id=gha_runner_shutdown_130
+  Pattern: GitHub Actions runner shutdown (exit 130)
+  Category: Configuration | Severity: HIGH
+  Causes: Runner/pod eviction, K8s node drain, resource limits, container runtime failure
+  Solutions: Check cluster events at failure time; review CPU/memory/disk; retry; contact runner admin — not a TheRock compile error
+  Similar: Process completed with exit code 130</pre>
+  
+  
+
+  
+  <h2>Stack traces</h2>
+  <pre>Stack traces (10):
+
+1655: 2026-06-17T20:17:42.6374020Z         traceback:  TheRock on Windows build requires Visual Studio 2022/2019/2017/2015 environment
+1656:
+
+---
+
+1681: 2026-06-17T20:17:42.6377162Z         traceback: Required MSVC compiler not found
+1682:
+
+---
+
+1693: 2026-06-17T20:17:42.6496188Z         traceback: MSVC ATL not found
+1694:
+
+---
+
+1721: 2026-06-17T20:17:42.6499097Z         traceback: Required MSVC Assembler not found
+1722:
+
+---
+
+1733: 2026-06-17T20:17:42.6500648Z         traceback: Missing MSVC required linker compoments lib.exe
+1734:
+
+---
+
+1761: 2026-06-17T20:17:42.6505492Z         traceback: Microsoft Resource Compiler not found in Windows SDK or Windows SDK not installed
+1762:
+
+---
+
+1769: 2026-06-17T20:17:42.6506429Z         ===================          Compoments check [38;2;6;161;60m12[0m Passed, [38;2;184;166;48m0[0m Warning, [38;2;255;61;61m6[0m Fatal Error          ===================
+1770:
+
+---
+
+92545: 2026-06-17T20:18:59.7142035Z 1: C:/home/runner/_work/TheRock/TheRock/rocm-libraries/projects/hipsparse/clients/common/arg_check.cpp(156): error: Expected equality of these values:
+92546:
+
+---
+
+92559: 2026-06-17T20:18:59.7146799Z 1: C:/home/runner/_work/TheRock/TheRock/rocm-libraries/projects/hipsparse/clients/include\testing_csr2csr_compress.hpp(368): error: Expected equality of these values:
+92560:
+
+---
+
+92577: 2026-06-17T20:19:10.3336028Z ***Exception:  87.17 sec
+92578:</pre>
+  
+
+  
+  <h2>Preset pattern samples</h2>
+  
+  <h3>Pattern: therock</h3>
+  <pre>Matches for /therock/ (showing up to 10):
+
+   25: 2026-06-17T20:17:06.4598764Z Download action repository 'actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10' (SHA:df4cb1c069e1874edd31b4311f1884172cec0e10)
+   26: 
+>> 27: 2026-06-17T20:17:06.7154061Z Uses: ROCm/TheRock/.github/workflows/test_component.yml@refs/pull/5923/merge (669115c7a973bd7dffee5b0a1a0266ebb846b1e3)
+   28: 
+   29: 2026-06-17T20:17:06.7157254Z ##[group] Inputs
+
+---
+
+   79: 2026-06-17T20:17:06.7734442Z with:
+   80: 
+>> 81: 2026-06-17T20:17:06.7734707Z   repository: ROCm/TheRock
+   82: 
+   83: 2026-06-17T20:17:06.7735015Z   sparse-checkout: build_tools
+
+---
+
+   111: 2026-06-17T20:17:06.7742176Z env:
+   112: 
+>> 113: 2026-06-17T20:17:06.7742524Z   VENV_DIR: B:\runner\_work\TheRock\TheRock/.venv
+   114: 
+   115: 2026-06-17T20:17:06.7742935Z   ARTIFACT_RUN_ID: 27710372755
+
+---
+
+   117: 2026-06-17T20:17:06.7743246Z   OUTPUT_ARTIFACTS_DIR: ./build
+   118: 
+>> 119: 2026-06-17T20:17:06.7743555Z   THEROCK_BIN_DIR: ./build/bin
+   120: 
+   121: 2026-06-17T20:17:06.7743862Z   AMDGPU_FAMILIES: gfx110X-all
+
+---
+
+   131: 2026-06-17T20:17:06.7745442Z ##[endgroup]
+   132: 
+>> 133: 2026-06-17T20:17:06.8689061Z Syncing repository: ROCm/TheRock
+   134: 
+   135: 2026-06-17T20:17:06.8690367Z ##[group]Getting Git version info
+
+---
+
+   135: 2026-06-17T20:17:06.8690367Z ##[group]Getting Git version info
+   136: 
+>> 137: 2026-06-17T20:17:06.8690841Z Working directory is 'B:\runner\_work\TheRock\TheRock\prejob'
+   138: 
+   139: 2026-06-17T20:17:06.8833106Z [command]"C:\Program Files\Git\cmd\git.exe" version
+
+---
+
+   147: 2026-06-17T20:17:06.9111387Z Adding repository directory to the temporary git global config as a safe directory
+   148: 
+>> 149: 2026-06-17T20:17:06.9116370Z [command]"C:\Program Files\Git\cmd\git.exe" config --global --add safe.directory B:\runner\_work\TheRock\TheRock\prejob
+   150: 
+   151: 2026-06-17T20:17:06.9360202Z ##[group]Determining repository object format
+
+---
+
+   155: 2026-06-17T20:17:06.9362352Z ##[group]Initializing the repository
+   156: 
+>> 157: 2026-06-17T20:17:06.9367521Z [command]"C:\Program Files\Git\cmd\git.exe" init B:\runner\_work\TheRock\TheRock\prejob
+   158: 
+   159: 2026-06-17T20:17:06.9656227Z Initialized empty Git repository in B:/runner/_work/TheRock/TheRock/prejob/.git/
+
+---
+
+   157: 2026-06-17T20:17:06.9367521Z [command]"C:\Program Files\Git\cmd\git.exe" init B:\runner\_work\TheRock\TheRock\prejob
+   158: 
+>> 159: 2026-06-17T20:17:06.9656227Z Initialized empty Git repository in B:/runner/_work/TheRock/TheRock/prejob/.git/
+   160: 
+   161: 2026-06-17T20:17:06.9693171Z [command]"C:\Program Files\Git\cmd\git.exe" remote add origin https://github.com/ROCm/TheRock
+
+---
+
+   159: 2026-06-17T20:17:06.9656227Z Initialized empty Git repository in B:/runner/_work/TheRock/TheRock/prejob/.git/
+   160: 
+>> 161: 2026-06-17T20:17:06.9693171Z [command]"C:\Program Files\Git\cmd\git.exe" remote add origin https://github.com/ROCm/TheRock
+   162: 
+   163: 2026-06-17T20:17:06.9968990Z ##[endgroup]</pre>
+  
+  <h3>Pattern: ninja</h3>
+  <pre>Matches for /ninja/ (showing up to 10):
+
+   1003: 2026-06-17T20:17:20.2065817Z wcwidth==0.8.1
+   1004: 
+>> 1005: 2026-06-17T20:17:20.2201436Z ##[group]Run choco install --no-progress -y ninja
+   1006: 
+   1007: 2026-06-17T20:17:20.2201685Z [36;1mchoco install --no-progress -y ninja[0m
+
+---
+
+   1005: 2026-06-17T20:17:20.2201436Z ##[group]Run choco install --no-progress -y ninja
+   1006: 
+>> 1007: 2026-06-17T20:17:20.2201685Z [36;1mchoco install --no-progress -y ninja[0m
+   1008: 
+   1009: 2026-06-17T20:17:20.2221794Z shell: C:\Program Files\Git\usr\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+
+---
+
+   1051: 2026-06-17T20:17:21.0237292Z Installing the following packages:
+   1052: 
+>> 1053: 2026-06-17T20:17:21.0241970Z ninja
+   1054: 
+   1055: 2026-06-17T20:17:21.0246835Z By installing, you accept licenses for the packages.
+
+---
+
+   1055: 2026-06-17T20:17:21.0246835Z By installing, you accept licenses for the packages.
+   1056: 
+>> 1057: 2026-06-17T20:17:21.3207153Z ninja v1.13.2 already installed.
+   1058: 
+   1059: 2026-06-17T20:17:21.3207499Z  Use --force to reinstall, specify a version to install, or try upgrade.
+
+---
+
+   1069: 2026-06-17T20:17:21.3278541Z Warnings:
+   1070: 
+>> 1071: 2026-06-17T20:17:21.3283747Z  - ninja - ninja v1.13.2 already installed.
+   1072: 
+   1073: 2026-06-17T20:17:21.3284049Z  Use --force to reinstall, specify a version to install, or try upgrade.
+
+---
+
+   1639: 2026-06-17T20:17:42.6369721Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mCCache[0m] Found CCache 4.12.3 at C:/ProgramData/chocolatey/bin/ccache.exe
+   1640: 
+>> 1641: 2026-06-17T20:17:42.6370278Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mNinja-Build[0m] Found Ninja-Build 1.13.2 at C:/ProgramData/chocolatey/bin/ninja.exe
+   1642: 
+   1643: 2026-06-17T20:17:42.6370882Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mGCC/gfortran[0m] Found GCC compiler program gfortran 13.2.0 at C:/Strawberry/c/bin/gfortran.exe</pre>
+  
+  <h3>Pattern: cmake</h3>
+  <pre>Matches for /cmake/ (showing up to 10):
+
+   417: 2026-06-17T20:17:12.0362947Z -207ee58595a64b5c4a70df221f1e6e704b807811 base/half
+   418: 
+>> 419: 2026-06-17T20:17:12.0363713Z -10155d7272ea1bf79f6b5a9dbc339657af1aa372 base/rocm-cmake
+   420: 
+   421: 2026-06-17T20:17:12.0364133Z -2abe93d58c833c804914bed3ffcebb3a6a01e237 compiler/amd-llvm
+
+---
+
+   1635: 2026-06-17T20:17:42.6368757Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mGit[0m] Found Git 2.53.0 at C:/Program Files/Git/cmd/git.exe
+   1636: 
+>> 1637: 2026-06-17T20:17:42.6369214Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mCMake[0m] Found CMake 3.31.0 at C:/Program Files/CMake/bin/cmake.exe
+   1638: 
+   1639: 2026-06-17T20:17:42.6369721Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mCCache[0m] Found CCache 4.12.3 at C:/ProgramData/chocolatey/bin/ccache.exe
+
+---
+
+   1673: 2026-06-17T20:17:42.6376675Z         - Windows SDK 10.0.XXXXX
+   1674: 
+>> 1675: 2026-06-17T20:17:42.6376830Z         - CMake for Windows
+   1676: 
+   1677: 2026-06-17T20:17:42.6376985Z         - C++ Address Sanitizer
+
+---
+
+   1713: 2026-06-17T20:17:42.6498602Z         - Windows SDK 10.0.XXXXX
+   1714: 
+>> 1715: 2026-06-17T20:17:42.6498757Z         - CMake for Windows
+   1716: 
+   1717: 2026-06-17T20:17:42.6498914Z         - C++ Address Sanitizer
+
+---
+
+   1755: 2026-06-17T20:17:42.6504895Z             - Windows SDK 10.0.XXXXX
+   1756: 
+>> 1757: 2026-06-17T20:17:42.6505059Z             - CMake for Windows
+   1758: 
+   1759: 2026-06-17T20:17:42.6505212Z             - C++ Address Sanitizer
+
+---
+
+   112701: 2026-06-17T20:19:11.8960830Z       removing compiler/amd-llvm
+   112702: 
+>> 112703: 2026-06-17T20:19:11.8970381Z       removing base/rocm-cmake
+   112704: 
+   112705: 2026-06-17T20:19:11.8978690Z       removing rocm-libraries</pre>
+  
+  <h3>Pattern: gfx</h3>
+  <pre>Matches for /gfx/ (showing up to 10):
+
+   1: ﻿2026-06-17T20:17:06.2143777Z Current runner version: '2.335.1'
+   2: 
+>> 3: 2026-06-17T20:17:06.2149892Z Runner name: 'azure-windows-11-gfx1101-gpu-rocm-runner-24'
+   4: 
+   5: 2026-06-17T20:17:06.2150517Z Runner group name: 'default'
+
+---
+
+   5: 2026-06-17T20:17:06.2150517Z Runner group name: 'default'
+   6: 
+>> 7: 2026-06-17T20:17:06.2151111Z Machine name: 'azw11gfx1101r24'
+   8: 
+   9: 2026-06-17T20:17:06.2153098Z ##[group]GITHUB_TOKEN Permissions
+
+---
+
+   31: 2026-06-17T20:17:06.7157602Z   artifact_run_id:
+   32: 
+>> 33: 2026-06-17T20:17:06.7157901Z   artifact_group: gfx110X-all
+   34: 
+   35: 2026-06-17T20:17:06.7158391Z   amdgpu_families: gfx110X-all
+
+---
+
+   33: 2026-06-17T20:17:06.7157901Z   artifact_group: gfx110X-all
+   34: 
+>> 35: 2026-06-17T20:17:06.7158391Z   amdgpu_families: gfx110X-all
+   36: 
+   37: 2026-06-17T20:17:06.7158756Z   amdgpu_targets: gfx1100,gfx1101,gfx1102,gfx1103
+
+---
+
+   35: 2026-06-17T20:17:06.7158391Z   amdgpu_families: gfx110X-all
+   36: 
+>> 37: 2026-06-17T20:17:06.7158756Z   amdgpu_targets: gfx1100,gfx1101,gfx1102,gfx1103
+   38: 
+   39: 2026-06-17T20:17:06.7159170Z   test_runs_on: windows-gfx110X-gpu-rocm
+
+---
+
+   37: 2026-06-17T20:17:06.7158756Z   amdgpu_targets: gfx1100,gfx1101,gfx1102,gfx1103
+   38: 
+>> 39: 2026-06-17T20:17:06.7159170Z   test_runs_on: windows-gfx110X-gpu-rocm
+   40: 
+   41: 2026-06-17T20:17:06.7159517Z   platform: windows
+
+---
+
+   59:   ],
+   60:   "total_shards": 1,
+>> 61:   "test_runner": "windows-gfx110X-gpu-rocm",
+   62:   "container_options": ""
+   63: }
+
+---
+
+   73: 2026-06-17T20:17:06.7164863Z ##[endgroup]
+   74: 
+>> 75: 2026-06-17T20:17:06.7165408Z Complete job name: Windows::release / Test gfx110X-all / Test hipsparse / Test hipsparse (shard 1/1) (gfx110X-all)
+   76: 
+   77: 2026-06-17T20:17:06.7733634Z ##[group]Run actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+
+---
+
+   119: 2026-06-17T20:17:06.7743555Z   THEROCK_BIN_DIR: ./build/bin
+   120: 
+>> 121: 2026-06-17T20:17:06.7743862Z   AMDGPU_FAMILIES: gfx110X-all
+   122: 
+   123: 2026-06-17T20:17:06.7744199Z   AMDGPU_TARGETS: gfx1100,gfx1101,gfx1102,gfx1103
+
+---
+
+   121: 2026-06-17T20:17:06.7743862Z   AMDGPU_FAMILIES: gfx110X-all
+   122: 
+>> 123: 2026-06-17T20:17:06.7744199Z   AMDGPU_TARGETS: gfx1100,gfx1101,gfx1102,gfx1103
+   124: 
+   125: 2026-06-17T20:17:06.7744578Z   ARTIFACT_GROUP: gfx110X-all</pre>
+  
+  <h3>Pattern: hipErrorOutOfMemory</h3>
+  <pre>No matches for pattern: hipErrorOutOfMemory</pre>
+  
+  <h3>Pattern: rocsparse</h3>
+  <pre>Matches for /rocsparse/ (showing up to 10):
+
+   2091: 2026-06-17T20:17:43.3633503Z 1: kpack: cache created: disabled=0, debug=1, override_paths=0, prefix_paths=0
+   2092: 
+>> 2093: 2026-06-17T20:17:43.3634530Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocSPARSE/stage/bin/rocsparse.dll', co_index=6, lookup_key='math-libs/BLAS/rocSPARSE/stage/bin/rocsparse.dll#6', 1 search paths
+   2094: 
+   2095: 2026-06-17T20:17:43.3635250Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+
+---
+
+   2123: 2026-06-17T20:17:43.3770296Z 1: -------------------------------------------------------------------------
+   2124: 
+>> 2125: 2026-06-17T20:17:43.3770597Z 1: hipSPARSE version: v4.6.0-be5adb9b (rocSPARSE 4.6.0-be5adb9b)
+   2126: 
+   2127: 2026-06-17T20:17:43.3770922Z 1: hipSPARSE data path: B:\runner\_work\TheRock\TheRock\build\share\hipsparse\test/
+
+---
+
+   2129: 2026-06-17T20:17:43.3873060Z 5: kpack: cache created: disabled=0, debug=1, override_paths=0, prefix_paths=0
+   2130: 
+>> 2131: 2026-06-17T20:17:43.3873685Z 5: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocSPARSE/stage/bin/rocsparse.dll', co_index=6, lookup_key='math-libs/BLAS/rocSPARSE/stage/bin/rocsparse.dll#6', 1 search paths
+   2132: 
+   2133: 2026-06-17T20:17:43.3875505Z 5: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+
+---
+
+   2161: 2026-06-17T20:17:43.4009903Z 5: -------------------------------------------------------------------------
+   2162: 
+>> 2163: 2026-06-17T20:17:43.4010236Z 5: hipSPARSE version: v4.6.0-be5adb9b (rocSPARSE 4.6.0-be5adb9b)
+   2164: 
+   2165: 2026-06-17T20:17:43.4010740Z 5: hipSPARSE data path: B:\runner\_work\TheRock\TheRock\build\share\hipsparse\test/
+
+---
+
+   2181: 2026-06-17T20:18:00.3264751Z 1: [ RUN      ] quick/axpyi.level1/f32_r_5000_500_0p3_0_0b_0
+   2182: 
+>> 2183: 2026-06-17T20:18:00.3286549Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocSPARSE/stage/bin/rocsparse.dll', co_index=17, lookup_key='math-libs/BLAS/rocSPARSE/stage/bin/rocsparse.dll#17', 1 search paths
+   2184: 
+   2185: 2026-06-17T20:18:00.3289043Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+
+---
+
+   2247: 2026-06-17T20:18:00.3486293Z 1: [ RUN      ] quick/gthr.level1/f32_r_5000_10_0b_0
+   2248: 
+>> 2249: 2026-06-17T20:18:00.3501710Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocSPARSE/stage/bin/rocsparse.dll', co_index=20, lookup_key='math-libs/BLAS/rocSPARSE/stage/bin/rocsparse.dll#20', 1 search paths
+   2250: 
+   2251: 2026-06-17T20:18:00.3503702Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+
+---
+
+   2279: 2026-06-17T20:18:00.3586393Z 1: [ RUN      ] quick/gthr.level1/f32_r_5000_5000_0b_0
+   2280: 
+>> 2281: 2026-06-17T20:18:00.3602331Z 5: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocSPARSE/stage/bin/rocsparse.dll', co_index=17, lookup_key='math-libs/BLAS/rocSPARSE/stage/bin/rocsparse.dll#17', 1 search paths
+   2282: 
+   2283: 2026-06-17T20:18:00.3604823Z 5: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+
+---
+
+   2363: 2026-06-17T20:18:00.3720100Z 5: [ RUN      ] quick/gthr.level1/f32_r_5000_10_0b_0
+   2364: 
+>> 2365: 2026-06-17T20:18:00.3726172Z 5: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocSPARSE/stage/bin/rocsparse.dll', co_index=20, lookup_key='math-libs/BLAS/rocSPARSE/stage/bin/rocsparse.dll#20', 1 search paths
+   2366: 
+   2367: 2026-06-17T20:18:00.3728133Z 5: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+
+---
+
+   2391: 2026-06-17T20:18:00.3755542Z 5: [ RUN      ] quick/gthr.level1/f32_r_5000_2500_0b_0
+   2392: 
+>> 2393: 2026-06-17T20:18:00.3756513Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocSPARSE/stage/bin/rocsparse.dll', co_index=21, lookup_key='math-libs/BLAS/rocSPARSE/stage/bin/rocsparse.dll#21', 1 search paths
+   2394: 
+   2395: 2026-06-17T20:18:00.3758530Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+
+---
+
+   2457: 2026-06-17T20:18:00.3826258Z 5: [ RUN      ] quick/gthrz.level1/f32_r_5000_10_0b_0
+   2458: 
+>> 2459: 2026-06-17T20:18:00.3831304Z 5: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocSPARSE/stage/bin/rocsparse.dll', co_index=21, lookup_key='math-libs/BLAS/rocSPARSE/stage/bin/rocsparse.dll#21', 1 search paths
+   2460: 
+   2461: 2026-06-17T20:18:00.3832413Z 5: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack</pre>
+  
+  <h3>Pattern: ctest</h3>
+  <pre>Matches for /ctest/ (showing up to 10):
+
+   2043: 2026-06-17T20:17:43.0076139Z ##[endgroup]
+   2044: 
+>> 2045: 2026-06-17T20:17:43.1485695Z INFO:root:++ Exec [B:\runner\_work\TheRock\TheRock]$ ctest -L quick -LE ex_gpu --output-on-failure --parallel 8 --timeout 7200 --test-dir 'build\bin\hipsparse' -V --tests-information 1,,1
+   2046: 
+   2047: 2026-06-17T20:17:43.1607303Z Internal ctest changing into directory: B:/runner/_work/TheRock/TheRock/build/bin/hipsparse
+
+---
+
+   2045: 2026-06-17T20:17:43.1485695Z INFO:root:++ Exec [B:\runner\_work\TheRock\TheRock]$ ctest -L quick -LE ex_gpu --output-on-failure --parallel 8 --timeout 7200 --test-dir 'build\bin\hipsparse' -V --tests-information 1,,1
+   2046: 
+>> 2047: 2026-06-17T20:17:43.1607303Z Internal ctest changing into directory: B:/runner/_work/TheRock/TheRock/build/bin/hipsparse
+   2048: 
+   2049: 2026-06-17T20:17:43.1608605Z UpdateCTestConfiguration  from :B:/runner/_work/TheRock/TheRock/build/bin/hipsparse/DartConfiguration.tcl
+
+---
+
+   2047: 2026-06-17T20:17:43.1607303Z Internal ctest changing into directory: B:/runner/_work/TheRock/TheRock/build/bin/hipsparse
+   2048: 
+>> 2049: 2026-06-17T20:17:43.1608605Z UpdateCTestConfiguration  from :B:/runner/_work/TheRock/TheRock/build/bin/hipsparse/DartConfiguration.tcl
+   2050: 
+   2051: 2026-06-17T20:17:43.1610759Z UpdateCTestConfiguration  from :B:/runner/_work/TheRock/TheRock/build/bin/hipsparse/DartConfiguration.tcl
+
+---
+
+   2049: 2026-06-17T20:17:43.1608605Z UpdateCTestConfiguration  from :B:/runner/_work/TheRock/TheRock/build/bin/hipsparse/DartConfiguration.tcl
+   2050: 
+>> 2051: 2026-06-17T20:17:43.1610759Z UpdateCTestConfiguration  from :B:/runner/_work/TheRock/TheRock/build/bin/hipsparse/DartConfiguration.tcl
+   2052: 
+   2053: 2026-06-17T20:17:43.1611161Z Test project B:/runner/_work/TheRock/TheRock/build/bin/hipsparse
+
+---
+
+   101231: 2026-06-17T20:19:10.4460132Z [       OK ] quick/gemmi.level3/f64_r_482_275_173_n0p5_0_0p5_0_0 (11 ms)
+   101232: 
+>> 101233: 2026-06-17T20:19:10.4461912Z Errors while running CTest
+   101234: 
+   101235: 2026-06-17T20:19:10.4462057Z [ RUN      ] quick/gemmi.level3/f64_r_482_759_173_n0p5_0_0p5_0_0
+
+---
+
+   112549: 2026-06-17T20:19:10.5395338Z # No GPU suite found for gfx110X, excluding all ex_gpu tests
+   112550: 
+>> 112551: 2026-06-17T20:19:10.5395837Z # Running: ctest -L quick -LE ex_gpu --output-on-failure --parallel 8 --timeout 7200 --test-dir build\bin\hipsparse -V --tests-information 1,,1
+   112552: 
+   112553: 2026-06-17T20:19:10.5395843Z</pre>
+  
+  <h3>Pattern: FAILED</h3>
+  <pre>Matches for /FAILED/ (showing up to 10):
+
+   827: 2026-06-17T20:17:18.6813078Z Resolved 42 packages in 136ms
+   828: 
+>> 829: 2026-06-17T20:17:18.6973502Z warning: Failed to hardlink files; falling back to full copy. This may lead to degraded performance.
+   830: 
+   831: 2026-06-17T20:17:18.6974201Z          If the cache and target directories are on different filesystems, hardlinking may not be supported.
+
+---
+
+   112505: 2026-06-17T20:19:10.5393483Z
+   112506: 
+>> 112507: 2026-06-17T20:19:10.5393621Z 50% tests passed, 1 tests failed out of 2
+   112508: 
+   112509: 2026-06-17T20:19:10.5393626Z
+
+---
+
+   112525: 2026-06-17T20:19:10.5394205Z
+   112526: 
+>> 112527: 2026-06-17T20:19:10.5394310Z The following tests FAILED:
+   112528: 
+   112529: 2026-06-17T20:19:10.5394444Z 	  1 - hipsparse-test_quick_suite (Exit code 0xc0000374</pre>
+  
+  
+
+  
+  <h2>GitHub Actions errors</h2>
+  <pre>Matches for /##\[error\]/ (showing up to 15):
+
+   112553: 2026-06-17T20:19:10.5395843Z
+   112554: 
+>> 112555: 2026-06-17T20:19:10.5416316Z ##[error]Process completed with exit code 8.
+   112556: 
+   112557: 2026-06-17T20:19:10.5738733Z ##[group]Run python ./build_tools/github_actions/reproduce_test_failure.py \</pre>
+  
+</body>
+</html>

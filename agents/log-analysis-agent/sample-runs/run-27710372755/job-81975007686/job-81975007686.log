@@ -1,0 +1,2233 @@
+﻿2026-06-17T18:56:26.4815336Z Current runner version: '2.335.1'
+2026-06-17T18:56:26.4822288Z Runner name: 'azure-linux-scale-rocm-m86pz-runner-xsdmn'
+2026-06-17T18:56:26.4823299Z Runner group name: 'default'
+2026-06-17T18:56:26.4824317Z Machine name: 'azure-linux-scale-rocm-m86pz-runner-xsdmn'
+2026-06-17T18:56:26.4827523Z ##[group]GITHUB_TOKEN Permissions
+2026-06-17T18:56:26.4829769Z Metadata: read
+2026-06-17T18:56:26.4830399Z ##[endgroup]
+2026-06-17T18:56:26.4832673Z Secret source: None
+2026-06-17T18:56:26.4833588Z Prepare workflow directory
+2026-06-17T18:56:26.5427201Z Prepare all required actions
+2026-06-17T18:56:26.5463514Z Getting action download info
+2026-06-17T18:56:26.7227619Z Download action repository 'actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10' (SHA:df4cb1c069e1874edd31b4311f1884172cec0e10)
+2026-06-17T18:56:26.9770172Z Uses: ROCm/TheRock/.github/workflows/multi_arch_build_portable_linux_artifacts.yml@refs/pull/5923/merge (669115c7a973bd7dffee5b0a1a0266ebb846b1e3)
+2026-06-17T18:56:26.9775409Z ##[group] Inputs
+2026-06-17T18:56:26.9775975Z   stage_name: math-libs
+2026-06-17T18:56:26.9776634Z   stage_display_name: Stage - Math Libs (gfx94X-dcgpu)
+2026-06-17T18:56:26.9777844Z   timeout_minutes: 480
+2026-06-17T18:56:26.9778377Z   amdgpu_family: gfx94X-dcgpu
+2026-06-17T18:56:26.9779076Z   dist_amdgpu_families: gfx94X-dcgpu;gfx110X-all;gfx1151;gfx120X-all
+2026-06-17T18:56:26.9780008Z   rocm_package_version: 7.14.0.dev0+669115c7a973bd7dffee5b0a1a0266ebb846b1e3
+2026-06-17T18:56:26.9780796Z   build_variant_cmake_preset: 
+2026-06-17T18:56:26.9781343Z   release_type: ci
+2026-06-17T18:56:26.9781846Z   build_runs_on: azure-linux-scale-rocm
+2026-06-17T18:56:26.9782419Z   repository: 
+2026-06-17T18:56:26.9782854Z   ref: 
+2026-06-17T18:56:26.9783305Z   external_repo_config: 
+2026-06-17T18:56:26.9783818Z ##[endgroup]
+2026-06-17T18:56:26.9785021Z Complete job name: Linux::release / Build Multi-Arch Stages / math-libs (gfx94X-dcgpu, gfx942, linux-gfx942-1gpu-core42-ossci-rocm, false) / Stage - Math Libs (gfx94X-dcgpu)
+2026-06-17T18:56:27.0184564Z ##[group]Checking docker version
+2026-06-17T18:56:27.0197123Z ##[command]/usr/bin/docker version --format '{{.Server.APIVersion}}'
+2026-06-17T18:56:27.0394553Z '1.51'
+2026-06-17T18:56:27.0413204Z Docker daemon API version: '1.51'
+2026-06-17T18:56:27.0414028Z ##[command]/usr/bin/docker version --format '{{.Client.APIVersion}}'
+2026-06-17T18:56:27.0601567Z '1.51'
+2026-06-17T18:56:27.0620980Z Docker client API version: '1.51'
+2026-06-17T18:56:27.0626392Z ##[endgroup]
+2026-06-17T18:56:27.0629645Z ##[group]Clean up resources from previous jobs
+2026-06-17T18:56:27.0635754Z ##[command]/usr/bin/docker ps --all --quiet --no-trunc --filter "label=b18a8a"
+2026-06-17T18:56:27.0806746Z ##[command]/usr/bin/docker network prune --force --filter "label=b18a8a"
+2026-06-17T18:56:27.0964071Z ##[endgroup]
+2026-06-17T18:56:27.0964630Z ##[group]Create local container network
+2026-06-17T18:56:27.0974052Z ##[command]/usr/bin/docker network create --label b18a8a github_network_c57e130c5cae41298ebabbd7b5619c52
+2026-06-17T18:56:27.1436839Z e0d557935738a732676ff82e0c59466da4c7459ee72efd26867dc7d37c0cd474
+2026-06-17T18:56:27.1456266Z ##[endgroup]
+2026-06-17T18:56:27.1479496Z ##[group]Starting job container
+2026-06-17T18:56:27.1502290Z ##[command]/usr/bin/docker --config /home/runner/_work/_temp/.docker_dfe73613-5191-479a-b436-fab06ebeab51 login ghcr.io -u geomin12 --password-stdin
+2026-06-17T18:56:27.3643991Z ##[command]/usr/bin/docker --config /home/runner/_work/_temp/.docker_dfe73613-5191-479a-b436-fab06ebeab51 pull ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6
+2026-06-17T18:56:27.5871671Z ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6: Pulling from rocm/therock_build_manylinux_x86_64
+2026-06-17T18:56:27.5873887Z 09720f817e0c: Pulling fs layer
+2026-06-17T18:56:27.5874453Z 2da756f29325: Pulling fs layer
+2026-06-17T18:56:27.5875009Z 7e243e2e52d9: Pulling fs layer
+2026-06-17T18:56:27.5875582Z e9a89bd7d45e: Pulling fs layer
+2026-06-17T18:56:27.5876567Z 97b85e4d96f2: Pulling fs layer
+2026-06-17T18:56:27.5877168Z eee16c856530: Pulling fs layer
+2026-06-17T18:56:27.5877721Z 26590b30e40e: Pulling fs layer
+2026-06-17T18:56:27.5878282Z 3d857074a168: Pulling fs layer
+2026-06-17T18:56:27.5878844Z b68000c24722: Pulling fs layer
+2026-06-17T18:56:27.5879416Z 5bd8792c26be: Pulling fs layer
+2026-06-17T18:56:27.5879988Z 3b62a3e7293c: Pulling fs layer
+2026-06-17T18:56:27.5880544Z c295786e836b: Pulling fs layer
+2026-06-17T18:56:27.5881101Z e42d82ebc133: Pulling fs layer
+2026-06-17T18:56:27.5881659Z fe8fb7fac4a7: Pulling fs layer
+2026-06-17T18:56:27.5882212Z eefbd81d4b4d: Pulling fs layer
+2026-06-17T18:56:27.5882773Z 4f4fb700ef54: Pulling fs layer
+2026-06-17T18:56:27.5883324Z 8bf6543131e3: Pulling fs layer
+2026-06-17T18:56:27.5883864Z 69556fbc364a: Pulling fs layer
+2026-06-17T18:56:27.5884411Z f1fa436ddd46: Pulling fs layer
+2026-06-17T18:56:27.5884957Z e20c2e2b7ac2: Pulling fs layer
+2026-06-17T18:56:27.5885661Z fbcc6177fbc0: Pulling fs layer
+2026-06-17T18:56:27.5886214Z 8f84a3fa66f4: Pulling fs layer
+2026-06-17T18:56:27.5886836Z 59e1e608b494: Pulling fs layer
+2026-06-17T18:56:27.5887380Z a3f179246dbe: Pulling fs layer
+2026-06-17T18:56:27.5887921Z 8afc7033820d: Pulling fs layer
+2026-06-17T18:56:27.5888482Z 5db2e460f099: Pulling fs layer
+2026-06-17T18:56:27.5889024Z d7ebee1ae556: Pulling fs layer
+2026-06-17T18:56:27.5889596Z 72fc4ad60a6f: Pulling fs layer
+2026-06-17T18:56:27.5890190Z bb2e2785d334: Pulling fs layer
+2026-06-17T18:56:27.5890734Z 3895afd1a0e7: Pulling fs layer
+2026-06-17T18:56:27.5891273Z e84ed054de7c: Pulling fs layer
+2026-06-17T18:56:27.5891819Z 6576ec75a04d: Pulling fs layer
+2026-06-17T18:56:27.5892359Z 813e946acea7: Pulling fs layer
+2026-06-17T18:56:27.5892901Z d7d4dc8a405a: Pulling fs layer
+2026-06-17T18:56:27.5893442Z 05804ce14676: Pulling fs layer
+2026-06-17T18:56:27.5894100Z f1d62836343d: Pulling fs layer
+2026-06-17T18:56:27.5894652Z cfcc2aea8643: Pulling fs layer
+2026-06-17T18:56:27.5895463Z 203ba26a0615: Pulling fs layer
+2026-06-17T18:56:27.5896030Z 397f80fc1b4a: Pulling fs layer
+2026-06-17T18:56:27.5896575Z a092008d5be8: Pulling fs layer
+2026-06-17T18:56:27.5897120Z dca647befefc: Pulling fs layer
+2026-06-17T18:56:27.5897657Z 95d1ea880f4d: Pulling fs layer
+2026-06-17T18:56:27.5898201Z 7a14638b87bd: Pulling fs layer
+2026-06-17T18:56:27.5898745Z 9da4088bb69e: Pulling fs layer
+2026-06-17T18:56:27.5899278Z 88633f03e57d: Pulling fs layer
+2026-06-17T18:56:27.5899817Z bddcb07fd8cf: Pulling fs layer
+2026-06-17T18:56:27.5900345Z 97b85e4d96f2: Waiting
+2026-06-17T18:56:27.5900827Z eee16c856530: Waiting
+2026-06-17T18:56:27.5901309Z e9a89bd7d45e: Waiting
+2026-06-17T18:56:27.5901793Z 5db2e460f099: Waiting
+2026-06-17T18:56:27.5902275Z e84ed054de7c: Waiting
+2026-06-17T18:56:27.5902758Z d7ebee1ae556: Waiting
+2026-06-17T18:56:27.5903230Z 72fc4ad60a6f: Waiting
+2026-06-17T18:56:27.5903715Z d7d4dc8a405a: Waiting
+2026-06-17T18:56:27.5904200Z bb2e2785d334: Waiting
+2026-06-17T18:56:27.5904677Z 05804ce14676: Waiting
+2026-06-17T18:56:27.5905156Z 6576ec75a04d: Waiting
+2026-06-17T18:56:27.5976132Z 3895afd1a0e7: Waiting
+2026-06-17T18:56:27.5976733Z 813e946acea7: Waiting
+2026-06-17T18:56:27.5977310Z f1d62836343d: Waiting
+2026-06-17T18:56:27.5977886Z cfcc2aea8643: Waiting
+2026-06-17T18:56:27.5978474Z dca647befefc: Waiting
+2026-06-17T18:56:27.5978975Z 9da4088bb69e: Waiting
+2026-06-17T18:56:27.5979469Z 95d1ea880f4d: Waiting
+2026-06-17T18:56:27.5979986Z 7a14638b87bd: Waiting
+2026-06-17T18:56:27.5980472Z 203ba26a0615: Waiting
+2026-06-17T18:56:27.5980956Z 88633f03e57d: Waiting
+2026-06-17T18:56:27.5981464Z 397f80fc1b4a: Waiting
+2026-06-17T18:56:27.5981951Z a092008d5be8: Waiting
+2026-06-17T18:56:27.5982428Z 3d857074a168: Waiting
+2026-06-17T18:56:27.5982909Z bddcb07fd8cf: Waiting
+2026-06-17T18:56:27.5983434Z 31229e70a9f1: Pulling fs layer
+2026-06-17T18:56:27.5983982Z b68000c24722: Waiting
+2026-06-17T18:56:27.5984467Z fbcc6177fbc0: Waiting
+2026-06-17T18:56:27.5984965Z 8afc7033820d: Waiting
+2026-06-17T18:56:27.5985472Z a3f179246dbe: Waiting
+2026-06-17T18:56:27.5986267Z 8bf6543131e3: Waiting
+2026-06-17T18:56:27.5986760Z 5bd8792c26be: Waiting
+2026-06-17T18:56:27.5987245Z 8f84a3fa66f4: Waiting
+2026-06-17T18:56:27.5987730Z 69556fbc364a: Waiting
+2026-06-17T18:56:27.5988250Z e42d82ebc133: Waiting
+2026-06-17T18:56:27.5988761Z 4f4fb700ef54: Waiting
+2026-06-17T18:56:27.5989324Z 3b62a3e7293c: Waiting
+2026-06-17T18:56:27.5989813Z c295786e836b: Waiting
+2026-06-17T18:56:27.5990298Z 59e1e608b494: Waiting
+2026-06-17T18:56:27.5990790Z fe8fb7fac4a7: Waiting
+2026-06-17T18:56:27.5991274Z e20c2e2b7ac2: Waiting
+2026-06-17T18:56:27.5991953Z eefbd81d4b4d: Waiting
+2026-06-17T18:56:27.5992461Z 31229e70a9f1: Waiting
+2026-06-17T18:56:27.5992957Z f1fa436ddd46: Waiting
+2026-06-17T18:56:27.5993478Z e1beb8b81520: Pulling fs layer
+2026-06-17T18:56:27.5994018Z 26590b30e40e: Waiting
+2026-06-17T18:56:27.5994524Z 7d608248627c: Pulling fs layer
+2026-06-17T18:56:27.5995087Z 2be8fb602c33: Pulling fs layer
+2026-06-17T18:56:27.5995639Z 2b8f8420dcb7: Pulling fs layer
+2026-06-17T18:56:27.5996203Z 234af392924a: Pulling fs layer
+2026-06-17T18:56:27.5996744Z e1beb8b81520: Waiting
+2026-06-17T18:56:27.5997228Z 2be8fb602c33: Waiting
+2026-06-17T18:56:27.5997720Z 7d608248627c: Waiting
+2026-06-17T18:56:27.5998216Z 2b8f8420dcb7: Waiting
+2026-06-17T18:56:27.5998722Z 785e87bd963c: Pulling fs layer
+2026-06-17T18:56:27.5999269Z 785e87bd963c: Waiting
+2026-06-17T18:56:27.5999755Z 234af392924a: Waiting
+2026-06-17T18:56:27.6578195Z 2da756f29325: Verifying Checksum
+2026-06-17T18:56:27.6783769Z 7e243e2e52d9: Verifying Checksum
+2026-06-17T18:56:27.6784822Z 7e243e2e52d9: Download complete
+2026-06-17T18:56:27.7164789Z e9a89bd7d45e: Verifying Checksum
+2026-06-17T18:56:27.7165608Z e9a89bd7d45e: Download complete
+2026-06-17T18:56:27.7423339Z 97b85e4d96f2: Download complete
+2026-06-17T18:56:27.7902317Z eee16c856530: Verifying Checksum
+2026-06-17T18:56:27.7903420Z eee16c856530: Download complete
+2026-06-17T18:56:27.8630385Z 3d857074a168: Verifying Checksum
+2026-06-17T18:56:27.8654477Z 3d857074a168: Download complete
+2026-06-17T18:56:27.9095378Z 09720f817e0c: Verifying Checksum
+2026-06-17T18:56:27.9097301Z 09720f817e0c: Download complete
+2026-06-17T18:56:27.9283392Z b68000c24722: Verifying Checksum
+2026-06-17T18:56:27.9285337Z b68000c24722: Download complete
+2026-06-17T18:56:27.9952787Z 5bd8792c26be: Download complete
+2026-06-17T18:56:28.0179411Z 3b62a3e7293c: Download complete
+2026-06-17T18:56:28.0622744Z c295786e836b: Verifying Checksum
+2026-06-17T18:56:28.0624410Z c295786e836b: Download complete
+2026-06-17T18:56:28.0991072Z e42d82ebc133: Download complete
+2026-06-17T18:56:28.1262061Z fe8fb7fac4a7: Download complete
+2026-06-17T18:56:28.1587806Z eefbd81d4b4d: Download complete
+2026-06-17T18:56:28.1818870Z 4f4fb700ef54: Download complete
+2026-06-17T18:56:28.2176872Z 8bf6543131e3: Verifying Checksum
+2026-06-17T18:56:28.2178055Z 8bf6543131e3: Download complete
+2026-06-17T18:56:28.2615939Z 69556fbc364a: Verifying Checksum
+2026-06-17T18:56:28.2617255Z 69556fbc364a: Download complete
+2026-06-17T18:56:28.3192971Z f1fa436ddd46: Verifying Checksum
+2026-06-17T18:56:28.3194204Z f1fa436ddd46: Download complete
+2026-06-17T18:56:28.3443243Z e20c2e2b7ac2: Verifying Checksum
+2026-06-17T18:56:28.3444480Z e20c2e2b7ac2: Download complete
+2026-06-17T18:56:28.4787851Z 8f84a3fa66f4: Verifying Checksum
+2026-06-17T18:56:28.4789150Z 8f84a3fa66f4: Download complete
+2026-06-17T18:56:28.5570880Z 26590b30e40e: Verifying Checksum
+2026-06-17T18:56:28.5572367Z 26590b30e40e: Download complete
+2026-06-17T18:56:28.5869833Z 59e1e608b494: Verifying Checksum
+2026-06-17T18:56:28.5871201Z 59e1e608b494: Download complete
+2026-06-17T18:56:28.6155164Z a3f179246dbe: Verifying Checksum
+2026-06-17T18:56:28.6156473Z a3f179246dbe: Download complete
+2026-06-17T18:56:28.6836207Z 8afc7033820d: Verifying Checksum
+2026-06-17T18:56:28.6837545Z 8afc7033820d: Download complete
+2026-06-17T18:56:28.6889750Z 5db2e460f099: Verifying Checksum
+2026-06-17T18:56:28.6891023Z 5db2e460f099: Download complete
+2026-06-17T18:56:28.7466696Z d7ebee1ae556: Verifying Checksum
+2026-06-17T18:56:28.7467565Z d7ebee1ae556: Download complete
+2026-06-17T18:56:28.7506456Z 72fc4ad60a6f: Verifying Checksum
+2026-06-17T18:56:28.7506968Z 72fc4ad60a6f: Download complete
+2026-06-17T18:56:28.8166364Z 3895afd1a0e7: Verifying Checksum
+2026-06-17T18:56:28.8166846Z 3895afd1a0e7: Download complete
+2026-06-17T18:56:28.8752832Z bb2e2785d334: Verifying Checksum
+2026-06-17T18:56:28.8753559Z bb2e2785d334: Download complete
+2026-06-17T18:56:28.8969834Z e84ed054de7c: Download complete
+2026-06-17T18:56:28.9588989Z 813e946acea7: Download complete
+2026-06-17T18:56:29.0204155Z d7d4dc8a405a: Verifying Checksum
+2026-06-17T18:56:29.0204714Z d7d4dc8a405a: Download complete
+2026-06-17T18:56:29.0821532Z 05804ce14676: Verifying Checksum
+2026-06-17T18:56:29.0821963Z 05804ce14676: Download complete
+2026-06-17T18:56:29.0839592Z fbcc6177fbc0: Verifying Checksum
+2026-06-17T18:56:29.0840066Z fbcc6177fbc0: Download complete
+2026-06-17T18:56:29.1100053Z 6576ec75a04d: Verifying Checksum
+2026-06-17T18:56:29.1100714Z 6576ec75a04d: Download complete
+2026-06-17T18:56:29.1397989Z cfcc2aea8643: Verifying Checksum
+2026-06-17T18:56:29.1398636Z cfcc2aea8643: Download complete
+2026-06-17T18:56:29.1558175Z f1d62836343d: Verifying Checksum
+2026-06-17T18:56:29.1558523Z f1d62836343d: Download complete
+2026-06-17T18:56:29.2064377Z 397f80fc1b4a: Verifying Checksum
+2026-06-17T18:56:29.2064895Z 397f80fc1b4a: Download complete
+2026-06-17T18:56:29.2434702Z a092008d5be8: Verifying Checksum
+2026-06-17T18:56:29.2435642Z a092008d5be8: Download complete
+2026-06-17T18:56:29.2723514Z dca647befefc: Download complete
+2026-06-17T18:56:29.3251939Z 95d1ea880f4d: Verifying Checksum
+2026-06-17T18:56:29.3252264Z 95d1ea880f4d: Download complete
+2026-06-17T18:56:29.3282915Z 7a14638b87bd: Verifying Checksum
+2026-06-17T18:56:29.3284407Z 7a14638b87bd: Download complete
+2026-06-17T18:56:29.4145086Z 203ba26a0615: Verifying Checksum
+2026-06-17T18:56:29.4145450Z 203ba26a0615: Download complete
+2026-06-17T18:56:29.8357710Z 88633f03e57d: Verifying Checksum
+2026-06-17T18:56:29.8358580Z 88633f03e57d: Download complete
+2026-06-17T18:56:29.8471481Z bddcb07fd8cf: Verifying Checksum
+2026-06-17T18:56:29.8472171Z bddcb07fd8cf: Download complete
+2026-06-17T18:56:29.9000201Z 31229e70a9f1: Verifying Checksum
+2026-06-17T18:56:29.9000510Z 31229e70a9f1: Download complete
+2026-06-17T18:56:29.9124677Z e1beb8b81520: Download complete
+2026-06-17T18:56:29.9754913Z 7d608248627c: Download complete
+2026-06-17T18:56:30.0414477Z 2be8fb602c33: Download complete
+2026-06-17T18:56:30.0437426Z 2b8f8420dcb7: Verifying Checksum
+2026-06-17T18:56:30.0438218Z 2b8f8420dcb7: Download complete
+2026-06-17T18:56:30.0959677Z 9da4088bb69e: Verifying Checksum
+2026-06-17T18:56:30.0960096Z 9da4088bb69e: Download complete
+2026-06-17T18:56:30.1205876Z 785e87bd963c: Verifying Checksum
+2026-06-17T18:56:30.1206190Z 785e87bd963c: Download complete
+2026-06-17T18:56:30.1791295Z 09720f817e0c: Pull complete
+2026-06-17T18:56:30.5884064Z 2da756f29325: Pull complete
+2026-06-17T18:56:30.6039202Z 7e243e2e52d9: Pull complete
+2026-06-17T18:56:30.6128154Z e9a89bd7d45e: Pull complete
+2026-06-17T18:56:30.6211990Z 97b85e4d96f2: Pull complete
+2026-06-17T18:56:30.6306887Z eee16c856530: Pull complete
+2026-06-17T18:56:31.5785570Z 234af392924a: Verifying Checksum
+2026-06-17T18:56:31.5785974Z 234af392924a: Download complete
+2026-06-17T18:56:36.4339206Z 26590b30e40e: Pull complete
+2026-06-17T18:56:36.4415716Z 3d857074a168: Pull complete
+2026-06-17T18:56:36.4502891Z b68000c24722: Pull complete
+2026-06-17T18:56:36.4901301Z 5bd8792c26be: Pull complete
+2026-06-17T18:56:36.4980479Z 3b62a3e7293c: Pull complete
+2026-06-17T18:56:36.5472217Z c295786e836b: Pull complete
+2026-06-17T18:56:36.5561897Z e42d82ebc133: Pull complete
+2026-06-17T18:56:36.5930069Z fe8fb7fac4a7: Pull complete
+2026-06-17T18:56:36.6012359Z eefbd81d4b4d: Pull complete
+2026-06-17T18:56:36.6089148Z 4f4fb700ef54: Pull complete
+2026-06-17T18:56:36.6265771Z 8bf6543131e3: Pull complete
+2026-06-17T18:56:36.6519423Z 69556fbc364a: Pull complete
+2026-06-17T18:56:36.8200770Z f1fa436ddd46: Pull complete
+2026-06-17T18:56:36.8380301Z e20c2e2b7ac2: Pull complete
+2026-06-17T18:56:49.1905416Z fbcc6177fbc0: Pull complete
+2026-06-17T18:56:49.9715706Z 8f84a3fa66f4: Pull complete
+2026-06-17T18:56:49.9802813Z 59e1e608b494: Pull complete
+2026-06-17T18:56:49.9881280Z a3f179246dbe: Pull complete
+2026-06-17T18:56:49.9969533Z 8afc7033820d: Pull complete
+2026-06-17T18:56:50.0234004Z 5db2e460f099: Pull complete
+2026-06-17T18:56:50.0313561Z d7ebee1ae556: Pull complete
+2026-06-17T18:56:50.0390988Z 72fc4ad60a6f: Pull complete
+2026-06-17T18:56:50.1469272Z bb2e2785d334: Pull complete
+2026-06-17T18:56:50.1553956Z 3895afd1a0e7: Pull complete
+2026-06-17T18:56:50.1639328Z e84ed054de7c: Pull complete
+2026-06-17T18:56:52.6611311Z 6576ec75a04d: Pull complete
+2026-06-17T18:56:52.6697263Z 813e946acea7: Pull complete
+2026-06-17T18:56:52.6787890Z d7d4dc8a405a: Pull complete
+2026-06-17T18:56:52.6890113Z 05804ce14676: Pull complete
+2026-06-17T18:56:52.6977582Z f1d62836343d: Pull complete
+2026-06-17T18:56:52.7054886Z cfcc2aea8643: Pull complete
+2026-06-17T18:56:55.6640379Z 203ba26a0615: Pull complete
+2026-06-17T18:56:55.6718455Z 397f80fc1b4a: Pull complete
+2026-06-17T18:56:55.6817259Z a092008d5be8: Pull complete
+2026-06-17T18:56:55.7228508Z dca647befefc: Pull complete
+2026-06-17T18:56:55.7314326Z 95d1ea880f4d: Pull complete
+2026-06-17T18:56:55.7390810Z 7a14638b87bd: Pull complete
+2026-06-17T18:56:58.3305489Z 9da4088bb69e: Pull complete
+2026-06-17T18:57:00.8142985Z 88633f03e57d: Pull complete
+2026-06-17T18:57:04.7576618Z bddcb07fd8cf: Pull complete
+2026-06-17T18:57:04.7745577Z 31229e70a9f1: Pull complete
+2026-06-17T18:57:04.7827767Z e1beb8b81520: Pull complete
+2026-06-17T18:57:04.8137187Z 7d608248627c: Pull complete
+2026-06-17T18:57:04.8226147Z 2be8fb602c33: Pull complete
+2026-06-17T18:57:04.8315450Z 2b8f8420dcb7: Pull complete
+2026-06-17T18:57:22.1386961Z 234af392924a: Pull complete
+2026-06-17T18:57:22.1484417Z 785e87bd963c: Pull complete
+2026-06-17T18:57:22.1520197Z Digest: sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6
+2026-06-17T18:57:22.1529905Z Status: Downloaded newer image for ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6
+2026-06-17T18:57:22.1538866Z ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6
+2026-06-17T18:57:22.1635674Z ##[command]/usr/bin/docker create --name 311889d1401841279db04428053dcace_ghcriorocmtherock_build_manylinux_x86_64sha256a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6_7dba69 --label b18a8a --workdir /__w/TheRock/TheRock --network github_network_c57e130c5cae41298ebabbd7b5619c52 -v /runner/config:/home/awsconfig/ -e "HOME=/github/home" -e GITHUB_ACTIONS=true -e CI=true -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/home/runner/_work":"/__w" -v "/home/runner/externals":"/__e":ro -v "/home/runner/_work/_temp":"/__w/_temp" -v "/home/runner/_work/_actions":"/__w/_actions" -v "/home/runner/_work/_tool":"/__w/_tool" -v "/home/runner/_work/_temp/_github_home":"/github/home" -v "/home/runner/_work/_temp/_github_workflow":"/github/workflow" --entrypoint "tail" ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6 "-f" "/dev/null"
+2026-06-17T18:57:22.1920811Z ee8fb84a2649ad0ff26502a7041ebd80eb09af3da419f924d6d6aca94016ca38
+2026-06-17T18:57:22.1950929Z ##[command]/usr/bin/docker start ee8fb84a2649ad0ff26502a7041ebd80eb09af3da419f924d6d6aca94016ca38
+2026-06-17T18:57:22.3885207Z ee8fb84a2649ad0ff26502a7041ebd80eb09af3da419f924d6d6aca94016ca38
+2026-06-17T18:57:22.3905091Z ##[command]/usr/bin/docker ps --all --filter id=ee8fb84a2649ad0ff26502a7041ebd80eb09af3da419f924d6d6aca94016ca38 --filter status=running --no-trunc --format "{{.ID}} {{.Status}}"
+2026-06-17T18:57:22.4043741Z ee8fb84a2649ad0ff26502a7041ebd80eb09af3da419f924d6d6aca94016ca38 Up Less than a second
+2026-06-17T18:57:22.4068479Z ##[command]/usr/bin/docker inspect --format "{{range .Config.Env}}{{println .}}{{end}}" ee8fb84a2649ad0ff26502a7041ebd80eb09af3da419f924d6d6aca94016ca38
+2026-06-17T18:57:22.4226607Z HOME=/github/home
+2026-06-17T18:57:22.4226871Z GITHUB_ACTIONS=true
+2026-06-17T18:57:22.4227093Z CI=true
+2026-06-17T18:57:22.4228165Z PATH=/opt/rh/gcc-toolset-13/root/usr/bin:/usr/local/therock-tools/bin:/opt/python/cp312-cp312/bin:/opt/rh/gcc-toolset-14/root/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+2026-06-17T18:57:22.4229308Z AUDITWHEEL_POLICY=manylinux_2_28
+2026-06-17T18:57:22.4229585Z AUDITWHEEL_ARCH=x86_64
+2026-06-17T18:57:22.4229832Z AUDITWHEEL_PLAT=manylinux_2_28_x86_64
+2026-06-17T18:57:22.4230148Z LC_ALL=en_US.UTF-8
+2026-06-17T18:57:22.4230372Z LANG=en_US.UTF-8
+2026-06-17T18:57:22.4230591Z LANGUAGE=en_US.UTF-8
+2026-06-17T18:57:22.4230860Z DEVTOOLSET_ROOTPATH=/opt/rh/gcc-toolset-13/root
+2026-06-17T18:57:22.4231370Z LD_LIBRARY_PATH=/opt/rh/gcc-toolset-13/root/usr/lib64:/opt/rh/gcc-toolset-13/root/usr/lib:
+2026-06-17T18:57:22.4232245Z PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+2026-06-17T18:57:22.4232723Z SSL_CERT_FILE=/opt/_internal/certs.pem
+2026-06-17T18:57:22.4233138Z CMAKE_VERSION=3.27.9
+2026-06-17T18:57:22.4233456Z NINJA_VERSION=1.12.1
+2026-06-17T18:57:22.4233729Z GOOGLE_TEST_VERSION=1.16.0
+2026-06-17T18:57:22.4233998Z RUSTUP_HOME=/usr/local/rustup
+2026-06-17T18:57:22.4234257Z CARGO_HOME=/usr/local/cargo
+2026-06-17T18:57:22.4234504Z RUST_VERSION=1.95.0
+2026-06-17T18:57:22.4234891Z LIBRARY_PATH=/opt/rh/gcc-toolset-13/root/usr/lib64:/opt/rh/gcc-toolset-13/root/usr/lib:
+2026-06-17T18:57:22.4235419Z PATCHELF_GIT_REF=d0f70eea5397606c486857e0a105e53ec123904a
+2026-06-17T18:57:22.4251967Z ##[endgroup]
+2026-06-17T18:57:22.4261553Z ##[group]Waiting for all services to be ready
+2026-06-17T18:57:22.4263118Z ##[endgroup]
+2026-06-17T18:57:22.4543612Z ##[group]Run actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+2026-06-17T18:57:22.4544500Z with:
+2026-06-17T18:57:22.4544706Z   repository: ROCm/TheRock
+2026-06-17T18:57:22.4547278Z   token: ***
+2026-06-17T18:57:22.4547478Z   ssh-strict: true
+2026-06-17T18:57:22.4547676Z   ssh-user: git
+2026-06-17T18:57:22.4547892Z   persist-credentials: true
+2026-06-17T18:57:22.4548114Z   clean: true
+2026-06-17T18:57:22.4548313Z   sparse-checkout-cone-mode: true
+2026-06-17T18:57:22.4548561Z   fetch-depth: 1
+2026-06-17T18:57:22.4548750Z   fetch-tags: false
+2026-06-17T18:57:22.4548953Z   show-progress: true
+2026-06-17T18:57:22.4549152Z   lfs: false
+2026-06-17T18:57:22.4549325Z   submodules: false
+2026-06-17T18:57:22.4549525Z   set-safe-directory: true
+2026-06-17T18:57:22.4549919Z env:
+2026-06-17T18:57:22.4550182Z   AWS_SHARED_CREDENTIALS_FILE: /home/awsconfig/credentials.ini
+2026-06-17T18:57:22.4550534Z   STAGE_NAME: math-libs
+2026-06-17T18:57:22.4550758Z   AMDGPU_FAMILIES: gfx94X-dcgpu
+2026-06-17T18:57:22.4551043Z   BUILD_DIR: build
+2026-06-17T18:57:22.4551363Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf
+2026-06-17T18:57:22.4552067Z   CACHE_DIR: /home/runner/_work/TheRock/TheRock/.container-cache
+2026-06-17T18:57:22.4552400Z   TEATIME_FORCE_INTERACTIVE: 0
+2026-06-17T18:57:22.4552621Z   RELEASE_TYPE: ci
+2026-06-17T18:57:22.4552826Z   EXTERNAL_FETCH_SOURCES_ARGS: 
+2026-06-17T18:57:22.4553048Z ##[endgroup]
+2026-06-17T18:57:22.4612347Z ##[command]/usr/bin/docker exec  ee8fb84a2649ad0ff26502a7041ebd80eb09af3da419f924d6d6aca94016ca38 sh -c "cat /etc/*release | grep ^ID"
+2026-06-17T18:57:22.6609110Z Syncing repository: ROCm/TheRock
+2026-06-17T18:57:22.6610287Z ##[group]Getting Git version info
+2026-06-17T18:57:22.6610620Z Working directory is '/__w/TheRock/TheRock'
+2026-06-17T18:57:22.6611114Z [command]/usr/local/bin/git version
+2026-06-17T18:57:22.6611418Z git version 2.49.0
+2026-06-17T18:57:22.6634306Z ##[endgroup]
+2026-06-17T18:57:22.6649485Z Temporarily overriding HOME='/__w/_temp/0c8173e6-957c-43d0-a8e4-e652e158e6a8' before making global git config changes
+2026-06-17T18:57:22.6650357Z Adding repository directory to the temporary git global config as a safe directory
+2026-06-17T18:57:22.6653698Z [command]/usr/local/bin/git config --global --add safe.directory /__w/TheRock/TheRock
+2026-06-17T18:57:22.6692001Z Deleting the contents of '/__w/TheRock/TheRock'
+2026-06-17T18:57:22.6695717Z ##[group]Determining repository object format
+2026-06-17T18:57:22.6697787Z ##[endgroup]
+2026-06-17T18:57:22.6698219Z ##[group]Initializing the repository
+2026-06-17T18:57:22.6702438Z [command]/usr/local/bin/git init /__w/TheRock/TheRock
+2026-06-17T18:57:22.6750014Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-06-17T18:57:22.6750789Z hint: is subject to change. To configure the initial branch name to use in all
+2026-06-17T18:57:22.6751420Z hint: of your new repositories, which will suppress this warning, call:
+2026-06-17T18:57:22.6752014Z hint:
+2026-06-17T18:57:22.6752360Z hint: 	git config --global init.defaultBranch <name>
+2026-06-17T18:57:22.6752747Z hint:
+2026-06-17T18:57:22.6753086Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-06-17T18:57:22.6753671Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-06-17T18:57:22.6754135Z hint:
+2026-06-17T18:57:22.6754368Z hint: 	git branch -m <name>
+2026-06-17T18:57:22.6754761Z Initialized empty Git repository in /__w/TheRock/TheRock/.git/
+2026-06-17T18:57:22.6761184Z [command]/usr/local/bin/git remote add origin https://github.com/ROCm/TheRock
+2026-06-17T18:57:22.6828430Z ##[endgroup]
+2026-06-17T18:57:22.6828977Z ##[group]Disabling automatic garbage collection
+2026-06-17T18:57:22.6832523Z [command]/usr/local/bin/git config --local gc.auto 0
+2026-06-17T18:57:22.6863439Z ##[endgroup]
+2026-06-17T18:57:22.6863884Z ##[group]Setting up auth
+2026-06-17T18:57:22.6864531Z Removing SSH command configuration
+2026-06-17T18:57:22.6870154Z [command]/usr/local/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-06-17T18:57:22.6902770Z [command]/usr/local/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-06-17T18:57:22.7368314Z Removing HTTP extra header
+2026-06-17T18:57:22.7373400Z [command]/usr/local/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-06-17T18:57:22.7406128Z [command]/usr/local/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-06-17T18:57:22.7854769Z Removing includeIf entries pointing to credentials config files
+2026-06-17T18:57:22.7861280Z [command]/usr/local/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-06-17T18:57:22.7893979Z [command]/usr/local/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-06-17T18:57:22.8344756Z [command]/usr/local/bin/git config --file /__w/_temp/git-credentials-719dfc99-2655-4846-afc8-866180603bde.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-06-17T18:57:22.8383836Z [command]/usr/local/bin/git config --local includeIf.gitdir:/__w/TheRock/TheRock/.git.path /__w/_temp/git-credentials-719dfc99-2655-4846-afc8-866180603bde.config
+2026-06-17T18:57:22.8416112Z [command]/usr/local/bin/git config --local includeIf.gitdir:/__w/TheRock/TheRock/.git/worktrees/*.path /__w/_temp/git-credentials-719dfc99-2655-4846-afc8-866180603bde.config
+2026-06-17T18:57:22.8448255Z [command]/usr/local/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-719dfc99-2655-4846-afc8-866180603bde.config
+2026-06-17T18:57:22.8485257Z [command]/usr/local/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-719dfc99-2655-4846-afc8-866180603bde.config
+2026-06-17T18:57:22.8515328Z ##[endgroup]
+2026-06-17T18:57:22.8515702Z ##[group]Fetching the repository
+2026-06-17T18:57:22.8525878Z [command]/usr/local/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +669115c7a973bd7dffee5b0a1a0266ebb846b1e3:refs/remotes/pull/5923/merge
+2026-06-17T18:57:24.2448539Z From https://github.com/ROCm/TheRock
+2026-06-17T18:57:24.2449201Z  * [new ref]         669115c7a973bd7dffee5b0a1a0266ebb846b1e3 -> pull/5923/merge
+2026-06-17T18:57:24.2526295Z ##[endgroup]
+2026-06-17T18:57:24.2526789Z ##[group]Determining the checkout info
+2026-06-17T18:57:24.2527272Z ##[endgroup]
+2026-06-17T18:57:24.2531965Z [command]/usr/local/bin/git sparse-checkout disable
+2026-06-17T18:57:24.2576388Z [command]/usr/local/bin/git config --local --unset-all extensions.worktreeConfig
+2026-06-17T18:57:24.2608653Z ##[group]Checking out the ref
+2026-06-17T18:57:24.2612136Z [command]/usr/local/bin/git checkout --progress --force refs/remotes/pull/5923/merge
+2026-06-17T18:57:24.3382090Z Note: switching to 'refs/remotes/pull/5923/merge'.
+2026-06-17T18:57:24.3382466Z 
+2026-06-17T18:57:24.3382749Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-06-17T18:57:24.3383458Z changes and commit them, and you can discard any commits you make in this
+2026-06-17T18:57:24.3384176Z state without impacting any branches by switching back to a branch.
+2026-06-17T18:57:24.3384555Z 
+2026-06-17T18:57:24.3384884Z If you want to create a new branch to retain commits you create, you may
+2026-06-17T18:57:24.3385480Z do so (now or later) by using -c with the switch command. Example:
+2026-06-17T18:57:24.3385828Z 
+2026-06-17T18:57:24.3385973Z   git switch -c <new-branch-name>
+2026-06-17T18:57:24.3386209Z 
+2026-06-17T18:57:24.3386337Z Or undo this operation with:
+2026-06-17T18:57:24.3386555Z 
+2026-06-17T18:57:24.3386664Z   git switch -
+2026-06-17T18:57:24.3386827Z 
+2026-06-17T18:57:24.3387682Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-06-17T18:57:24.3388120Z 
+2026-06-17T18:57:24.3388595Z HEAD is now at 669115c Merge bb6d7fef6f13b48f912eb03defea95ccb51557fe into 1858c0cd499b6c47817982bf018d1f77661481e4
+2026-06-17T18:57:24.3391902Z ##[endgroup]
+2026-06-17T18:57:24.3436765Z [command]/usr/local/bin/git log -1 --format=%H
+2026-06-17T18:57:24.3465840Z 669115c7a973bd7dffee5b0a1a0266ebb846b1e3
+2026-06-17T18:57:24.3726191Z ##[group]Run pip install -r requirements.txt
+2026-06-17T18:57:24.3726648Z [36;1mpip install -r requirements.txt[0m
+2026-06-17T18:57:24.3730368Z shell: sh -e {0}
+2026-06-17T18:57:24.3730588Z env:
+2026-06-17T18:57:24.3730866Z   AWS_SHARED_CREDENTIALS_FILE: /home/awsconfig/credentials.ini
+2026-06-17T18:57:24.3731216Z   STAGE_NAME: math-libs
+2026-06-17T18:57:24.3731440Z   AMDGPU_FAMILIES: gfx94X-dcgpu
+2026-06-17T18:57:24.3731678Z   BUILD_DIR: build
+2026-06-17T18:57:24.3732012Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf
+2026-06-17T18:57:24.3732463Z   CACHE_DIR: /home/runner/_work/TheRock/TheRock/.container-cache
+2026-06-17T18:57:24.3732816Z   TEATIME_FORCE_INTERACTIVE: 0
+2026-06-17T18:57:24.3733051Z   RELEASE_TYPE: ci
+2026-06-17T18:57:24.3733255Z   EXTERNAL_FETCH_SOURCES_ARGS: 
+2026-06-17T18:57:24.3733484Z ##[endgroup]
+2026-06-17T18:57:24.7006340Z WARNING: The directory '/github/home/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
+2026-06-17T18:57:24.8221350Z Ignoring tomli: markers 'python_version <= "3.10"' don't match your environment
+2026-06-17T18:57:24.8225722Z Requirement already satisfied: CppHeaderParser>=2.7.4 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from -r requirements.txt (line 1)) (2.7.4)
+2026-06-17T18:57:24.8230533Z Requirement already satisfied: build>=1.2.2 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from -r requirements.txt (line 2)) (1.2.2.post1)
+2026-06-17T18:57:24.8233915Z Requirement already satisfied: meson>=1.7.0 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from -r requirements.txt (line 3)) (1.7.0)
+2026-06-17T18:57:24.8764244Z Collecting pre-commit>=4.3.0 (from -r requirements.txt (line 4))
+2026-06-17T18:57:24.9042983Z   Downloading pre_commit-4.6.0-py2.py3-none-any.whl.metadata (1.2 kB)
+2026-06-17T18:57:24.9119038Z Collecting python-magic>=0.4.27 (from -r requirements.txt (line 5))
+2026-06-17T18:57:24.9161846Z   Downloading python_magic-0.4.27-py2.py3-none-any.whl.metadata (5.8 kB)
+2026-06-17T18:57:24.9181718Z Requirement already satisfied: PyYAML==6.0.2 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from -r requirements.txt (line 6)) (6.0.2)
+2026-06-17T18:57:25.0058131Z Collecting pyzstd>=0.16.0 (from -r requirements.txt (line 7))
+2026-06-17T18:57:25.0099079Z   Downloading pyzstd-0.19.1-py3-none-any.whl.metadata (2.6 kB)
+2026-06-17T18:57:25.0710973Z Collecting setuptools<82.0.0,>=80.9.0 (from -r requirements.txt (line 10))
+2026-06-17T18:57:25.0752430Z   Downloading setuptools-81.0.0-py3-none-any.whl.metadata (6.6 kB)
+2026-06-17T18:57:25.0862668Z Collecting pytest-cmake==0.13.0 (from -r requirements.txt (line 12))
+2026-06-17T18:57:25.0897092Z   Downloading pytest_cmake-0.13.0.tar.gz (7.5 kB)
+2026-06-17T18:57:25.0946512Z   Installing build dependencies: started
+2026-06-17T18:57:26.9549566Z   Installing build dependencies: finished with status 'done'
+2026-06-17T18:57:26.9554795Z   Getting requirements to build wheel: started
+2026-06-17T18:57:27.1865707Z   Getting requirements to build wheel: finished with status 'done'
+2026-06-17T18:57:27.1879428Z   Installing backend dependencies: started
+2026-06-17T18:57:27.9734700Z   Installing backend dependencies: finished with status 'done'
+2026-06-17T18:57:27.9742931Z   Preparing metadata (pyproject.toml): started
+2026-06-17T18:57:28.6022176Z   Preparing metadata (pyproject.toml): finished with status 'done'
+2026-06-17T18:57:28.6151743Z Collecting mako>=1.1.3 (from -r requirements.txt (line 13))
+2026-06-17T18:57:28.6189051Z   Downloading mako-1.3.12-py3-none-any.whl.metadata (2.9 kB)
+2026-06-17T18:57:28.6326266Z Collecting jinja2>=3.0.0 (from -r requirements.txt (line 14))
+2026-06-17T18:57:28.6362765Z   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+2026-06-17T18:57:28.6426179Z Collecting pyelftools>=0.29 (from -r requirements.txt (line 15))
+2026-06-17T18:57:28.6463806Z   Downloading pyelftools-0.33-py3-none-any.whl.metadata (1.0 kB)
+2026-06-17T18:57:28.8128812Z Collecting boto3<1.42.85,>=1.42.79 (from -r requirements.txt (line 20))
+2026-06-17T18:57:28.8164456Z   Downloading boto3-1.42.84-py3-none-any.whl.metadata (6.7 kB)
+2026-06-17T18:57:28.8294235Z Collecting joblib>=1.4.2 (from -r requirements.txt (line 23))
+2026-06-17T18:57:28.8332539Z   Downloading joblib-1.5.3-py3-none-any.whl.metadata (5.5 kB)
+2026-06-17T18:57:28.8898880Z Collecting msgpack>=1.1.0 (from -r requirements.txt (line 24))
+2026-06-17T18:57:28.8938739Z   Downloading msgpack-1.2.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (8.1 kB)
+2026-06-17T18:57:28.9479824Z Collecting zstandard>=0.19.0 (from -r requirements.txt (line 27))
+2026-06-17T18:57:28.9514310Z   Downloading zstandard-0.25.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (3.3 kB)
+2026-06-17T18:57:28.9602699Z Collecting lit==18.1.8 (from -r requirements.txt (line 30))
+2026-06-17T18:57:28.9649055Z   Downloading lit-18.1.8-py3-none-any.whl.metadata (2.5 kB)
+2026-06-17T18:57:29.0189396Z Collecting psutil==7.1.3 (from -r requirements.txt (line 33))
+2026-06-17T18:57:29.0222411Z   Downloading psutil-7.1.3-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl.metadata (23 kB)
+2026-06-17T18:57:29.0493109Z Collecting pytest<9,>=4 (from pytest-cmake==0.13.0->-r requirements.txt (line 12))
+2026-06-17T18:57:29.0531153Z   Downloading pytest-8.4.2-py3-none-any.whl.metadata (7.7 kB)
+2026-06-17T18:57:29.0577739Z Requirement already satisfied: botocore<1.43.0,>=1.42.84 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from boto3<1.42.85,>=1.42.79->-r requirements.txt (line 20)) (1.42.84)
+2026-06-17T18:57:29.0582848Z Requirement already satisfied: jmespath<2.0.0,>=0.7.1 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from boto3<1.42.85,>=1.42.79->-r requirements.txt (line 20)) (1.1.0)
+2026-06-17T18:57:29.0676932Z Collecting s3transfer<0.17.0,>=0.16.0 (from boto3<1.42.85,>=1.42.79->-r requirements.txt (line 20))
+2026-06-17T18:57:29.0719468Z   Downloading s3transfer-0.16.1-py3-none-any.whl.metadata (1.7 kB)
+2026-06-17T18:57:29.0753784Z Requirement already satisfied: python-dateutil<3.0.0,>=2.1 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from botocore<1.43.0,>=1.42.84->boto3<1.42.85,>=1.42.79->-r requirements.txt (line 20)) (2.9.0.post0)
+2026-06-17T18:57:29.0764722Z Requirement already satisfied: urllib3!=2.2.0,<3,>=1.25.4 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from botocore<1.43.0,>=1.42.84->boto3<1.42.85,>=1.42.79->-r requirements.txt (line 20)) (2.7.0)
+2026-06-17T18:57:29.0825884Z Collecting iniconfig>=1 (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12))
+2026-06-17T18:57:29.1028432Z   Downloading iniconfig-2.3.0-py3-none-any.whl.metadata (2.5 kB)
+2026-06-17T18:57:29.1045699Z Requirement already satisfied: packaging>=20 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12)) (25.0)
+2026-06-17T18:57:29.1108963Z Collecting pluggy<2,>=1.5 (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12))
+2026-06-17T18:57:29.1143145Z   Downloading pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+2026-06-17T18:57:29.1166405Z Requirement already satisfied: pygments>=2.7.2 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12)) (2.20.0)
+2026-06-17T18:57:29.1181932Z Requirement already satisfied: six>=1.5 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from python-dateutil<3.0.0,>=2.1->botocore<1.43.0,>=1.42.84->boto3<1.42.85,>=1.42.79->-r requirements.txt (line 20)) (1.17.0)
+2026-06-17T18:57:29.1211101Z Requirement already satisfied: ply in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from CppHeaderParser>=2.7.4->-r requirements.txt (line 1)) (3.11)
+2026-06-17T18:57:29.1222133Z Requirement already satisfied: pyproject_hooks in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from build>=1.2.2->-r requirements.txt (line 2)) (1.2.0)
+2026-06-17T18:57:29.1310956Z Collecting cfgv>=2.0.0 (from pre-commit>=4.3.0->-r requirements.txt (line 4))
+2026-06-17T18:57:29.1344607Z   Downloading cfgv-3.5.0-py2.py3-none-any.whl.metadata (8.9 kB)
+2026-06-17T18:57:29.1613177Z Collecting identify>=1.0.0 (from pre-commit>=4.3.0->-r requirements.txt (line 4))
+2026-06-17T18:57:29.1646564Z   Downloading identify-2.6.19-py2.py3-none-any.whl.metadata (4.4 kB)
+2026-06-17T18:57:29.1739914Z Collecting nodeenv>=0.11.1 (from pre-commit>=4.3.0->-r requirements.txt (line 4))
+2026-06-17T18:57:29.1771856Z   Downloading nodeenv-1.10.0-py2.py3-none-any.whl.metadata (24 kB)
+2026-06-17T18:57:29.2065393Z Collecting virtualenv>=20.10.0 (from pre-commit>=4.3.0->-r requirements.txt (line 4))
+2026-06-17T18:57:29.2098129Z   Downloading virtualenv-21.5.1-py3-none-any.whl.metadata (3.4 kB)
+2026-06-17T18:57:29.2612061Z Collecting backports-zstd>=1.0.0 (from pyzstd>=0.16.0->-r requirements.txt (line 7))
+2026-06-17T18:57:29.2648921Z   Downloading backports_zstd-1.6.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (6.8 kB)
+2026-06-17T18:57:29.2669864Z Requirement already satisfied: typing-extensions>=4.13.2 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from pyzstd>=0.16.0->-r requirements.txt (line 7)) (4.15.0)
+2026-06-17T18:57:29.3056221Z Collecting MarkupSafe>=0.9.2 (from mako>=1.1.3->-r requirements.txt (line 13))
+2026-06-17T18:57:29.3090171Z   Downloading markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+2026-06-17T18:57:29.3241283Z Collecting distlib<1,>=0.3.7 (from virtualenv>=20.10.0->pre-commit>=4.3.0->-r requirements.txt (line 4))
+2026-06-17T18:57:29.3277230Z   Downloading distlib-0.4.3-py2.py3-none-any.whl.metadata (5.3 kB)
+2026-06-17T18:57:29.3299159Z Requirement already satisfied: filelock<4,>=3.24.2 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from virtualenv>=20.10.0->pre-commit>=4.3.0->-r requirements.txt (line 4)) (3.29.3)
+2026-06-17T18:57:29.3304107Z Requirement already satisfied: platformdirs<5,>=3.9.1 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from virtualenv>=20.10.0->pre-commit>=4.3.0->-r requirements.txt (line 4)) (4.10.0)
+2026-06-17T18:57:29.3353421Z Collecting python-discovery>=1.4.2 (from virtualenv>=20.10.0->pre-commit>=4.3.0->-r requirements.txt (line 4))
+2026-06-17T18:57:29.3388971Z   Downloading python_discovery-1.4.2-py3-none-any.whl.metadata (5.6 kB)
+2026-06-17T18:57:29.3488549Z Downloading lit-18.1.8-py3-none-any.whl (96 kB)
+2026-06-17T18:57:29.3538096Z Downloading psutil-7.1.3-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl (263 kB)
+2026-06-17T18:57:29.3587994Z Downloading setuptools-81.0.0-py3-none-any.whl (1.1 MB)
+2026-06-17T18:57:29.3639836Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.1/1.1 MB 308.6 MB/s  0:00:00
+2026-06-17T18:57:29.3673604Z Downloading boto3-1.42.84-py3-none-any.whl (140 kB)
+2026-06-17T18:57:29.3713179Z Downloading pytest-8.4.2-py3-none-any.whl (365 kB)
+2026-06-17T18:57:29.3761807Z Downloading pluggy-1.6.0-py3-none-any.whl (20 kB)
+2026-06-17T18:57:29.3802088Z Downloading s3transfer-0.16.1-py3-none-any.whl (86 kB)
+2026-06-17T18:57:29.3838406Z Downloading pre_commit-4.6.0-py2.py3-none-any.whl (226 kB)
+2026-06-17T18:57:29.3876990Z Downloading python_magic-0.4.27-py2.py3-none-any.whl (13 kB)
+2026-06-17T18:57:29.3911892Z Downloading pyzstd-0.19.1-py3-none-any.whl (23 kB)
+2026-06-17T18:57:29.3946472Z Downloading mako-1.3.12-py3-none-any.whl (78 kB)
+2026-06-17T18:57:29.3978035Z Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+2026-06-17T18:57:29.4010685Z Downloading pyelftools-0.33-py3-none-any.whl (201 kB)
+2026-06-17T18:57:29.4064846Z Downloading joblib-1.5.3-py3-none-any.whl (309 kB)
+2026-06-17T18:57:29.4112718Z Downloading msgpack-1.2.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (420 kB)
+2026-06-17T18:57:29.4156804Z Downloading zstandard-0.25.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (5.5 MB)
+2026-06-17T18:57:29.4301848Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.5/5.5 MB 428.9 MB/s  0:00:00
+2026-06-17T18:57:29.4338326Z Downloading backports_zstd-1.6.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (495 kB)
+2026-06-17T18:57:29.4390642Z Downloading cfgv-3.5.0-py2.py3-none-any.whl (7.4 kB)
+2026-06-17T18:57:29.4426659Z Downloading identify-2.6.19-py2.py3-none-any.whl (99 kB)
+2026-06-17T18:57:29.4462969Z Downloading iniconfig-2.3.0-py3-none-any.whl (7.5 kB)
+2026-06-17T18:57:29.4495360Z Downloading markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+2026-06-17T18:57:29.4527550Z Downloading nodeenv-1.10.0-py2.py3-none-any.whl (23 kB)
+2026-06-17T18:57:29.4562460Z Downloading virtualenv-21.5.1-py3-none-any.whl (4.6 MB)
+2026-06-17T18:57:29.4681594Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.6/4.6 MB 443.9 MB/s  0:00:00
+2026-06-17T18:57:29.4725080Z Downloading distlib-0.4.3-py2.py3-none-any.whl (470 kB)
+2026-06-17T18:57:29.4778362Z Downloading python_discovery-1.4.2-py3-none-any.whl (33 kB)
+2026-06-17T18:57:29.5092263Z Building wheels for collected packages: pytest-cmake
+2026-06-17T18:57:29.5100841Z   Building wheel for pytest-cmake (pyproject.toml): started
+2026-06-17T18:57:29.5449938Z   Building wheel for pytest-cmake (pyproject.toml): finished with status 'done'
+2026-06-17T18:57:29.5456137Z   Created wheel for pytest-cmake: filename=pytest_cmake-0.13.0-py2.py3-none-any.whl size=9056 sha256=89b6aa624c77b7d39e19494c8689c0c7479669c41ae6fb67bb60e6f1824e99e4
+2026-06-17T18:57:29.5457484Z   Stored in directory: /tmp/pip-ephem-wheel-cache-felitrkw/wheels/84/19/5d/319d1d9b8632fc34702517555736e81154ad9e90a4a7ec4a67
+2026-06-17T18:57:29.5474421Z Successfully built pytest-cmake
+2026-06-17T18:57:29.6733534Z Installing collected packages: lit, distlib, zstandard, setuptools, python-magic, python-discovery, pyelftools, psutil, pluggy, nodeenv, msgpack, MarkupSafe, joblib, iniconfig, identify, cfgv, backports-zstd, virtualenv, pyzstd, pytest, mako, jinja2, s3transfer, pytest-cmake, pre-commit, boto3
+2026-06-17T18:57:29.9509391Z   Attempting uninstall: setuptools
+2026-06-17T18:57:29.9572077Z     Found existing installation: setuptools 69.1.1
+2026-06-17T18:57:29.9816848Z     Uninstalling setuptools-69.1.1:
+2026-06-17T18:57:30.0772054Z       Successfully uninstalled setuptools-69.1.1
+2026-06-17T18:57:30.9698884Z   Attempting uninstall: psutil
+2026-06-17T18:57:30.9758814Z     Found existing installation: psutil 7.2.2
+2026-06-17T18:57:30.9786782Z     Uninstalling psutil-7.2.2:
+2026-06-17T18:57:30.9796574Z       Successfully uninstalled psutil-7.2.2
+2026-06-17T18:57:32.2290691Z 
+2026-06-17T18:57:32.2384109Z WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+2026-06-17T18:57:32.2387963Z Successfully installed MarkupSafe-3.0.3 backports-zstd-1.6.0 boto3-1.42.84 cfgv-3.5.0 distlib-0.4.3 identify-2.6.19 iniconfig-2.3.0 jinja2-3.1.6 joblib-1.5.3 lit-18.1.8 mako-1.3.12 msgpack-1.2.0 nodeenv-1.10.0 pluggy-1.6.0 pre-commit-4.6.0 psutil-7.1.3 pyelftools-0.33 pytest-8.4.2 pytest-cmake-0.13.0 python-discovery-1.4.2 python-magic-0.4.27 pyzstd-0.19.1 s3transfer-0.16.1 setuptools-81.0.0 virtualenv-21.5.1 zstandard-0.25.0
+2026-06-17T18:57:32.5016161Z ##[group]Run git config --global --add safe.directory $PWD
+2026-06-17T18:57:32.5016635Z [36;1mgit config --global --add safe.directory $PWD[0m
+2026-06-17T18:57:32.5016969Z [36;1mgit config fetch.parallel 10[0m
+2026-06-17T18:57:32.5017325Z shell: sh -e {0}
+2026-06-17T18:57:32.5017528Z env:
+2026-06-17T18:57:32.5017784Z   AWS_SHARED_CREDENTIALS_FILE: /home/awsconfig/credentials.ini
+2026-06-17T18:57:32.5018116Z   STAGE_NAME: math-libs
+2026-06-17T18:57:32.5018333Z   AMDGPU_FAMILIES: gfx94X-dcgpu
+2026-06-17T18:57:32.5018558Z   BUILD_DIR: build
+2026-06-17T18:57:32.5018880Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf
+2026-06-17T18:57:32.5019327Z   CACHE_DIR: /home/runner/_work/TheRock/TheRock/.container-cache
+2026-06-17T18:57:32.5019672Z   TEATIME_FORCE_INTERACTIVE: 0
+2026-06-17T18:57:32.5019920Z   RELEASE_TYPE: ci
+2026-06-17T18:57:32.5020121Z   EXTERNAL_FETCH_SOURCES_ARGS: 
+2026-06-17T18:57:32.5020350Z ##[endgroup]
+2026-06-17T18:57:32.5660223Z ##[group]Run ./build_tools/setup_ccache.py \
+2026-06-17T18:57:32.5660617Z [36;1m./build_tools/setup_ccache.py \[0m
+2026-06-17T18:57:32.5660911Z [36;1m  --release-type "ci" \[0m
+2026-06-17T18:57:32.5661210Z [36;1m  --dir "$(dirname $CCACHE_CONFIGPATH)" \[0m
+2026-06-17T18:57:32.5661557Z [36;1m  --local-path "$CACHE_DIR/ccache"[0m
+2026-06-17T18:57:32.5661938Z shell: sh -e {0}
+2026-06-17T18:57:32.5662129Z env:
+2026-06-17T18:57:32.5662386Z   AWS_SHARED_CREDENTIALS_FILE: /home/awsconfig/credentials.ini
+2026-06-17T18:57:32.5662719Z   STAGE_NAME: math-libs
+2026-06-17T18:57:32.5662943Z   AMDGPU_FAMILIES: gfx94X-dcgpu
+2026-06-17T18:57:32.5663175Z   BUILD_DIR: build
+2026-06-17T18:57:32.5663487Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf
+2026-06-17T18:57:32.5663930Z   CACHE_DIR: /home/runner/_work/TheRock/TheRock/.container-cache
+2026-06-17T18:57:32.5664255Z   TEATIME_FORCE_INTERACTIVE: 0
+2026-06-17T18:57:32.5664482Z   RELEASE_TYPE: ci
+2026-06-17T18:57:32.5664723Z   EXTERNAL_FETCH_SOURCES_ARGS: 
+2026-06-17T18:57:32.5664953Z ##[endgroup]
+2026-06-17T18:57:32.6599132Z [setup_ccache] Config preset: github-oss-dev
+2026-06-17T18:57:32.6599570Z [setup_ccache] Platform: POSIX
+2026-06-17T18:57:32.6602506Z [setup_ccache] Initializing ccache dir: /__w/TheRock/TheRock/.ccache
+2026-06-17T18:57:32.6603592Z [setup_ccache] Wrote config: /__w/TheRock/TheRock/.ccache/ccache.conf
+2026-06-17T18:57:32.6604295Z [setup_ccache] Wrote compiler check script: /__w/TheRock/TheRock/.ccache/compiler_check.py
+2026-06-17T18:57:32.7180026Z Statistics zeroed
+2026-06-17T18:57:32.7180497Z export CCACHE_CONFIGPATH=/__w/TheRock/TheRock/.ccache/ccache.conf
+2026-06-17T18:57:32.7180989Z [setup_ccache] Generated ccache config:
+2026-06-17T18:57:32.7181803Z [setup_ccache]   remote_storage = http://bazelremote-svc.bazelremote-ns.svc.cluster.local:8080|layout=bazel|connect-timeout=50
+2026-06-17T18:57:32.7182597Z [setup_ccache]   max_size = 10G
+2026-06-17T18:57:32.7182945Z [setup_ccache]   namespace = therock-v2
+2026-06-17T18:57:32.7183426Z [setup_ccache]   log_file = /__w/TheRock/TheRock/build/logs/ccache/ccache.log
+2026-06-17T18:57:32.7184079Z [setup_ccache]   stats_log = /__w/TheRock/TheRock/build/logs/ccache/ccache_stats.log
+2026-06-17T18:57:32.7184707Z [setup_ccache]   cache_dir = /__w/TheRock/TheRock/.container-cache/ccache
+2026-06-17T18:57:32.7185784Z [setup_ccache]   compiler_check = /opt/python/cp312-cp312/bin/python /__w/TheRock/TheRock/.ccache/compiler_check.py /__w/TheRock/TheRock/.ccache/compiler_check_cache %compiler%
+2026-06-17T18:57:32.7186884Z [setup_ccache]   sloppiness = include_file_ctime,pch_defines,time_macros
+2026-06-17T18:57:32.7318149Z ##[group]Run ./build_tools/health_status.py
+2026-06-17T18:57:32.7318518Z [36;1m./build_tools/health_status.py[0m
+2026-06-17T18:57:32.7318893Z shell: sh -e {0}
+2026-06-17T18:57:32.7319086Z env:
+2026-06-17T18:57:32.7319350Z   AWS_SHARED_CREDENTIALS_FILE: /home/awsconfig/credentials.ini
+2026-06-17T18:57:32.7319689Z   STAGE_NAME: math-libs
+2026-06-17T18:57:32.7319911Z   AMDGPU_FAMILIES: gfx94X-dcgpu
+2026-06-17T18:57:32.7320136Z   BUILD_DIR: build
+2026-06-17T18:57:32.7320450Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf
+2026-06-17T18:57:32.7320896Z   CACHE_DIR: /home/runner/_work/TheRock/TheRock/.container-cache
+2026-06-17T18:57:32.7321247Z   TEATIME_FORCE_INTERACTIVE: 0
+2026-06-17T18:57:32.7321479Z   RELEASE_TYPE: ci
+2026-06-17T18:57:32.7321681Z   EXTERNAL_FETCH_SOURCES_ARGS: 
+2026-06-17T18:57:32.7321910Z ##[endgroup]
+2026-06-17T18:57:34.9036585Z 
+2026-06-17T18:57:34.9036824Z 
+2026-06-17T18:57:34.9036830Z 
+2026-06-17T18:57:34.9036835Z 
+2026-06-17T18:57:34.9037291Z 
+2026-06-17T18:57:34.9038059Z         [38;2;255;61;61m			    # # # # # # # # # # #[0m
+2026-06-17T18:57:34.9038656Z         [38;2;255;61;61m			      # # # # # # # # # #[0m
+2026-06-17T18:57:34.9039321Z         [38;2;255;61;61m			        # # # # # # # # #[0m	  [38;2;255;61;61mAMD ROCm/TheRock Project[0m
+2026-06-17T18:57:34.9039940Z         [38;2;255;61;61m			                    # # #[0m
+2026-06-17T18:57:34.9040537Z         [38;2;255;61;61m			        #           # # #[0m	  Build Environment diagnosis script
+2026-06-17T18:57:34.9041121Z         [38;2;255;61;61m			      # #           # # #[0m
+2026-06-17T18:57:34.9041837Z         [38;2;255;61;61m			    # # #           # # #[0m	  Version TheRock (current HEAD: [38;2;255;61;61m669115c[0m)
+2026-06-17T18:57:34.9042512Z         [38;2;255;61;61m			    # # # # # # #   # # #[0m
+2026-06-17T18:57:34.9043089Z         [38;2;255;61;61m			    # # # # # #       # #[0m
+2026-06-17T18:57:34.9043552Z         [38;2;255;61;61m			    # # # # #           #[0m
+2026-06-17T18:57:34.9043816Z 
+2026-06-17T18:57:34.9043821Z 
+2026-06-17T18:57:34.9043918Z         
+2026-06-17T18:57:34.9044354Z         ===================                       Build Environment Summary                        ===================
+2026-06-17T18:57:34.9044808Z 
+2026-06-17T18:57:34.9044961Z         OS:          AlmaLinux 8.10, GNU/Linux 5.15.0
+2026-06-17T18:57:34.9045408Z         CPU:         AMD EPYC 7763 64-Core Processor (x86_64)
+2026-06-17T18:57:34.9045828Z                      Logical cores: 64
+2026-06-17T18:57:34.9046058Z 
+2026-06-17T18:57:34.9046343Z         GPU:         [38;2;184;166;48m[!] Skip GPU detection on Linux.[0m
+2026-06-17T18:57:34.9046828Z         RAM:         Total Physical Memory: 251.68 GB
+2026-06-17T18:57:34.9047694Z                      Avail Physical Memory: 245.67 GB
+2026-06-17T18:57:34.9048098Z                      Avail   Swap   Memory: 0.00 GB
+2026-06-17T18:57:34.9048331Z 
+2026-06-17T18:57:34.9048443Z         STORAGE:     Disk Total Space: 992.25 GB
+2026-06-17T18:57:34.9048761Z                      Disk Avail Space: 959.57 GB
+2026-06-17T18:57:34.9049067Z                      Disk Used  Space: 32.66 GB
+2026-06-17T18:57:34.9049362Z                      Disk Usage: 3.29 %
+2026-06-17T18:57:34.9049776Z                      Current Repo path: /__w/TheRock/TheRock, Disk Device: /dev/root at: /__w
+2026-06-17T18:57:34.9050135Z 
+2026-06-17T18:57:34.9050313Z         FILE SYSTEM: Filesystem      Size  Used Avail Use% Mounted on
+2026-06-17T18:57:34.9050712Z                      overlay         993G   33G  960G   4% /
+2026-06-17T18:57:34.9051051Z                      tmpfs            64M     0   64M   0% /dev
+2026-06-17T18:57:34.9051398Z                      shm              64M     0   64M   0% /dev/shm
+2026-06-17T18:57:34.9051751Z                      /dev/root       993G   33G  960G   4% /__w
+2026-06-17T18:57:34.9052119Z                      overlay         993G   33G  960G   4% /home/awsconfig
+2026-06-17T18:57:34.9052787Z                      tmpfs           126G     0  126G   0% /proc/acpi
+2026-06-17T18:57:34.9053353Z                      tmpfs           126G     0  126G   0% /proc/scsi
+2026-06-17T18:57:34.9053845Z                      tmpfs           126G     0  126G   0% /sys/firmware
+2026-06-17T18:57:34.9054121Z 
+2026-06-17T18:57:34.9054451Z         CCACHE:      Cache directory:    /__w/TheRock/TheRock/.container-cache/ccache
+2026-06-17T18:57:34.9055080Z                      Config file:        /__w/TheRock/TheRock/.ccache/ccache.conf
+2026-06-17T18:57:34.9055605Z                      System config file:
+2026-06-17T18:57:34.9056081Z                      Stats updated:      Wed Jun 17 18:57:32 2026
+2026-06-17T18:57:34.9056523Z                      Local storage:
+2026-06-17T18:57:34.9056934Z                        Cache size (GB):  0.0 / 10.0 ( 0.00%)
+2026-06-17T18:57:34.9057371Z                        Files:              0
+2026-06-17T18:57:34.9057776Z                        Hits:               0
+2026-06-17T18:57:34.9058200Z                        Misses:             0
+2026-06-17T18:57:34.9058601Z                        Reads:              0
+2026-06-17T18:57:34.9058960Z                        Writes:             0
+2026-06-17T18:57:34.9059359Z                      -------------
+2026-06-17T18:57:34.9059766Z                      Config:
+2026-06-17T18:57:34.9060107Z                      -------------
+2026-06-17T18:57:34.9060556Z                      (default) absolute_paths_in_stderr = false
+2026-06-17T18:57:34.9061038Z                      (default) base_dir = 
+2026-06-17T18:57:34.9075927Z                      (/__w/TheRock/TheRock/.ccache/ccache.conf) cache_dir = /__w/TheRock/TheRock/.container-cache/ccache
+2026-06-17T18:57:34.9076440Z                      (default) compiler = 
+2026-06-17T18:57:34.9077357Z                      (/__w/TheRock/TheRock/.ccache/ccache.conf) compiler_check = /opt/python/cp312-cp312/bin/python /__w/TheRock/TheRock/.ccache/compiler_check.py /__w/TheRock/TheRock/.ccache/compiler_check_cache %compiler%
+2026-06-17T18:57:34.9078227Z                      (default) compiler_type = auto
+2026-06-17T18:57:34.9078556Z                      (default) compression = true
+2026-06-17T18:57:34.9078854Z                      (default) compression_level = 0
+2026-06-17T18:57:34.9079148Z                      (default) cpp_extension = 
+2026-06-17T18:57:34.9079424Z                      (default) debug = false
+2026-06-17T18:57:34.9079696Z                      (default) debug_dir = 
+2026-06-17T18:57:34.9079978Z                      (default) debug_level = 2
+2026-06-17T18:57:34.9080260Z                      (default) depend_mode = false
+2026-06-17T18:57:34.9080562Z                      (default) direct_mode = true
+2026-06-17T18:57:34.9080854Z                      (default) disable = false
+2026-06-17T18:57:34.9081409Z                      (default) extra_files_to_hash = 
+2026-06-17T18:57:34.9081701Z                      (default) file_clone = false
+2026-06-17T18:57:34.9082010Z                      (default) hard_link = false
+2026-06-17T18:57:34.9082291Z                      (default) hash_dir = true
+2026-06-17T18:57:34.9082593Z                      (default) ignore_headers_in_manifest = 
+2026-06-17T18:57:34.9082901Z                      (default) ignore_options = 
+2026-06-17T18:57:34.9083178Z                      (default) inode_cache = true
+2026-06-17T18:57:34.9083471Z                      (default) keep_comments_cpp = false
+2026-06-17T18:57:34.9084001Z                      (/__w/TheRock/TheRock/.ccache/ccache.conf) log_file = /__w/TheRock/TheRock/build/logs/ccache/ccache.log
+2026-06-17T18:57:34.9084508Z                      (default) max_files = 0
+2026-06-17T18:57:34.9084851Z                      (/__w/TheRock/TheRock/.ccache/ccache.conf) max_size = 10.0 GB
+2026-06-17T18:57:34.9085263Z                      (default) msvc_dep_prefix = Note: including file:
+2026-06-17T18:57:34.9085672Z                      (/__w/TheRock/TheRock/.ccache/ccache.conf) namespace = therock-v2
+2026-06-17T18:57:34.9086037Z                      (default) path = 
+2026-06-17T18:57:34.9086505Z                      (default) pch_external_checksum = false
+2026-06-17T18:57:34.9086819Z                      (default) prefix_command = 
+2026-06-17T18:57:34.9087110Z                      (default) prefix_command_cpp = 
+2026-06-17T18:57:34.9087394Z                      (default) read_only = false
+2026-06-17T18:57:34.9087683Z                      (default) read_only_direct = false
+2026-06-17T18:57:34.9087972Z                      (default) recache = false
+2026-06-17T18:57:34.9088251Z                      (default) remote_only = false
+2026-06-17T18:57:34.9088964Z                      (/__w/TheRock/TheRock/.ccache/ccache.conf) remote_storage = http://bazelremote-svc.bazelremote-ns.svc.cluster.local:8080|layout=bazel|connect-timeout=50
+2026-06-17T18:57:34.9089663Z                      (default) reshare = false
+2026-06-17T18:57:34.9089958Z                      (default) response_file_format = auto
+2026-06-17T18:57:34.9090265Z                      (default) run_second_cpp = true
+2026-06-17T18:57:34.9090762Z                      (/__w/TheRock/TheRock/.ccache/ccache.conf) sloppiness = include_file_ctime, pch_defines, time_macros
+2026-06-17T18:57:34.9091252Z                      (default) stats = true
+2026-06-17T18:57:34.9091754Z                      (/__w/TheRock/TheRock/.ccache/ccache.conf) stats_log = /__w/TheRock/TheRock/build/logs/ccache/ccache_stats.log
+2026-06-17T18:57:34.9092380Z                      (default) temporary_dir = /__w/TheRock/TheRock/.container-cache/ccache/tmp
+2026-06-17T18:57:34.9092776Z                      (default) umask = 
+2026-06-17T18:57:34.9092951Z 
+2026-06-17T18:57:34.9092956Z 
+2026-06-17T18:57:34.9093414Z         ===================                Start detect compoments on: [38;2;115;201;201mROCm/TheRock[0m                ===================
+2026-06-17T18:57:34.9093815Z 
+2026-06-17T18:57:34.9094435Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mOperating System[0m] Detected OS is AlmaLinux 8.10 5.15.0 
+2026-06-17T18:57:34.9095139Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mCPU Arch[0m] Detected Available CPU Arch x86_64. 
+2026-06-17T18:57:34.9095685Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mDisk Usage[0m] Disk space check pass. 
+2026-06-17T18:57:34.9096215Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mGit[0m] Found Git 2.49.0 at /usr/local/bin/git 
+2026-06-17T18:57:34.9096845Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mCMake[0m] Found CMake 3.27.9 at /usr/local/therock-tools/bin/cmake 
+2026-06-17T18:57:34.9097495Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mCCache[0m] Found CCache 4.11.2 at /usr/local/bin/ccache 
+2026-06-17T18:57:34.9098148Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mNinja-Build[0m] Found Ninja-Build 1.12.1 at /usr/local/bin/ninja 
+2026-06-17T18:57:34.9099235Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mGCC/gfortran[0m] Found GCC compiler program gfortran 13.3.1 at /opt/rh/gcc-toolset-13/root/usr/bin/gfortran 
+2026-06-17T18:57:34.9100151Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mPython 3[0m] Found Python 3.12.10 at /opt/python/cp312-cp312/bin/python (Global ENV). 
+2026-06-17T18:57:34.9100862Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mAstral UV[0m] Found Astral UV 0.7.3 at /usr/local/bin/uv 
+2026-06-17T18:57:34.9101610Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mGCC/gcc[0m] Found GCC compiler program gcc 13.3.1 at /opt/rh/gcc-toolset-13/root/usr/bin/gcc 
+2026-06-17T18:57:34.9102458Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mGCC/g++[0m] Found GCC compiler program g++ 13.3.1 at /opt/rh/gcc-toolset-13/root/usr/bin/g++ 
+2026-06-17T18:57:34.9103348Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mBinutils/Assembler[0m] Found GNU/Binutils Assembler 2.40.0 at /opt/rh/gcc-toolset-13/root/usr/bin/as 
+2026-06-17T18:57:34.9104277Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mBinutils/Archiver[0m] Found GNU/Binutils Archiver 2.40.0 at /opt/rh/gcc-toolset-13/root/usr/bin/ar 
+2026-06-17T18:57:34.9105327Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mBinutils/Linker[0m] Found GNU/Binutils Linker 2.40.0 at /opt/rh/gcc-toolset-13/root/usr/bin/ld 
+2026-06-17T18:57:34.9105783Z 
+2026-06-17T18:57:34.9106303Z         ===================          Compoments check [38;2;6;161;60m15[0m Passed, [38;2;184;166;48m0[0m Warning, [38;2;255;61;61m0[0m Fatal Error          ===================
+2026-06-17T18:57:34.9106787Z 
+2026-06-17T18:57:34.9106791Z 
+2026-06-17T18:57:34.9106988Z         ===================                              Python List                               ===================
+2026-06-17T18:57:34.9107278Z 
+2026-06-17T18:57:34.9107364Z         aiobotocore==3.4.0
+2026-06-17T18:57:34.9107596Z         aiohappyeyeballs==2.6.2
+2026-06-17T18:57:34.9107827Z         aiohttp==3.14.1
+2026-06-17T18:57:34.9108049Z         aiohttp-retry==2.9.1
+2026-06-17T18:57:34.9108285Z         aioitertools==0.13.0
+2026-06-17T18:57:34.9108505Z         aiosignal==1.4.0
+2026-06-17T18:57:34.9108714Z         amqp==5.3.1
+2026-06-17T18:57:34.9108913Z         annotated-doc==0.0.4
+2026-06-17T18:57:34.9109151Z         annotated-types==0.7.0
+2026-06-17T18:57:34.9109407Z         antlr4-python3-runtime==4.9.3
+2026-06-17T18:57:34.9109659Z         appdirs==1.4.4
+2026-06-17T18:57:34.9109863Z         asyncssh==2.23.1
+2026-06-17T18:57:34.9110072Z         atpublic==7.0.0
+2026-06-17T18:57:34.9110278Z         attrs==26.1.0
+2026-06-17T18:57:34.9110485Z         backports.zstd==1.6.0
+2026-06-17T18:57:34.9110712Z         billiard==4.2.4
+2026-06-17T18:57:34.9110910Z         boto3==1.42.84
+2026-06-17T18:57:34.9111222Z         botocore==1.42.84
+2026-06-17T18:57:34.9111598Z         build==1.2.2.post1
+2026-06-17T18:57:34.9112288Z         celery==5.6.3
+2026-06-17T18:57:34.9112524Z         certifi==2026.5.20
+2026-06-17T18:57:34.9112726Z         cffi==2.0.0
+2026-06-17T18:57:34.9112957Z         cfgv==3.5.0
+2026-06-17T18:57:34.9113187Z         charset-normalizer==3.4.7
+2026-06-17T18:57:34.9113426Z         click==8.4.1
+2026-06-17T18:57:34.9113634Z         click-didyoumean==0.3.1
+2026-06-17T18:57:34.9113875Z         click-plugins==1.1.1.2
+2026-06-17T18:57:34.9114161Z         click-repl==0.3.0
+2026-06-17T18:57:34.9114532Z         colorama==0.4.6
+2026-06-17T18:57:34.9114770Z         configobj==5.0.9
+2026-06-17T18:57:34.9114985Z         CppHeaderParser==2.7.4
+2026-06-17T18:57:34.9115223Z         cryptography==48.0.1
+2026-06-17T18:57:34.9115449Z         dictdiffer==0.9.0
+2026-06-17T18:57:34.9115659Z         diskcache==5.6.3
+2026-06-17T18:57:34.9115878Z         distlib==0.4.3
+2026-06-17T18:57:34.9116085Z         distro==1.9.0
+2026-06-17T18:57:34.9116307Z         dpath==2.2.0
+2026-06-17T18:57:34.9116501Z         dulwich==1.2.6
+2026-06-17T18:57:34.9116693Z         dvc==3.67.1
+2026-06-17T18:57:34.9116879Z         dvc-data==3.18.3
+2026-06-17T18:57:34.9117084Z         dvc-http==2.32.0
+2026-06-17T18:57:34.9117538Z         dvc-objects==5.2.0
+2026-06-17T18:57:34.9117753Z         dvc-render==1.0.2
+2026-06-17T18:57:34.9117959Z         dvc-s3==3.3.0
+2026-06-17T18:57:34.9118167Z         dvc-studio-client==0.23.0
+2026-06-17T18:57:34.9118410Z         dvc-task==0.40.2
+2026-06-17T18:57:34.9118616Z         entrypoints==0.4
+2026-06-17T18:57:34.9118825Z         filelock==3.29.3
+2026-06-17T18:57:34.9119032Z         flatten-dict==0.5.0
+2026-06-17T18:57:34.9119245Z         flufl.lock==9.1.0
+2026-06-17T18:57:34.9119454Z         frozenlist==1.8.0
+2026-06-17T18:57:34.9119657Z         fsspec==2026.4.0
+2026-06-17T18:57:34.9119856Z         funcy==2.0
+2026-06-17T18:57:34.9120050Z         gitdb==4.0.12
+2026-06-17T18:57:34.9120258Z         GitPython==3.1.50
+2026-06-17T18:57:34.9120471Z         grandalf==0.8
+2026-06-17T18:57:34.9120657Z         gto==1.9.0
+2026-06-17T18:57:34.9120843Z         hydra-core==1.3.3
+2026-06-17T18:57:34.9121047Z         identify==2.6.19
+2026-06-17T18:57:34.9121244Z         idna==3.18
+2026-06-17T18:57:34.9121434Z         iniconfig==2.3.0
+2026-06-17T18:57:34.9121651Z         iterative-telemetry==0.0.10
+2026-06-17T18:57:34.9121888Z         Jinja2==3.1.6
+2026-06-17T18:57:34.9122119Z         jmespath==1.1.0
+2026-06-17T18:57:34.9122319Z         joblib==1.5.3
+2026-06-17T18:57:34.9122514Z         kombu==5.6.2
+2026-06-17T18:57:34.9122870Z         lit==18.1.8
+2026-06-17T18:57:34.9123056Z         Mako==1.3.12
+2026-06-17T18:57:34.9123374Z         markdown-it-py==4.2.0
+2026-06-17T18:57:34.9123696Z         MarkupSafe==3.0.3
+2026-06-17T18:57:34.9123901Z         mdurl==0.1.2
+2026-06-17T18:57:34.9124092Z         meson==1.7.0
+2026-06-17T18:57:34.9124517Z         msgpack==1.2.0
+2026-06-17T18:57:34.9124747Z         multidict==6.7.1
+2026-06-17T18:57:34.9124972Z         networkx==3.6.1
+2026-06-17T18:57:34.9125170Z         nodeenv==1.10.0
+2026-06-17T18:57:34.9125365Z         omegaconf==2.3.1
+2026-06-17T18:57:34.9125562Z         orjson==3.11.9
+2026-06-17T18:57:34.9125758Z         packaging==25.0
+2026-06-17T18:57:34.9125961Z         pathspec==1.1.1
+2026-06-17T18:57:34.9126161Z         pip==26.1.2
+2026-06-17T18:57:34.9126361Z         platformdirs==4.10.0
+2026-06-17T18:57:34.9126582Z         pluggy==1.6.0
+2026-06-17T18:57:34.9126776Z         ply==3.11
+2026-06-17T18:57:34.9126969Z         pre_commit==4.6.0
+2026-06-17T18:57:34.9127190Z         prompt_toolkit==3.0.52
+2026-06-17T18:57:34.9127421Z         propcache==0.5.2
+2026-06-17T18:57:34.9127625Z         psutil==7.1.3
+2026-06-17T18:57:34.9127820Z         pycparser==3.0
+2026-06-17T18:57:34.9128018Z         pydantic==2.13.4
+2026-06-17T18:57:34.9128234Z         pydantic_core==2.46.4
+2026-06-17T18:57:34.9128468Z         pydantic-settings==2.14.1
+2026-06-17T18:57:34.9128712Z         pydot==4.0.1
+2026-06-17T18:57:34.9128909Z         pyelftools==0.33
+2026-06-17T18:57:34.9129124Z         pygit2==1.19.2
+2026-06-17T18:57:34.9129318Z         Pygments==2.20.0
+2026-06-17T18:57:34.9129517Z         pygtrie==2.5.0
+2026-06-17T18:57:34.9129755Z         pyparsing==3.3.2
+2026-06-17T18:57:34.9129969Z         pyproject_hooks==1.2.0
+2026-06-17T18:57:34.9130220Z         pytest==8.4.2
+2026-06-17T18:57:34.9130420Z         pytest-cmake==0.13.0
+2026-06-17T18:57:34.9130653Z         python-dateutil==2.9.0.post0
+2026-06-17T18:57:34.9130905Z         python-discovery==1.4.2
+2026-06-17T18:57:34.9131139Z         python-dotenv==1.2.2
+2026-06-17T18:57:34.9131364Z         python-magic==0.4.27
+2026-06-17T18:57:34.9131575Z         PyYAML==6.0.2
+2026-06-17T18:57:34.9131774Z         pyzstd==0.19.1
+2026-06-17T18:57:34.9131973Z         requests==2.34.2
+2026-06-17T18:57:34.9132178Z         rich==15.0.0
+2026-06-17T18:57:34.9132370Z         ruamel.yaml==0.19.1
+2026-06-17T18:57:34.9132582Z         s3fs==2026.4.0
+2026-06-17T18:57:34.9132778Z         s3transfer==0.16.1
+2026-06-17T18:57:34.9132991Z         scmrepo==3.6.2
+2026-06-17T18:57:34.9133183Z         semver==3.0.4
+2026-06-17T18:57:34.9133380Z         setuptools==81.0.0
+2026-06-17T18:57:34.9133595Z         shellingham==1.5.4
+2026-06-17T18:57:34.9133806Z         shortuuid==1.0.13
+2026-06-17T18:57:34.9134190Z         shtab==1.8.0
+2026-06-17T18:57:34.9134375Z         six==1.17.0
+2026-06-17T18:57:34.9134559Z         smmap==5.0.3
+2026-06-17T18:57:34.9134748Z         sqltrie==0.11.2
+2026-06-17T18:57:34.9134947Z         tabulate==0.10.0
+2026-06-17T18:57:34.9135144Z         tomli==2.2.1
+2026-06-17T18:57:34.9135339Z         tomlkit==0.15.0
+2026-06-17T18:57:34.9135533Z         tqdm==4.68.2
+2026-06-17T18:57:34.9135722Z         typer==0.26.7
+2026-06-17T18:57:34.9135932Z         typing_extensions==4.15.0
+2026-06-17T18:57:34.9136183Z         typing-inspection==0.4.2
+2026-06-17T18:57:34.9136415Z         tzdata==2026.2
+2026-06-17T18:57:34.9136598Z         tzlocal==5.3.1
+2026-06-17T18:57:34.9136784Z         urllib3==2.7.0
+2026-06-17T18:57:34.9136975Z         vine==5.1.0
+2026-06-17T18:57:34.9137165Z         virtualenv==21.5.1
+2026-06-17T18:57:34.9137375Z         voluptuous==0.16.0
+2026-06-17T18:57:34.9137585Z         wcwidth==0.8.1
+2026-06-17T18:57:34.9137779Z         wheel==0.46.2
+2026-06-17T18:57:34.9137976Z         wrapt==2.2.1
+2026-06-17T18:57:34.9138161Z         yarl==1.24.2
+2026-06-17T18:57:34.9138349Z         zc.lockfile==4.0
+2026-06-17T18:57:34.9138553Z         zstandard==0.25.0
+2026-06-17T18:57:34.9138688Z 
+2026-06-17T18:57:34.9138692Z 
+2026-06-17T18:57:34.9139041Z         ===================                            End Python List                             ===================
+2026-06-17T18:57:34.9139349Z 
+2026-06-17T18:57:34.9139352Z 
+2026-06-17T18:57:34.9139825Z         ===================      TheRock build pre-diagnosis script completed in [38;2;115;201;201m1.69[0m seconds      ===================
+2026-06-17T18:57:34.9177385Z ##[group]Run python build_tools/artifact_manager.py fetch \
+2026-06-17T18:57:34.9177856Z [36;1mpython build_tools/artifact_manager.py fetch \[0m
+2026-06-17T18:57:34.9178186Z [36;1m  --run-id=27710372755 \[0m
+2026-06-17T18:57:34.9178451Z [36;1m  --stage="${STAGE_NAME}" \[0m
+2026-06-17T18:57:34.9178740Z [36;1m  --amdgpu-families="gfx94X-dcgpu" \[0m
+2026-06-17T18:57:34.9179063Z [36;1m  --output-dir="${BUILD_DIR}" \[0m
+2026-06-17T18:57:34.9179328Z [36;1m  --bootstrap[0m
+2026-06-17T18:57:34.9179651Z shell: sh -e {0}
+2026-06-17T18:57:34.9179838Z env:
+2026-06-17T18:57:34.9180108Z   AWS_SHARED_CREDENTIALS_FILE: /home/awsconfig/credentials.ini
+2026-06-17T18:57:34.9180448Z   STAGE_NAME: math-libs
+2026-06-17T18:57:34.9180670Z   AMDGPU_FAMILIES: gfx94X-dcgpu
+2026-06-17T18:57:34.9180904Z   BUILD_DIR: build
+2026-06-17T18:57:34.9181219Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf
+2026-06-17T18:57:34.9181703Z   CACHE_DIR: /home/runner/_work/TheRock/TheRock/.container-cache
+2026-06-17T18:57:34.9182044Z   TEATIME_FORCE_INTERACTIVE: 0
+2026-06-17T18:57:34.9182278Z   RELEASE_TYPE: ci
+2026-06-17T18:57:34.9182487Z   EXTERNAL_FETCH_SOURCES_ARGS: 
+2026-06-17T18:57:34.9182722Z ##[endgroup]
+2026-06-17T18:57:35.0697073Z Stage 'math-libs' needs 19 artifacts: amd-llvm, aqlprofile, base, core-amdsmi, core-hip, core-hipinfo, core-kpack, core-runtime, elfio, fftw3, host-blas, host-suite-sparse, openmpi, rocprofiler-compute, rocprofiler-sdk, spdlog, sysdeps, sysdeps-libmnl, sysdeps-libnl
+2026-06-17T18:57:35.0698783Z Retrieving bucket info for workflow run...
+2026-06-17T18:57:35.0699216Z   github_repository: ROCm/TheRock
+2026-06-17T18:57:35.0699580Z   release_type: ci
+2026-06-17T18:57:35.0969050Z   is_pr_from_fork: True
+2026-06-17T18:57:35.0969444Z   bucket: therock-ci-artifacts-external
+2026-06-17T18:57:35.0969978Z   Fork PR detected, skipping OIDC (using runner base credentials)
+2026-06-17T18:57:35.0970755Z Using backend: s3://therock-ci-artifacts-external/ROCm-TheRock/27710372755-linux
+2026-06-17T18:57:35.8483395Z Found 117 artifacts in backend
+2026-06-17T18:57:35.8484040Z 
+2026-06-17T18:57:35.8484339Z Downloading 69 artifacts...
+2026-06-17T18:57:35.8494431Z   ++ Downloading amd-llvm_lib_generic.tar.zst
+2026-06-17T18:57:35.8502624Z   ++ Downloading amd-llvm_run_generic.tar.zst
+2026-06-17T18:57:35.8506994Z   ++ Downloading amd-llvm_dev_generic.tar.zst
+2026-06-17T18:57:35.8515987Z   ++ Downloading amd-llvm_dbg_generic.tar.zst
+2026-06-17T18:57:35.8521512Z   ++ Downloading amd-llvm_doc_generic.tar.zst
+2026-06-17T18:57:35.8526903Z   ++ Downloading aqlprofile_lib_generic.tar.zst
+2026-06-17T18:57:35.8534745Z   ++ Downloading aqlprofile_dev_generic.tar.zst
+2026-06-17T18:57:35.8535347Z   ++ Downloading aqlprofile_run_generic.tar.zst
+2026-06-17T18:57:35.8547361Z   ++ Downloading aqlprofile_dbg_generic.tar.zst
+2026-06-17T18:57:35.8554861Z   ++ Downloading aqlprofile_doc_generic.tar.zst
+2026-06-17T18:57:35.9975544Z   ++ Bootstrapping aqlprofile_run_generic.tar.zst
+2026-06-17T18:57:35.9976646Z   ++ Downloading aqlprofile_test_generic.tar.zst
+2026-06-17T18:57:36.0431400Z   ++ Downloading base_lib_generic.tar.zst
+2026-06-17T18:57:36.0445984Z   ++ Bootstrapping amd-llvm_dbg_generic.tar.zst
+2026-06-17T18:57:36.0454587Z   ++ Downloading base_dev_generic.tar.zst
+2026-06-17T18:57:36.0459635Z   ++ Downloading base_dbg_generic.tar.zst
+2026-06-17T18:57:36.0465703Z   ++ Downloading base_run_generic.tar.zst
+2026-06-17T18:57:36.0532318Z   ++ Bootstrapping aqlprofile_dev_generic.tar.zst
+2026-06-17T18:57:36.0671399Z   ++ Bootstrapping aqlprofile_doc_generic.tar.zst
+2026-06-17T18:57:36.0709740Z   ++ Bootstrapping amd-llvm_doc_generic.tar.zst
+2026-06-17T18:57:36.0991272Z   ++ Downloading base_doc_generic.tar.zst
+2026-06-17T18:57:36.1021435Z   ++ Bootstrapping aqlprofile_lib_generic.tar.zst
+2026-06-17T18:57:36.1104751Z   ++ Downloading base_test_generic.tar.zst
+2026-06-17T18:57:36.1141330Z   ++ Bootstrapping aqlprofile_test_generic.tar.zst
+2026-06-17T18:57:36.1249493Z   ++ Downloading core-amdsmi_lib_generic.tar.zst
+2026-06-17T18:57:36.1317251Z   ++ Bootstrapping aqlprofile_dbg_generic.tar.zst
+2026-06-17T18:57:36.1612876Z   ++ Downloading core-amdsmi_run_generic.tar.zst
+2026-06-17T18:57:36.1649806Z   ++ Bootstrapping base_dbg_generic.tar.zst
+2026-06-17T18:57:36.2061810Z   ++ Downloading core-amdsmi_dev_generic.tar.zst
+2026-06-17T18:57:36.2186415Z   ++ Bootstrapping base_test_generic.tar.zst
+2026-06-17T18:57:36.2203218Z   ++ Downloading core-amdsmi_dbg_generic.tar.zst
+2026-06-17T18:57:36.2265397Z   ++ Bootstrapping base_dev_generic.tar.zst
+2026-06-17T18:57:36.2929737Z   ++ Downloading core-amdsmi_doc_generic.tar.zst
+2026-06-17T18:57:36.2975912Z   ++ Bootstrapping base_doc_generic.tar.zst
+2026-06-17T18:57:36.3051262Z   ++ Downloading core-hip_lib_generic.tar.zst
+2026-06-17T18:57:36.3072314Z   ++ Bootstrapping base_run_generic.tar.zst
+2026-06-17T18:57:36.3186167Z   ++ Downloading core-hip_run_generic.tar.zst
+2026-06-17T18:57:36.3227727Z   ++ Bootstrapping core-amdsmi_dbg_generic.tar.zst
+2026-06-17T18:57:36.3286201Z   ++ Downloading core-hip_dev_generic.tar.zst
+2026-06-17T18:57:36.3406572Z   ++ Downloading core-hip_dbg_generic.tar.zst
+2026-06-17T18:57:36.3410342Z   ++ Bootstrapping core-amdsmi_dev_generic.tar.zst
+2026-06-17T18:57:36.3627888Z   ++ Bootstrapping base_lib_generic.tar.zst
+2026-06-17T18:57:36.4036604Z   ++ Downloading core-hip_doc_generic.tar.zst
+2026-06-17T18:57:36.4116152Z   ++ Bootstrapping core-amdsmi_doc_generic.tar.zst
+2026-06-17T18:57:36.4441429Z   ++ Bootstrapping core-hip_run_generic.tar.zst
+2026-06-17T18:57:36.4477481Z   ++ Downloading core-kpack_lib_generic.tar.zst
+2026-06-17T18:57:36.4563425Z   ++ Downloading core-kpack_dev_generic.tar.zst
+2026-06-17T18:57:36.4699141Z   ++ Bootstrapping core-hip_dbg_generic.tar.zst
+2026-06-17T18:57:36.4871693Z   ++ Bootstrapping core-hip_dev_generic.tar.zst
+2026-06-17T18:57:36.4878000Z   ++ Downloading core-kpack_dbg_generic.tar.zst
+2026-06-17T18:57:36.5499410Z   ++ Downloading core-runtime_lib_generic.tar.zst
+2026-06-17T18:57:36.5542741Z   ++ Bootstrapping core-hip_doc_generic.tar.zst
+2026-06-17T18:57:36.5668760Z   ++ Downloading core-runtime_run_generic.tar.zst
+2026-06-17T18:57:36.5721117Z   ++ Bootstrapping core-kpack_dev_generic.tar.zst
+2026-06-17T18:57:36.5893773Z   ++ Downloading core-runtime_dev_generic.tar.zst
+2026-06-17T18:57:36.6023415Z   ++ Bootstrapping core-kpack_lib_generic.tar.zst
+2026-06-17T18:57:36.6051791Z   ++ Downloading core-runtime_dbg_generic.tar.zst
+2026-06-17T18:57:36.6206594Z   ++ Bootstrapping core-kpack_dbg_generic.tar.zst
+2026-06-17T18:57:36.6656427Z   ++ Downloading core-runtime_doc_generic.tar.zst
+2026-06-17T18:57:36.6783426Z   ++ Bootstrapping core-amdsmi_run_generic.tar.zst
+2026-06-17T18:57:36.6986267Z   ++ Downloading elfio_dev_generic.tar.zst
+2026-06-17T18:57:36.7010756Z   ++ Downloading elfio_lib_generic.tar.zst
+2026-06-17T18:57:36.7097234Z   ++ Bootstrapping core-runtime_dbg_generic.tar.zst
+2026-06-17T18:57:36.7183069Z   ++ Bootstrapping core-runtime_dev_generic.tar.zst
+2026-06-17T18:57:36.7399404Z   ++ Downloading elfio_doc_generic.tar.zst
+2026-06-17T18:57:36.7546287Z   ++ Bootstrapping core-runtime_run_generic.tar.zst
+2026-06-17T18:57:36.7640036Z   ++ Bootstrapping core-amdsmi_lib_generic.tar.zst
+2026-06-17T18:57:36.7645851Z   ++ Downloading fftw3_lib_generic.tar.zst
+2026-06-17T18:57:36.7785953Z   ++ Downloading fftw3_run_generic.tar.zst
+2026-06-17T18:57:36.7811790Z   ++ Downloading fftw3_dev_generic.tar.zst
+2026-06-17T18:57:36.7892772Z   ++ Bootstrapping core-runtime_lib_generic.tar.zst
+2026-06-17T18:57:36.8010887Z   ++ Bootstrapping core-runtime_doc_generic.tar.zst
+2026-06-17T18:57:36.8060310Z   ++ Downloading fftw3_dbg_generic.tar.zst
+2026-06-17T18:57:36.8087368Z   ++ Bootstrapping elfio_dev_generic.tar.zst
+2026-06-17T18:57:36.8154230Z   ++ Downloading fftw3_doc_generic.tar.zst
+2026-06-17T18:57:36.8310270Z   ++ Bootstrapping elfio_lib_generic.tar.zst
+2026-06-17T18:57:36.8547142Z   ++ Downloading host-blas_lib_generic.tar.zst
+2026-06-17T18:57:36.8609560Z   ++ Bootstrapping elfio_doc_generic.tar.zst
+2026-06-17T18:57:36.8949481Z   ++ Downloading host-blas_run_generic.tar.zst
+2026-06-17T18:57:36.9023596Z   ++ Downloading host-blas_dev_generic.tar.zst
+2026-06-17T18:57:36.9069967Z   ++ Downloading host-blas_dbg_generic.tar.zst
+2026-06-17T18:57:36.9082356Z   ++ Bootstrapping fftw3_dev_generic.tar.zst
+2026-06-17T18:57:36.9086269Z   ++ Bootstrapping fftw3_run_generic.tar.zst
+2026-06-17T18:57:36.9224606Z   ++ Bootstrapping fftw3_dbg_generic.tar.zst
+2026-06-17T18:57:36.9687969Z   ++ Downloading host-blas_doc_generic.tar.zst
+2026-06-17T18:57:36.9725814Z   ++ Bootstrapping fftw3_doc_generic.tar.zst
+2026-06-17T18:57:37.0372195Z   ++ Downloading host-suite-sparse_lib_generic.tar.zst
+2026-06-17T18:57:37.0427103Z   ++ Bootstrapping host-blas_dev_generic.tar.zst
+2026-06-17T18:57:37.0532435Z   ++ Downloading host-suite-sparse_run_generic.tar.zst
+2026-06-17T18:57:37.0585642Z   ++ Bootstrapping fftw3_lib_generic.tar.zst
+2026-06-17T18:57:37.0614428Z   ++ Downloading host-suite-sparse_dev_generic.tar.zst
+2026-06-17T18:57:37.0742918Z   ++ Bootstrapping host-blas_run_generic.tar.zst
+2026-06-17T18:57:37.0851874Z   ++ Downloading host-suite-sparse_doc_generic.tar.zst
+2026-06-17T18:57:37.0880064Z   ++ Downloading host-suite-sparse_dbg_generic.tar.zst
+2026-06-17T18:57:37.0917769Z   ++ Bootstrapping host-blas_doc_generic.tar.zst
+2026-06-17T18:57:37.0960030Z   ++ Bootstrapping host-blas_dbg_generic.tar.zst
+2026-06-17T18:57:37.1687974Z   ++ Downloading rocprofiler-compute_lib_generic.tar.zst
+2026-06-17T18:57:37.1815031Z   ++ Bootstrapping host-suite-sparse_run_generic.tar.zst
+2026-06-17T18:57:37.1911171Z   ++ Downloading rocprofiler-compute_run_generic.tar.zst
+2026-06-17T18:57:37.1928740Z   ++ Downloading rocprofiler-compute_dev_generic.tar.zst
+2026-06-17T18:57:37.2034426Z   ++ Bootstrapping host-suite-sparse_doc_generic.tar.zst
+2026-06-17T18:57:37.2098936Z   ++ Bootstrapping host-suite-sparse_dbg_generic.tar.zst
+2026-06-17T18:57:37.2475583Z   ++ Downloading rocprofiler-compute_dbg_generic.tar.zst
+2026-06-17T18:57:37.2585218Z   ++ Bootstrapping host-suite-sparse_dev_generic.tar.zst
+2026-06-17T18:57:37.2770639Z   ++ Downloading rocprofiler-compute_doc_generic.tar.zst
+2026-06-17T18:57:37.2802192Z   ++ Downloading rocprofiler-compute_test_generic.tar.zst
+2026-06-17T18:57:37.2837116Z   ++ Bootstrapping host-suite-sparse_lib_generic.tar.zst
+2026-06-17T18:57:37.2988639Z   ++ Downloading rocprofiler-sdk_lib_generic.tar.zst
+2026-06-17T18:57:37.3018372Z   ++ Bootstrapping rocprofiler-compute_dev_generic.tar.zst
+2026-06-17T18:57:37.3097955Z   ++ Bootstrapping rocprofiler-compute_run_generic.tar.zst
+2026-06-17T18:57:37.3602985Z   ++ Downloading rocprofiler-sdk_run_generic.tar.zst
+2026-06-17T18:57:37.3736919Z   ++ Bootstrapping rocprofiler-compute_dbg_generic.tar.zst
+2026-06-17T18:57:37.3951966Z   ++ Downloading rocprofiler-sdk_dev_generic.tar.zst
+2026-06-17T18:57:37.3990484Z   ++ Bootstrapping rocprofiler-compute_doc_generic.tar.zst
+2026-06-17T18:57:37.4542760Z   ++ Downloading rocprofiler-sdk_dbg_generic.tar.zst
+2026-06-17T18:57:37.4679616Z   ++ Downloading rocprofiler-sdk_doc_generic.tar.zst
+2026-06-17T18:57:37.4693450Z   ++ Bootstrapping rocprofiler-compute_test_generic.tar.zst
+2026-06-17T18:57:37.4827941Z   ++ Bootstrapping core-hip_lib_generic.tar.zst
+2026-06-17T18:57:37.5644938Z   ++ Bootstrapping rocprofiler-sdk_dbg_generic.tar.zst
+2026-06-17T18:57:37.5665083Z   ++ Downloading rocprofiler-sdk_test_generic.tar.zst
+2026-06-17T18:57:37.5711748Z   ++ Downloading sysdeps_lib_generic.tar.zst
+2026-06-17T18:57:37.5851959Z   ++ Bootstrapping rocprofiler-sdk_doc_generic.tar.zst
+2026-06-17T18:57:37.5856728Z   ++ Downloading sysdeps_run_generic.tar.zst
+2026-06-17T18:57:37.5911543Z   ++ Bootstrapping rocprofiler-sdk_run_generic.tar.zst
+2026-06-17T18:57:37.6568204Z   ++ Downloading sysdeps_dev_generic.tar.zst
+2026-06-17T18:57:37.6656469Z   ++ Bootstrapping rocprofiler-sdk_dev_generic.tar.zst
+2026-06-17T18:57:37.6880312Z   ++ Downloading sysdeps_doc_generic.tar.zst
+2026-06-17T18:57:37.6934793Z   ++ Bootstrapping sysdeps_run_generic.tar.zst
+2026-06-17T18:57:37.7297066Z   ++ Bootstrapping rocprofiler-compute_lib_generic.tar.zst
+2026-06-17T18:57:37.7932413Z   ++ Bootstrapping sysdeps_doc_generic.tar.zst
+2026-06-17T18:57:37.8528223Z   ++ Bootstrapping sysdeps_dev_generic.tar.zst
+2026-06-17T18:57:37.9036551Z   ++ Bootstrapping amd-llvm_run_generic.tar.zst
+2026-06-17T18:57:38.2063252Z   ++ Bootstrapping host-blas_lib_generic.tar.zst
+2026-06-17T18:57:38.2097619Z   ++ Bootstrapping sysdeps_lib_generic.tar.zst
+2026-06-17T18:57:38.4962202Z   ++ Bootstrapping rocprofiler-sdk_lib_generic.tar.zst
+2026-06-17T18:57:38.6108096Z   ++ Bootstrapping rocprofiler-sdk_test_generic.tar.zst
+2026-06-17T18:57:38.9181516Z   ++ Bootstrapping amd-llvm_lib_generic.tar.zst
+2026-06-17T18:57:39.3324003Z   ++ Bootstrapping amd-llvm_dev_generic.tar.zst
+2026-06-17T18:57:46.5599049Z 
+2026-06-17T18:57:46.5599625Z Downloaded 69 artifacts, extracted 69
+2026-06-17T18:57:46.7873580Z ##[group]Run ./build_tools/fetch_sources.py --stage ${STAGE_NAME} --jobs 12 --depth 1 ${EXTERNAL_FETCH_SOURCES_ARGS}
+2026-06-17T18:57:46.7875376Z [36;1m./build_tools/fetch_sources.py --stage ${STAGE_NAME} --jobs 12 --depth 1 ${EXTERNAL_FETCH_SOURCES_ARGS}[0m
+2026-06-17T18:57:46.7876207Z shell: sh -e {0}
+2026-06-17T18:57:46.7877112Z env:
+2026-06-17T18:57:46.7877510Z   AWS_SHARED_CREDENTIALS_FILE: /home/awsconfig/credentials.ini
+2026-06-17T18:57:46.7878575Z   STAGE_NAME: math-libs
+2026-06-17T18:57:46.7878919Z   AMDGPU_FAMILIES: gfx94X-dcgpu
+2026-06-17T18:57:46.7879254Z   BUILD_DIR: build
+2026-06-17T18:57:46.7880304Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf
+2026-06-17T18:57:46.7880981Z   CACHE_DIR: /home/runner/_work/TheRock/TheRock/.container-cache
+2026-06-17T18:57:46.7882114Z   TEATIME_FORCE_INTERACTIVE: 0
+2026-06-17T18:57:46.7882468Z   RELEASE_TYPE: ci
+2026-06-17T18:57:46.7882715Z   EXTERNAL_FETCH_SOURCES_ARGS: 
+2026-06-17T18:57:46.7883745Z ##[endgroup]
+2026-06-17T18:57:47.0470425Z Stage 'math-libs' requires submodules: ['rocm-libraries', 'rocm-systems', 'libhipcxx']
+2026-06-17T18:57:47.0537514Z ++ Exec [/__w/TheRock/TheRock]$ git submodule update --init --depth 1 --jobs 12 -- rocm-libraries rocm-systems math-libs/libhipcxx
+2026-06-17T18:57:47.0985441Z Submodule 'libhipcxx' (https://github.com/ROCm/libhipcxx.git) registered for path 'math-libs/libhipcxx'
+2026-06-17T18:57:47.0990136Z Submodule 'rocm-libraries' (https://github.com/ROCm/rocm-libraries) registered for path 'rocm-libraries'
+2026-06-17T18:57:47.0995987Z Submodule 'rocm-systems' (https://github.com/ROCm/rocm-systems.git) registered for path 'rocm-systems'
+2026-06-17T18:57:47.1031510Z Cloning into '/__w/TheRock/TheRock/math-libs/libhipcxx'...
+2026-06-17T18:57:48.0765288Z Cloning into '/__w/TheRock/TheRock/rocm-libraries'...
+2026-06-17T19:05:23.1140287Z Cloning into '/__w/TheRock/TheRock/rocm-systems'...
+2026-06-17T19:05:23.3442675Z Submodule path 'math-libs/libhipcxx': checked out 'fa4ccc6beb77bfaa59a6fbeeebc94a4f18678945'
+2026-06-17T19:05:24.6033574Z From https://github.com/ROCm/rocm-libraries
+2026-06-17T19:05:24.6034037Z  * branch              be5adb9ba3c978b388b4b5943daac6cdf9db839a -> FETCH_HEAD
+2026-06-17T19:06:04.7229212Z Submodule path 'rocm-libraries': checked out 'be5adb9ba3c978b388b4b5943daac6cdf9db839a'
+2026-06-17T19:06:06.0043453Z From https://github.com/ROCm/rocm-systems
+2026-06-17T19:06:06.0046254Z  * branch              7ced1a660f03b3cf06197238692485f73c4772b9 -> FETCH_HEAD
+2026-06-17T19:06:08.5961428Z Submodule path 'rocm-systems': checked out '7ced1a660f03b3cf06197238692485f73c4772b9'
+2026-06-17T19:06:14.4492009Z dvc config detected in /__w/TheRock/TheRock/rocm-libraries, fetching large files
+2026-06-17T19:06:14.4492668Z pull: 20 pointer file(s) from s3://therock-dvc/rocm-libraries
+2026-06-17T19:06:14.4493072Z   fetching  Small.tensor0.bin (2.8 KiB)
+2026-06-17T19:06:14.4493384Z   fetching  Small.tensor0.bin (240.0 B)
+2026-06-17T19:06:14.4493710Z   fetching  Small.tensor0.bin (240.0 B)
+2026-06-17T19:06:14.4494009Z   fetching  Large.tensor0.bin (117.2 KiB)
+2026-06-17T19:06:14.4494317Z   fetching  MIOpen.tensor0.bin (96.0 B)
+2026-06-17T19:06:14.4494616Z   fetching  Small.tensor0.bin (480.0 B)
+2026-06-17T19:06:14.4494909Z   fetching  Gqa.tensor0.bin (512.0 KiB)
+2026-06-17T19:06:14.4495220Z   fetching  bnorm_backward.tar.gz (1.3 KiB)
+2026-06-17T19:06:14.4495542Z   fetching  Medium.tensor0.bin (1.0 MiB)
+2026-06-17T19:06:14.4495858Z   fetching  Small.tensor0.bin (512.0 KiB)
+2026-06-17T19:06:14.4496180Z   fetching  bnorm_fwd.tar.gz (1.3 KiB)
+2026-06-17T19:06:14.4496480Z   fetching  conv_dgrad.tar.gz (9.3 KiB)
+2026-06-17T19:06:14.4496769Z   fetching  conv_fwd.tar.gz (10.6 KiB)
+2026-06-17T19:06:14.4497058Z   fetching  MIOpen.tensor1.bin (8.0 B)
+2026-06-17T19:06:14.4497372Z   fetching  conv_wgrad.tar.gz (10.4 KiB)
+2026-06-17T19:06:14.4497667Z   fetching  gfx1030.kdb.bz2 (381.5 MiB)
+2026-06-17T19:06:14.4497962Z   fetching  Small.tensor1.bin (12.0 B)
+2026-06-17T19:06:14.4500557Z   fetching  Small.tensor1.bin (12.0 B)
+2026-06-17T19:06:14.4500871Z   fetching  Small.tensor1.bin (12.0 B)
+2026-06-17T19:06:14.4501158Z   fetching  gfx900.kdb.bz2 (270.1 MiB)
+2026-06-17T19:06:14.4501444Z   fetching  Large.tensor1.bin (16.0 B)
+2026-06-17T19:06:14.4501733Z   fetching  MIOpen.tensor2.bin (8.0 B)
+2026-06-17T19:06:14.4502032Z   fetching  Medium.tensor1.bin (1.0 MiB)
+2026-06-17T19:06:14.4502326Z   fetching  Small.tensor2.bin (12.0 B)
+2026-06-17T19:06:14.4502609Z   fetching  gfx906.kdb.bz2 (318.4 MiB)
+2026-06-17T19:06:14.4502892Z   fetching  Small.tensor2.bin (12.0 B)
+2026-06-17T19:06:14.4503178Z   cached    Small.tensor1.bin (12.0 B)
+2026-06-17T19:06:14.4503466Z   fetching  Small.tensor2.bin (12.0 B)
+2026-06-17T19:06:14.4503751Z   fetching  Gqa.tensor1.bin (128.0 KiB)
+2026-06-17T19:06:14.4504052Z   fetching  Small.tensor1.bin (512.0 KiB)
+2026-06-17T19:06:14.4504352Z   fetching  Large.tensor2.bin (16.0 B)
+2026-06-17T19:06:14.4504649Z   fetching  Small.tensor3.bin (12.0 B)
+2026-06-17T19:06:14.4504952Z   fetching  MIOpen.tensor3.bin (8.0 B)
+2026-06-17T19:06:14.4505244Z   fetching  Small.tensor2.bin (12.0 B)
+2026-06-17T19:06:14.4505534Z   fetching  Gqa.tensor2.bin (128.0 KiB)
+2026-06-17T19:06:14.4505830Z   fetching  Small.tensor4.bin (12.0 B)
+2026-06-17T19:06:14.4506117Z   fetching  Small.tensor3.bin (12.0 B)
+2026-06-17T19:06:14.4506402Z   fetching  Small.tensor3.bin (12.0 B)
+2026-06-17T19:06:14.4506688Z   fetching  Small.tensor3.bin (12.0 B)
+2026-06-17T19:06:14.4506974Z   fetching  Large.tensor3.bin (16.0 B)
+2026-06-17T19:06:14.4507266Z   fetching  Medium.tensor2.bin (1.0 MiB)
+2026-06-17T19:06:14.4507797Z   fetching  MIOpen.tensor4.bin (8.0 B)
+2026-06-17T19:06:14.4508093Z   fetching  Small.tensor2.bin (512.0 KiB)
+2026-06-17T19:06:14.4508395Z   fetching  Small.tensor5.bin (2.8 KiB)
+2026-06-17T19:06:14.4508693Z   fetching  Small.tensor4.bin (12.0 B)
+2026-06-17T19:06:14.4508981Z   fetching  Small.tensor4.bin (12.0 B)
+2026-06-17T19:06:14.4509267Z   fetching  Small.tensor4.bin (12.0 B)
+2026-06-17T19:06:14.4509559Z   fetching  Large.tensor4.bin (16.0 B)
+2026-06-17T19:06:14.4509845Z   fetching  Gqa.tensor3.bin (512.0 KiB)
+2026-06-17T19:06:14.4510136Z   fetching  MIOpen.tensor5.bin (96.0 B)
+2026-06-17T19:06:14.4510424Z   fetching  gfx908.kdb.bz2 (104.7 MiB)
+2026-06-17T19:06:14.4510710Z   fetching  Small.tensor5.bin (240.0 B)
+2026-06-17T19:06:14.4510999Z   fetching  Small.tensor5.bin (240.0 B)
+2026-06-17T19:06:14.4511286Z   fetching  Small.tensor5.bin (480.0 B)
+2026-06-17T19:06:14.4511579Z   fetching  Large.tensor5.bin (117.2 KiB)
+2026-06-17T19:06:14.4512174Z   fetching  Small.tensor3.bin (512.0 KiB)
+2026-06-17T19:06:14.4512485Z   fetching  gfx90a.kdb.bz2 (147.3 MiB)
+2026-06-17T19:06:14.4512785Z   fetching  gfx942.kdb.bz2 (3.2 MiB)
+2026-06-17T19:06:14.4513077Z   fetching  Medium.tensor3.bin (1.0 MiB)
+2026-06-17T19:06:14.4513419Z   done: fetched=58 cached=1 skipped=0
+2026-06-17T19:06:14.4514016Z ++ Exec [/__w/TheRock/TheRock]$ git update-index --no-skip-worktree -- rocm-libraries rocm-systems math-libs/libhipcxx
+2026-06-17T19:06:14.4913871Z * Processing project patch directory /__w/TheRock/TheRock/patches/amd-mainline/llvm-project:
+2026-06-17T19:06:14.4914680Z * Project patch directory llvm-project was not included. Skipping.
+2026-06-17T19:06:14.5521037Z ##[group]Run python build_tools/configure_stage.py \
+2026-06-17T19:06:14.5521474Z [36;1mpython build_tools/configure_stage.py \[0m
+2026-06-17T19:06:14.5521790Z [36;1m  --stage="${STAGE_NAME}" \[0m
+2026-06-17T19:06:14.5522083Z [36;1m  --amdgpu-families="gfx94X-dcgpu" \[0m
+2026-06-17T19:06:14.5522504Z [36;1m  --dist-amdgpu-families="gfx94X-dcgpu;gfx110X-all;gfx1151;gfx120X-all" \[0m
+2026-06-17T19:06:14.5522928Z [36;1m  --manylinux \[0m
+2026-06-17T19:06:14.5523152Z [36;1m  --gha-output[0m
+2026-06-17T19:06:14.5523462Z shell: sh -e {0}
+2026-06-17T19:06:14.5523651Z env:
+2026-06-17T19:06:14.5523905Z   AWS_SHARED_CREDENTIALS_FILE: /home/awsconfig/credentials.ini
+2026-06-17T19:06:14.5524239Z   STAGE_NAME: math-libs
+2026-06-17T19:06:14.5524460Z   AMDGPU_FAMILIES: gfx94X-dcgpu
+2026-06-17T19:06:14.5524691Z   BUILD_DIR: build
+2026-06-17T19:06:14.5524999Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf
+2026-06-17T19:06:14.5525482Z   CACHE_DIR: /home/runner/_work/TheRock/TheRock/.container-cache
+2026-06-17T19:06:14.5525816Z   TEATIME_FORCE_INTERACTIVE: 0
+2026-06-17T19:06:14.5526041Z   RELEASE_TYPE: ci
+2026-06-17T19:06:14.5526243Z   EXTERNAL_FETCH_SOURCES_ARGS: 
+2026-06-17T19:06:14.5526469Z ##[endgroup]
+2026-06-17T19:06:14.6918281Z Setting github output:
+2026-06-17T19:06:14.6918673Z {
+2026-06-17T19:06:14.6925735Z   "cmake_args": "-DTHEROCK_AMDGPU_FAMILIES=gfx94X-dcgpu -DTHEROCK_DIST_AMDGPU_FAMILIES=\"gfx94X-dcgpu;gfx110X-all;gfx1151;gfx120X-all\" -DTHEROCK_DIST_PYTHON_EXECUTABLES=\"/opt/python/cp310-cp310/bin/python;/opt/python/cp311-cp311/bin/python;/opt/python/cp312-cp312/bin/python;/opt/python/cp313-cp313/bin/python\" -DTHEROCK_SHARED_PYTHON_EXECUTABLES=\"/opt/python-shared/cp310-cp310/bin/python3;/opt/python-shared/cp311-cp311/bin/python3;/opt/python-shared/cp312-cp312/bin/python3;/opt/python-shared/cp313-cp313/bin/python3;/opt/python-shared/cp314-cp314/bin/python3\" -DTHEROCK_ENABLE_ALL=OFF -DTHEROCK_ENABLE_AQLPROFILE=ON -DTHEROCK_ENABLE_BASE=ON -DTHEROCK_ENABLE_BLAS=ON -DTHEROCK_ENABLE_COMPILER=ON -DTHEROCK_ENABLE_COMPOSABLE_KERNEL=ON -DTHEROCK_ENABLE_CORE_AMDSMI=ON -DTHEROCK_ENABLE_CORE_HIPINFO=ON -DTHEROCK_ENABLE_CORE_RUNTIME=ON -DTHEROCK_ENABLE_ELFIO=ON -DTHEROCK_ENABLE_FFT=ON -DTHEROCK_ENABLE_FFTW3=ON -DTHEROCK_ENABLE_HIPBLASLTPROVIDER=ON -DTHEROCK_ENABLE_HIPDNN=ON -DTHEROCK_ENABLE_HIPDNN_INTEGRATION_TESTS=ON -DTHEROCK_ENABLE_HIPDNN_SAMPLES=ON -DTHEROCK_ENABLE_HIPKERNELPROVIDER=ON -DTHEROCK_ENABLE_HIP_RUNTIME=ON -DTHEROCK_ENABLE_HOST_BLAS=ON -DTHEROCK_ENABLE_HOST_SUITE_SPARSE=ON -DTHEROCK_ENABLE_KPACK=ON -DTHEROCK_ENABLE_LIBHIPCXX=ON -DTHEROCK_ENABLE_MIOPEN=ON -DTHEROCK_ENABLE_MIOPENPROVIDER=ON -DTHEROCK_ENABLE_OPENMPI=ON -DTHEROCK_ENABLE_PRIM=ON -DTHEROCK_ENABLE_RAND=ON -DTHEROCK_ENABLE_ROCPROFILER_COMPUTE=ON -DTHEROCK_ENABLE_ROCPROFV3=ON -DTHEROCK_ENABLE_ROCWMMA=ON -DTHEROCK_ENABLE_SOLVER=ON -DTHEROCK_ENABLE_SPARSE=ON -DTHEROCK_ENABLE_SPDLOG=ON -DTHEROCK_ENABLE_SUPPORT=ON -DTHEROCK_ENABLE_SYSDEPS=ON -DTHEROCK_ENABLE_SYSDEPS_LIBMNL=ON -DTHEROCK_ENABLE_SYSDEPS_LIBNL=ON",
+2026-06-17T19:06:14.6932530Z   "pip_install_cmd": ""
+2026-06-17T19:06:14.6932750Z }
+2026-06-17T19:06:14.6938704Z OUTPUT cmake_args=-DTHEROCK_AMDGPU_FAMILIES=gfx94X-dcgpu -DTHEROCK_DIST_AMDGPU_FAMILIES="gfx94X-dcgpu;gfx110X-all;gfx1151;gfx120X-all" -DTHEROCK_DIST_PYTHON_EXECUTABLES="/opt/python/cp310-cp310/bin/python;/opt/python/cp311-cp311/bin/python;/opt/python/cp312-cp312/bin/python;/opt/python/cp313-cp313/bin/python" -DTHEROCK_SHARED_PYTHON_EXECUTABLES="/opt/python-shared/cp310-cp310/bin/python3;/opt/python-shared/cp311-cp311/bin/python3;/opt/python-shared/cp312-cp312/bin/python3;/opt/python-shared/cp313-cp313/bin/python3;/opt/python-shared/cp314-cp314/bin/python3" -DTHEROCK_ENABLE_ALL=OFF -DTHEROCK_ENABLE_AQLPROFILE=ON -DTHEROCK_ENABLE_BASE=ON -DTHEROCK_ENABLE_BLAS=ON -DTHEROCK_ENABLE_COMPILER=ON -DTHEROCK_ENABLE_COMPOSABLE_KERNEL=ON -DTHEROCK_ENABLE_CORE_AMDSMI=ON -DTHEROCK_ENABLE_CORE_HIPINFO=ON -DTHEROCK_ENABLE_CORE_RUNTIME=ON -DTHEROCK_ENABLE_ELFIO=ON -DTHEROCK_ENABLE_FFT=ON -DTHEROCK_ENABLE_FFTW3=ON -DTHEROCK_ENABLE_HIPBLASLTPROVIDER=ON -DTHEROCK_ENABLE_HIPDNN=ON -DTHEROCK_ENABLE_HIPDNN_INTEGRATION_TESTS=ON -DTHEROCK_ENABLE_HIPDNN_SAMPLES=ON -DTHEROCK_ENABLE_HIPKERNELPROVIDER=ON -DTHEROCK_ENABLE_HIP_RUNTIME=ON -DTHEROCK_ENABLE_HOST_BLAS=ON -DTHEROCK_ENABLE_HOST_SUITE_SPARSE=ON -DTHEROCK_ENABLE_KPACK=ON -DTHEROCK_ENABLE_LIBHIPCXX=ON -DTHEROCK_ENABLE_MIOPEN=ON -DTHEROCK_ENABLE_MIOPENPROVIDER=ON -DTHEROCK_ENABLE_OPENMPI=ON -DTHEROCK_ENABLE_PRIM=ON -DTHEROCK_ENABLE_RAND=ON -DTHEROCK_ENABLE_ROCPROFILER_COMPUTE=ON -DTHEROCK_ENABLE_ROCPROFV3=ON -DTHEROCK_ENABLE_ROCWMMA=ON -DTHEROCK_ENABLE_SOLVER=ON -DTHEROCK_ENABLE_SPARSE=ON -DTHEROCK_ENABLE_SPDLOG=ON -DTHEROCK_ENABLE_SUPPORT=ON -DTHEROCK_ENABLE_SYSDEPS=ON -DTHEROCK_ENABLE_SYSDEPS_LIBMNL=ON -DTHEROCK_ENABLE_SYSDEPS_LIBNL=ON
+2026-06-17T19:06:14.6944601Z OUTPUT pip_install_cmd=
+2026-06-17T19:06:14.7104262Z ##[group]Run cmake -B "${BUILD_DIR}" -S . -GNinja \
+2026-06-17T19:06:14.7104667Z [36;1mcmake -B "${BUILD_DIR}" -S . -GNinja \[0m
+2026-06-17T19:06:14.7105116Z [36;1m  -DTHEROCK_PACKAGE_VERSION=7.14.0.dev0+669115c7a973bd7dffee5b0a1a0266ebb846b1e3 \[0m
+2026-06-17T19:06:14.7105589Z [36;1m  -DCMAKE_C_COMPILER_LAUNCHER=ccache \[0m
+2026-06-17T19:06:14.7105910Z [36;1m  -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \[0m
+2026-06-17T19:06:14.7106188Z [36;1m   \[0m
+2026-06-17T19:06:14.7106382Z [36;1m   \[0m
+2026-06-17T19:06:14.7112326Z [36;1m  -DTHEROCK_AMDGPU_FAMILIES=gfx94X-dcgpu -DTHEROCK_DIST_AMDGPU_FAMILIES="gfx94X-dcgpu;gfx110X-all;gfx1151;gfx120X-all" -DTHEROCK_DIST_PYTHON_EXECUTABLES="/opt/python/cp310-cp310/bin/python;/opt/python/cp311-cp311/bin/python;/opt/python/cp312-cp312/bin/python;/opt/python/cp313-cp313/bin/python" -DTHEROCK_SHARED_PYTHON_EXECUTABLES="/opt/python-shared/cp310-cp310/bin/python3;/opt/python-shared/cp311-cp311/bin/python3;/opt/python-shared/cp312-cp312/bin/python3;/opt/python-shared/cp313-cp313/bin/python3;/opt/python-shared/cp314-cp314/bin/python3" -DTHEROCK_ENABLE_ALL=OFF -DTHEROCK_ENABLE_AQLPROFILE=ON -DTHEROCK_ENABLE_BASE=ON -DTHEROCK_ENABLE_BLAS=ON -DTHEROCK_ENABLE_COMPILER=ON -DTHEROCK_ENABLE_COMPOSABLE_KERNEL=ON -DTHEROCK_ENABLE_CORE_AMDSMI=ON -DTHEROCK_ENABLE_CORE_HIPINFO=ON -DTHEROCK_ENABLE_CORE_RUNTIME=ON -DTHEROCK_ENABLE_ELFIO=ON -DTHEROCK_ENABLE_FFT=ON -DTHEROCK_ENABLE_FFTW3=ON -DTHEROCK_ENABLE_HIPBLASLTPROVIDER=ON -DTHEROCK_ENABLE_HIPDNN=ON -DTHEROCK_ENABLE_HIPDNN_INTEGRATION_TESTS=ON -DTHEROCK_ENABLE_HIPDNN_SAMPLES=ON -DTHEROCK_ENABLE_HIPKERNELPROVIDER=ON -DTHEROCK_ENABLE_HIP_RUNTIME=ON -DTHEROCK_ENABLE_HOST_BLAS=ON -DTHEROCK_ENABLE_HOST_SUITE_SPARSE=ON -DTHEROCK_ENABLE_KPACK=ON -DTHEROCK_ENABLE_LIBHIPCXX=ON -DTHEROCK_ENABLE_MIOPEN=ON -DTHEROCK_ENABLE_MIOPENPROVIDER=ON -DTHEROCK_ENABLE_OPENMPI=ON -DTHEROCK_ENABLE_PRIM=ON -DTHEROCK_ENABLE_RAND=ON -DTHEROCK_ENABLE_ROCPROFILER_COMPUTE=ON -DTHEROCK_ENABLE_ROCPROFV3=ON -DTHEROCK_ENABLE_ROCWMMA=ON -DTHEROCK_ENABLE_SOLVER=ON -DTHEROCK_ENABLE_SPARSE=ON -DTHEROCK_ENABLE_SPDLOG=ON -DTHEROCK_ENABLE_SUPPORT=ON -DTHEROCK_ENABLE_SYSDEPS=ON -DTHEROCK_ENABLE_SYSDEPS_LIBMNL=ON -DTHEROCK_ENABLE_SYSDEPS_LIBNL=ON[0m
+2026-06-17T19:06:14.7118554Z shell: sh -e {0}
+2026-06-17T19:06:14.7118742Z env:
+2026-06-17T19:06:14.7118998Z   AWS_SHARED_CREDENTIALS_FILE: /home/awsconfig/credentials.ini
+2026-06-17T19:06:14.7119377Z   STAGE_NAME: math-libs
+2026-06-17T19:06:14.7119595Z   AMDGPU_FAMILIES: gfx94X-dcgpu
+2026-06-17T19:06:14.7119824Z   BUILD_DIR: build
+2026-06-17T19:06:14.7120133Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf
+2026-06-17T19:06:14.7120580Z   CACHE_DIR: /home/runner/_work/TheRock/TheRock/.container-cache
+2026-06-17T19:06:14.7120912Z   TEATIME_FORCE_INTERACTIVE: 0
+2026-06-17T19:06:14.7121138Z   RELEASE_TYPE: ci
+2026-06-17T19:06:14.7121339Z   EXTERNAL_FETCH_SOURCES_ARGS: 
+2026-06-17T19:06:14.7121565Z ##[endgroup]
+2026-06-17T19:06:14.8259610Z -- The C compiler identification is GNU 13.3.1
+2026-06-17T19:06:14.8998091Z -- The CXX compiler identification is GNU 13.3.1
+2026-06-17T19:06:14.9202980Z -- Detecting C compiler ABI info
+2026-06-17T19:06:14.9883515Z -- Detecting C compiler ABI info - done
+2026-06-17T19:06:14.9987128Z -- Check for working C compiler: /opt/rh/gcc-toolset-13/root/usr/bin/cc - skipped
+2026-06-17T19:06:14.9990631Z -- Detecting C compile features
+2026-06-17T19:06:14.9995442Z -- Detecting C compile features - done
+2026-06-17T19:06:15.0123414Z -- Detecting CXX compiler ABI info
+2026-06-17T19:06:15.1062722Z -- Detecting CXX compiler ABI info - done
+2026-06-17T19:06:15.1167893Z -- Check for working CXX compiler: /opt/rh/gcc-toolset-13/root/usr/bin/c++ - skipped
+2026-06-17T19:06:15.1171909Z -- Detecting CXX compile features
+2026-06-17T19:06:15.1177849Z -- Detecting CXX compile features - done
+2026-06-17T19:06:15.1399632Z -- Configuring background job pool for 3 concurrent jobs
+2026-06-17T19:06:15.2751052Z -- Found Python3: /opt/python/cp312-cp312/bin/python3.12 (found suitable version "3.12.10", minimum required is "3.9") found components: Interpreter 
+2026-06-17T19:06:15.3440915Z -- Generated build topology targets from BUILD_TOPOLOGY.toml
+2026-06-17T19:06:15.3452448Z -- Build flags:
+2026-06-17T19:06:15.3453180Z --   * KPACK_SPLIT_ARTIFACTS = ON (-DTHEROCK_FLAG_KPACK_SPLIT_ARTIFACTS=ON)
+2026-06-17T19:06:15.3453755Z --   * HIPDNN_ENABLE_SDPA = OFF (-DTHEROCK_FLAG_HIPDNN_ENABLE_SDPA=OFF)
+2026-06-17T19:06:15.3454352Z --   * STAMP_LIBRARY_GIT_VERSIONS = OFF (-DTHEROCK_FLAG_STAMP_LIBRARY_GIT_VERSIONS=OFF)
+2026-06-17T19:06:15.3454904Z --   * INCLUDE_HRX = OFF (-DTHEROCK_FLAG_INCLUDE_HRX=OFF)
+2026-06-17T19:06:15.3875715Z -- Enabling building tests
+2026-06-17T19:06:15.3880850Z -- Defaulted CMAKE_INSTALL_PREFIX to /__w/TheRock/TheRock/install
+2026-06-17T19:06:15.3881390Z -- ROCm version: 7.14.0
+2026-06-17T19:06:15.3881708Z -- HIP version: 7.14.60850
+2026-06-17T19:06:15.3978725Z -- Enabled features:
+2026-06-17T19:06:15.3979471Z --   * SYSDEPS (-DTHEROCK_ENABLE_SYSDEPS=ON)
+2026-06-17T19:06:15.3980092Z --   * SYSDEPS_LIBMNL (-DTHEROCK_ENABLE_SYSDEPS_LIBMNL=ON)
+2026-06-17T19:06:15.3980657Z --   * SYSDEPS_LIBNL (-DTHEROCK_ENABLE_SYSDEPS_LIBNL=ON)
+2026-06-17T19:06:15.3981130Z --   * BASE (-DTHEROCK_ENABLE_BASE=ON)
+2026-06-17T19:06:15.3981555Z --   * COMPILER (-DTHEROCK_ENABLE_COMPILER=ON)
+2026-06-17T19:06:15.3982042Z --   * CORE_AMDSMI (-DTHEROCK_ENABLE_CORE_AMDSMI=ON)
+2026-06-17T19:06:15.3982542Z --   * CORE_RUNTIME (-DTHEROCK_ENABLE_CORE_RUNTIME=ON)
+2026-06-17T19:06:15.3983004Z --   * HOST_BLAS (-DTHEROCK_ENABLE_HOST_BLAS=ON)
+2026-06-17T19:06:15.3983514Z --   * HOST_SUITE_SPARSE (-DTHEROCK_ENABLE_HOST_SUITE_SPARSE=ON)
+2026-06-17T19:06:15.3984457Z --   * ELFIO (-DTHEROCK_ENABLE_ELFIO=ON)
+2026-06-17T19:06:15.3984854Z --   * FFTW3 (-DTHEROCK_ENABLE_FFTW3=ON)
+2026-06-17T19:06:15.3985275Z --   * SPDLOG (-DTHEROCK_ENABLE_SPDLOG=ON)
+2026-06-17T19:06:15.3985729Z --   * OPENMPI (-DTHEROCK_ENABLE_OPENMPI=ON)
+2026-06-17T19:06:15.3986075Z --   * KPACK (-DTHEROCK_ENABLE_KPACK=ON)
+2026-06-17T19:06:15.3986424Z --   * HIP_RUNTIME (-DTHEROCK_ENABLE_HIP_RUNTIME=ON)
+2026-06-17T19:06:15.3986810Z --   * CORE_HIPINFO (-DTHEROCK_ENABLE_CORE_HIPINFO=ON)
+2026-06-17T19:06:15.3987193Z --   * AQLPROFILE (-DTHEROCK_ENABLE_AQLPROFILE=ON)
+2026-06-17T19:06:15.3987563Z --   * ROCPROFV3 (-DTHEROCK_ENABLE_ROCPROFV3=ON)
+2026-06-17T19:06:15.3988007Z --   * ROCPROFILER_COMPUTE (-DTHEROCK_ENABLE_ROCPROFILER_COMPUTE=ON)
+2026-06-17T19:06:15.3988450Z --   * BLAS (-DTHEROCK_ENABLE_BLAS=ON)
+2026-06-17T19:06:15.3988762Z --   * RAND (-DTHEROCK_ENABLE_RAND=ON)
+2026-06-17T19:06:15.3989069Z --   * FFT (-DTHEROCK_ENABLE_FFT=ON)
+2026-06-17T19:06:15.3989382Z --   * PRIM (-DTHEROCK_ENABLE_PRIM=ON)
+2026-06-17T19:06:15.3989700Z --   * SPARSE (-DTHEROCK_ENABLE_SPARSE=ON)
+2026-06-17T19:06:15.3990027Z --   * SOLVER (-DTHEROCK_ENABLE_SOLVER=ON)
+2026-06-17T19:06:15.3990359Z --   * ROCWMMA (-DTHEROCK_ENABLE_ROCWMMA=ON)
+2026-06-17T19:06:15.3990707Z --   * LIBHIPCXX (-DTHEROCK_ENABLE_LIBHIPCXX=ON)
+2026-06-17T19:06:15.3991063Z --   * SUPPORT (-DTHEROCK_ENABLE_SUPPORT=ON)
+2026-06-17T19:06:15.3991470Z --   * COMPOSABLE_KERNEL (-DTHEROCK_ENABLE_COMPOSABLE_KERNEL=ON)
+2026-06-17T19:06:15.3992036Z --   * MIOPEN (-DTHEROCK_ENABLE_MIOPEN=ON)
+2026-06-17T19:06:15.3992359Z --   * HIPDNN (-DTHEROCK_ENABLE_HIPDNN=ON)
+2026-06-17T19:06:15.3992810Z --   * HIPDNN_INTEGRATION_TESTS (-DTHEROCK_ENABLE_HIPDNN_INTEGRATION_TESTS=ON)
+2026-06-17T19:06:15.3993369Z --   * MIOPENPROVIDER (-DTHEROCK_ENABLE_MIOPENPROVIDER=ON)
+2026-06-17T19:06:15.3993835Z --   * HIPBLASLTPROVIDER (-DTHEROCK_ENABLE_HIPBLASLTPROVIDER=ON)
+2026-06-17T19:06:15.3994292Z --   * HIPDNN_SAMPLES (-DTHEROCK_ENABLE_HIPDNN_SAMPLES=ON)
+2026-06-17T19:06:15.3994751Z --   * HIPKERNELPROVIDER (-DTHEROCK_ENABLE_HIPKERNELPROVIDER=ON)
+2026-06-17T19:06:15.3995148Z -- Disabled features:
+2026-06-17T19:06:15.3995461Z --   * SYSDEPS_EXPAT (-DTHEROCK_ENABLE_SYSDEPS_EXPAT=OFF)
+2026-06-17T19:06:15.3995875Z --   * SYSDEPS_GMP (-DTHEROCK_ENABLE_SYSDEPS_GMP=OFF)
+2026-06-17T19:06:15.3996237Z --   * SYSDEPS_MPFR (-DTHEROCK_ENABLE_SYSDEPS_MPFR=OFF)
+2026-06-17T19:06:15.3996797Z --   * SYSDEPS_NCURSES (-DTHEROCK_ENABLE_SYSDEPS_NCURSES=OFF)
+2026-06-17T19:06:15.3997206Z --   * SYSDEPS_UTIL_LINUX (-DTHEROCK_ENABLE_SYSDEPS_UTIL_LINUX=OFF)
+2026-06-17T19:06:15.3997637Z --   * SYSDEPS_LIBPCIACCESS (-DTHEROCK_ENABLE_SYSDEPS_LIBPCIACCESS=OFF)
+2026-06-17T19:06:15.3998047Z --   * SYSDEPS_HWLOC (-DTHEROCK_ENABLE_SYSDEPS_HWLOC=OFF)
+2026-06-17T19:06:15.3998357Z --   * HIPIFY (-DTHEROCK_ENABLE_HIPIFY=OFF)
+2026-06-17T19:06:15.3998663Z --   * FLATBUFFERS (-DTHEROCK_ENABLE_FLATBUFFERS=OFF)
+2026-06-17T19:06:15.3998966Z --   * FMT (-DTHEROCK_ENABLE_FMT=OFF)
+2026-06-17T19:06:15.3999267Z --   * NLOHMANN_JSON (-DTHEROCK_ENABLE_NLOHMANN_JSON=OFF)
+2026-06-17T19:06:15.3999586Z --   * OCL_ICD (-DTHEROCK_ENABLE_OCL_ICD=OFF)
+2026-06-17T19:06:15.3999887Z --   * OCL_RUNTIME (-DTHEROCK_ENABLE_OCL_RUNTIME=OFF)
+2026-06-17T19:06:15.4000193Z --   * ROCJITSU (-DTHEROCK_ENABLE_ROCJITSU=OFF)
+2026-06-17T19:06:15.4000503Z --   * WSL_ROCDXG (-DTHEROCK_ENABLE_WSL_ROCDXG=OFF)
+2026-06-17T19:06:15.4000875Z --   * CORE_RUNTIME_TESTS (-DTHEROCK_ENABLE_CORE_RUNTIME_TESTS=OFF)
+2026-06-17T19:06:15.4001254Z --   * CORE_HIPTESTS (-DTHEROCK_ENABLE_CORE_HIPTESTS=OFF)
+2026-06-17T19:06:15.4001563Z --   * RCCL (-DTHEROCK_ENABLE_RCCL=OFF)
+2026-06-17T19:06:15.4001842Z --   * ROCSHMEM (-DTHEROCK_ENABLE_ROCSHMEM=OFF)
+2026-06-17T19:06:15.4002143Z --   * HIPFILE (-DTHEROCK_ENABLE_HIPFILE=OFF)
+2026-06-17T19:06:15.4002443Z --   * AMD_DBGAPI (-DTHEROCK_ENABLE_AMD_DBGAPI=OFF)
+2026-06-17T19:06:15.4002786Z --   * ROCR_DEBUG_AGENT (-DTHEROCK_ENABLE_ROCR_DEBUG_AGENT=OFF)
+2026-06-17T19:06:15.4003363Z --   * ROCR_DEBUG_AGENT_TESTS (-DTHEROCK_ENABLE_ROCR_DEBUG_AGENT_TESTS=OFF)
+2026-06-17T19:06:15.4003732Z --   * ROCGDB (-DTHEROCK_ENABLE_ROCGDB=OFF)
+2026-06-17T19:06:15.4003999Z --   * RDC (-DTHEROCK_ENABLE_RDC=OFF)
+2026-06-17T19:06:15.4004287Z --   * ROCPROFSYS (-DTHEROCK_ENABLE_ROCPROFSYS=OFF)
+2026-06-17T19:06:15.4004720Z --   * ROCPROFILER_SYSTEMS_EXAMPLES (-DTHEROCK_ENABLE_ROCPROFILER_SYSTEMS_EXAMPLES=OFF)
+2026-06-17T19:06:15.4005198Z --   * SYSDEPS_AMD_MESA (-DTHEROCK_ENABLE_SYSDEPS_AMD_MESA=OFF)
+2026-06-17T19:06:15.4005559Z --   * ROCDECODE (-DTHEROCK_ENABLE_ROCDECODE=OFF)
+2026-06-17T19:06:15.4005860Z --   * ROCJPEG (-DTHEROCK_ENABLE_ROCJPEG=OFF)
+2026-06-17T19:06:15.4006136Z -- Configured AMDGPU Targets:
+2026-06-17T19:06:15.4006377Z --   * gfx942 : MI300A/MI300X CDNA
+2026-06-17T19:06:15.4006728Z --   Dist targets: gfx942;gfx1100;gfx1101;gfx1102;gfx1103;gfx1151;gfx1200;gfx1201
+2026-06-17T19:06:15.4007689Z --   Test targets: gfx900;gfx90c;gfx906;gfx908;gfx90a;gfx942;gfx950;gfx1010;gfx1011;gfx1012;gfx1030;gfx1031;gfx1032;gfx1033;gfx1034;gfx1035;gfx1036;gfx1100;gfx1101;gfx1102;gfx1103;gfx1150;gfx1151;gfx1152;gfx1153;gfx1200;gfx1201;gfx1250
+2026-06-17T19:06:15.4008565Z --   * Dist bundle: gfx94X-dcgpu
+2026-06-17T19:06:15.4008842Z -- Building with bundled system dependencies enabled
+2026-06-17T19:06:15.4132940Z -- Including subproject therock-bzip2 (from /__w/TheRock/TheRock/third-party/sysdeps/common/bzip2/.)
+2026-06-17T19:06:15.4241997Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:15.4392060Z -- Including subproject therock-libbacktrace (from /__w/TheRock/TheRock/third-party/sysdeps/common/libbacktrace/.)
+2026-06-17T19:06:15.4495765Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:15.4634369Z -- Including subproject therock-libcap (from /__w/TheRock/TheRock/third-party/sysdeps/linux/libcap/.)
+2026-06-17T19:06:15.4738245Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:15.4880155Z -- Including subproject therock-libdrm (from /__w/TheRock/TheRock/third-party/sysdeps/linux/libdrm/.)
+2026-06-17T19:06:15.4983954Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:15.5123994Z -- Including subproject therock-liblzma (from /__w/TheRock/TheRock/third-party/sysdeps/common/liblzma/.)
+2026-06-17T19:06:15.5228159Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:15.5378271Z -- Including subproject therock-libmnl (from /__w/TheRock/TheRock/third-party/sysdeps/linux/libmnl/.)
+2026-06-17T19:06:15.5481572Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:15.5624212Z -- Including subproject therock-libnl (from /__w/TheRock/TheRock/third-party/sysdeps/linux/libnl/.)
+2026-06-17T19:06:15.5727717Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:15.5872545Z -- Including subproject therock-numactl (from /__w/TheRock/TheRock/third-party/sysdeps/linux/numactl/.)
+2026-06-17T19:06:15.5973231Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:15.6115860Z -- Including subproject therock-sqlite3 (from /__w/TheRock/TheRock/third-party/sysdeps/common/sqlite3/.)
+2026-06-17T19:06:15.6218296Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:15.6358932Z -- Including subproject therock-zlib (from /__w/TheRock/TheRock/third-party/sysdeps/common/zlib/.)
+2026-06-17T19:06:15.6458885Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:15.6599777Z -- Including subproject therock-zstd (from /__w/TheRock/TheRock/third-party/sysdeps/common/zstd/.)
+2026-06-17T19:06:15.6701880Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:15.6841277Z -- Including subproject therock-elfutils (from /__w/TheRock/TheRock/third-party/sysdeps/linux/elfutils/.)
+2026-06-17T19:06:15.6967682Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:15.6999731Z -- Including subproject therock-aux-overlay (from /__w/TheRock/TheRock/base/aux-overlay)
+2026-06-17T19:06:15.7014688Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:15.7019819Z -- Including subproject rocm-cmake (from /__w/TheRock/TheRock/base/rocm-cmake)
+2026-06-17T19:06:15.7143264Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:15.7148060Z -- Including subproject rocm-core (from /__w/TheRock/TheRock/rocm-systems/projects/rocm-core)
+2026-06-17T19:06:16.2312859Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:16.2318617Z -- Including subproject rocm_smi_lib (from /__w/TheRock/TheRock/rocm-systems/projects/rocm-smi-lib)
+2026-06-17T19:06:16.7523858Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:16.7530576Z -- Including subproject rocprofiler-register (from /__w/TheRock/TheRock/rocm-systems/projects/rocprofiler-register)
+2026-06-17T19:06:17.2618509Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:17.2622389Z -- Including subproject rocm-half (from /__w/TheRock/TheRock/base/half)
+2026-06-17T19:06:17.2772265Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:17.2799897Z CMake Warning at compiler/CMakeLists.txt:28 (message):
+2026-06-17T19:06:17.2800534Z   Flang concurrency is unlimited.  Memory usage may be much higher.  Set
+2026-06-17T19:06:17.2801183Z   -DFLANG_PARALLEL_COMPILE_JOBS to reduce memory use.
+2026-06-17T19:06:17.2801447Z 
+2026-06-17T19:06:17.2801451Z 
+2026-06-17T19:06:17.2801600Z CMake Warning at compiler/CMakeLists.txt:37 (message):
+2026-06-17T19:06:17.2802028Z   LLVM parallel link jobs is unlimited.  Memory usage may be much higher.
+2026-06-17T19:06:17.2802464Z   Set -DLLVM_PARALLEL_LINK_JOBS to reduce memory use.
+2026-06-17T19:06:17.2802688Z 
+2026-06-17T19:06:17.2802692Z 
+2026-06-17T19:06:17.2802944Z -- Including subproject amd-llvm (from /__w/TheRock/TheRock/compiler/amd-llvm/llvm)
+2026-06-17T19:06:17.2986252Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:17.2993026Z -- Including subproject amd-comgr (from /__w/TheRock/TheRock/compiler/amd-llvm/amd/comgr)
+2026-06-17T19:06:17.3069197Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:17.3075507Z -- Including subproject hipcc (from /__w/TheRock/TheRock/compiler/amd-llvm/amd/hipcc)
+2026-06-17T19:06:17.3148940Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:17.3155647Z -- Cannot compute fprint for artifact amd-llvm (no fprint for hipcc)
+2026-06-17T19:06:17.3156328Z -- Cannot compute fprint for artifact amd-llvm (no fprint for amd-comgr)
+2026-06-17T19:06:17.3300185Z -- Including subproject therock-boost (from /__w/TheRock/TheRock/third-party/boost/cmake_project)
+2026-06-17T19:06:17.3572215Z -- Including subproject therock-catch2 (from /__w/TheRock/TheRock/build/third-party/Catch2/source)
+2026-06-17T19:06:17.3817157Z -- Including subproject therock-eigen (from /__w/TheRock/TheRock/build/third-party/eigen/source)
+2026-06-17T19:06:17.4063484Z -- Including subproject therock-fftw3 (from /__w/TheRock/TheRock/build/third-party/fftw3/source)
+2026-06-17T19:06:17.4164102Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:17.4169396Z -- Including subproject therock-fftw3f (from /__w/TheRock/TheRock/build/third-party/fftw3/source)
+2026-06-17T19:06:17.4268953Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:17.4411783Z -- Including subproject therock-flatbuffers (from /__w/TheRock/TheRock/build/third-party/flatbuffers/source)
+2026-06-17T19:06:17.4668460Z -- Including subproject therock-fmt (from /__w/TheRock/TheRock/build/third-party/fmt/source)
+2026-06-17T19:06:17.4912827Z -- Including subproject therock-FunctionalPlus (from /__w/TheRock/TheRock/build/third-party/FunctionalPlus/source)
+2026-06-17T19:06:17.5168770Z -- Including subproject therock-googletest (from /__w/TheRock/TheRock/build/third-party/googletest/source)
+2026-06-17T19:06:17.5415362Z -- Including subproject therock-libdivide (from /__w/TheRock/TheRock/build/third-party/libdivide/source)
+2026-06-17T19:06:17.5661948Z -- Including subproject therock-msgpack-cxx (from /__w/TheRock/TheRock/build/third-party/msgpack-cxx/source)
+2026-06-17T19:06:17.5905610Z -- Including subproject therock-nlohmann-json (from /__w/TheRock/TheRock/build/third-party/nlohmann-json/source)
+2026-06-17T19:06:17.6160149Z -- Including subproject therock-robin-map (from /__w/TheRock/TheRock/build/third-party/robin-map/source)
+2026-06-17T19:06:17.6402338Z -- Including subproject therock-simde (from /__w/TheRock/TheRock/third-party/simde/.)
+2026-06-17T19:06:17.6672610Z -- Including subproject therock-yaml-cpp (from /__w/TheRock/TheRock/build/third-party/yaml-cpp/source)
+2026-06-17T19:06:17.6928479Z -- Including subproject therock-nanobind (from /__w/TheRock/TheRock/build/third-party/nanobind/source)
+2026-06-17T19:06:17.7183847Z -- Including subproject therock-frugally-deep (from /__w/TheRock/TheRock/build/third-party/frugally-deep/source)
+2026-06-17T19:06:17.7446118Z -- Including subproject therock-spdlog (from /__w/TheRock/TheRock/build/third-party/spdlog/source)
+2026-06-17T19:06:17.7704820Z -- Including subproject therock-elfio (from /__w/TheRock/TheRock/build/third-party/elfio/source)
+2026-06-17T19:06:17.7813433Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:17.7961767Z -- Including subproject therock-host-blas (from /__w/TheRock/TheRock/third-party/host-blas/.)
+2026-06-17T19:06:17.8099124Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:17.8104618Z -- Including subproject therock-host-blas64 (from /__w/TheRock/TheRock/third-party/host-blas/.)
+2026-06-17T19:06:17.8244088Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:17.8392573Z -- Including subproject therock-SuiteSparse (from /__w/TheRock/TheRock/build/third-party/SuiteSparse/source)
+2026-06-17T19:06:17.8512436Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:17.8657840Z -- Including subproject therock-grpc (from /__w/TheRock/TheRock/build/third-party/grpc/source)
+2026-06-17T19:06:17.8792920Z -- Including subproject rocm-kpack (from /__w/TheRock/TheRock/rocm-systems/shared/kpack)
+2026-06-17T19:06:18.3869672Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:18.3881543Z -- Including subproject amdsmi (from /__w/TheRock/TheRock/rocm-systems/projects/amdsmi)
+2026-06-17T19:06:18.8991628Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:18.9007094Z -- Including subproject ROCR-Runtime (from /__w/TheRock/TheRock/rocm-systems/projects/rocr-runtime)
+2026-06-17T19:06:19.4477033Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:19.4482842Z -- Including subproject rocminfo (from /__w/TheRock/TheRock/rocm-systems/projects/rocminfo)
+2026-06-17T19:06:19.9657187Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:19.9670298Z -- Including subproject hip-clr (from /__w/TheRock/TheRock/rocm-systems/projects/clr)
+2026-06-17T19:06:20.5317782Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:20.5323841Z -- Cannot compute fprint for artifact core-hip (no fprint for hip-clr)
+2026-06-17T19:06:20.5350900Z -- Including subproject rocprof-trace-decoder (from /__w/TheRock/TheRock/rocm-systems/projects/rocprof-trace-decoder)
+2026-06-17T19:06:21.0448685Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:21.0453514Z -- Including subproject aqlprofile (from /__w/TheRock/TheRock/rocm-systems/projects/aqlprofile)
+2026-06-17T19:06:21.5773836Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:21.5796088Z -- Cannot compute fprint for artifact aqlprofile (no fprint for aqlprofile)
+2026-06-17T19:06:21.5797380Z -- Using explicitly configured Python executables: /opt/python/cp310-cp310/bin/python;/opt/python/cp311-cp311/bin/python;/opt/python/cp312-cp312/bin/python;/opt/python/cp313-cp313/bin/python
+2026-06-17T19:06:21.5815773Z --   Verified Python 3.10 at /opt/python/cp310-cp310/bin/python
+2026-06-17T19:06:21.5846162Z --   Verified Python 3.11 at /opt/python/cp311-cp311/bin/python
+2026-06-17T19:06:21.5871668Z --   Verified Python 3.12 at /opt/python/cp312-cp312/bin/python
+2026-06-17T19:06:21.5900072Z --   Verified Python 3.13 at /opt/python/cp313-cp313/bin/python
+2026-06-17T19:06:21.5900784Z -- Detected Python versions for rocprofiler-sdk python bindings: 3.10;3.11;3.12;3.13
+2026-06-17T19:06:21.5901880Z -- Python executables: /opt/python/cp310-cp310/bin/python;/opt/python/cp311-cp311/bin/python;/opt/python/cp312-cp312/bin/python;/opt/python/cp313-cp313/bin/python
+2026-06-17T19:06:21.5903731Z -- Including subproject rocprofiler-sdk (from /__w/TheRock/TheRock/rocm-systems/projects/rocprofiler-sdk)
+2026-06-17T19:06:22.2284844Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:22.2292490Z -- Including subproject roctracer (from /__w/TheRock/TheRock/rocm-systems/projects/roctracer)
+2026-06-17T19:06:22.7532846Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:22.7540578Z -- Cannot compute fprint for artifact rocprofiler-sdk (no fprint for rocprofiler-sdk)
+2026-06-17T19:06:22.7541398Z -- Cannot compute fprint for artifact rocprofiler-sdk (no fprint for roctracer)
+2026-06-17T19:06:22.7546399Z -- Including subproject rocprofiler-compute (from /__w/TheRock/TheRock/rocm-systems/projects/rocprofiler-compute)
+2026-06-17T19:06:23.5369671Z CMake Warning at cmake/therock_subproject.cmake:1583 (message):
+2026-06-17T19:06:23.5370375Z   Excluding support for gfx1100 in rocprofiler-compute because it was
+2026-06-17T19:06:23.5370984Z   manually marked for exclusion in therock_amdgpu_targets.cmake.  This
+2026-06-17T19:06:23.5371604Z   warning should never be issued for production/supported gfx targets.
+2026-06-17T19:06:23.5372093Z Call Stack (most recent call first):
+2026-06-17T19:06:23.5372587Z   cmake/therock_subproject.cmake:1626 (_therock_filter_project_gpu_targets)
+2026-06-17T19:06:23.5373260Z   cmake/therock_subproject.cmake:718 (_therock_cmake_subproject_setup_toolchain)
+2026-06-17T19:06:23.5373890Z   profiler/CMakeLists.txt:254 (therock_cmake_subproject_activate)
+2026-06-17T19:06:23.5374256Z 
+2026-06-17T19:06:23.5374262Z 
+2026-06-17T19:06:23.5374471Z CMake Warning at cmake/therock_subproject.cmake:1583 (message):
+2026-06-17T19:06:23.5375040Z   Excluding support for gfx1101 in rocprofiler-compute because it was
+2026-06-17T19:06:23.5375623Z   manually marked for exclusion in therock_amdgpu_targets.cmake.  This
+2026-06-17T19:06:23.5376199Z   warning should never be issued for production/supported gfx targets.
+2026-06-17T19:06:23.5376674Z Call Stack (most recent call first):
+2026-06-17T19:06:23.5377145Z   cmake/therock_subproject.cmake:1626 (_therock_filter_project_gpu_targets)
+2026-06-17T19:06:23.5377805Z   cmake/therock_subproject.cmake:718 (_therock_cmake_subproject_setup_toolchain)
+2026-06-17T19:06:23.5378423Z   profiler/CMakeLists.txt:254 (therock_cmake_subproject_activate)
+2026-06-17T19:06:23.5378792Z 
+2026-06-17T19:06:23.5378796Z 
+2026-06-17T19:06:23.5379019Z CMake Warning at cmake/therock_subproject.cmake:1583 (message):
+2026-06-17T19:06:23.5379874Z   Excluding support for gfx1102 in rocprofiler-compute because it was
+2026-06-17T19:06:23.5380381Z   manually marked for exclusion in therock_amdgpu_targets.cmake.  This
+2026-06-17T19:06:23.5380874Z   warning should never be issued for production/supported gfx targets.
+2026-06-17T19:06:23.5381279Z Call Stack (most recent call first):
+2026-06-17T19:06:23.5381678Z   cmake/therock_subproject.cmake:1626 (_therock_filter_project_gpu_targets)
+2026-06-17T19:06:23.5382240Z   cmake/therock_subproject.cmake:718 (_therock_cmake_subproject_setup_toolchain)
+2026-06-17T19:06:23.5382766Z   profiler/CMakeLists.txt:254 (therock_cmake_subproject_activate)
+2026-06-17T19:06:23.5383057Z 
+2026-06-17T19:06:23.5383060Z 
+2026-06-17T19:06:23.5383239Z CMake Warning at cmake/therock_subproject.cmake:1583 (message):
+2026-06-17T19:06:23.5383716Z   Excluding support for gfx1103 in rocprofiler-compute because it was
+2026-06-17T19:06:23.5384217Z   manually marked for exclusion in therock_amdgpu_targets.cmake.  This
+2026-06-17T19:06:23.5384760Z   warning should never be issued for production/supported gfx targets.
+2026-06-17T19:06:23.5385157Z Call Stack (most recent call first):
+2026-06-17T19:06:23.5385556Z   cmake/therock_subproject.cmake:1626 (_therock_filter_project_gpu_targets)
+2026-06-17T19:06:23.5386112Z   cmake/therock_subproject.cmake:718 (_therock_cmake_subproject_setup_toolchain)
+2026-06-17T19:06:23.5386636Z   profiler/CMakeLists.txt:254 (therock_cmake_subproject_activate)
+2026-06-17T19:06:23.5386924Z 
+2026-06-17T19:06:23.5386927Z 
+2026-06-17T19:06:23.5387097Z CMake Warning at cmake/therock_subproject.cmake:1583 (message):
+2026-06-17T19:06:23.5387766Z   Excluding support for gfx1151 in rocprofiler-compute because it was
+2026-06-17T19:06:23.5388256Z   manually marked for exclusion in therock_amdgpu_targets.cmake.  This
+2026-06-17T19:06:23.5388743Z   warning should never be issued for production/supported gfx targets.
+2026-06-17T19:06:23.5389147Z Call Stack (most recent call first):
+2026-06-17T19:06:23.5389550Z   cmake/therock_subproject.cmake:1626 (_therock_filter_project_gpu_targets)
+2026-06-17T19:06:23.5390070Z   cmake/therock_subproject.cmake:718 (_therock_cmake_subproject_setup_toolchain)
+2026-06-17T19:06:23.5390538Z   profiler/CMakeLists.txt:254 (therock_cmake_subproject_activate)
+2026-06-17T19:06:23.5390802Z 
+2026-06-17T19:06:23.5390805Z 
+2026-06-17T19:06:23.5390967Z CMake Warning at cmake/therock_subproject.cmake:1583 (message):
+2026-06-17T19:06:23.5391400Z   Excluding support for gfx1200 in rocprofiler-compute because it was
+2026-06-17T19:06:23.5392085Z   manually marked for exclusion in therock_amdgpu_targets.cmake.  This
+2026-06-17T19:06:23.5392540Z   warning should never be issued for production/supported gfx targets.
+2026-06-17T19:06:23.5392886Z Call Stack (most recent call first):
+2026-06-17T19:06:23.5393238Z   cmake/therock_subproject.cmake:1626 (_therock_filter_project_gpu_targets)
+2026-06-17T19:06:23.5393727Z   cmake/therock_subproject.cmake:718 (_therock_cmake_subproject_setup_toolchain)
+2026-06-17T19:06:23.5394213Z   profiler/CMakeLists.txt:254 (therock_cmake_subproject_activate)
+2026-06-17T19:06:23.5394463Z 
+2026-06-17T19:06:23.5394466Z 
+2026-06-17T19:06:23.5394627Z CMake Warning at cmake/therock_subproject.cmake:1583 (message):
+2026-06-17T19:06:23.5395041Z   Excluding support for gfx1201 in rocprofiler-compute because it was
+2026-06-17T19:06:23.5395473Z   manually marked for exclusion in therock_amdgpu_targets.cmake.  This
+2026-06-17T19:06:23.5395904Z   warning should never be issued for production/supported gfx targets.
+2026-06-17T19:06:23.5396254Z Call Stack (most recent call first):
+2026-06-17T19:06:23.5396613Z   cmake/therock_subproject.cmake:1626 (_therock_filter_project_gpu_targets)
+2026-06-17T19:06:23.5397097Z   cmake/therock_subproject.cmake:718 (_therock_cmake_subproject_setup_toolchain)
+2026-06-17T19:06:23.5397551Z   profiler/CMakeLists.txt:254 (therock_cmake_subproject_activate)
+2026-06-17T19:06:23.5397803Z 
+2026-06-17T19:06:23.5397806Z 
+2026-06-17T19:06:23.5515523Z --   DISABLING BUILD: Marked as pre-built
+2026-06-17T19:06:23.5523297Z -- Cannot compute fprint for artifact rocprofiler-compute (no fprint for aqlprofile)
+2026-06-17T19:06:23.5523940Z -- Cannot compute fprint for artifact rocprofiler-compute (no fprint for rocprofiler-sdk)
+2026-06-17T19:06:23.5524556Z -- Cannot compute fprint for artifact rocprofiler-compute (no fprint for rocprofiler-compute)
+2026-06-17T19:06:23.5567507Z -- Including subproject rocRAND (from /__w/TheRock/TheRock/rocm-libraries/projects/rocrand)
+2026-06-17T19:06:24.1004072Z -- Including subproject hipRAND (from /__w/TheRock/TheRock/rocm-libraries/projects/hiprand)
+2026-06-17T19:06:24.6348337Z -- Cannot compute fprint for artifact rand (no fprint for rocRAND)
+2026-06-17T19:06:24.6348979Z -- Cannot compute fprint for artifact rand (no fprint for hipRAND)
+2026-06-17T19:06:24.6355038Z -- Including subproject rocPRIM (from /__w/TheRock/TheRock/rocm-libraries/projects/rocprim)
+2026-06-17T19:06:25.1908356Z -- Including subproject rocPRIM_tests (from /__w/TheRock/TheRock/rocm-libraries/projects/rocprim)
+2026-06-17T19:06:25.7475414Z -- Including subproject hipCUB (from /__w/TheRock/TheRock/rocm-libraries/projects/hipcub)
+2026-06-17T19:06:26.2863867Z -- Including subproject rocThrust (from /__w/TheRock/TheRock/rocm-libraries/projects/rocthrust)
+2026-06-17T19:06:26.8822506Z -- Cannot compute fprint for artifact prim (no fprint for rocPRIM)
+2026-06-17T19:06:26.8823195Z -- Cannot compute fprint for artifact prim (no fprint for hipCUB)
+2026-06-17T19:06:26.8823832Z -- Cannot compute fprint for artifact prim (no fprint for rocThrust)
+2026-06-17T19:06:26.8824494Z -- Cannot compute fprint for artifact prim (no fprint for rocPRIM_tests)
+2026-06-17T19:06:26.8828206Z -- Including subproject rocFFT (from /__w/TheRock/TheRock/rocm-libraries/projects/rocfft)
+2026-06-17T19:06:27.4250477Z -- Including subproject hipFFT (from /__w/TheRock/TheRock/rocm-libraries/projects/hipfft)
+2026-06-17T19:06:27.9572344Z -- Cannot compute fprint for artifact fft (no fprint for rocFFT)
+2026-06-17T19:06:27.9573053Z -- Cannot compute fprint for artifact fft (no fprint for hipFFT)
+2026-06-17T19:06:27.9587298Z -- Including subproject mxDataGenerator (from /__w/TheRock/TheRock/rocm-libraries/shared/mxdatagenerator)
+2026-06-17T19:06:28.4681884Z -- Including subproject hipBLAS-common (from /__w/TheRock/TheRock/rocm-libraries/projects/hipblas-common)
+2026-06-17T19:06:28.9858525Z -- Including subproject rocRoller (from /__w/TheRock/TheRock/rocm-libraries/shared/rocroller)
+2026-06-17T19:06:29.5761982Z -- Including subproject hipBLASLt (from /__w/TheRock/TheRock/rocm-libraries/projects/hipblaslt)
+2026-06-17T19:06:30.3330877Z -- Including subproject rocBLAS (from /__w/TheRock/TheRock/rocm-libraries/projects/rocblas)
+2026-06-17T19:06:31.0384799Z -- Including subproject rocSPARSE (from /__w/TheRock/TheRock/rocm-libraries/projects/rocsparse)
+2026-06-17T19:06:31.6686263Z -- Including subproject hipSPARSE (from /__w/TheRock/TheRock/rocm-libraries/projects/hipsparse)
+2026-06-17T19:06:32.2349105Z -- Including subproject hipSPARSELt (from /__w/TheRock/TheRock/rocm-libraries/projects/hipsparselt)
+2026-06-17T19:06:32.7933360Z -- Including subproject rocSOLVER (from /__w/TheRock/TheRock/rocm-libraries/projects/rocsolver)
+2026-06-17T19:06:33.3832586Z -- Including subproject hipSOLVER (from /__w/TheRock/TheRock/rocm-libraries/projects/hipsolver)
+2026-06-17T19:06:33.9455821Z -- Including subproject hipBLAS (from /__w/TheRock/TheRock/rocm-libraries/projects/hipblas)
+2026-06-17T19:06:34.5102706Z -- Cannot compute fprint for artifact blas (no fprint for hipBLAS-common)
+2026-06-17T19:06:34.5103379Z -- Cannot compute fprint for artifact blas (no fprint for rocRoller)
+2026-06-17T19:06:34.5103962Z -- Cannot compute fprint for artifact blas (no fprint for hipBLASLt)
+2026-06-17T19:06:34.5104518Z -- Cannot compute fprint for artifact blas (no fprint for rocBLAS)
+2026-06-17T19:06:34.5105104Z -- Cannot compute fprint for artifact blas (no fprint for hipSPARSE)
+2026-06-17T19:06:34.5105674Z -- Cannot compute fprint for artifact blas (no fprint for hipSPARSELt)
+2026-06-17T19:06:34.5106532Z -- Cannot compute fprint for artifact blas (no fprint for hipSOLVER)
+2026-06-17T19:06:34.5106979Z -- Cannot compute fprint for artifact blas (no fprint for hipBLAS)
+2026-06-17T19:06:34.5111085Z -- Including subproject rocWMMA (from /__w/TheRock/TheRock/rocm-libraries/projects/rocwmma)
+2026-06-17T19:06:35.1324007Z -- Cannot compute fprint for artifact rocwmma (no fprint for rocWMMA)
+2026-06-17T19:06:35.1334907Z -- Including subproject libhipcxx (from /__w/TheRock/TheRock/math-libs/libhipcxx)
+2026-06-17T19:06:35.5397297Z -- Cannot compute fprint for artifact libhipcxx (no fprint for libhipcxx)
+2026-06-17T19:06:35.5418045Z -- Including subproject composable_kernel (from /__w/TheRock/TheRock/rocm-libraries/projects/composablekernel)
+2026-06-17T19:06:36.0648432Z -- Cannot compute fprint for artifact composable-kernel (no fprint for composable_kernel)
+2026-06-17T19:06:36.0655070Z -- Including subproject MIOpen (from /__w/TheRock/TheRock/rocm-libraries/projects/miopen)
+2026-06-17T19:06:36.5980864Z -- Cannot compute fprint for artifact miopen (no fprint for MIOpen)
+2026-06-17T19:06:36.5987586Z -- Including subproject hipDNN (from /__w/TheRock/TheRock/rocm-libraries/projects/hipdnn)
+2026-06-17T19:06:37.2114201Z -- Cannot compute fprint for artifact hipdnn (no fprint for hipDNN)
+2026-06-17T19:06:37.2118721Z -- Including subproject hipdnn_integration_tests (from /__w/TheRock/TheRock/rocm-libraries/dnn-providers/integration-tests)
+2026-06-17T19:06:37.7480308Z -- Cannot compute fprint for artifact hipdnn-integration-tests (no fprint for hipdnn_integration_tests)
+2026-06-17T19:06:37.7483510Z -- Including subproject miopenprovider (from /__w/TheRock/TheRock/rocm-libraries/dnn-providers/miopen-provider)
+2026-06-17T19:06:38.2893359Z -- Cannot compute fprint for artifact miopenprovider (no fprint for miopenprovider)
+2026-06-17T19:06:38.2896241Z -- Including subproject hipblasltprovider (from /__w/TheRock/TheRock/rocm-libraries/dnn-providers/hipblaslt-provider)
+2026-06-17T19:06:38.8247962Z -- Cannot compute fprint for artifact hipblasltprovider (no fprint for hipblasltprovider)
+2026-06-17T19:06:38.8251874Z -- Including subproject hipkernelprovider (from /__w/TheRock/TheRock/rocm-libraries/dnn-providers/hip-kernel-provider)
+2026-06-17T19:06:39.3807280Z -- Cannot compute fprint for artifact hipkernelprovider (no fprint for hipkernelprovider)
+2026-06-17T19:06:39.3810481Z -- Including subproject hipDNN_samples (from /__w/TheRock/TheRock/rocm-libraries/projects/hipdnn/samples)
+2026-06-17T19:06:39.9218535Z -- Cannot compute fprint for artifact hipdnn-samples (no fprint for hipDNN_samples)
+2026-06-17T19:06:39.9241667Z -- Setting up compile_commands.json export
+2026-06-17T19:06:39.9286194Z -- Configuring done (25.2s)
+2026-06-17T19:06:40.8896213Z -- Generating done (0.4s)
+2026-06-17T19:06:40.8980683Z -- Build files have been written to: /__w/TheRock/TheRock/build
+2026-06-17T19:06:40.9643502Z ##[group]Run cmake --build "${BUILD_DIR}" --target stage-${STAGE_NAME} therock-artifacts -- -k 0
+2026-06-17T19:06:40.9644189Z [36;1mcmake --build "${BUILD_DIR}" --target stage-${STAGE_NAME} therock-artifacts -- -k 0[0m
+2026-06-17T19:06:40.9644735Z shell: sh -e {0}
+2026-06-17T19:06:40.9644924Z env:
+2026-06-17T19:06:40.9645184Z   AWS_SHARED_CREDENTIALS_FILE: /home/awsconfig/credentials.ini
+2026-06-17T19:06:40.9645522Z   STAGE_NAME: math-libs
+2026-06-17T19:06:40.9645745Z   AMDGPU_FAMILIES: gfx94X-dcgpu
+2026-06-17T19:06:40.9645980Z   BUILD_DIR: build
+2026-06-17T19:06:40.9646294Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf
+2026-06-17T19:06:40.9646741Z   CACHE_DIR: /home/runner/_work/TheRock/TheRock/.container-cache
+2026-06-17T19:06:40.9647093Z   TEATIME_FORCE_INTERACTIVE: 0
+2026-06-17T19:06:40.9647323Z   RELEASE_TYPE: ci
+2026-06-17T19:06:40.9647528Z   EXTERNAL_FETCH_SOURCES_ARGS: 
+2026-06-17T19:06:40.9647753Z ##[endgroup]
+2026-06-17T19:06:41.0468927Z [0/2] Re-checking globbed directories...
+2026-06-17T19:06:43.0899410Z [1/341] Creating directories for 'therock-fmt-sources'
+2026-06-17T19:06:43.0902173Z [2/341] Creating directories for 'therock-googletest-sources'
+2026-06-17T19:06:43.0905992Z [3/341] Creating directories for 'boost-sources'
+2026-06-17T19:06:43.0911299Z [4/341] Creating directories for 'therock-catch2-sources'
+2026-06-17T19:06:43.0915696Z [5/341] Creating directories for 'therock-libdivide-sources'
+2026-06-17T19:06:43.0920738Z [6/341] Creating directories for 'therock-msgpack-cxx-sources'
+2026-06-17T19:06:43.0925899Z [7/341] Creating directories for 'therock-yaml-cpp-sources'
+2026-06-17T19:06:43.0930539Z [8/341] Creating directories for 'therock-spdlog-sources'
+2026-06-17T19:06:43.0935456Z [9/341] Creating directories for 'therock-robin-map-sources'
+2026-06-17T19:06:43.0940974Z [10/341] Creating directories for 'therock-eigen-sources'
+2026-06-17T19:06:43.0945440Z [11/341] Creating directories for 'therock-flatbuffers-sources'
+2026-06-17T19:06:43.0949783Z [12/341] Creating directories for 'therock-FunctionalPlus-sources'
+2026-06-17T19:06:43.0954356Z [13/341] Creating directories for 'therock-nlohmann-json-sources'
+2026-06-17T19:06:43.0959769Z [14/341] Creating directories for 'therock-nanobind-sources'
+2026-06-17T19:06:43.0964816Z [15/341] Creating directories for 'therock-frugally-deep-sources'
+2026-06-17T19:06:43.1457716Z [16/341] Generating build/stamp/stage.stamp
+2026-06-17T19:06:43.1458584Z [17/341] Generating build/stamp/stage.stamp
+2026-06-17T19:06:43.1464207Z [18/341] Generating build/stamp/stage.stamp
+2026-06-17T19:06:43.1464790Z [19/341] Generating rocm-cmake/stamp/stage.stamp
+2026-06-17T19:06:43.1468601Z [20/341] Generating build/stamp/stage.stamp
+2026-06-17T19:06:43.1469718Z [21/341] Generating build/stamp/stage.stamp
+2026-06-17T19:06:43.1475333Z [22/341] Generating build/stamp/stage.stamp
+2026-06-17T19:06:43.1476769Z [23/341] Generating rocm-core/stamp/stage.stamp
+2026-06-17T19:06:43.1477343Z [24/341] Generating build/stamp/stage.stamp
+2026-06-17T19:06:43.1481877Z [25/341] Generating rocprof-trace-decoder/stamp/stage.stamp
+2026-06-17T19:06:43.1486741Z [26/341] Generating rocm-kpack/stamp/stage.stamp
+2026-06-17T19:06:43.1496932Z [27/341] Generating build/stamp/stage.stamp
+2026-06-17T19:06:43.1506784Z [28/341] Generating rocprofiler-register/stamp/stage.stamp
+2026-06-17T19:06:43.1519866Z [29/341] Generating aux-overlay/stamp/stage.stamp
+2026-06-17T19:06:43.1520477Z [30/341] Generating build_fftw3f/stamp/stage.stamp
+2026-06-17T19:06:43.1605337Z [31/341] Generating rocminfo/stamp/stage.stamp
+2026-06-17T19:06:43.1629002Z [32/341] Generating host-blas/stamp/stage.stamp
+2026-06-17T19:06:43.1649285Z [33/341] Generating build/stamp/stage.stamp
+2026-06-17T19:06:43.1701183Z [34/341] Generating host-blas64/stamp/stage.stamp
+2026-06-17T19:06:43.1706878Z [35/341] Generating rocm_smi_lib/stamp/stage.stamp
+2026-06-17T19:06:43.1707553Z [36/341] Generating half/stamp/stage.stamp
+2026-06-17T19:06:43.1712573Z [37/341] Generating build/stamp/stage.stamp
+2026-06-17T19:06:43.1738537Z [38/341] Generating build_fftw3/stamp/stage.stamp
+2026-06-17T19:06:43.1743612Z [39/341] Generating build/stamp/stage.stamp
+2026-06-17T19:06:43.1750993Z [40/341] Generating stamp/stage.stamp
+2026-06-17T19:06:43.1757397Z [41/341] Generating stamp/stage.stamp
+2026-06-17T19:06:43.1761833Z [42/341] Generating build/stamp/stage.stamp
+2026-06-17T19:06:43.1805080Z [43/341] Generating ROCR-Runtime/stamp/stage.stamp
+2026-06-17T19:06:43.1869859Z [44/341] Generating amdsmi/stamp/stage.stamp
+2026-06-17T19:06:43.2733735Z [45/341] Populate artifact core-kpack
+2026-06-17T19:06:43.2826386Z [46/341] Performing download step (download, verify and extract) for 'therock-robin-map-sources'
+2026-06-17T19:06:43.2885316Z [47/341] No update step for 'therock-robin-map-sources'
+2026-06-17T19:06:43.2941427Z [48/341] No patch step for 'therock-robin-map-sources'
+2026-06-17T19:06:43.2950079Z [49/341] Populate artifact elfio
+2026-06-17T19:06:43.2981288Z [50/341] Populate artifact fftw3
+2026-06-17T19:06:43.3000267Z [51/341] No configure step for 'therock-robin-map-sources'
+2026-06-17T19:06:43.3061496Z [52/341] Performing build step for 'therock-robin-map-sources'
+2026-06-17T19:06:43.3075967Z [53/341] Populate artifact host-suite-sparse
+2026-06-17T19:06:43.3225642Z [54/341] Performing download step (download, verify and extract) for 'therock-FunctionalPlus-sources'
+2026-06-17T19:06:43.3284279Z [55/341] No update step for 'therock-FunctionalPlus-sources'
+2026-06-17T19:06:43.3327617Z [56/341] Populate artifact core-runtime
+2026-06-17T19:06:43.3349161Z [57/341] No patch step for 'therock-FunctionalPlus-sources'
+2026-06-17T19:06:43.3372658Z [58/341] Performing download step (download, verify and extract) for 'therock-frugally-deep-sources'
+2026-06-17T19:06:43.3378260Z [59/341] Performing download step (download, verify and extract) for 'therock-nlohmann-json-sources'
+2026-06-17T19:06:43.3411729Z [60/341] No configure step for 'therock-FunctionalPlus-sources'
+2026-06-17T19:06:43.3433841Z [61/341] No update step for 'therock-frugally-deep-sources'
+2026-06-17T19:06:43.3441379Z [62/341] No update step for 'therock-nlohmann-json-sources'
+2026-06-17T19:06:43.3445868Z [63/341] Performing download step (download, verify and extract) for 'therock-spdlog-sources'
+2026-06-17T19:06:43.3456931Z [64/341] Populate artifact base
+2026-06-17T19:06:43.3470433Z [65/341] Performing build step for 'therock-FunctionalPlus-sources'
+2026-06-17T19:06:43.3495755Z [66/341] No patch step for 'therock-frugally-deep-sources'
+2026-06-17T19:06:43.3500058Z [67/341] No patch step for 'therock-nlohmann-json-sources'
+2026-06-17T19:06:43.3506618Z [68/341] No update step for 'therock-spdlog-sources'
+2026-06-17T19:06:43.3556630Z [69/341] No configure step for 'therock-frugally-deep-sources'
+2026-06-17T19:06:43.3562340Z [70/341] No configure step for 'therock-nlohmann-json-sources'
+2026-06-17T19:06:43.3566589Z [71/341] No patch step for 'therock-spdlog-sources'
+2026-06-17T19:06:43.3619795Z [72/341] Performing build step for 'therock-frugally-deep-sources'
+2026-06-17T19:06:43.3623667Z [73/341] Performing build step for 'therock-nlohmann-json-sources'
+2026-06-17T19:06:43.3628118Z [74/341] No configure step for 'therock-spdlog-sources'
+2026-06-17T19:06:43.3638937Z [75/341] Performing download step (download, verify and extract) for 'therock-yaml-cpp-sources'
+2026-06-17T19:06:43.3687779Z [76/341] Performing build step for 'therock-spdlog-sources'
+2026-06-17T19:06:43.3698725Z [77/341] No update step for 'therock-yaml-cpp-sources'
+2026-06-17T19:06:43.3860819Z [78/341] Performing download step (download, verify and extract) for 'therock-catch2-sources'
+2026-06-17T19:06:43.3919678Z [79/341] No update step for 'therock-catch2-sources'
+2026-06-17T19:06:43.3928434Z [80/341] Populate artifact core-amdsmi
+2026-06-17T19:06:43.4072295Z [81/341] No patch step for 'therock-catch2-sources'
+2026-06-17T19:06:43.4134907Z [82/341] No configure step for 'therock-catch2-sources'
+2026-06-17T19:06:43.4144258Z [83/341] Performing patch step for 'therock-yaml-cpp-sources'
+2026-06-17T19:06:43.4145166Z 
+2026-06-17T19:06:43.4145935Z --- Executing: patch -p1 -i /__w/TheRock/TheRock/patches/third-party/yaml-cpp/0001-emitterutils-Explicitly-include-cstdint.patch ---
+2026-06-17T19:06:43.4146982Z patching file src/emitterutils.cpp
+2026-06-17T19:06:43.4202679Z [84/341] Performing build step for 'therock-catch2-sources'
+2026-06-17T19:06:43.4206488Z [85/341] Populate artifact host-blas
+2026-06-17T19:06:43.4207064Z [86/341] No configure step for 'therock-yaml-cpp-sources'
+2026-06-17T19:06:43.4234690Z [87/341] Performing download step (download, verify and extract) for 'therock-nanobind-sources'
+2026-06-17T19:06:43.4269656Z [88/341] Performing build step for 'therock-yaml-cpp-sources'
+2026-06-17T19:06:43.4280840Z [89/341] Populate artifact sysdeps
+2026-06-17T19:06:43.4288276Z [90/341] Performing download step (download, verify and extract) for 'therock-googletest-sources'
+2026-06-17T19:06:43.4292600Z [91/341] No update step for 'therock-nanobind-sources'
+2026-06-17T19:06:43.4344480Z [92/341] No update step for 'therock-googletest-sources'
+2026-06-17T19:06:43.4347873Z [93/341] No patch step for 'therock-nanobind-sources'
+2026-06-17T19:06:43.4404598Z [94/341] No patch step for 'therock-googletest-sources'
+2026-06-17T19:06:43.4411446Z [95/341] No configure step for 'therock-nanobind-sources'
+2026-06-17T19:06:43.4464554Z [96/341] No configure step for 'therock-googletest-sources'
+2026-06-17T19:06:43.4469939Z [97/341] Performing build step for 'therock-nanobind-sources'
+2026-06-17T19:06:43.4518106Z [98/341] Performing build step for 'therock-googletest-sources'
+2026-06-17T19:06:43.4642745Z [99/341] Performing download step (download, verify and extract) for 'therock-fmt-sources'
+2026-06-17T19:06:43.4648181Z [100/341] Performing download step (download, verify and extract) for 'therock-libdivide-sources'
+2026-06-17T19:06:43.4702710Z [101/341] No update step for 'therock-fmt-sources'
+2026-06-17T19:06:43.4709572Z [102/341] No update step for 'therock-libdivide-sources'
+2026-06-17T19:06:43.4761667Z [103/341] No patch step for 'therock-fmt-sources'
+2026-06-17T19:06:43.4768619Z [104/341] No patch step for 'therock-libdivide-sources'
+2026-06-17T19:06:43.4812898Z [105/341] Performing download step (download, verify and extract) for 'therock-flatbuffers-sources'
+2026-06-17T19:06:43.4820803Z [106/341] No configure step for 'therock-fmt-sources'
+2026-06-17T19:06:43.4828455Z [107/341] No configure step for 'therock-libdivide-sources'
+2026-06-17T19:06:43.4869241Z [108/341] No update step for 'therock-flatbuffers-sources'
+2026-06-17T19:06:43.4888720Z [109/341] Performing build step for 'therock-fmt-sources'
+2026-06-17T19:06:43.4892080Z [110/341] Performing build step for 'therock-libdivide-sources'
+2026-06-17T19:06:43.4931039Z [111/341] No patch step for 'therock-flatbuffers-sources'
+2026-06-17T19:06:43.4999622Z [112/341] No configure step for 'therock-flatbuffers-sources'
+2026-06-17T19:06:43.5060253Z [113/341] Performing build step for 'therock-flatbuffers-sources'
+2026-06-17T19:06:43.5623249Z [114/341] Performing download step (download, verify and extract) for 'therock-msgpack-cxx-sources'
+2026-06-17T19:06:43.5679674Z [115/341] No update step for 'therock-msgpack-cxx-sources'
+2026-06-17T19:06:43.5737353Z [116/341] No patch step for 'therock-msgpack-cxx-sources'
+2026-06-17T19:06:43.5805928Z [117/341] No configure step for 'therock-msgpack-cxx-sources'
+2026-06-17T19:06:43.5864752Z [118/341] Performing build step for 'therock-msgpack-cxx-sources'
+2026-06-17T19:06:43.6654347Z [119/341] Configure sub-project therock-robin-map (in background)
+2026-06-17T19:06:43.7096295Z [120/341] Generating amd-llvm/stamp/stage.stamp
+2026-06-17T19:06:43.7102317Z [121/341] Generating amd-comgr/stamp/stage.stamp
+2026-06-17T19:06:43.7103333Z [122/341] Generating hipcc/stamp/stage.stamp
+2026-06-17T19:06:43.7134865Z [123/341] Configure sub-project therock-nlohmann-json (in background)
+2026-06-17T19:06:43.7135448Z [123/341] Building sub-project therock-nlohmann-json
+2026-06-17T19:06:43.7729570Z [127/341] Generating roctracer/stamp/stage.stamp
+2026-06-17T19:06:43.7786320Z [129/341] Performing download step (download, verify and extract) for 'therock-eigen-sources'
+2026-06-17T19:06:43.7845151Z [130/341] No update step for 'therock-eigen-sources'
+2026-06-17T19:06:43.7905418Z [131/341] No patch step for 'therock-eigen-sources'
+2026-06-17T19:06:43.7968843Z [132/341] No configure step for 'therock-eigen-sources'
+2026-06-17T19:06:43.8033051Z [133/341] Performing build step for 'therock-eigen-sources'
+2026-06-17T19:06:43.8059630Z [134/341] Configure sub-project therock-fmt (in background)
+2026-06-17T19:06:43.8285958Z [135/341] Generating rocprofiler-sdk/stamp/stage.stamp
+2026-06-17T19:06:43.8349640Z [136/341] Stage installing sub-project therock-robin-map
+2026-06-17T19:06:43.8568158Z [137/341] Populate artifact aqlprofile
+2026-06-17T19:06:43.8804380Z [138/341] Configure sub-project therock-msgpack-cxx (in background)
+2026-06-17T19:06:43.8871406Z [139/341] Stage installing sub-project therock-nlohmann-json
+2026-06-17T19:06:43.9199214Z [140/341] Configure sub-project therock-nanobind (in background)
+2026-06-17T19:06:43.9334616Z [141/341] Populate artifact core-hip
+2026-06-17T19:06:43.9403272Z [142/341] Building sub-project therock-msgpack-cxx (in background)
+2026-06-17T19:06:43.9411144Z [143/341] Building sub-project therock-fmt (in background)
+2026-06-17T19:06:43.9782060Z [144/341] Building sub-project therock-nanobind (in background)
+2026-06-17T19:06:44.0073849Z [145/341] Configure sub-project therock-catch2 (in background)
+2026-06-17T19:06:44.0148704Z [146/341] Populate artifact nlohmann-json
+2026-06-17T19:06:44.0645036Z [147/341] Stage installing sub-project therock-fmt
+2026-06-17T19:06:44.1011427Z [148/341] Stage installing sub-project therock-nanobind
+2026-06-17T19:06:44.1181652Z [149/341] Generating rocprofiler-compute/stamp/stage.stamp
+2026-06-17T19:06:44.2524953Z [150/341] Stage installing sub-project therock-msgpack-cxx
+2026-06-17T19:06:44.4949392Z [151/341] Configure sub-project therock-yaml-cpp (in background)
+2026-06-17T19:06:44.5344596Z [152/341] Building sub-project therock-catch2 (in background)
+2026-06-17T19:06:44.6434137Z [153/341] Configure sub-project therock-googletest (in background)
+2026-06-17T19:06:44.6753899Z [154/341] Configure sub-project therock-flatbuffers (in background)
+2026-06-17T19:06:44.7024532Z [155/341] Stage installing sub-project therock-catch2
+2026-06-17T19:06:44.7060271Z [156/341] Populate artifact rocprofiler-sdk
+2026-06-17T19:06:44.8280055Z [157/341] Building sub-project therock-yaml-cpp (in background)
+2026-06-17T19:06:44.8382265Z [158/341] Building sub-project therock-googletest (in background)
+2026-06-17T19:06:44.9408800Z [159/341] Stage installing sub-project therock-yaml-cpp
+2026-06-17T19:06:44.9515082Z [160/341] Stage installing sub-project therock-googletest
+2026-06-17T19:06:44.9572272Z [161/341] Configure sub-project therock-FunctionalPlus (in background)
+2026-06-17T19:06:45.0543151Z [162/341] Building sub-project therock-FunctionalPlus (in background)
+2026-06-17T19:06:45.0610196Z [163/341] Building sub-project therock-flatbuffers (in background)
+2026-06-17T19:06:45.1695368Z [164/341] Stage installing sub-project therock-FunctionalPlus
+2026-06-17T19:06:45.1803544Z [165/341] Stage installing sub-project therock-flatbuffers
+2026-06-17T19:06:45.3059159Z [166/341] Populate artifact flatbuffers
+2026-06-17T19:06:45.6672652Z [167/341] Configure sub-project hipBLAS-common (in background)
+2026-06-17T19:06:45.6933704Z [168/341] Populate artifact rocprofiler-compute
+2026-06-17T19:06:45.7245619Z [169/341] Building sub-project hipBLAS-common (in background)
+2026-06-17T19:06:45.8339874Z [170/341] Configure sub-project therock-libdivide (in background)
+2026-06-17T19:06:45.8940439Z [171/341] Building sub-project therock-libdivide (in background)
+2026-06-17T19:06:45.9941204Z [172/341] Stage installing sub-project therock-libdivide
+2026-06-17T19:06:46.2608633Z [173/341] Configure sub-project mxDataGenerator (in background)
+2026-06-17T19:06:46.3170373Z [174/341] Building sub-project mxDataGenerator (in background)
+2026-06-17T19:06:46.3485722Z [175/341] Stage installing sub-project hipBLAS-common
+2026-06-17T19:06:46.3676620Z [176/341] Configure sub-project therock-spdlog (in background)
+2026-06-17T19:06:46.4234362Z [177/341] Stage installing sub-project mxDataGenerator
+2026-06-17T19:06:46.5442544Z [178/341] Populate artifact support
+2026-06-17T19:06:46.5449575Z [179/341] Building sub-project therock-spdlog (in background)
+2026-06-17T19:06:46.6733287Z [180/341] Stage installing sub-project therock-spdlog
+2026-06-17T19:06:47.6910249Z [181/341] Configure sub-project rocPRIM (in background)
+2026-06-17T19:06:47.6910744Z [181/341] Building sub-project rocPRIM
+2026-06-17T19:06:48.4198182Z [183/341] Stage installing sub-project rocPRIM
+2026-06-17T19:06:49.5574845Z [184/341] Populate artifact amd-llvm
+2026-06-17T19:06:49.7919031Z [185/341] Configure sub-project hipDNN (in background)
+2026-06-17T19:06:50.8143783Z [186/341] Configure sub-project libhipcxx (in background)
+2026-06-17T19:06:51.7354691Z [187/341] Building sub-project hipDNN (in background)
+2026-06-17T19:06:53.5287684Z [188/341] Stage installing sub-project hipDNN
+2026-06-17T19:06:54.3190673Z [189/341] Populate artifact hipdnn
+2026-06-17T19:06:57.9029605Z [190/341] Configure sub-project hipdnn_integration_tests (in background)
+2026-06-17T19:06:59.3285428Z [191/341] Building sub-project hipdnn_integration_tests (in background)
+2026-06-17T19:07:00.9693506Z [192/341] Configure sub-project therock-eigen (in background)
+2026-06-17T19:07:01.0356383Z [193/341] Stage installing sub-project hipdnn_integration_tests
+2026-06-17T19:07:01.3416657Z [194/341] Building sub-project therock-eigen (in background)
+2026-06-17T19:07:01.4217799Z [195/341] Populate artifact hipdnn-integration-tests
+2026-06-17T19:07:01.8212700Z [196/341] Stage installing sub-project therock-eigen
+2026-06-17T19:07:05.1252721Z [197/341] Configure sub-project therock-frugally-deep (in background)
+2026-06-17T19:07:05.3217146Z [198/341] Building sub-project therock-frugally-deep (in background)
+2026-06-17T19:07:05.5608515Z [199/341] Configure sub-project rocRAND (in background)
+2026-06-17T19:07:05.6401418Z [200/341] Stage installing sub-project therock-frugally-deep
+2026-06-17T19:07:05.6821216Z [201/341] Configure sub-project rocPRIM_tests (in background)
+2026-06-17T19:07:06.0481099Z [202/341] Configure sub-project hipkernelprovider (in background)
+2026-06-17T19:07:08.6821538Z [203/341] Building sub-project rocRAND (in background)
+2026-06-17T19:07:10.6588266Z [204/341] Building sub-project hipkernelprovider (in background)
+2026-06-17T19:07:11.0493557Z [205/341] Building sub-project rocPRIM_tests (in background)
+2026-06-17T19:07:11.6890912Z [206/341] Stage installing sub-project rocRAND
+2026-06-17T19:07:12.4981434Z [207/341] Stage installing sub-project hipkernelprovider
+2026-06-17T19:07:12.8576447Z [208/341] Populate artifact hipkernelprovider
+2026-06-17T19:07:15.0515170Z [209/341] Stage installing sub-project rocPRIM_tests
+2026-06-17T19:07:15.9440960Z [210/341] Configure sub-project hipCUB (in background)
+2026-06-17T19:07:16.5987547Z [211/341] Configure sub-project hipRAND (in background)
+2026-06-17T19:07:16.6210473Z [212/341] Performing download step (download, verify and extract) for 'boost-sources'
+2026-06-17T19:07:16.6627471Z [213/341] No update step for 'boost-sources'
+2026-06-17T19:07:16.6810092Z [214/341] No patch step for 'boost-sources'
+2026-06-17T19:07:16.7131159Z [215/341] No configure step for 'boost-sources'
+2026-06-17T19:07:16.7705851Z [216/341] Performing build step for 'boost-sources'
+2026-06-17T19:07:17.4557509Z [217/341] Building sub-project hipRAND (in background)
+2026-06-17T19:07:18.8689341Z [218/341] Configure sub-project therock-boost (in background)
+2026-06-17T19:07:18.8721977Z [219/341] Stage installing sub-project hipRAND
+2026-06-17T19:07:19.3725913Z [220/341] Populate artifact rand
+2026-06-17T19:07:19.4640722Z [221/341] Building sub-project hipCUB (in background)
+2026-06-17T19:07:19.6450292Z [222/341] Splitting rand_dbg into generic and arch-specific artifacts
+2026-06-17T19:07:19.6451939Z Splitting artifact: /__w/TheRock/TheRock/build/artifacts-unsplit/rand_dbg_gfx94X-dcgpu
+2026-06-17T19:07:19.6452828Z Artifact prefix: rand_dbg
+2026-06-17T19:07:19.6453381Z Output directory: /__w/TheRock/TheRock/build/artifacts
+2026-06-17T19:07:19.6453972Z Splitting complete!
+2026-06-17T19:07:19.6468956Z [223/341] Splitting rand_doc into generic and arch-specific artifacts
+2026-06-17T19:07:19.6469973Z Splitting artifact: /__w/TheRock/TheRock/build/artifacts-unsplit/rand_doc_gfx94X-dcgpu
+2026-06-17T19:07:19.6470797Z Artifact prefix: rand_doc
+2026-06-17T19:07:19.6471316Z Output directory: /__w/TheRock/TheRock/build/artifacts
+2026-06-17T19:07:19.6472275Z Splitting complete!
+2026-06-17T19:07:19.6677327Z [224/341] Splitting rand_run into generic and arch-specific artifacts
+2026-06-17T19:07:19.6678428Z Splitting artifact: /__w/TheRock/TheRock/build/artifacts-unsplit/rand_run_gfx94X-dcgpu
+2026-06-17T19:07:19.6679288Z Artifact prefix: rand_run
+2026-06-17T19:07:19.6679826Z Output directory: /__w/TheRock/TheRock/build/artifacts
+2026-06-17T19:07:19.6680417Z Splitting complete!
+2026-06-17T19:07:19.6816538Z [225/341] Splitting rand_dev into generic and arch-specific artifacts
+2026-06-17T19:07:19.6817588Z Splitting artifact: /__w/TheRock/TheRock/build/artifacts-unsplit/rand_dev_gfx94X-dcgpu
+2026-06-17T19:07:19.6818399Z Artifact prefix: rand_dev
+2026-06-17T19:07:19.6818912Z Output directory: /__w/TheRock/TheRock/build/artifacts
+2026-06-17T19:07:19.6819483Z Splitting complete!
+2026-06-17T19:07:21.3423729Z [226/341] Splitting rand_lib into generic and arch-specific artifacts
+2026-06-17T19:07:21.3424822Z Splitting artifact: /__w/TheRock/TheRock/build/artifacts-unsplit/rand_lib_gfx94X-dcgpu
+2026-06-17T19:07:21.3425645Z Artifact prefix: rand_lib
+2026-06-17T19:07:21.3428795Z Output directory: /__w/TheRock/TheRock/build/artifacts
+2026-06-17T19:07:21.3429450Z Splitting complete!
+2026-06-17T19:07:22.1580170Z [227/341] Stage installing sub-project hipCUB
+2026-06-17T19:07:23.4126222Z [228/341] Splitting rand_test into generic and arch-specific artifacts
+2026-06-17T19:07:23.4127343Z Splitting artifact: /__w/TheRock/TheRock/build/artifacts-unsplit/rand_test_gfx94X-dcgpu
+2026-06-17T19:07:23.4128147Z Artifact prefix: rand_test
+2026-06-17T19:07:23.4131094Z Output directory: /__w/TheRock/TheRock/build/artifacts
+2026-06-17T19:07:23.4131716Z Splitting complete!
+2026-06-17T19:07:23.5479370Z [229/341] Flatten split artifacts for rand to dist/rocm
+2026-06-17T19:07:33.8979890Z [230/341] Building sub-project libhipcxx (in background)
+2026-06-17T19:07:34.8060118Z [231/341] Stage installing sub-project libhipcxx
+2026-06-17T19:07:35.9286626Z [232/341] Populate artifact libhipcxx
+2026-06-17T19:07:36.0243624Z [233/341] Splitting libhipcxx_dbg into generic and arch-specific artifacts
+2026-06-17T19:07:36.0244323Z Splitting artifact: /__w/TheRock/TheRock/build/artifacts-unsplit/libhipcxx_dbg_gfx94X-dcgpu
+2026-06-17T19:07:36.0245313Z Artifact prefix: libhipcxx_dbg
+2026-06-17T19:07:36.0245641Z Output directory: /__w/TheRock/TheRock/build/artifacts
+2026-06-17T19:07:36.0245982Z Splitting complete!
+2026-06-17T19:07:36.0267388Z [234/341] Splitting libhipcxx_lib into generic and arch-specific artifacts
+2026-06-17T19:07:36.0268151Z Splitting artifact: /__w/TheRock/TheRock/build/artifacts-unsplit/libhipcxx_lib_gfx94X-dcgpu
+2026-06-17T19:07:36.0268725Z Artifact prefix: libhipcxx_lib
+2026-06-17T19:07:36.0269092Z Output directory: /__w/TheRock/TheRock/build/artifacts
+2026-06-17T19:07:36.0269469Z Splitting complete!
+2026-06-17T19:07:36.5125948Z [235/341] Splitting libhipcxx_dev into generic and arch-specific artifacts
+2026-06-17T19:07:36.5126654Z Splitting artifact: /__w/TheRock/TheRock/build/artifacts-unsplit/libhipcxx_dev_gfx94X-dcgpu
+2026-06-17T19:07:36.5127183Z Artifact prefix: libhipcxx_dev
+2026-06-17T19:07:36.5127508Z Output directory: /__w/TheRock/TheRock/build/artifacts
+2026-06-17T19:07:36.5127892Z Splitting complete!
+2026-06-17T19:07:37.1933286Z [236/341] Splitting libhipcxx_test into generic and arch-specific artifacts
+2026-06-17T19:07:37.1934593Z Splitting artifact: /__w/TheRock/TheRock/build/artifacts-unsplit/libhipcxx_test_gfx94X-dcgpu
+2026-06-17T19:07:37.1935347Z Artifact prefix: libhipcxx_test
+2026-06-17T19:07:37.1935809Z Output directory: /__w/TheRock/TheRock/build/artifacts
+2026-06-17T19:07:37.1936272Z Splitting complete!
+2026-06-17T19:07:37.5780189Z [237/341] Flatten split artifacts for libhipcxx to dist/rocm
+2026-06-17T19:07:45.5194453Z [238/341] Configure sub-project rocThrust (in background)
+2026-06-17T19:07:47.2651274Z [239/341] Building sub-project rocThrust (in background)
+2026-06-17T19:07:50.1910677Z [240/341] Stage installing sub-project rocThrust
+2026-06-17T19:07:51.5554794Z [241/341] Configure sub-project composable_kernel (in background)
+2026-06-17T19:07:52.9537670Z [242/341] Populate artifact prim
+2026-06-17T19:07:53.0885514Z [243/341] Splitting prim_dbg into generic and arch-specific artifacts
+2026-06-17T19:07:53.0886620Z Splitting artifact: /__w/TheRock/TheRock/build/artifacts-unsplit/prim_dbg_gfx94X-dcgpu
+2026-06-17T19:07:53.0887434Z Artifact prefix: prim_dbg
+2026-06-17T19:07:53.0887994Z Output directory: /__w/TheRock/TheRock/build/artifacts
+2026-06-17T19:07:53.0888555Z Splitting complete!
+2026-06-17T19:07:53.0960864Z [244/341] Splitting prim_doc into generic and arch-specific artifacts
+2026-06-17T19:07:53.0961930Z Splitting artifact: /__w/TheRock/TheRock/build/artifacts-unsplit/prim_doc_gfx94X-dcgpu
+2026-06-17T19:07:53.0962778Z Artifact prefix: prim_doc
+2026-06-17T19:07:53.0963296Z Output directory: /__w/TheRock/TheRock/build/artifacts
+2026-06-17T19:07:53.0963883Z Splitting complete!
+2026-06-17T19:07:53.5831314Z [245/341] Splitting prim_dev into generic and arch-specific artifacts
+2026-06-17T19:07:53.5832456Z Splitting artifact: /__w/TheRock/TheRock/build/artifacts-unsplit/prim_dev_gfx94X-dcgpu
+2026-06-17T19:07:53.5833007Z Artifact prefix: prim_dev
+2026-06-17T19:07:53.5833387Z Output directory: /__w/TheRock/TheRock/build/artifacts
+2026-06-17T19:07:53.5833759Z Splitting complete!
+2026-06-17T19:07:57.0972548Z [246/341] Building sub-project composable_kernel (in background)
+2026-06-17T19:08:01.6783772Z [247/341] Stage installing sub-project composable_kernel
+2026-06-17T19:08:04.4692096Z [248/341] Populate artifact composable-kernel
+2026-06-17T19:08:04.5645696Z [249/341] Splitting composable-kernel_dbg into generic and arch-specific artifacts
+2026-06-17T19:08:04.5646777Z Splitting artifact: /__w/TheRock/TheRock/build/artifacts-unsplit/composable-kernel_dbg_gfx94X-dcgpu
+2026-06-17T19:08:04.5647686Z Artifact prefix: composable-kernel_dbg
+2026-06-17T19:08:04.5662768Z Output directory: /__w/TheRock/TheRock/build/artifacts
+2026-06-17T19:08:04.5663123Z Splitting complete!
+2026-06-17T19:08:04.5663524Z [250/341] Splitting composable-kernel_doc into generic and arch-specific artifacts
+2026-06-17T19:08:04.5664196Z Splitting artifact: /__w/TheRock/TheRock/build/artifacts-unsplit/composable-kernel_doc_gfx94X-dcgpu
+2026-06-17T19:08:04.5665088Z Artifact prefix: composable-kernel_doc
+2026-06-17T19:08:04.5665433Z Output directory: /__w/TheRock/TheRock/build/artifacts
+2026-06-17T19:08:04.5665769Z Splitting complete!
+2026-06-17T19:08:04.5666133Z [251/341] Splitting composable-kernel_lib into generic and arch-specific artifacts
+2026-06-17T19:08:04.5666781Z Splitting artifact: /__w/TheRock/TheRock/build/artifacts-unsplit/composable-kernel_lib_gfx94X-dcgpu
+2026-06-17T19:08:04.5667293Z Artifact prefix: composable-kernel_lib
+2026-06-17T19:08:04.5667620Z Output directory: /__w/TheRock/TheRock/build/artifacts
+2026-06-17T19:08:04.5667934Z Splitting complete!
+2026-06-17T19:08:07.4304666Z [252/341] Splitting composable-kernel_dev into generic and arch-specific artifacts
+2026-06-17T19:08:07.4305487Z Splitting artifact: /__w/TheRock/TheRock/build/artifacts-unsplit/composable-kernel_dev_gfx94X-dcgpu
+2026-06-17T19:08:07.4306058Z Artifact prefix: composable-kernel_dev
+2026-06-17T19:08:07.4306421Z Output directory: /__w/TheRock/TheRock/build/artifacts
+2026-06-17T19:08:07.4306794Z Splitting complete!
+2026-06-17T19:08:07.5808522Z [253/341] Flatten split artifacts for composable-kernel to dist/rocm
+2026-06-17T19:08:20.6983414Z [254/341] Splitting prim_test into generic and arch-specific artifacts
+2026-06-17T19:08:20.6984239Z Splitting artifact: /__w/TheRock/TheRock/build/artifacts-unsplit/prim_test_gfx94X-dcgpu
+2026-06-17T19:08:20.6984870Z Artifact prefix: prim_test
+2026-06-17T19:08:20.6985256Z Output directory: /__w/TheRock/TheRock/build/artifacts
+2026-06-17T19:08:20.6985687Z Splitting complete!
+2026-06-17T19:08:20.8619769Z [255/341] Flatten split artifacts for prim to dist/rocm
+2026-06-17T19:08:22.7473728Z [256/341] Building sub-project therock-boost (in background)
+2026-06-17T19:08:23.6339359Z [257/341] Stage installing sub-project therock-boost
+2026-06-17T19:08:27.4790346Z [258/341] Configure sub-project rocRoller (in background)
+2026-06-17T19:08:30.5054576Z [259/341] Configure sub-project rocFFT (in background)
+2026-06-17T19:08:41.1806223Z [260/341] Building sub-project rocRoller (in background)
+2026-06-17T19:08:42.9574985Z [261/341] Stage installing sub-project rocRoller
+2026-06-17T19:08:55.9648733Z [262/341] Configure sub-project hipBLASLt (in background)
+2026-06-17T19:15:51.5131190Z [263/341] Building sub-project rocFFT (in background)
+2026-06-17T19:15:52.5091911Z [264/341] Stage installing sub-project rocFFT
+2026-06-17T19:15:57.1742986Z [265/341] Configure sub-project hipFFT (in background)
+2026-06-17T19:15:57.4004909Z [266/341] Building sub-project hipFFT (in background)
+2026-06-17T19:15:58.0105259Z [267/341] Stage installing sub-project hipFFT
+2026-06-17T19:15:58.1113388Z [268/341] Populate artifact fft
+2026-06-17T19:15:58.2073231Z [269/341] Splitting fft_dbg into generic and arch-specific artifacts
+2026-06-17T19:15:58.2074098Z Splitting artifact: /__w/TheRock/TheRock/build/artifacts-unsplit/fft_dbg_gfx94X-dcgpu
+2026-06-17T19:15:58.2074625Z Artifact prefix: fft_dbg
+2026-06-17T19:15:58.2074962Z Output directory: /__w/TheRock/TheRock/build/artifacts
+2026-06-17T19:15:58.2075355Z Splitting complete!
+2026-06-17T19:15:58.2098240Z [270/341] Splitting fft_run into generic and arch-specific artifacts
+2026-06-17T19:15:58.2098960Z Splitting artifact: /__w/TheRock/TheRock/build/artifacts-unsplit/fft_run_gfx94X-dcgpu
+2026-06-17T19:15:58.2099523Z Artifact prefix: fft_run
+2026-06-17T19:15:58.2099878Z Output directory: /__w/TheRock/TheRock/build/artifacts
+2026-06-17T19:15:58.2100249Z Splitting complete!
+2026-06-17T19:15:58.2111226Z [271/341] Splitting fft_doc into generic and arch-specific artifacts
+2026-06-17T19:15:58.2112088Z Splitting artifact: /__w/TheRock/TheRock/build/artifacts-unsplit/fft_doc_gfx94X-dcgpu
+2026-06-17T19:15:58.2112600Z Artifact prefix: fft_doc
+2026-06-17T19:15:58.2112947Z Output directory: /__w/TheRock/TheRock/build/artifacts
+2026-06-17T19:15:58.2113306Z Splitting complete!
+2026-06-17T19:15:58.2149131Z [272/341] Splitting fft_dev into generic and arch-specific artifacts
+2026-06-17T19:15:58.2149839Z Splitting artifact: /__w/TheRock/TheRock/build/artifacts-unsplit/fft_dev_gfx94X-dcgpu
+2026-06-17T19:15:58.2150835Z Artifact prefix: fft_dev
+2026-06-17T19:15:58.2151185Z Output directory: /__w/TheRock/TheRock/build/artifacts
+2026-06-17T19:15:58.2151609Z Splitting complete!
+2026-06-17T19:15:58.3364374Z [273/341] Splitting fft_lib into generic and arch-specific artifacts
+2026-06-17T19:15:58.3365222Z Splitting artifact: /__w/TheRock/TheRock/build/artifacts-unsplit/fft_lib_gfx94X-dcgpu
+2026-06-17T19:15:58.3365878Z Artifact prefix: fft_lib
+2026-06-17T19:15:58.3366289Z Output directory: /__w/TheRock/TheRock/build/artifacts
+2026-06-17T19:15:58.3366747Z Splitting complete!
+2026-06-17T19:15:58.4247044Z [274/341] Splitting fft_test into generic and arch-specific artifacts
+2026-06-17T19:15:58.4247877Z Splitting artifact: /__w/TheRock/TheRock/build/artifacts-unsplit/fft_test_gfx94X-dcgpu
+2026-06-17T19:15:58.4248505Z Artifact prefix: fft_test
+2026-06-17T19:15:58.4248910Z Output directory: /__w/TheRock/TheRock/build/artifacts
+2026-06-17T19:15:58.4249362Z Splitting complete!
+2026-06-17T19:15:58.4843058Z [275/341] Flatten split artifacts for fft to dist/rocm
+2026-06-17T20:36:48.5684534Z ##[error]The operation was canceled.
+2026-06-17T20:36:48.5952202Z Prepare all required actions
+2026-06-17T20:36:48.5952992Z Getting action download info
+2026-06-17T20:36:48.8792424Z Download action repository 'aws-actions/configure-aws-credentials@e7f100cf4c008499ea8adda475de1042d6975c7b' (SHA:e7f100cf4c008499ea8adda475de1042d6975c7b)
+2026-06-17T20:36:49.0954063Z ##[group]Run ./.github/actions/configure_aws_artifacts_credentials
+2026-06-17T20:36:49.0954694Z with:
+2026-06-17T20:36:49.0955050Z   release_type: ci
+2026-06-17T20:36:49.0955394Z env:
+2026-06-17T20:36:49.0955850Z   AWS_SHARED_CREDENTIALS_FILE: /home/awsconfig/credentials.ini
+2026-06-17T20:36:49.0956457Z   STAGE_NAME: math-libs
+2026-06-17T20:36:49.0956844Z   AMDGPU_FAMILIES: gfx94X-dcgpu
+2026-06-17T20:36:49.0957285Z   BUILD_DIR: build
+2026-06-17T20:36:49.0957852Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf
+2026-06-17T20:36:49.0958668Z   CACHE_DIR: /home/runner/_work/TheRock/TheRock/.container-cache
+2026-06-17T20:36:49.0959307Z   TEATIME_FORCE_INTERACTIVE: 0
+2026-06-17T20:36:49.0959699Z   RELEASE_TYPE: ci
+2026-06-17T20:36:49.0960064Z   EXTERNAL_FETCH_SOURCES_ARGS: 
+2026-06-17T20:36:49.0960447Z ##[endgroup]
+2026-06-17T20:36:49.1095708Z ##[group]Run python build_tools/github_actions/write_artifacts_bucket_info.py \
+2026-06-17T20:36:49.1096687Z [36;1mpython build_tools/github_actions/write_artifacts_bucket_info.py \[0m
+2026-06-17T20:36:49.1097401Z [36;1m  --release-type "ci"[0m
+2026-06-17T20:36:49.1099702Z shell: bash --noprofile --norc -e -o pipefail {0}
+2026-06-17T20:36:49.1100221Z env:
+2026-06-17T20:36:49.1100670Z   AWS_SHARED_CREDENTIALS_FILE: /home/awsconfig/credentials.ini
+2026-06-17T20:36:49.1101261Z   STAGE_NAME: math-libs
+2026-06-17T20:36:49.1101657Z   AMDGPU_FAMILIES: gfx94X-dcgpu
+2026-06-17T20:36:49.1102070Z   BUILD_DIR: build
+2026-06-17T20:36:49.1102630Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf
+2026-06-17T20:36:49.1103458Z   CACHE_DIR: /home/runner/_work/TheRock/TheRock/.container-cache
+2026-06-17T20:36:49.1104071Z   TEATIME_FORCE_INTERACTIVE: 0
+2026-06-17T20:36:49.1104475Z   RELEASE_TYPE: ci
+2026-06-17T20:36:49.1104840Z   EXTERNAL_FETCH_SOURCES_ARGS: 
+2026-06-17T20:36:49.1105248Z ##[endgroup]
+2026-06-17T20:36:49.4357090Z Retrieving bucket info for workflow run...
+2026-06-17T20:36:49.4357651Z   github_repository: ROCm/TheRock
+2026-06-17T20:36:49.4358064Z   release_type: ci
+2026-06-17T20:36:49.4358401Z   is_pr_from_fork: True
+2026-06-17T20:36:49.4358783Z   bucket: therock-ci-artifacts-external
+2026-06-17T20:36:49.4359377Z   Fork PR detected, skipping OIDC (using runner base credentials)
+2026-06-17T20:36:49.4359960Z Setting github output:
+2026-06-17T20:36:49.4360317Z {
+2026-06-17T20:36:49.4360649Z   "bucket": "therock-ci-artifacts-external",
+2026-06-17T20:36:49.4361098Z   "iam_role": "",
+2026-06-17T20:36:49.4361419Z   "aws_region": "us-east-2"
+2026-06-17T20:36:49.4362453Z }
+2026-06-17T20:36:49.4362770Z OUTPUT bucket=therock-ci-artifacts-external
+2026-06-17T20:36:49.4363218Z OUTPUT iam_role=
+2026-06-17T20:36:49.4363595Z OUTPUT aws_region=us-east-2
+2026-06-17T20:36:49.4669500Z ##[group]Run python build_tools/github_actions/post_stage_upload.py \
+2026-06-17T20:36:49.4670303Z [36;1mpython build_tools/github_actions/post_stage_upload.py \[0m
+2026-06-17T20:36:49.4670863Z [36;1m  --run-id=27710372755 \[0m
+2026-06-17T20:36:49.4671262Z [36;1m  --stage="${STAGE_NAME}" \[0m
+2026-06-17T20:36:49.4671676Z [36;1m  --build-dir="${BUILD_DIR}" \[0m
+2026-06-17T20:36:49.4672525Z [36;1m  --amdgpu-family="${AMDGPU_FAMILIES}"[0m
+2026-06-17T20:36:49.4673079Z shell: sh -e {0}
+2026-06-17T20:36:49.4673364Z env:
+2026-06-17T20:36:49.4673750Z   AWS_SHARED_CREDENTIALS_FILE: /home/awsconfig/credentials.ini
+2026-06-17T20:36:49.4674259Z   STAGE_NAME: math-libs
+2026-06-17T20:36:49.4674592Z   AMDGPU_FAMILIES: gfx94X-dcgpu
+2026-06-17T20:36:49.4674940Z   BUILD_DIR: build
+2026-06-17T20:36:49.4675429Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf
+2026-06-17T20:36:49.4676112Z   CACHE_DIR: /home/runner/_work/TheRock/TheRock/.container-cache
+2026-06-17T20:36:49.4676678Z   TEATIME_FORCE_INTERACTIVE: 0
+2026-06-17T20:36:49.4677038Z   RELEASE_TYPE: ci
+2026-06-17T20:36:49.4677355Z   EXTERNAL_FETCH_SOURCES_ARGS: 
+2026-06-17T20:36:49.4677708Z ##[endgroup]
+2026-06-17T20:36:49.7156749Z Creating log archives for stage 'math-libs'
+2026-06-17T20:36:53.8239468Z [+] Archived: .ninja_log
+2026-06-17T20:36:53.8241956Z [+] Archived: math-libs/hipRAND/build/.ninja_log
+2026-06-17T20:36:53.8245174Z [+] Archived: math-libs/rocPRIM/build/.ninja_log
+2026-06-17T20:36:53.8248452Z [+] Archived: math-libs/rocFFT/build/.ninja_log
+2026-06-17T20:36:53.8252447Z [+] Archived: math-libs/rocFFT/build/_deps/sqlite_local-subbuild/.ninja_log
+2026-06-17T20:36:53.8256270Z [+] Archived: math-libs/support/mxDataGenerator/build/.ninja_log
+2026-06-17T20:36:53.8295774Z [+] Archived: math-libs/BLAS/rocRoller/build/.ninja_log
+2026-06-17T20:36:53.8333731Z [+] Archived: math-libs/BLAS/hipBLASLt/build/.ninja_log
+2026-06-17T20:36:53.8338840Z [+] Archived: math-libs/BLAS/hipBLASLt/build/_deps/nanobind-subbuild/.ninja_log
+2026-06-17T20:36:53.8359625Z [+] Archived: math-libs/BLAS/hipBLAS-common/build/.ninja_log
+2026-06-17T20:36:53.8364363Z [+] Archived: math-libs/hipFFT/build/.ninja_log
+2026-06-17T20:36:53.8402217Z [+] Archived: math-libs/rocThrust/build/.ninja_log
+2026-06-17T20:36:53.8428811Z [+] Archived: math-libs/rocThrust/build/_deps/googlebench-subbuild/.ninja_log
+2026-06-17T20:36:53.8434526Z [+] Archived: math-libs/rocThrust/build/_deps/sqlite_local-subbuild/.ninja_log
+2026-06-17T20:36:53.8449051Z [+] Archived: math-libs/hipCUB/build/.ninja_log
+2026-06-17T20:36:53.8454415Z [+] Archived: math-libs/hipCUB/build/_deps/googlebench-subbuild/.ninja_log
+2026-06-17T20:36:53.8468214Z [+] Archived: math-libs/rocRAND/build/.ninja_log
+2026-06-17T20:36:53.8473613Z [+] Archived: math-libs/rocRAND/build/have_asm_incbin_test/.ninja_log
+2026-06-17T20:36:53.8478472Z [+] Archived: math-libs/rocRAND/build/_deps/googlebenchmark-subbuild/.ninja_log
+2026-06-17T20:36:53.8519286Z [+] Archived: math-libs/rocPRIM_tests/build/.ninja_log
+2026-06-17T20:36:53.8628195Z [+] Archived: math-libs/libhipcxx/build/.ninja_log
+2026-06-17T20:36:53.8633879Z [+] Archived: third-party/googletest/build/.ninja_log
+2026-06-17T20:36:53.8640311Z [+] Archived: third-party/FunctionalPlus/build/.ninja_log
+2026-06-17T20:36:53.8645789Z [+] Archived: third-party/eigen/build/.ninja_log
+2026-06-17T20:36:53.8649374Z [+] Archived: third-party/boost/cmake_project/build/.ninja_log
+2026-06-17T20:36:53.8653557Z [+] Archived: third-party/robin-map/build/.ninja_log
+2026-06-17T20:36:53.8678591Z [+] Archived: third-party/msgpack-cxx/build/.ninja_log
+2026-06-17T20:36:53.8682902Z [+] Archived: third-party/libdivide/build/.ninja_log
+2026-06-17T20:36:53.8687339Z [+] Archived: third-party/frugally-deep/build/.ninja_log
+2026-06-17T20:36:53.8691410Z [+] Archived: third-party/fmt/build/.ninja_log
+2026-06-17T20:36:53.8695754Z [+] Archived: third-party/spdlog/build/.ninja_log
+2026-06-17T20:36:53.8699759Z [+] Archived: third-party/yaml-cpp/build/.ninja_log
+2026-06-17T20:36:53.8704613Z [+] Archived: third-party/flatbuffers/build/.ninja_log
+2026-06-17T20:36:53.8708166Z [+] Archived: third-party/nanobind/build/.ninja_log
+2026-06-17T20:36:53.8722106Z [+] Archived: third-party/Catch2/build/.ninja_log
+2026-06-17T20:36:53.8725840Z [+] Archived: third-party/nlohmann-json/build/.ninja_log
+2026-06-17T20:36:53.8832955Z [+] Archived: ml-libs/composable_kernel/build/.ninja_log
+2026-06-17T20:36:53.8837341Z [+] Archived: ml-libs/hipdnn_integration_tests/build/.ninja_log
+2026-06-17T20:36:53.8842397Z [+] Archived: ml-libs/hipkernelprovider/build/.ninja_log
+2026-06-17T20:36:53.8884512Z [+] Archived: ml-libs/hipDNN/build/.ninja_log
+2026-06-17T20:36:53.8891355Z [INFO] Created ninja log archive: build/logs/ninja_logs.tar.gz (40 files)
+2026-06-17T20:36:54.1477650Z [+] Archived ccache log: ccache.log
+2026-06-17T20:36:54.1511531Z [+] Archived ccache log: ccache_stats.log
+2026-06-17T20:36:54.1515648Z [INFO] Created ccache_logs.tar.zst (4MB from 2 files)
+2026-06-17T20:36:54.1518631Z Retrieving bucket info for workflow run...
+2026-06-17T20:36:54.1519060Z   github_repository: ROCm/TheRock
+2026-06-17T20:36:54.1519410Z   release_type: ci
+2026-06-17T20:36:54.1749826Z   is_pr_from_fork: True
+2026-06-17T20:36:54.1754144Z   bucket: therock-ci-artifacts-external
+2026-06-17T20:36:54.1754789Z   Fork PR detected, skipping OIDC (using runner base credentials)
+2026-06-17T20:36:54.1837097Z INFO:_therock_utils.storage_backend:upload_directory: build/logs -> therock-ci-artifacts-external/ROCm-TheRock/27710372755-linux/logs/math-libs/gfx94X-dcgpu (97 files)
+2026-06-17T20:36:54.1839381Z INFO:_therock_utils.storage_backend:  ccache_logs.tar.zst
+2026-06-17T20:36:54.1843139Z INFO:_therock_utils.storage_backend:  composable_kernel_build.log
+2026-06-17T20:36:54.1846356Z INFO:_therock_utils.storage_backend:  composable_kernel_configure.log
+2026-06-17T20:36:54.1849649Z INFO:_therock_utils.storage_backend:  composable_kernel_install.log
+2026-06-17T20:36:54.1853151Z INFO:_therock_utils.storage_backend:  hipBLAS-common_build.log
+2026-06-17T20:36:54.1856262Z INFO:_therock_utils.storage_backend:  hipBLAS-common_configure.log
+2026-06-17T20:36:54.1859202Z INFO:_therock_utils.storage_backend:  hipBLAS-common_install.log
+2026-06-17T20:36:54.1862287Z INFO:_therock_utils.storage_backend:  hipBLASLt_build.log
+2026-06-17T20:36:54.1865243Z INFO:_therock_utils.storage_backend:  hipBLASLt_configure.log
+2026-06-17T20:36:54.1868252Z INFO:_therock_utils.storage_backend:  hipCUB_build.log
+2026-06-17T20:36:54.1871278Z INFO:_therock_utils.storage_backend:  hipCUB_configure.log
+2026-06-17T20:36:54.1874826Z INFO:_therock_utils.storage_backend:  hipCUB_install.log
+2026-06-17T20:36:54.1877828Z INFO:_therock_utils.storage_backend:  hipDNN_build.log
+2026-06-17T20:36:54.1880948Z INFO:_therock_utils.storage_backend:  hipDNN_configure.log
+2026-06-17T20:36:54.1883896Z INFO:_therock_utils.storage_backend:  hipDNN_install.log
+2026-06-17T20:36:54.1887083Z INFO:_therock_utils.storage_backend:  hipFFT_build.log
+2026-06-17T20:36:54.1890088Z INFO:_therock_utils.storage_backend:  hipFFT_configure.log
+2026-06-17T20:36:54.1893140Z INFO:_therock_utils.storage_backend:  hipFFT_install.log
+2026-06-17T20:36:54.1896103Z INFO:_therock_utils.storage_backend:  hipRAND_build.log
+2026-06-17T20:36:54.1899191Z INFO:_therock_utils.storage_backend:  hipRAND_configure.log
+2026-06-17T20:36:54.1902129Z INFO:_therock_utils.storage_backend:  hipRAND_install.log
+2026-06-17T20:36:54.1905303Z INFO:_therock_utils.storage_backend:  hipdnn_integration_tests_build.log
+2026-06-17T20:36:54.1908315Z INFO:_therock_utils.storage_backend:  hipdnn_integration_tests_configure.log
+2026-06-17T20:36:54.1911364Z INFO:_therock_utils.storage_backend:  hipdnn_integration_tests_install.log
+2026-06-17T20:36:54.1914623Z INFO:_therock_utils.storage_backend:  hipkernelprovider_build.log
+2026-06-17T20:36:54.1917774Z INFO:_therock_utils.storage_backend:  hipkernelprovider_configure.log
+2026-06-17T20:36:54.1920946Z INFO:_therock_utils.storage_backend:  hipkernelprovider_install.log
+2026-06-17T20:36:54.1924318Z INFO:_therock_utils.storage_backend:  libhipcxx_build.log
+2026-06-17T20:36:54.1926906Z INFO:_therock_utils.storage_backend:  libhipcxx_configure.log
+2026-06-17T20:36:54.1930207Z INFO:_therock_utils.storage_backend:  libhipcxx_install.log
+2026-06-17T20:36:54.1933147Z INFO:_therock_utils.storage_backend:  mxDataGenerator_build.log
+2026-06-17T20:36:54.1936380Z INFO:_therock_utils.storage_backend:  mxDataGenerator_configure.log
+2026-06-17T20:36:54.1939301Z INFO:_therock_utils.storage_backend:  mxDataGenerator_install.log
+2026-06-17T20:36:54.1942317Z INFO:_therock_utils.storage_backend:  ninja_logs.tar.gz
+2026-06-17T20:36:54.1945209Z INFO:_therock_utils.storage_backend:  rocFFT_build.log
+2026-06-17T20:36:54.1948366Z INFO:_therock_utils.storage_backend:  rocFFT_configure.log
+2026-06-17T20:36:54.1951247Z INFO:_therock_utils.storage_backend:  rocFFT_install.log
+2026-06-17T20:36:54.1954674Z INFO:_therock_utils.storage_backend:  rocPRIM_build.log
+2026-06-17T20:36:54.1957645Z INFO:_therock_utils.storage_backend:  rocPRIM_configure.log
+2026-06-17T20:36:54.1960672Z INFO:_therock_utils.storage_backend:  rocPRIM_install.log
+2026-06-17T20:36:54.1963602Z INFO:_therock_utils.storage_backend:  rocPRIM_tests_build.log
+2026-06-17T20:36:54.1967157Z INFO:_therock_utils.storage_backend:  rocPRIM_tests_configure.log
+2026-06-17T20:36:54.1969916Z INFO:_therock_utils.storage_backend:  rocPRIM_tests_install.log
+2026-06-17T20:36:54.1972905Z INFO:_therock_utils.storage_backend:  rocRAND_build.log
+2026-06-17T20:36:54.1975806Z INFO:_therock_utils.storage_backend:  rocRAND_configure.log
+2026-06-17T20:36:54.1978981Z INFO:_therock_utils.storage_backend:  rocRAND_install.log
+2026-06-17T20:36:54.1981882Z INFO:_therock_utils.storage_backend:  rocRoller_build.log
+2026-06-17T20:36:54.1985102Z INFO:_therock_utils.storage_backend:  rocRoller_configure.log
+2026-06-17T20:36:54.1988381Z INFO:_therock_utils.storage_backend:  rocRoller_install.log
+2026-06-17T20:36:54.1991388Z INFO:_therock_utils.storage_backend:  rocThrust_build.log
+2026-06-17T20:36:54.1994829Z INFO:_therock_utils.storage_backend:  rocThrust_configure.log
+2026-06-17T20:36:54.1998044Z INFO:_therock_utils.storage_backend:  rocThrust_install.log
+2026-06-17T20:36:54.2001018Z INFO:_therock_utils.storage_backend:  therock-FunctionalPlus_build.log
+2026-06-17T20:36:54.2004092Z INFO:_therock_utils.storage_backend:  therock-FunctionalPlus_configure.log
+2026-06-17T20:36:54.2006985Z INFO:_therock_utils.storage_backend:  therock-FunctionalPlus_install.log
+2026-06-17T20:36:54.2009939Z INFO:_therock_utils.storage_backend:  therock-boost_build.log
+2026-06-17T20:36:54.2012870Z INFO:_therock_utils.storage_backend:  therock-boost_configure.log
+2026-06-17T20:36:54.2015985Z INFO:_therock_utils.storage_backend:  therock-boost_install.log
+2026-06-17T20:36:54.2018734Z INFO:_therock_utils.storage_backend:  therock-catch2_build.log
+2026-06-17T20:36:54.2021768Z INFO:_therock_utils.storage_backend:  therock-catch2_configure.log
+2026-06-17T20:36:54.2024591Z INFO:_therock_utils.storage_backend:  therock-catch2_install.log
+2026-06-17T20:36:54.2027565Z INFO:_therock_utils.storage_backend:  therock-eigen_build.log
+2026-06-17T20:36:54.2030454Z INFO:_therock_utils.storage_backend:  therock-eigen_configure.log
+2026-06-17T20:36:54.2034082Z INFO:_therock_utils.storage_backend:  therock-eigen_install.log
+2026-06-17T20:36:54.2037008Z INFO:_therock_utils.storage_backend:  therock-flatbuffers_build.log
+2026-06-17T20:36:54.2040076Z INFO:_therock_utils.storage_backend:  therock-flatbuffers_configure.log
+2026-06-17T20:36:54.2042935Z INFO:_therock_utils.storage_backend:  therock-flatbuffers_install.log
+2026-06-17T20:36:54.2045931Z INFO:_therock_utils.storage_backend:  therock-fmt_build.log
+2026-06-17T20:36:54.2048863Z INFO:_therock_utils.storage_backend:  therock-fmt_configure.log
+2026-06-17T20:36:54.2051879Z INFO:_therock_utils.storage_backend:  therock-fmt_install.log
+2026-06-17T20:36:54.2054780Z INFO:_therock_utils.storage_backend:  therock-frugally-deep_build.log
+2026-06-17T20:36:54.2057817Z INFO:_therock_utils.storage_backend:  therock-frugally-deep_configure.log
+2026-06-17T20:36:54.2064454Z INFO:_therock_utils.storage_backend:  therock-frugally-deep_install.log
+2026-06-17T20:36:54.2065292Z INFO:_therock_utils.storage_backend:  therock-googletest_build.log
+2026-06-17T20:36:54.2066349Z INFO:_therock_utils.storage_backend:  therock-googletest_configure.log
+2026-06-17T20:36:54.2069370Z INFO:_therock_utils.storage_backend:  therock-googletest_install.log
+2026-06-17T20:36:54.2072829Z INFO:_therock_utils.storage_backend:  therock-libdivide_build.log
+2026-06-17T20:36:54.2076099Z INFO:_therock_utils.storage_backend:  therock-libdivide_configure.log
+2026-06-17T20:36:54.2078978Z INFO:_therock_utils.storage_backend:  therock-libdivide_install.log
+2026-06-17T20:36:54.2082057Z INFO:_therock_utils.storage_backend:  therock-msgpack-cxx_build.log
+2026-06-17T20:36:54.2084918Z INFO:_therock_utils.storage_backend:  therock-msgpack-cxx_configure.log
+2026-06-17T20:36:54.2087908Z INFO:_therock_utils.storage_backend:  therock-msgpack-cxx_install.log
+2026-06-17T20:36:54.2090779Z INFO:_therock_utils.storage_backend:  therock-nanobind_build.log
+2026-06-17T20:36:54.2093661Z INFO:_therock_utils.storage_backend:  therock-nanobind_configure.log
+2026-06-17T20:36:54.2096493Z INFO:_therock_utils.storage_backend:  therock-nanobind_install.log
+2026-06-17T20:36:54.2099424Z INFO:_therock_utils.storage_backend:  therock-nlohmann-json_build.log
+2026-06-17T20:36:54.2102314Z INFO:_therock_utils.storage_backend:  therock-nlohmann-json_configure.log
+2026-06-17T20:36:54.2105139Z INFO:_therock_utils.storage_backend:  therock-nlohmann-json_install.log
+2026-06-17T20:36:54.2107915Z INFO:_therock_utils.storage_backend:  therock-robin-map_build.log
+2026-06-17T20:36:54.2110787Z INFO:_therock_utils.storage_backend:  therock-robin-map_configure.log
+2026-06-17T20:36:54.2114030Z INFO:_therock_utils.storage_backend:  therock-robin-map_install.log
+2026-06-17T20:36:54.2116960Z INFO:_therock_utils.storage_backend:  therock-spdlog_build.log
+2026-06-17T20:36:54.2119840Z INFO:_therock_utils.storage_backend:  therock-spdlog_configure.log
+2026-06-17T20:36:54.2122720Z INFO:_therock_utils.storage_backend:  therock-spdlog_install.log
+2026-06-17T20:36:54.2125696Z INFO:_therock_utils.storage_backend:  therock-yaml-cpp_build.log
+2026-06-17T20:36:54.2128720Z INFO:_therock_utils.storage_backend:  therock-yaml-cpp_configure.log
+2026-06-17T20:36:54.2131617Z INFO:_therock_utils.storage_backend:  therock-yaml-cpp_install.log
+2026-06-17T20:36:54.4603627Z INFO:botocore.credentials:Found credentials in shared credentials file: /home/awsconfig/credentials.ini
+2026-06-17T20:36:54.4660500Z INFO:botocore.credentials:Found credentials in shared credentials file: /home/awsconfig/credentials.ini
+2026-06-17T20:36:54.4748900Z INFO:botocore.credentials:Found credentials in shared credentials file: /home/awsconfig/credentials.ini
+2026-06-17T20:36:54.4781380Z INFO:botocore.credentials:Found credentials in shared credentials file: /home/awsconfig/credentials.ini
+2026-06-17T20:36:54.5781071Z INFO:botocore.credentials:Found credentials in shared credentials file: /home/awsconfig/credentials.ini
+2026-06-17T20:36:54.5782211Z INFO:botocore.credentials:Found credentials in shared credentials file: /home/awsconfig/credentials.ini
+2026-06-17T20:36:54.5784446Z INFO:botocore.credentials:Found credentials in shared credentials file: /home/awsconfig/credentials.ini
+2026-06-17T20:36:54.5786014Z INFO:botocore.credentials:Found credentials in shared credentials file: /home/awsconfig/credentials.ini
+2026-06-17T20:36:54.5792687Z INFO:botocore.credentials:Found credentials in shared credentials file: /home/awsconfig/credentials.ini
+2026-06-17T20:36:54.5795478Z INFO:botocore.credentials:Found credentials in shared credentials file: /home/awsconfig/credentials.ini
+2026-06-17T20:36:58.3643735Z Post job cleanup.
+2026-06-17T20:36:58.3842481Z Post job cleanup.
+2026-06-17T20:36:58.3855824Z ##[command]/usr/bin/docker exec  ee8fb84a2649ad0ff26502a7041ebd80eb09af3da419f924d6d6aca94016ca38 sh -c "cat /etc/*release | grep ^ID"
+2026-06-17T20:36:58.9645046Z [command]/usr/local/bin/git version
+2026-06-17T20:36:58.9709676Z git version 2.49.0
+2026-06-17T20:36:58.9809683Z Copying '/github/home/.gitconfig' to '/__w/_temp/99544ec1-5170-43b7-b7ee-842c0f7d7aaa/.gitconfig'
+2026-06-17T20:36:58.9828664Z Temporarily overriding HOME='/__w/_temp/99544ec1-5170-43b7-b7ee-842c0f7d7aaa' before making global git config changes
+2026-06-17T20:36:58.9829861Z Adding repository directory to the temporary git global config as a safe directory
+2026-06-17T20:36:58.9836614Z [command]/usr/local/bin/git config --global --add safe.directory /__w/TheRock/TheRock
+2026-06-17T20:36:58.9891881Z Removing SSH command configuration
+2026-06-17T20:36:58.9900407Z [command]/usr/local/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-06-17T20:36:59.0057319Z [command]/usr/local/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-06-17T20:36:59.4185528Z Entering 'math-libs/libhipcxx'
+2026-06-17T20:36:59.4675361Z Entering 'rocm-libraries'
+2026-06-17T20:36:59.4967770Z Entering 'rocm-systems'
+2026-06-17T20:36:59.5351637Z Removing HTTP extra header
+2026-06-17T20:36:59.5358504Z [command]/usr/local/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-06-17T20:36:59.5414731Z [command]/usr/local/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-06-17T20:36:59.6737602Z Entering 'math-libs/libhipcxx'
+2026-06-17T20:36:59.6857450Z Entering 'rocm-libraries'
+2026-06-17T20:36:59.7044100Z Entering 'rocm-systems'
+2026-06-17T20:36:59.7291253Z Removing includeIf entries pointing to credentials config files
+2026-06-17T20:36:59.7300247Z [command]/usr/local/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-06-17T20:36:59.7430795Z includeif.gitdir:/__w/TheRock/TheRock/.git.path
+2026-06-17T20:36:59.7431715Z includeif.gitdir:/__w/TheRock/TheRock/.git/worktrees/*.path
+2026-06-17T20:36:59.7433014Z includeif.gitdir:/github/workspace/.git.path
+2026-06-17T20:36:59.7433795Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-06-17T20:36:59.7576218Z [command]/usr/local/bin/git config --local --get-all includeif.gitdir:/__w/TheRock/TheRock/.git.path
+2026-06-17T20:36:59.7833868Z /__w/_temp/git-credentials-719dfc99-2655-4846-afc8-866180603bde.config
+2026-06-17T20:36:59.7859618Z [command]/usr/local/bin/git config --local --unset includeif.gitdir:/__w/TheRock/TheRock/.git.path /__w/_temp/git-credentials-719dfc99-2655-4846-afc8-866180603bde.config
+2026-06-17T20:36:59.7920625Z [command]/usr/local/bin/git config --local --get-all includeif.gitdir:/__w/TheRock/TheRock/.git/worktrees/*.path
+2026-06-17T20:36:59.7973935Z /__w/_temp/git-credentials-719dfc99-2655-4846-afc8-866180603bde.config
+2026-06-17T20:36:59.8001039Z [command]/usr/local/bin/git config --local --unset includeif.gitdir:/__w/TheRock/TheRock/.git/worktrees/*.path /__w/_temp/git-credentials-719dfc99-2655-4846-afc8-866180603bde.config
+2026-06-17T20:36:59.8064593Z [command]/usr/local/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-06-17T20:36:59.8104140Z /github/runner_temp/git-credentials-719dfc99-2655-4846-afc8-866180603bde.config
+2026-06-17T20:36:59.8120457Z [command]/usr/local/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-719dfc99-2655-4846-afc8-866180603bde.config
+2026-06-17T20:36:59.8171992Z [command]/usr/local/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-06-17T20:36:59.8352620Z /github/runner_temp/git-credentials-719dfc99-2655-4846-afc8-866180603bde.config
+2026-06-17T20:36:59.8360827Z [command]/usr/local/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-719dfc99-2655-4846-afc8-866180603bde.config
+2026-06-17T20:36:59.8526219Z [command]/usr/local/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-06-17T20:37:00.0318917Z Entering 'math-libs/libhipcxx'
+2026-06-17T20:37:00.0662251Z file:/__w/TheRock/TheRock/.git/modules/libhipcxx/config	remote.origin.url
+2026-06-17T20:37:00.0958429Z Entering 'rocm-libraries'
+2026-06-17T20:37:00.1459958Z file:/__w/TheRock/TheRock/.git/modules/rocm-libraries/config	remote.origin.url
+2026-06-17T20:37:00.1697919Z Entering 'rocm-systems'
+2026-06-17T20:37:00.1890637Z file:/__w/TheRock/TheRock/.git/modules/rocm-systems/config	remote.origin.url
+2026-06-17T20:37:00.2217737Z [command]/usr/local/bin/git config --file /__w/TheRock/TheRock/.git/modules/libhipcxx/config --name-only --get-regexp ^includeIf\.gitdir:
+2026-06-17T20:37:00.2481193Z [command]/usr/local/bin/git config --file /__w/TheRock/TheRock/.git/modules/rocm-libraries/config --name-only --get-regexp ^includeIf\.gitdir:
+2026-06-17T20:37:00.2681437Z [command]/usr/local/bin/git config --file /__w/TheRock/TheRock/.git/modules/rocm-systems/config --name-only --get-regexp ^includeIf\.gitdir:
+2026-06-17T20:37:00.2913414Z Removing credentials config '/__w/_temp/git-credentials-719dfc99-2655-4846-afc8-866180603bde.config'
+2026-06-17T20:37:00.3197215Z Stop and remove container: 311889d1401841279db04428053dcace_ghcriorocmtherock_build_manylinux_x86_64sha256a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6_7dba69
+2026-06-17T20:37:00.3203795Z ##[command]/usr/bin/docker rm --force ee8fb84a2649ad0ff26502a7041ebd80eb09af3da419f924d6d6aca94016ca38
+2026-06-17T20:37:05.1113773Z ee8fb84a2649ad0ff26502a7041ebd80eb09af3da419f924d6d6aca94016ca38
+2026-06-17T20:37:05.1145600Z Remove container network: github_network_c57e130c5cae41298ebabbd7b5619c52
+2026-06-17T20:37:05.1150165Z ##[command]/usr/bin/docker network rm github_network_c57e130c5cae41298ebabbd7b5619c52
+2026-06-17T20:37:05.3806045Z github_network_c57e130c5cae41298ebabbd7b5619c52
+2026-06-17T20:37:05.3874090Z Cleaning up orphan processes

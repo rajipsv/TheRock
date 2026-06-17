@@ -83,6 +83,21 @@ def _get(path: str, *, allow_redirects: bool = True) -> requests.Response:
     return requests.get(url, headers=_headers(), allow_redirects=allow_redirects, timeout=120)
 
 
+def _parse_link_header(link: str | None) -> dict[str, str]:
+    if not link:
+        return {}
+    links: dict[str, str] = {}
+    for part in link.split(","):
+        section = part.strip().split(";")
+        if len(section) < 2:
+            continue
+        url = section[0].strip().removeprefix("<").removesuffix(">")
+        rel = section[1].strip()
+        if rel.startswith("rel="):
+            links[rel[5:].strip('"')] = url
+    return links
+
+
 def _get_json(path: str) -> dict[str, Any]:
     resp = _get(path)
     if not resp.ok:
@@ -161,24 +176,45 @@ def get_run(repo: str, run_id: int) -> WorkflowRun:
 
 def list_jobs(repo: str, run_id: int) -> list[WorkflowJob]:
     owner, name = _repo_parts(repo)
-    data = _get_json(f"/repos/{owner}/{name}/actions/runs/{run_id}/jobs")
     jobs: list[WorkflowJob] = []
-    for j in data.get("jobs", []):
-        jobs.append(
-            WorkflowJob(
-                id=int(j["id"]),
-                name=j.get("name") or "unknown",
-                conclusion=j.get("conclusion"),
-                started_at=j.get("started_at"),
-                completed_at=j.get("completed_at"),
+    url: str | None = f"/repos/{owner}/{name}/actions/runs/{run_id}/jobs?per_page=100"
+    while url:
+        resp = _get(url)
+        if not resp.ok:
+            detail = ""
+            try:
+                detail = resp.json().get("message", "")
+            except Exception:
+                pass
+            raise RuntimeError(
+                f"GitHub API jobs for run {run_id}: HTTP {resp.status_code} {detail}".strip()
             )
-        )
+        data = resp.json()
+        for j in data.get("jobs", []):
+            jobs.append(
+                WorkflowJob(
+                    id=int(j["id"]),
+                    name=j.get("name") or "unknown",
+                    conclusion=j.get("conclusion"),
+                    started_at=j.get("started_at"),
+                    completed_at=j.get("completed_at"),
+                )
+            )
+        url = _parse_link_header(resp.headers.get("Link")).get("next")
     return jobs
 
 
-def select_failed_jobs(jobs: list[WorkflowJob], *, max_jobs: int = 3) -> list[WorkflowJob]:
-    failed = [j for j in jobs if j.conclusion in ("failure", "cancelled")]
+def select_failed_jobs(
+    jobs: list[WorkflowJob],
+    *,
+    max_jobs: int = 3,
+    include_cancelled: bool = True,
+) -> list[WorkflowJob]:
+    conclusions = ("failure", "cancelled") if include_cancelled else ("failure",)
+    failed = [j for j in jobs if j.conclusion in conclusions]
     if failed:
+        if max_jobs <= 0:
+            return failed
         return failed[:max_jobs]
     return jobs[:1] if jobs else []
 
@@ -215,6 +251,7 @@ def download_job_log_text(repo: str, job_id: int) -> str:
 
 
 def _extract_log_from_bytes(content: bytes) -> str:
+    max_bytes = int(os.environ.get("LOG_DOWNLOAD_MAX_BYTES", str(50 * 1024 * 1024)))
     try:
         with zipfile.ZipFile(io.BytesIO(content)) as zf:
             parts: list[str] = []
@@ -227,7 +264,13 @@ def _extract_log_from_bytes(content: bytes) -> str:
                 return "\n".join(parts)
     except zipfile.BadZipFile:
         pass
-    return content.decode("utf-8", errors="replace")[:500_000]
+    if len(content) > max_bytes:
+        decoded = content[:max_bytes].decode("utf-8", errors="replace")
+        return (
+            decoded
+            + f"\n... [log truncated at {max_bytes} bytes; full download was {len(content)} bytes]"
+        )
+    return content.decode("utf-8", errors="replace")
 
 
 def write_job_log(log_text: str, output_dir: Path, job_id: int) -> Path:

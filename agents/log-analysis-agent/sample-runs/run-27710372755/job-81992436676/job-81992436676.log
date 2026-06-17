@@ -1,0 +1,1970 @@
+﻿2026-06-17T20:17:06.1103341Z Current runner version: '2.335.1'
+2026-06-17T20:17:06.1108637Z Runner name: 'azure-windows-11-gfx1101-gpu-rocm-runner-23'
+2026-06-17T20:17:06.1109273Z Runner group name: 'default'
+2026-06-17T20:17:06.1109844Z Machine name: 'azw11gfx1101r23'
+2026-06-17T20:17:06.1111595Z ##[group]GITHUB_TOKEN Permissions
+2026-06-17T20:17:06.1113119Z Contents: read
+2026-06-17T20:17:06.1113495Z Metadata: read
+2026-06-17T20:17:06.1113996Z ##[endgroup]
+2026-06-17T20:17:06.1115473Z Secret source: None
+2026-06-17T20:17:06.1115952Z Prepare workflow directory
+2026-06-17T20:17:06.1723449Z Prepare all required actions
+2026-06-17T20:17:06.1751276Z Getting action download info
+2026-06-17T20:17:06.3185394Z Download action repository 'actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10' (SHA:df4cb1c069e1874edd31b4311f1884172cec0e10)
+2026-06-17T20:17:06.6667377Z Uses: ROCm/TheRock/.github/workflows/test_component.yml@refs/pull/5923/merge (669115c7a973bd7dffee5b0a1a0266ebb846b1e3)
+2026-06-17T20:17:06.6670572Z ##[group] Inputs
+2026-06-17T20:17:06.6670913Z   artifact_run_id: 
+2026-06-17T20:17:06.6671204Z   artifact_group: gfx110X-all
+2026-06-17T20:17:06.6671534Z   amdgpu_families: gfx110X-all
+2026-06-17T20:17:06.6672021Z   amdgpu_targets: gfx1100,gfx1101,gfx1102,gfx1103
+2026-06-17T20:17:06.6672612Z   test_runs_on: windows-gfx110X-gpu-rocm
+2026-06-17T20:17:06.6672964Z   platform: windows
+2026-06-17T20:17:06.6674600Z   component: {
+  "job_name": "rocblas",
+  "fetch_artifact_args": "--blas --tests",
+  "timeout_minutes": 288,
+  "test_script": "python build_tools/github_actions/test_executable_scripts/test_runner.py",
+  "platform": [
+    "linux",
+    "windows"
+  ],
+  "total_shards_dict": {
+    "linux": 6,
+    "windows": 6
+  },
+  "test_type": "quick",
+  "shard_arr": [
+    1
+  ],
+  "total_shards": 1,
+  "test_runner": "windows-gfx110X-gpu-rocm",
+  "container_options": ""
+}
+2026-06-17T20:17:06.6676253Z   release_type: ci
+2026-06-17T20:17:06.6676521Z   repository: 
+2026-06-17T20:17:06.6676786Z   ref: 
+2026-06-17T20:17:06.6677420Z   default_container_image: ghcr.io/rocm/no_rocm_image_ubuntu24_04@sha256:4150afe4759d14822f0e3f8930e1124f26e11f68b5c7b91ec9a02b20b1ebbb98
+2026-06-17T20:17:06.6678128Z ##[endgroup]
+2026-06-17T20:17:06.6678636Z Complete job name: Windows::release / Test gfx110X-all / Test rocblas / Test rocblas (shard 1/1) (gfx110X-all)
+2026-06-17T20:17:06.7238681Z ##[group]Run actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+2026-06-17T20:17:06.7239467Z with:
+2026-06-17T20:17:06.7239728Z   repository: ROCm/TheRock
+2026-06-17T20:17:06.7240037Z   sparse-checkout: build_tools
+2026-06-17T20:17:06.7240342Z   path: prejob
+2026-06-17T20:17:06.7243290Z   token: ***
+2026-06-17T20:17:06.7243552Z   ssh-strict: true
+2026-06-17T20:17:06.7243814Z   ssh-user: git
+2026-06-17T20:17:06.7244078Z   persist-credentials: true
+2026-06-17T20:17:06.7244363Z   clean: true
+2026-06-17T20:17:06.7244627Z   sparse-checkout-cone-mode: true
+2026-06-17T20:17:06.7244935Z   fetch-depth: 1
+2026-06-17T20:17:06.7245184Z   fetch-tags: false
+2026-06-17T20:17:06.7245464Z   show-progress: true
+2026-06-17T20:17:06.7245722Z   lfs: false
+2026-06-17T20:17:06.7245960Z   submodules: false
+2026-06-17T20:17:06.7246224Z   set-safe-directory: true
+2026-06-17T20:17:06.7246635Z env:
+2026-06-17T20:17:06.7246978Z   VENV_DIR: B:\runner\_work\TheRock\TheRock/.venv
+2026-06-17T20:17:06.7247363Z   ARTIFACT_RUN_ID: 27710372755
+2026-06-17T20:17:06.7247678Z   OUTPUT_ARTIFACTS_DIR: ./build
+2026-06-17T20:17:06.7247978Z   THEROCK_BIN_DIR: ./build/bin
+2026-06-17T20:17:06.7248274Z   AMDGPU_FAMILIES: gfx110X-all
+2026-06-17T20:17:06.7248599Z   AMDGPU_TARGETS: gfx1100,gfx1101,gfx1102,gfx1103
+2026-06-17T20:17:06.7248963Z   ARTIFACT_GROUP: gfx110X-all
+2026-06-17T20:17:06.7249254Z   BENCHMARK_DB_URL: 
+2026-06-17T20:17:06.7249520Z   BENCHMARK_DB_FALLBACK_URL: 
+2026-06-17T20:17:06.7249803Z ##[endgroup]
+2026-06-17T20:17:06.8241561Z Syncing repository: ROCm/TheRock
+2026-06-17T20:17:06.8242853Z ##[group]Getting Git version info
+2026-06-17T20:17:06.8243307Z Working directory is 'B:\runner\_work\TheRock\TheRock\prejob'
+2026-06-17T20:17:06.8408717Z [command]"C:\Program Files\Git\cmd\git.exe" version
+2026-06-17T20:17:06.8622871Z git version 2.53.0.windows.2
+2026-06-17T20:17:06.8656318Z ##[endgroup]
+2026-06-17T20:17:06.8669844Z Temporarily overriding HOME='B:\runner\_work\_temp\f29f2387-2b16-4f0f-bb93-b9c23a2f40b3' before making global git config changes
+2026-06-17T20:17:06.8670760Z Adding repository directory to the temporary git global config as a safe directory
+2026-06-17T20:17:06.8674961Z [command]"C:\Program Files\Git\cmd\git.exe" config --global --add safe.directory B:\runner\_work\TheRock\TheRock\prejob
+2026-06-17T20:17:06.8913503Z ##[group]Determining repository object format
+2026-06-17T20:17:06.8915788Z ##[endgroup]
+2026-06-17T20:17:06.8916235Z ##[group]Initializing the repository
+2026-06-17T20:17:06.8922145Z [command]"C:\Program Files\Git\cmd\git.exe" init B:\runner\_work\TheRock\TheRock\prejob
+2026-06-17T20:17:06.9210278Z Initialized empty Git repository in B:/runner/_work/TheRock/TheRock/prejob/.git/
+2026-06-17T20:17:06.9247701Z [command]"C:\Program Files\Git\cmd\git.exe" remote add origin https://github.com/ROCm/TheRock
+2026-06-17T20:17:06.9508566Z ##[endgroup]
+2026-06-17T20:17:06.9509083Z ##[group]Disabling automatic garbage collection
+2026-06-17T20:17:06.9513772Z [command]"C:\Program Files\Git\cmd\git.exe" config --local gc.auto 0
+2026-06-17T20:17:06.9743608Z ##[endgroup]
+2026-06-17T20:17:06.9744056Z ##[group]Setting up auth
+2026-06-17T20:17:06.9744397Z Removing SSH command configuration
+2026-06-17T20:17:06.9750739Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-06-17T20:17:06.9981102Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-06-17T20:17:07.4754522Z Removing HTTP extra header
+2026-06-17T20:17:07.4760263Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-06-17T20:17:07.5007506Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-06-17T20:17:07.9483612Z Removing includeIf entries pointing to credentials config files
+2026-06-17T20:17:07.9494611Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-06-17T20:17:07.9722752Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-06-17T20:17:08.4396353Z [command]"C:\Program Files\Git\cmd\git.exe" config --file B:\runner\_work\_temp\git-credentials-17b711c2-a440-47e1-bc0e-a6ea8b259144.config http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+2026-06-17T20:17:08.4648026Z [command]"C:\Program Files\Git\cmd\git.exe" config --local includeIf.gitdir:B:/runner/_work/TheRock/TheRock/prejob/.git.path B:\runner\_work\_temp\git-credentials-17b711c2-a440-47e1-bc0e-a6ea8b259144.config
+2026-06-17T20:17:08.4881523Z [command]"C:\Program Files\Git\cmd\git.exe" config --local includeIf.gitdir:B:/runner/_work/TheRock/TheRock/prejob/.git/worktrees/*.path B:\runner\_work\_temp\git-credentials-17b711c2-a440-47e1-bc0e-a6ea8b259144.config
+2026-06-17T20:17:08.5130058Z [command]"C:\Program Files\Git\cmd\git.exe" config --local includeIf.gitdir:/github/workspace/prejob/.git.path /github/runner_temp/git-credentials-17b711c2-a440-47e1-bc0e-a6ea8b259144.config
+2026-06-17T20:17:08.5361764Z [command]"C:\Program Files\Git\cmd\git.exe" config --local includeIf.gitdir:/github/workspace/prejob/.git/worktrees/*.path /github/runner_temp/git-credentials-17b711c2-a440-47e1-bc0e-a6ea8b259144.config
+2026-06-17T20:17:08.5586601Z ##[endgroup]
+2026-06-17T20:17:08.5587732Z ##[group]Fetching the repository
+2026-06-17T20:17:08.5595278Z [command]"C:\Program Files\Git\cmd\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --filter=blob:none --depth=1 origin +669115c7a973bd7dffee5b0a1a0266ebb846b1e3:refs/remotes/pull/5923/merge
+2026-06-17T20:17:08.7875778Z From https://github.com/ROCm/TheRock
+2026-06-17T20:17:08.7876290Z  * [new ref]         669115c7a973bd7dffee5b0a1a0266ebb846b1e3 -> pull/5923/merge
+2026-06-17T20:17:08.8069195Z ##[endgroup]
+2026-06-17T20:17:08.8069533Z ##[group]Determining the checkout info
+2026-06-17T20:17:08.8069863Z ##[endgroup]
+2026-06-17T20:17:08.8070125Z ##[group]Setting up sparse checkout
+2026-06-17T20:17:08.8075991Z [command]"C:\Program Files\Git\cmd\git.exe" sparse-checkout set build_tools
+2026-06-17T20:17:08.8336040Z ##[endgroup]
+2026-06-17T20:17:08.8340474Z ##[group]Checking out the ref
+2026-06-17T20:17:08.8340831Z [command]"C:\Program Files\Git\cmd\git.exe" checkout --progress --force refs/remotes/pull/5923/merge
+2026-06-17T20:17:09.5522571Z Note: switching to 'refs/remotes/pull/5923/merge'.
+2026-06-17T20:17:09.5522835Z 
+2026-06-17T20:17:09.5523005Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-06-17T20:17:09.5523392Z changes and commit them, and you can discard any commits you make in this
+2026-06-17T20:17:09.5523702Z state without impacting any branches by switching back to a branch.
+2026-06-17T20:17:09.5523917Z 
+2026-06-17T20:17:09.5524143Z If you want to create a new branch to retain commits you create, you may
+2026-06-17T20:17:09.5524427Z do so (now or later) by using -c with the switch command. Example:
+2026-06-17T20:17:09.5524611Z 
+2026-06-17T20:17:09.5524714Z   git switch -c <new-branch-name>
+2026-06-17T20:17:09.5524835Z 
+2026-06-17T20:17:09.5524899Z Or undo this operation with:
+2026-06-17T20:17:09.5525028Z 
+2026-06-17T20:17:09.5525119Z   git switch -
+2026-06-17T20:17:09.5525210Z 
+2026-06-17T20:17:09.5525424Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-06-17T20:17:09.5525659Z 
+2026-06-17T20:17:09.5525887Z HEAD is now at 669115c Merge bb6d7fef6f13b48f912eb03defea95ccb51557fe into 1858c0cd499b6c47817982bf018d1f77661481e4
+2026-06-17T20:17:09.5580494Z ##[endgroup]
+2026-06-17T20:17:09.5836146Z [command]"C:\Program Files\Git\cmd\git.exe" log -1 --format=%H
+2026-06-17T20:17:09.6048684Z 669115c7a973bd7dffee5b0a1a0266ebb846b1e3
+2026-06-17T20:17:09.6405763Z ##[group]Run . 'B:\runner\_work\TheRock\TheRock\prejob\build_tools\github_actions\cleanup_processes.ps1'
+2026-06-17T20:17:09.6406362Z [36;1m. 'B:\runner\_work\TheRock\TheRock\prejob\build_tools\github_actions\cleanup_processes.ps1'[0m
+2026-06-17T20:17:09.6427245Z shell: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-06-17T20:17:09.6427525Z env:
+2026-06-17T20:17:09.6427678Z   VENV_DIR: B:\runner\_work\TheRock\TheRock/.venv
+2026-06-17T20:17:09.6427871Z   ARTIFACT_RUN_ID: 27710372755
+2026-06-17T20:17:09.6428038Z   OUTPUT_ARTIFACTS_DIR: ./build
+2026-06-17T20:17:09.6428205Z   THEROCK_BIN_DIR: ./build/bin
+2026-06-17T20:17:09.6428361Z   AMDGPU_FAMILIES: gfx110X-all
+2026-06-17T20:17:09.6428525Z   AMDGPU_TARGETS: gfx1100,gfx1101,gfx1102,gfx1103
+2026-06-17T20:17:09.6428712Z   ARTIFACT_GROUP: gfx110X-all
+2026-06-17T20:17:09.6428858Z   BENCHMARK_DB_URL: 
+2026-06-17T20:17:09.6429003Z   BENCHMARK_DB_FALLBACK_URL: 
+2026-06-17T20:17:09.6429173Z ##[endgroup]
+2026-06-17T20:17:09.8155911Z [*] ==== Starting cleanup_processes.ps1 ====
+2026-06-17T20:17:09.8253230Z [*] Checking if elevated: True | current user: NT AUTHORITY\SYSTEM
+2026-06-17T20:17:09.8274661Z [*] Running as a Windows Service (NT AUTHORITY\*) - Cleaning up system environment...
+2026-06-17T20:17:09.8517808Z [*] > Checking for "~/.gitconfig" file at: C:\Windows\system32\config\systemprofile\.gitconfig
+2026-06-17T20:17:09.8536551Z [*] >> .gitconfig file not found at: C:\Windows\system32\config\systemprofile\.gitconfig
+2026-06-17T20:17:09.8545981Z [*] > Checking for uv.zip archives under: C:\Windows\SystemTemp\
+2026-06-17T20:17:10.2149656Z [*] >> Found 0 uv.zip file(s), total size: 0 MB
+2026-06-17T20:17:10.2154353Z [*] > Checking for empty GUID directories under: C:\Windows\SystemTemp\
+2026-06-17T20:17:10.3320074Z [*] >> Found 0 empty GUID folder(s)
+2026-06-17T20:17:10.3337509Z [*] > Checking pip http-v2 cache under: B:\pip\cache\http-v2
+2026-06-17T20:17:10.3663050Z [*] >> Found 0 file(s) older than 1 day, total size: 0 MB
+2026-06-17T20:17:10.3666609Z [*] > Pip http-v2 cache not found at: C:\Windows\system32\config\systemprofile\AppData\Local\pip\cache\http-v2
+2026-06-17T20:17:10.3678403Z [*] Clearing stale git submodule working trees in workspace: B:\runner\_work\TheRock\TheRock
+2026-06-17T20:17:10.3956471Z [*] >> Submodule working-tree cleanup finished
+2026-06-17T20:17:10.3957626Z [*] Cleaning up processes...
+2026-06-17T20:17:10.3963435Z [*] GITHUB_WORKSPACE env var defined: B:\runner\_work\TheRock\TheRock
+2026-06-17T20:17:10.3975043Z [*] Checking for running build executables filtered by .exe regex: B:\\runner\\_work\\TheRock\\TheRock\\build\\.*[.]exe
+2026-06-17T20:17:11.2151279Z [+] No executables to clean up.
+2026-06-17T20:17:11.2476465Z ##[group]Run actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+2026-06-17T20:17:11.2476735Z with:
+2026-06-17T20:17:11.2476865Z   repository: ROCm/TheRock
+2026-06-17T20:17:11.2478795Z   token: ***
+2026-06-17T20:17:11.2478919Z   ssh-strict: true
+2026-06-17T20:17:11.2479049Z   ssh-user: git
+2026-06-17T20:17:11.2479178Z   persist-credentials: true
+2026-06-17T20:17:11.2479318Z   clean: true
+2026-06-17T20:17:11.2479446Z   sparse-checkout-cone-mode: true
+2026-06-17T20:17:11.2479602Z   fetch-depth: 1
+2026-06-17T20:17:11.2479724Z   fetch-tags: false
+2026-06-17T20:17:11.2479850Z   show-progress: true
+2026-06-17T20:17:11.2479976Z   lfs: false
+2026-06-17T20:17:11.2480092Z   submodules: false
+2026-06-17T20:17:11.2480224Z   set-safe-directory: true
+2026-06-17T20:17:11.2480371Z env:
+2026-06-17T20:17:11.2480506Z   VENV_DIR: B:\runner\_work\TheRock\TheRock/.venv
+2026-06-17T20:17:11.2480720Z   ARTIFACT_RUN_ID: 27710372755
+2026-06-17T20:17:11.2480897Z   OUTPUT_ARTIFACTS_DIR: ./build
+2026-06-17T20:17:11.2481049Z   THEROCK_BIN_DIR: ./build/bin
+2026-06-17T20:17:11.2481191Z   AMDGPU_FAMILIES: gfx110X-all
+2026-06-17T20:17:11.2481361Z   AMDGPU_TARGETS: gfx1100,gfx1101,gfx1102,gfx1103
+2026-06-17T20:17:11.2481551Z   ARTIFACT_GROUP: gfx110X-all
+2026-06-17T20:17:11.2481697Z   BENCHMARK_DB_URL: 
+2026-06-17T20:17:11.2481830Z   BENCHMARK_DB_FALLBACK_URL: 
+2026-06-17T20:17:11.2481967Z ##[endgroup]
+2026-06-17T20:17:11.3251161Z Syncing repository: ROCm/TheRock
+2026-06-17T20:17:11.3252896Z ##[group]Getting Git version info
+2026-06-17T20:17:11.3253118Z Working directory is 'B:\runner\_work\TheRock\TheRock'
+2026-06-17T20:17:11.3430377Z [command]"C:\Program Files\Git\cmd\git.exe" version
+2026-06-17T20:17:11.3635529Z git version 2.53.0.windows.2
+2026-06-17T20:17:11.3667944Z ##[endgroup]
+2026-06-17T20:17:11.3680990Z Temporarily overriding HOME='B:\runner\_work\_temp\17961283-9304-4278-b0c4-ef9d98c4a9ec' before making global git config changes
+2026-06-17T20:17:11.3681507Z Adding repository directory to the temporary git global config as a safe directory
+2026-06-17T20:17:11.3687395Z [command]"C:\Program Files\Git\cmd\git.exe" config --global --add safe.directory B:\runner\_work\TheRock\TheRock
+2026-06-17T20:17:11.3932505Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --get remote.origin.url
+2026-06-17T20:17:11.4129451Z https://github.com/ROCm/TheRock
+2026-06-17T20:17:11.4169774Z ##[group]Removing previously created refs, to avoid conflicts
+2026-06-17T20:17:11.4174578Z [command]"C:\Program Files\Git\cmd\git.exe" rev-parse --symbolic-full-name --verify --quiet HEAD
+2026-06-17T20:17:11.4372588Z HEAD
+2026-06-17T20:17:11.4643368Z ##[endgroup]
+2026-06-17T20:17:11.4648175Z [command]"C:\Program Files\Git\cmd\git.exe" submodule status
+2026-06-17T20:17:11.9463762Z -207ee58595a64b5c4a70df221f1e6e704b807811 base/half
+2026-06-17T20:17:11.9464574Z -10155d7272ea1bf79f6b5a9dbc339657af1aa372 base/rocm-cmake
+2026-06-17T20:17:11.9464869Z -2abe93d58c833c804914bed3ffcebb3a6a01e237 compiler/amd-llvm
+2026-06-17T20:17:11.9465157Z -6acec7751d2b2bfe162dba9efdcf7c16efb27bd8 compiler/hipify
+2026-06-17T20:17:11.9465458Z -fb08e83ae872775acfeaee53fda3ccf99a04ba53 compiler/spirv-llvm-translator
+2026-06-17T20:17:11.9465772Z -e9a74a0a3bf7367f46ca632b0b314570088bc494 debug-tools/rocgdb/source
+2026-06-17T20:17:11.9466058Z -fa4ccc6beb77bfaa59a6fbeeebc94a4f18678945 math-libs/libhipcxx
+2026-06-17T20:17:11.9466317Z -be5adb9ba3c978b388b4b5943daac6cdf9db839a rocm-libraries
+2026-06-17T20:17:11.9466558Z -7ced1a660f03b3cf06197238692485f73c4772b9 rocm-systems
+2026-06-17T20:17:11.9466987Z -b941dd736ffc1ea4768954ab79886445dcef5473 third-party/sysdeps/linux/amd-mesa/mesa-fork
+2026-06-17T20:17:11.9539044Z ##[group]Cleaning the repository
+2026-06-17T20:17:11.9547296Z [command]"C:\Program Files\Git\cmd\git.exe" clean -ffdx
+2026-06-17T20:17:13.0533137Z Removing .venv/
+2026-06-17T20:17:13.0533388Z Removing build/
+2026-06-17T20:17:13.0533542Z Removing build_tools/__pycache__/
+2026-06-17T20:17:13.0535466Z Removing build_tools/_therock_utils/__pycache__/
+2026-06-17T20:17:13.0535883Z Removing build_tools/github_actions/__pycache__/
+2026-06-17T20:17:13.0536086Z Removing prejob/
+2026-06-17T20:17:13.0580755Z [command]"C:\Program Files\Git\cmd\git.exe" reset --hard HEAD
+2026-06-17T20:17:13.1048034Z HEAD is now at 3a895f9 Merge ae9b3898b87348aa8f83c8c4dd4f5f2a7aed4a03 into 81f1271b0d79b90b2c608cb0b9cc6b3d30cc8669
+2026-06-17T20:17:13.1084596Z ##[endgroup]
+2026-06-17T20:17:13.1087201Z ##[group]Disabling automatic garbage collection
+2026-06-17T20:17:13.1092230Z [command]"C:\Program Files\Git\cmd\git.exe" config --local gc.auto 0
+2026-06-17T20:17:13.1332918Z ##[endgroup]
+2026-06-17T20:17:13.1333159Z ##[group]Setting up auth
+2026-06-17T20:17:13.1334249Z Removing SSH command configuration
+2026-06-17T20:17:13.1345271Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-06-17T20:17:13.1588266Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-06-17T20:17:13.6161674Z Removing HTTP extra header
+2026-06-17T20:17:13.6171252Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-06-17T20:17:13.6428851Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-06-17T20:17:14.0883408Z Removing includeIf entries pointing to credentials config files
+2026-06-17T20:17:14.0891233Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-06-17T20:17:14.1090787Z includeif.gitdir:B:/runner/_work/TheRock/TheRock/.git.path
+2026-06-17T20:17:14.1091231Z includeif.gitdir:B:/runner/_work/TheRock/TheRock/.git/worktrees/*.path
+2026-06-17T20:17:14.1124967Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --get-all includeif.gitdir:B:/runner/_work/TheRock/TheRock/.git.path
+2026-06-17T20:17:14.1317462Z B:\runner\_work\_temp\git-credentials-bfec8c9a-d162-493d-b659-6dff52666218.config
+2026-06-17T20:17:14.1352430Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --unset includeif.gitdir:B:/runner/_work/TheRock/TheRock/.git.path B:\runner\_work\_temp\git-credentials-bfec8c9a-d162-493d-b659-6dff52666218.config
+2026-06-17T20:17:14.1585588Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --get-all includeif.gitdir:B:/runner/_work/TheRock/TheRock/.git/worktrees/*.path
+2026-06-17T20:17:14.1777435Z B:\runner\_work\_temp\git-credentials-bfec8c9a-d162-493d-b659-6dff52666218.config
+2026-06-17T20:17:14.1810570Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --unset includeif.gitdir:B:/runner/_work/TheRock/TheRock/.git/worktrees/*.path B:\runner\_work\_temp\git-credentials-bfec8c9a-d162-493d-b659-6dff52666218.config
+2026-06-17T20:17:14.2042555Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-06-17T20:17:14.6443317Z Removing credentials config 'B:\runner\_work\_temp\git-credentials-bfec8c9a-d162-493d-b659-6dff52666218.config'
+2026-06-17T20:17:14.6455260Z [command]"C:\Program Files\Git\cmd\git.exe" config --file B:\runner\_work\_temp\git-credentials-a13df114-a579-4583-a7c7-0f3920c105f1.config http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+2026-06-17T20:17:14.6738603Z [command]"C:\Program Files\Git\cmd\git.exe" config --local includeIf.gitdir:B:/runner/_work/TheRock/TheRock/.git.path B:\runner\_work\_temp\git-credentials-a13df114-a579-4583-a7c7-0f3920c105f1.config
+2026-06-17T20:17:14.6991839Z [command]"C:\Program Files\Git\cmd\git.exe" config --local includeIf.gitdir:B:/runner/_work/TheRock/TheRock/.git/worktrees/*.path B:\runner\_work\_temp\git-credentials-a13df114-a579-4583-a7c7-0f3920c105f1.config
+2026-06-17T20:17:14.7268104Z [command]"C:\Program Files\Git\cmd\git.exe" config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-a13df114-a579-4583-a7c7-0f3920c105f1.config
+2026-06-17T20:17:14.7531796Z [command]"C:\Program Files\Git\cmd\git.exe" config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-a13df114-a579-4583-a7c7-0f3920c105f1.config
+2026-06-17T20:17:14.7791409Z ##[endgroup]
+2026-06-17T20:17:14.7791665Z ##[group]Fetching the repository
+2026-06-17T20:17:14.7799567Z [command]"C:\Program Files\Git\cmd\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +669115c7a973bd7dffee5b0a1a0266ebb846b1e3:refs/remotes/pull/5923/merge
+2026-06-17T20:17:15.1211855Z From https://github.com/ROCm/TheRock
+2026-06-17T20:17:15.1212210Z  * [new ref]         669115c7a973bd7dffee5b0a1a0266ebb846b1e3 -> pull/5923/merge
+2026-06-17T20:17:15.1443837Z ##[endgroup]
+2026-06-17T20:17:15.1444083Z ##[group]Determining the checkout info
+2026-06-17T20:17:15.1444827Z ##[endgroup]
+2026-06-17T20:17:15.1450697Z [command]"C:\Program Files\Git\cmd\git.exe" sparse-checkout disable
+2026-06-17T20:17:15.1742755Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --unset-all extensions.worktreeConfig
+2026-06-17T20:17:15.1972826Z ##[group]Checking out the ref
+2026-06-17T20:17:15.1977525Z [command]"C:\Program Files\Git\cmd\git.exe" checkout --progress --force refs/remotes/pull/5923/merge
+2026-06-17T20:17:15.2378625Z Previous HEAD position was 3a895f9 Merge ae9b3898b87348aa8f83c8c4dd4f5f2a7aed4a03 into 81f1271b0d79b90b2c608cb0b9cc6b3d30cc8669
+2026-06-17T20:17:15.2442936Z HEAD is now at 669115c Merge bb6d7fef6f13b48f912eb03defea95ccb51557fe into 1858c0cd499b6c47817982bf018d1f77661481e4
+2026-06-17T20:17:15.2500977Z ##[endgroup]
+2026-06-17T20:17:15.2757262Z [command]"C:\Program Files\Git\cmd\git.exe" log -1 --format=%H
+2026-06-17T20:17:15.2961550Z 669115c7a973bd7dffee5b0a1a0266ebb846b1e3
+2026-06-17T20:17:15.3314455Z Prepare all required actions
+2026-06-17T20:17:15.3314835Z Getting action download info
+2026-06-17T20:17:15.4163120Z Download action repository 'actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405' (SHA:a309ff8b426b58ec0e2a45f0f869d46889d02405)
+2026-06-17T20:17:15.6298985Z ##[group]Run ./.github/actions/setup_test_environment
+2026-06-17T20:17:15.6299197Z with:
+2026-06-17T20:17:15.6299323Z   ARTIFACT_RUN_ID: 27710372755
+2026-06-17T20:17:15.6299481Z   ARTIFACT_GROUP: gfx110X-all
+2026-06-17T20:17:15.6299650Z   AMDGPU_TARGETS: gfx1100,gfx1101,gfx1102,gfx1103
+2026-06-17T20:17:15.6299839Z   OUTPUT_ARTIFACTS_DIR: ./build
+2026-06-17T20:17:15.6300009Z   VENV_DIR: B:\runner\_work\TheRock\TheRock/.venv
+2026-06-17T20:17:15.6300205Z   FETCH_ARTIFACT_ARGS: --blas --tests
+2026-06-17T20:17:15.6300526Z   RELEASE_TYPE: ci
+2026-06-17T20:17:15.6300644Z env:
+2026-06-17T20:17:15.6300777Z   VENV_DIR: B:\runner\_work\TheRock\TheRock/.venv
+2026-06-17T20:17:15.6300988Z   ARTIFACT_RUN_ID: 27710372755
+2026-06-17T20:17:15.6301138Z   OUTPUT_ARTIFACTS_DIR: ./build
+2026-06-17T20:17:15.6301285Z   THEROCK_BIN_DIR: ./build/bin
+2026-06-17T20:17:15.6301436Z   AMDGPU_FAMILIES: gfx110X-all
+2026-06-17T20:17:15.6301600Z   AMDGPU_TARGETS: gfx1100,gfx1101,gfx1102,gfx1103
+2026-06-17T20:17:15.6301782Z   ARTIFACT_GROUP: gfx110X-all
+2026-06-17T20:17:15.6301922Z   BENCHMARK_DB_URL: 
+2026-06-17T20:17:15.6302054Z   BENCHMARK_DB_FALLBACK_URL: 
+2026-06-17T20:17:15.6302197Z   RETRY_THIS_STEP: true
+2026-06-17T20:17:15.6302334Z   STEP_TIMEOUT_MINUTES: 15
+2026-06-17T20:17:15.6302471Z ##[endgroup]
+2026-06-17T20:17:15.6466475Z ##[group]Run actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405
+2026-06-17T20:17:15.6466723Z with:
+2026-06-17T20:17:15.6466848Z   python-version: 3.12
+2026-06-17T20:17:15.6466990Z   check-latest: false
+2026-06-17T20:17:15.6468897Z   token: ***
+2026-06-17T20:17:15.6469028Z   update-environment: true
+2026-06-17T20:17:15.6469177Z   allow-prereleases: false
+2026-06-17T20:17:15.6469327Z   freethreaded: false
+2026-06-17T20:17:15.6469453Z env:
+2026-06-17T20:17:15.6469592Z   VENV_DIR: B:\runner\_work\TheRock\TheRock/.venv
+2026-06-17T20:17:15.6469777Z   ARTIFACT_RUN_ID: 27710372755
+2026-06-17T20:17:15.6469931Z   OUTPUT_ARTIFACTS_DIR: ./build
+2026-06-17T20:17:15.6470084Z   THEROCK_BIN_DIR: ./build/bin
+2026-06-17T20:17:15.6470235Z   AMDGPU_FAMILIES: gfx110X-all
+2026-06-17T20:17:15.6470401Z   AMDGPU_TARGETS: gfx1100,gfx1101,gfx1102,gfx1103
+2026-06-17T20:17:15.6470581Z   ARTIFACT_GROUP: gfx110X-all
+2026-06-17T20:17:15.6470728Z   BENCHMARK_DB_URL: 
+2026-06-17T20:17:15.6470862Z   BENCHMARK_DB_FALLBACK_URL: 
+2026-06-17T20:17:15.6471006Z   RETRY_THIS_STEP: true
+2026-06-17T20:17:15.6471142Z   STEP_TIMEOUT_MINUTES: 15
+2026-06-17T20:17:15.6471279Z ##[endgroup]
+2026-06-17T20:17:15.7869205Z ##[group]Installed versions
+2026-06-17T20:17:15.7934573Z Successfully set up CPython (3.12.10)
+2026-06-17T20:17:15.7934960Z ##[endgroup]
+2026-06-17T20:17:15.8131093Z ##[group]Run if [[ "$RUNNER_OS" == "Windows" ]]; then
+2026-06-17T20:17:15.8131348Z [36;1mif [[ "$RUNNER_OS" == "Windows" ]]; then[0m
+2026-06-17T20:17:15.8131631Z [36;1m  powershell -Command "irm https://astral.sh/uv/install.ps1 | iex"[0m
+2026-06-17T20:17:15.8131881Z [36;1melse[0m
+2026-06-17T20:17:15.8132042Z [36;1m  curl -LsSf https://astral.sh/uv/install.sh | sh[0m
+2026-06-17T20:17:15.8132243Z [36;1mfi[0m
+2026-06-17T20:17:15.8153629Z shell: C:\Program Files\Git\usr\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-06-17T20:17:15.8153898Z env:
+2026-06-17T20:17:15.8154042Z   VENV_DIR: B:\runner\_work\TheRock\TheRock/.venv
+2026-06-17T20:17:15.8154233Z   ARTIFACT_RUN_ID: 27710372755
+2026-06-17T20:17:15.8154389Z   OUTPUT_ARTIFACTS_DIR: ./build
+2026-06-17T20:17:15.8154540Z   THEROCK_BIN_DIR: ./build/bin
+2026-06-17T20:17:15.8154686Z   AMDGPU_FAMILIES: gfx110X-all
+2026-06-17T20:17:15.8154866Z   AMDGPU_TARGETS: gfx1100,gfx1101,gfx1102,gfx1103
+2026-06-17T20:17:15.8155050Z   ARTIFACT_GROUP: gfx110X-all
+2026-06-17T20:17:15.8156466Z   BENCHMARK_DB_URL: 
+2026-06-17T20:17:15.8156626Z   BENCHMARK_DB_FALLBACK_URL: 
+2026-06-17T20:17:15.8156819Z   pythonLocation: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:15.8157093Z   PKG_CONFIG_PATH: B:\runner\_work\_tool\Python\3.12.10\x64/lib/pkgconfig
+2026-06-17T20:17:15.8157350Z   Python_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:15.8157584Z   Python2_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:15.8157811Z   Python3_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:15.8157998Z   RETRY_THIS_STEP: true
+2026-06-17T20:17:15.8158132Z   STEP_TIMEOUT_MINUTES: 15
+2026-06-17T20:17:15.8158266Z ##[endgroup]
+2026-06-17T20:17:16.5614288Z downloading uv 0.11.21 (x86_64-pc-windows-msvc)
+2026-06-17T20:17:17.3537922Z installing to C:\Windows\system32\config\systemprofile\.local\bin
+2026-06-17T20:17:17.3870659Z   uv.exe
+2026-06-17T20:17:17.3896153Z   uvx.exe
+2026-06-17T20:17:17.3913640Z   uvw.exe
+2026-06-17T20:17:17.3983815Z everything's installed!
+2026-06-17T20:17:17.4403525Z ##[group]Run python build_tools/setup_venv.py ${VENV_DIR} \
+2026-06-17T20:17:17.4403812Z [36;1mpython build_tools/setup_venv.py ${VENV_DIR} \[0m
+2026-06-17T20:17:17.4404055Z [36;1m  --activate-in-future-github-actions-steps \[0m
+2026-06-17T20:17:17.4404254Z [36;1m  --use-uv[0m
+2026-06-17T20:17:17.4425460Z shell: C:\Program Files\Git\usr\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-06-17T20:17:17.4425714Z env:
+2026-06-17T20:17:17.4425855Z   VENV_DIR: B:\runner\_work\TheRock\TheRock/.venv
+2026-06-17T20:17:17.4426043Z   ARTIFACT_RUN_ID: 27710372755
+2026-06-17T20:17:17.4426195Z   OUTPUT_ARTIFACTS_DIR: ./build
+2026-06-17T20:17:17.4426348Z   THEROCK_BIN_DIR: ./build/bin
+2026-06-17T20:17:17.4426497Z   AMDGPU_FAMILIES: gfx110X-all
+2026-06-17T20:17:17.4426695Z   AMDGPU_TARGETS: gfx1100,gfx1101,gfx1102,gfx1103
+2026-06-17T20:17:17.4426885Z   ARTIFACT_GROUP: gfx110X-all
+2026-06-17T20:17:17.4427047Z   BENCHMARK_DB_URL: 
+2026-06-17T20:17:17.4427185Z   BENCHMARK_DB_FALLBACK_URL: 
+2026-06-17T20:17:17.4427480Z   pythonLocation: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:17.4427810Z   PKG_CONFIG_PATH: B:\runner\_work\_tool\Python\3.12.10\x64/lib/pkgconfig
+2026-06-17T20:17:17.4428071Z   Python_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:17.4428309Z   Python2_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:17.4428538Z   Python3_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:17.4428727Z   RETRY_THIS_STEP: true
+2026-06-17T20:17:17.4428866Z   STEP_TIMEOUT_MINUTES: 15
+2026-06-17T20:17:17.4429009Z ##[endgroup]
+2026-06-17T20:17:17.9484503Z Creating venv at 'B:\runner\_work\TheRock\TheRock\.venv'
+2026-06-17T20:17:17.9485831Z   Dir relative to CWD: '.venv'
+2026-06-17T20:17:17.9486080Z   Dir fully resolved : 'B:\runner\_work\TheRock\TheRock\.venv'
+2026-06-17T20:17:17.9486455Z 
+2026-06-17T20:17:17.9487374Z ++ Exec [B:\runner\_work\TheRock\TheRock]$ uv venv 'B:\runner\_work\TheRock\TheRock\.venv'
+2026-06-17T20:17:18.6461910Z Using CPython 3.12.10 interpreter at: B:\runner\_work\_tool\Python\3.12.10\x64\python.exe
+2026-06-17T20:17:18.6462247Z Creating virtual environment at: .venv
+2026-06-17T20:17:18.6505037Z Activate with: .venv\Scripts\activate
+2026-06-17T20:17:18.6560505Z 
+2026-06-17T20:17:18.6560933Z Activating venv for future GitHub Actions workflow steps
+2026-06-17T20:17:18.6561208Z Adding to path by appending to $GITHUB_PATH:
+2026-06-17T20:17:18.6561434Z   'B:\runner\_work\TheRock\TheRock\.venv\Scripts'
+2026-06-17T20:17:18.6564868Z Setting environment variable by appending to $GITHUB_ENV:
+2026-06-17T20:17:18.6565211Z   {'VIRTUAL_ENV': WindowsPath('B:/runner/_work/TheRock/TheRock/.venv')}
+2026-06-17T20:17:18.6790080Z ##[group]Run uv pip install -r requirements-test.txt
+2026-06-17T20:17:18.6790373Z [36;1muv pip install -r requirements-test.txt[0m
+2026-06-17T20:17:18.6790561Z [36;1muv pip freeze[0m
+2026-06-17T20:17:18.6813808Z shell: C:\Program Files\Git\usr\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-06-17T20:17:18.6814216Z env:
+2026-06-17T20:17:18.6814361Z   VENV_DIR: B:\runner\_work\TheRock\TheRock/.venv
+2026-06-17T20:17:18.6814551Z   ARTIFACT_RUN_ID: 27710372755
+2026-06-17T20:17:18.6814707Z   OUTPUT_ARTIFACTS_DIR: ./build
+2026-06-17T20:17:18.6814869Z   THEROCK_BIN_DIR: ./build/bin
+2026-06-17T20:17:18.6815143Z   AMDGPU_FAMILIES: gfx110X-all
+2026-06-17T20:17:18.6815333Z   AMDGPU_TARGETS: gfx1100,gfx1101,gfx1102,gfx1103
+2026-06-17T20:17:18.6815515Z   ARTIFACT_GROUP: gfx110X-all
+2026-06-17T20:17:18.6815663Z   BENCHMARK_DB_URL: 
+2026-06-17T20:17:18.6815801Z   BENCHMARK_DB_FALLBACK_URL: 
+2026-06-17T20:17:18.6815984Z   pythonLocation: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:18.6816252Z   PKG_CONFIG_PATH: B:\runner\_work\_tool\Python\3.12.10\x64/lib/pkgconfig
+2026-06-17T20:17:18.6816697Z   Python_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:18.6816941Z   Python2_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:18.6817169Z   Python3_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:18.6817379Z   VIRTUAL_ENV: B:\runner\_work\TheRock\TheRock\.venv
+2026-06-17T20:17:18.6817561Z   RETRY_THIS_STEP: true
+2026-06-17T20:17:18.6817700Z   STEP_TIMEOUT_MINUTES: 15
+2026-06-17T20:17:18.6817834Z ##[endgroup]
+2026-06-17T20:17:18.8750939Z Resolved 42 packages in 148ms
+2026-06-17T20:17:18.8882007Z warning: Failed to hardlink files; falling back to full copy. This may lead to degraded performance.
+2026-06-17T20:17:18.8882501Z          If the cache and target directories are on different filesystems, hardlinking may not be supported.
+2026-06-17T20:17:18.8883001Z          If this is intentional, set `export UV_LINK_MODE=copy` or use `--link-mode=copy` to suppress this warning.
+2026-06-17T20:17:20.2659127Z Installed 42 packages in 1.38s
+2026-06-17T20:17:20.2660554Z  + attrs==26.1.0
+2026-06-17T20:17:20.2661368Z  + backports-zstd==1.6.0
+2026-06-17T20:17:20.2661970Z  + boto3==1.39.15
+2026-06-17T20:17:20.2662535Z  + botocore==1.39.17
+2026-06-17T20:17:20.2663161Z  + certifi==2026.6.17
+2026-06-17T20:17:20.2663843Z  + charset-normalizer==3.4.7
+2026-06-17T20:17:20.2664405Z  + colorama==0.4.6
+2026-06-17T20:17:20.2664997Z  + coverage==7.14.1
+2026-06-17T20:17:20.2665623Z  + filelock==3.29.4
+2026-06-17T20:17:20.2666511Z  + idna==3.18
+2026-06-17T20:17:20.2666751Z  + iniconfig==2.3.0
+2026-06-17T20:17:20.2667384Z  + jmespath==1.1.0
+2026-06-17T20:17:20.2667996Z  + joblib==1.5.3
+2026-06-17T20:17:20.2668686Z  + jsonschema==4.23.0
+2026-06-17T20:17:20.2669044Z  + jsonschema-specifications==2025.9.1
+2026-06-17T20:17:20.2669834Z  + lit==18.1.8
+2026-06-17T20:17:20.2670655Z  + msgpack==1.2.0
+2026-06-17T20:17:20.2671257Z  + numpy==2.4.6
+2026-06-17T20:17:20.2671772Z  + packaging==25.0
+2026-06-17T20:17:20.2672443Z  + perfetto==0.7.0
+2026-06-17T20:17:20.2673247Z  + pluggy==1.6.0
+2026-06-17T20:17:20.2673873Z  + prettytable==3.12.0
+2026-06-17T20:17:20.2674502Z  + protobuf==7.35.1
+2026-06-17T20:17:20.2675156Z  + psutil==7.1.3
+2026-06-17T20:17:20.2675743Z  + pygments==2.20.0
+2026-06-17T20:17:20.2676354Z  + pytest==9.0.3
+2026-06-17T20:17:20.2676951Z  + pytest-check==2.5.3
+2026-06-17T20:17:20.2677546Z  + pytest-cov==6.0.0
+2026-06-17T20:17:20.2678155Z  + pytest-timeout==2.4.0
+2026-06-17T20:17:20.2678839Z  + python-dateutil==2.9.0.post0
+2026-06-17T20:17:20.2679417Z  + pyyaml==6.0.2
+2026-06-17T20:17:20.2679958Z  + pyzstd==0.19.1
+2026-06-17T20:17:20.2680564Z  + referencing==0.37.0
+2026-06-17T20:17:20.2681155Z  + requests==2.33.0
+2026-06-17T20:17:20.2681749Z  + rpds-py==2026.5.1
+2026-06-17T20:17:20.2682323Z  + s3transfer==0.13.1
+2026-06-17T20:17:20.2682959Z  + sccache==0.10.0
+2026-06-17T20:17:20.2683543Z  + six==1.17.0
+2026-06-17T20:17:20.2684134Z  + tabulate==0.9.0
+2026-06-17T20:17:20.2684726Z  + typing-extensions==4.15.0
+2026-06-17T20:17:20.2685315Z  + urllib3==2.7.0
+2026-06-17T20:17:20.2685887Z  + wcwidth==0.8.1
+2026-06-17T20:17:20.3063289Z attrs==26.1.0
+2026-06-17T20:17:20.3064109Z backports-zstd==1.6.0
+2026-06-17T20:17:20.3064306Z boto3==1.39.15
+2026-06-17T20:17:20.3064440Z botocore==1.39.17
+2026-06-17T20:17:20.3064569Z certifi==2026.6.17
+2026-06-17T20:17:20.3064709Z charset-normalizer==3.4.7
+2026-06-17T20:17:20.3064864Z colorama==0.4.6
+2026-06-17T20:17:20.3064986Z coverage==7.14.1
+2026-06-17T20:17:20.3065107Z filelock==3.29.4
+2026-06-17T20:17:20.3065219Z idna==3.18
+2026-06-17T20:17:20.3065334Z iniconfig==2.3.0
+2026-06-17T20:17:20.3065454Z jmespath==1.1.0
+2026-06-17T20:17:20.3065567Z joblib==1.5.3
+2026-06-17T20:17:20.3065686Z jsonschema==4.23.0
+2026-06-17T20:17:20.3065839Z jsonschema-specifications==2025.9.1
+2026-06-17T20:17:20.3066004Z lit==18.1.8
+2026-06-17T20:17:20.3066118Z msgpack==1.2.0
+2026-06-17T20:17:20.3066236Z numpy==2.4.6
+2026-06-17T20:17:20.3066348Z packaging==25.0
+2026-06-17T20:17:20.3067512Z perfetto==0.7.0
+2026-06-17T20:17:20.3067630Z pluggy==1.6.0
+2026-06-17T20:17:20.3067749Z prettytable==3.12.0
+2026-06-17T20:17:20.3067882Z protobuf==7.35.1
+2026-06-17T20:17:20.3068002Z psutil==7.1.3
+2026-06-17T20:17:20.3068114Z pygments==2.20.0
+2026-06-17T20:17:20.3068233Z pytest==9.0.3
+2026-06-17T20:17:20.3068373Z pytest-check==2.5.3
+2026-06-17T20:17:20.3068503Z pytest-cov==6.0.0
+2026-06-17T20:17:20.3068637Z pytest-timeout==2.4.0
+2026-06-17T20:17:20.3068786Z python-dateutil==2.9.0.post0
+2026-06-17T20:17:20.3068936Z pyyaml==6.0.2
+2026-06-17T20:17:20.3069050Z pyzstd==0.19.1
+2026-06-17T20:17:20.3069180Z referencing==0.37.0
+2026-06-17T20:17:20.3069303Z requests==2.33.0
+2026-06-17T20:17:20.3069428Z rpds-py==2026.5.1
+2026-06-17T20:17:20.3069548Z s3transfer==0.13.1
+2026-06-17T20:17:20.3069668Z sccache==0.10.0
+2026-06-17T20:17:20.3069784Z six==1.17.0
+2026-06-17T20:17:20.3069897Z tabulate==0.9.0
+2026-06-17T20:17:20.3070022Z typing-extensions==4.15.0
+2026-06-17T20:17:20.3070164Z urllib3==2.7.0
+2026-06-17T20:17:20.3070283Z wcwidth==0.8.1
+2026-06-17T20:17:20.3213485Z ##[group]Run choco install --no-progress -y ninja
+2026-06-17T20:17:20.3213745Z [36;1mchoco install --no-progress -y ninja[0m
+2026-06-17T20:17:20.3234399Z shell: C:\Program Files\Git\usr\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-06-17T20:17:20.3234661Z env:
+2026-06-17T20:17:20.3234804Z   VENV_DIR: B:\runner\_work\TheRock\TheRock/.venv
+2026-06-17T20:17:20.3234998Z   ARTIFACT_RUN_ID: 27710372755
+2026-06-17T20:17:20.3235153Z   OUTPUT_ARTIFACTS_DIR: ./build
+2026-06-17T20:17:20.3235307Z   THEROCK_BIN_DIR: ./build/bin
+2026-06-17T20:17:20.3235460Z   AMDGPU_FAMILIES: gfx110X-all
+2026-06-17T20:17:20.3235634Z   AMDGPU_TARGETS: gfx1100,gfx1101,gfx1102,gfx1103
+2026-06-17T20:17:20.3235826Z   ARTIFACT_GROUP: gfx110X-all
+2026-06-17T20:17:20.3235976Z   BENCHMARK_DB_URL: 
+2026-06-17T20:17:20.3236109Z   BENCHMARK_DB_FALLBACK_URL: 
+2026-06-17T20:17:20.3236295Z   pythonLocation: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:20.3236592Z   PKG_CONFIG_PATH: B:\runner\_work\_tool\Python\3.12.10\x64/lib/pkgconfig
+2026-06-17T20:17:20.3236868Z   Python_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:20.3237102Z   Python2_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:20.3237332Z   Python3_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:20.3237545Z   VIRTUAL_ENV: B:\runner\_work\TheRock\TheRock\.venv
+2026-06-17T20:17:20.3237731Z   RETRY_THIS_STEP: true
+2026-06-17T20:17:20.3237869Z   STEP_TIMEOUT_MINUTES: 15
+2026-06-17T20:17:20.3238010Z ##[endgroup]
+2026-06-17T20:17:21.0219951Z Chocolatey v2.6.0
+2026-06-17T20:17:21.1194260Z Installing the following packages:
+2026-06-17T20:17:21.1198968Z ninja
+2026-06-17T20:17:21.1202807Z By installing, you accept licenses for the packages.
+2026-06-17T20:17:21.4132944Z ninja v1.13.2 already installed.
+2026-06-17T20:17:21.4133360Z  Use --force to reinstall, specify a version to install, or try upgrade.
+2026-06-17T20:17:21.4192233Z 
+2026-06-17T20:17:21.4192873Z Chocolatey installed 0/1 packages. 
+2026-06-17T20:17:21.4193591Z  See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+2026-06-17T20:17:21.4196605Z 
+2026-06-17T20:17:21.4200134Z Warnings:
+2026-06-17T20:17:21.4205307Z  - ninja - ninja v1.13.2 already installed.
+2026-06-17T20:17:21.4205737Z  Use --force to reinstall, specify a version to install, or try upgrade.
+2026-06-17T20:17:21.4514020Z ##[group]Run python ./build_tools/install_rocm_from_artifacts.py \
+2026-06-17T20:17:21.4514342Z [36;1mpython ./build_tools/install_rocm_from_artifacts.py \[0m
+2026-06-17T20:17:21.4514570Z [36;1m  --run-id=${ARTIFACT_RUN_ID} \[0m
+2026-06-17T20:17:21.4514770Z [36;1m  --artifact-group=${ARTIFACT_GROUP} \[0m
+2026-06-17T20:17:21.4514970Z [36;1m  --amdgpu-targets=${AMDGPU_TARGETS} \[0m
+2026-06-17T20:17:21.4515165Z [36;1m  --output-dir=${OUTPUT_ARTIFACTS_DIR} \[0m
+2026-06-17T20:17:21.4515349Z [36;1m  ${FETCH_ARTIFACT_ARGS}[0m
+2026-06-17T20:17:21.4535985Z shell: C:\Program Files\Git\usr\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-06-17T20:17:21.4536244Z env:
+2026-06-17T20:17:21.4536399Z   VENV_DIR: B:\runner\_work\TheRock\TheRock/.venv
+2026-06-17T20:17:21.4536587Z   ARTIFACT_RUN_ID: 27710372755
+2026-06-17T20:17:21.4536743Z   OUTPUT_ARTIFACTS_DIR: ./build
+2026-06-17T20:17:21.4536897Z   THEROCK_BIN_DIR: ./build/bin
+2026-06-17T20:17:21.4537043Z   AMDGPU_FAMILIES: gfx110X-all
+2026-06-17T20:17:21.4537209Z   AMDGPU_TARGETS: gfx1100,gfx1101,gfx1102,gfx1103
+2026-06-17T20:17:21.4537393Z   ARTIFACT_GROUP: gfx110X-all
+2026-06-17T20:17:21.4537538Z   BENCHMARK_DB_URL: 
+2026-06-17T20:17:21.4537669Z   BENCHMARK_DB_FALLBACK_URL: 
+2026-06-17T20:17:21.4537855Z   pythonLocation: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:21.4538119Z   PKG_CONFIG_PATH: B:\runner\_work\_tool\Python\3.12.10\x64/lib/pkgconfig
+2026-06-17T20:17:21.4538381Z   Python_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:21.4538626Z   Python2_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:21.4539109Z   Python3_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:21.4539321Z   VIRTUAL_ENV: B:\runner\_work\TheRock\TheRock\.venv
+2026-06-17T20:17:21.4539505Z   RETRY_THIS_STEP: true
+2026-06-17T20:17:21.4539643Z   STEP_TIMEOUT_MINUTES: 15
+2026-06-17T20:17:21.4539797Z   FETCH_ARTIFACT_ARGS: --blas --tests
+2026-06-17T20:17:21.4539959Z   RELEASE_TYPE: ci
+2026-06-17T20:17:21.4541959Z   GITHUB_TOKEN: ***
+2026-06-17T20:17:21.4542114Z   STEP_NAME: Download and Unpack Artifacts
+2026-06-17T20:17:21.4542294Z   STEP_TIMEOUT_TOLERANCE: 2
+2026-06-17T20:17:21.4542438Z ##[endgroup]
+2026-06-17T20:17:22.1763648Z ### Installing TheRock using artifacts ###
+2026-06-17T20:17:22.1764974Z Creating output directory 'B:\runner\_work\TheRock\TheRock\build'
+2026-06-17T20:17:22.1767128Z Created output directory 'B:\runner\_work\TheRock\TheRock\build'
+2026-06-17T20:17:22.1767382Z Retrieving artifacts for run ID 27710372755
+2026-06-17T20:17:22.1767537Z 
+2026-06-17T20:17:22.1767613Z Calling fetch_artifacts_main with args:
+2026-06-17T20:17:22.1768593Z   --run-id 27710372755 --artifact-group gfx110X-all --output-dir build --flatten --amdgpu-targets gfx1100,gfx1101,gfx1102,gfx1103 core-hipinfo_run core-runtime_run core-runtime_lib sysdeps_lib base_run base_lib amd-llvm_run amd-llvm_lib core-amdsmi_run core-amdsmi_lib core-hip_lib core-hip_dev core-kpack_lib core-ocl_lib core-ocl_dev rocprofiler-sdk_lib host-suite-sparse_lib blas_lib blas_test
+2026-06-17T20:17:22.1769515Z 
+2026-06-17T20:17:22.1770855Z Retrieving bucket info for workflow run...
+2026-06-17T20:17:22.1771051Z   github_repository: ROCm/TheRock
+2026-06-17T20:17:22.1771466Z   release_type: ci
+2026-06-17T20:17:22.3595690Z   workflow_run_id: 27710372755
+2026-06-17T20:17:22.3595957Z   head_github_repository: geomin12/TheRock
+2026-06-17T20:17:22.3596158Z   is_pr_from_fork: True
+2026-06-17T20:17:22.3596319Z   bucket: therock-ci-artifacts-external
+2026-06-17T20:17:22.3596583Z   Fork PR detected, skipping OIDC (using runner base credentials)
+2026-06-17T20:17:22.3598096Z Retrieving artifacts from 's3://therock-ci-artifacts-external/ROCm-TheRock/27710372755-windows'
+2026-06-17T20:17:22.8464173Z Matching artifact target families: ['generic', 'gfx1100', 'gfx1101', 'gfx1102', 'gfx1103', 'gfx110X-all']
+2026-06-17T20:17:22.8478534Z 
+2026-06-17T20:17:22.8478923Z Filtered artifacts to download:
+2026-06-17T20:17:22.8479295Z   s3://therock-ci-artifacts-external/ROCm-TheRock/27710372755-windows/amd-llvm_lib_generic.tar.zst
+2026-06-17T20:17:22.8479770Z   s3://therock-ci-artifacts-external/ROCm-TheRock/27710372755-windows/amd-llvm_run_generic.tar.zst
+2026-06-17T20:17:22.8480199Z   s3://therock-ci-artifacts-external/ROCm-TheRock/27710372755-windows/base_lib_generic.tar.zst
+2026-06-17T20:17:22.8480610Z   s3://therock-ci-artifacts-external/ROCm-TheRock/27710372755-windows/base_run_generic.tar.zst
+2026-06-17T20:17:22.8481007Z   s3://therock-ci-artifacts-external/ROCm-TheRock/27710372755-windows/blas_lib_generic.tar.zst
+2026-06-17T20:17:22.8481832Z   s3://therock-ci-artifacts-external/ROCm-TheRock/27710372755-windows/blas_lib_gfx1100.tar.zst
+2026-06-17T20:17:22.8482221Z   s3://therock-ci-artifacts-external/ROCm-TheRock/27710372755-windows/blas_lib_gfx1101.tar.zst
+2026-06-17T20:17:22.8482610Z   s3://therock-ci-artifacts-external/ROCm-TheRock/27710372755-windows/blas_lib_gfx1102.tar.zst
+2026-06-17T20:17:22.8482995Z   s3://therock-ci-artifacts-external/ROCm-TheRock/27710372755-windows/blas_lib_gfx1103.tar.zst
+2026-06-17T20:17:22.8483386Z   s3://therock-ci-artifacts-external/ROCm-TheRock/27710372755-windows/blas_test_generic.tar.zst
+2026-06-17T20:17:22.8483940Z   s3://therock-ci-artifacts-external/ROCm-TheRock/27710372755-windows/blas_test_gfx1100.tar.zst
+2026-06-17T20:17:22.8484352Z   s3://therock-ci-artifacts-external/ROCm-TheRock/27710372755-windows/blas_test_gfx1101.tar.zst
+2026-06-17T20:17:22.8484759Z   s3://therock-ci-artifacts-external/ROCm-TheRock/27710372755-windows/blas_test_gfx1102.tar.zst
+2026-06-17T20:17:22.8485151Z   s3://therock-ci-artifacts-external/ROCm-TheRock/27710372755-windows/blas_test_gfx1103.tar.zst
+2026-06-17T20:17:22.8485566Z   s3://therock-ci-artifacts-external/ROCm-TheRock/27710372755-windows/core-hip_dev_generic.tar.zst
+2026-06-17T20:17:22.8485987Z   s3://therock-ci-artifacts-external/ROCm-TheRock/27710372755-windows/core-hip_lib_generic.tar.zst
+2026-06-17T20:17:22.8486415Z   s3://therock-ci-artifacts-external/ROCm-TheRock/27710372755-windows/core-hipinfo_run_generic.tar.zst
+2026-06-17T20:17:22.8486859Z   s3://therock-ci-artifacts-external/ROCm-TheRock/27710372755-windows/core-kpack_lib_generic.tar.zst
+2026-06-17T20:17:22.8487285Z   s3://therock-ci-artifacts-external/ROCm-TheRock/27710372755-windows/core-ocl_dev_generic.tar.zst
+2026-06-17T20:17:22.8487703Z   s3://therock-ci-artifacts-external/ROCm-TheRock/27710372755-windows/core-ocl_lib_generic.tar.zst
+2026-06-17T20:17:22.8488162Z   s3://therock-ci-artifacts-external/ROCm-TheRock/27710372755-windows/host-blas_lib_generic.tar.zst
+2026-06-17T20:17:22.8488711Z   s3://therock-ci-artifacts-external/ROCm-TheRock/27710372755-windows/sysdeps_lib_generic.tar.zst
+2026-06-17T20:17:22.8488957Z 
+2026-06-17T20:17:22.8489038Z   ++ Downloading amd-llvm_lib_generic.tar.zst
+2026-06-17T20:17:22.8490571Z   ++ Downloading amd-llvm_run_generic.tar.zst
+2026-06-17T20:17:22.8495793Z   ++ Downloading base_lib_generic.tar.zst
+2026-06-17T20:17:22.8501274Z   ++ Downloading base_run_generic.tar.zst
+2026-06-17T20:17:22.8504917Z   ++ Downloading blas_lib_generic.tar.zst
+2026-06-17T20:17:22.8507725Z   ++ Downloading blas_lib_gfx1100.tar.zst
+2026-06-17T20:17:22.8512907Z   ++ Downloading blas_lib_gfx1101.tar.zst
+2026-06-17T20:17:22.8518398Z   ++ Downloading blas_lib_gfx1102.tar.zst
+2026-06-17T20:17:22.8526116Z   ++ Downloading blas_lib_gfx1103.tar.zst
+2026-06-17T20:17:22.8531879Z   ++ Downloading blas_test_generic.tar.zst
+2026-06-17T20:17:23.8155191Z   ++ Downloading blas_test_gfx1100.tar.zst
+2026-06-17T20:17:23.8204613Z ++ Flattening 'base_run_generic.tar.zst' to 'base_run_generic'
+2026-06-17T20:17:23.8268729Z   ++ Downloading blas_test_gfx1101.tar.zst
+2026-06-17T20:17:23.8480868Z ++ Flattening 'base_lib_generic.tar.zst' to 'base_lib_generic'
+2026-06-17T20:17:24.2713864Z   ++ Downloading blas_test_gfx1102.tar.zst
+2026-06-17T20:17:24.2715328Z ++ Flattening 'blas_lib_generic.tar.zst' to 'blas_lib_generic'
+2026-06-17T20:17:24.3620161Z   ++ Downloading blas_test_gfx1103.tar.zst
+2026-06-17T20:17:24.3625594Z ++ Flattening 'blas_test_gfx1102.tar.zst' to 'blas_test_gfx1102'
+2026-06-17T20:17:24.4515886Z   ++ Downloading core-hip_dev_generic.tar.zst
+2026-06-17T20:17:24.4525476Z ++ Flattening 'blas_test_gfx1103.tar.zst' to 'blas_test_gfx1103'
+2026-06-17T20:17:24.5379501Z   ++ Downloading core-hip_lib_generic.tar.zst
+2026-06-17T20:17:24.5380108Z ++ Flattening 'core-hip_dev_generic.tar.zst' to 'core-hip_dev_generic'
+2026-06-17T20:17:24.8226431Z   ++ Downloading core-hipinfo_run_generic.tar.zst
+2026-06-17T20:17:24.8243364Z ++ Flattening 'core-hip_lib_generic.tar.zst' to 'core-hip_lib_generic'
+2026-06-17T20:17:24.9068434Z   ++ Downloading core-kpack_lib_generic.tar.zst
+2026-06-17T20:17:24.9079561Z ++ Flattening 'core-hipinfo_run_generic.tar.zst' to 'core-hipinfo_run_generic'
+2026-06-17T20:17:24.9878606Z   ++ Downloading core-ocl_dev_generic.tar.zst
+2026-06-17T20:17:24.9894782Z ++ Flattening 'core-kpack_lib_generic.tar.zst' to 'core-kpack_lib_generic'
+2026-06-17T20:17:25.0794398Z   ++ Downloading core-ocl_lib_generic.tar.zst
+2026-06-17T20:17:25.0798102Z ++ Flattening 'core-ocl_dev_generic.tar.zst' to 'core-ocl_dev_generic'
+2026-06-17T20:17:25.3468322Z   ++ Downloading host-blas_lib_generic.tar.zst
+2026-06-17T20:17:25.3499764Z ++ Flattening 'core-ocl_lib_generic.tar.zst' to 'core-ocl_lib_generic'
+2026-06-17T20:17:25.6654010Z   ++ Downloading sysdeps_lib_generic.tar.zst
+2026-06-17T20:17:25.6657298Z ++ Flattening 'host-blas_lib_generic.tar.zst' to 'host-blas_lib_generic'
+2026-06-17T20:17:25.7524243Z ++ Flattening 'sysdeps_lib_generic.tar.zst' to 'sysdeps_lib_generic'
+2026-06-17T20:17:27.7846476Z ++ Flattening 'blas_test_gfx1101.tar.zst' to 'blas_test_gfx1101'
+2026-06-17T20:17:28.0037271Z ++ Flattening 'blas_test_gfx1100.tar.zst' to 'blas_test_gfx1100'
+2026-06-17T20:17:28.4799902Z ++ Flattening 'amd-llvm_run_generic.tar.zst' to 'amd-llvm_run_generic'
+2026-06-17T20:17:28.5301192Z ++ Flattening 'blas_lib_gfx1103.tar.zst' to 'blas_lib_gfx1103'
+2026-06-17T20:17:28.6544843Z ++ Flattening 'blas_lib_gfx1101.tar.zst' to 'blas_lib_gfx1101'
+2026-06-17T20:17:28.7068679Z ++ Flattening 'blas_lib_gfx1102.tar.zst' to 'blas_lib_gfx1102'
+2026-06-17T20:17:28.7253883Z ++ Flattening 'amd-llvm_lib_generic.tar.zst' to 'amd-llvm_lib_generic'
+2026-06-17T20:17:28.7344493Z ++ Flattening 'blas_lib_gfx1100.tar.zst' to 'blas_lib_gfx1100'
+2026-06-17T20:17:29.1129718Z ++ Flattening 'blas_test_generic.tar.zst' to 'blas_test_generic'
+2026-06-17T20:17:38.6566285Z Retrieved artifacts for run ID 27710372755
+2026-06-17T20:17:38.7518251Z ##[group]Run git config --global --add safe.directory $PWD
+2026-06-17T20:17:38.7518582Z [36;1mgit config --global --add safe.directory $PWD[0m
+2026-06-17T20:17:38.7518795Z [36;1mgit config fetch.parallel 10[0m
+2026-06-17T20:17:38.7539810Z shell: C:\Program Files\Git\usr\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-06-17T20:17:38.7540066Z env:
+2026-06-17T20:17:38.7540212Z   VENV_DIR: B:\runner\_work\TheRock\TheRock/.venv
+2026-06-17T20:17:38.7540410Z   ARTIFACT_RUN_ID: 27710372755
+2026-06-17T20:17:38.7540568Z   OUTPUT_ARTIFACTS_DIR: ./build
+2026-06-17T20:17:38.7540726Z   THEROCK_BIN_DIR: ./build/bin
+2026-06-17T20:17:38.7540886Z   AMDGPU_FAMILIES: gfx110X-all
+2026-06-17T20:17:38.7541061Z   AMDGPU_TARGETS: gfx1100,gfx1101,gfx1102,gfx1103
+2026-06-17T20:17:38.7541248Z   ARTIFACT_GROUP: gfx110X-all
+2026-06-17T20:17:38.7541397Z   BENCHMARK_DB_URL: 
+2026-06-17T20:17:38.7541529Z   BENCHMARK_DB_FALLBACK_URL: 
+2026-06-17T20:17:38.7541755Z   pythonLocation: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:38.7542032Z   PKG_CONFIG_PATH: B:\runner\_work\_tool\Python\3.12.10\x64/lib/pkgconfig
+2026-06-17T20:17:38.7542289Z   Python_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:38.7542525Z   Python2_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:38.7542751Z   Python3_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:38.7542961Z   VIRTUAL_ENV: B:\runner\_work\TheRock\TheRock\.venv
+2026-06-17T20:17:38.7543141Z ##[endgroup]
+2026-06-17T20:17:38.8482020Z ##[group]Run python ./build_tools/health_status.py
+2026-06-17T20:17:38.8482303Z [36;1mpython ./build_tools/health_status.py[0m
+2026-06-17T20:17:38.8503019Z shell: C:\Program Files\Git\usr\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-06-17T20:17:38.8503287Z env:
+2026-06-17T20:17:38.8503434Z   VENV_DIR: B:\runner\_work\TheRock\TheRock/.venv
+2026-06-17T20:17:38.8503627Z   ARTIFACT_RUN_ID: 27710372755
+2026-06-17T20:17:38.8503790Z   OUTPUT_ARTIFACTS_DIR: ./build
+2026-06-17T20:17:38.8504135Z   THEROCK_BIN_DIR: ./build/bin
+2026-06-17T20:17:38.8504285Z   AMDGPU_FAMILIES: gfx110X-all
+2026-06-17T20:17:38.8504456Z   AMDGPU_TARGETS: gfx1100,gfx1101,gfx1102,gfx1103
+2026-06-17T20:17:38.8504647Z   ARTIFACT_GROUP: gfx110X-all
+2026-06-17T20:17:38.8504794Z   BENCHMARK_DB_URL: 
+2026-06-17T20:17:38.8504926Z   BENCHMARK_DB_FALLBACK_URL: 
+2026-06-17T20:17:38.8505110Z   pythonLocation: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:38.8505414Z   PKG_CONFIG_PATH: B:\runner\_work\_tool\Python\3.12.10\x64/lib/pkgconfig
+2026-06-17T20:17:38.8505675Z   Python_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:38.8505910Z   Python2_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:38.8506137Z   Python3_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:38.8506348Z   VIRTUAL_ENV: B:\runner\_work\TheRock\TheRock\.venv
+2026-06-17T20:17:38.8506529Z ##[endgroup]
+2026-06-17T20:17:41.1218056Z 
+2026-06-17T20:17:41.1218099Z 
+2026-06-17T20:17:41.1218102Z 
+2026-06-17T20:17:41.1218105Z 
+2026-06-17T20:17:41.1218107Z 
+2026-06-17T20:17:41.1218725Z         [38;2;255;61;61m			    # # # # # # # # # # #[0m
+2026-06-17T20:17:41.1219026Z         [38;2;255;61;61m			      # # # # # # # # # #[0m
+2026-06-17T20:17:41.1219360Z         [38;2;255;61;61m			        # # # # # # # # #[0m	  [38;2;255;61;61mAMD ROCm/TheRock Project[0m
+2026-06-17T20:17:41.1219670Z         [38;2;255;61;61m			                    # # #[0m
+2026-06-17T20:17:41.1219980Z         [38;2;255;61;61m			        #           # # #[0m	  Build Environment diagnosis script
+2026-06-17T20:17:41.1220354Z         [38;2;255;61;61m			      # #           # # #[0m
+2026-06-17T20:17:41.1220725Z         [38;2;255;61;61m			    # # #           # # #[0m	  Version TheRock (current HEAD: [38;2;255;61;61m669115c[0m)
+2026-06-17T20:17:41.1221049Z         [38;2;255;61;61m			    # # # # # # #   # # #[0m
+2026-06-17T20:17:41.1221279Z         [38;2;255;61;61m			    # # # # # #       # #[0m
+2026-06-17T20:17:41.1221515Z         [38;2;255;61;61m			    # # # # #           #[0m
+2026-06-17T20:17:41.1221646Z 
+2026-06-17T20:17:41.1221649Z 
+2026-06-17T20:17:41.1221705Z         
+2026-06-17T20:17:41.1221924Z         ===================                       Build Environment Summary                        ===================
+2026-06-17T20:17:41.1222134Z 
+2026-06-17T20:17:41.1222220Z         OS:               Windows 11 (25H2, Build 10.0.26200)
+2026-06-17T20:17:41.1222472Z         CPU:              AMD EPYC 9V64 32-Core Processor                 (AMD64)
+2026-06-17T20:17:41.1222706Z                           Logical cores: 24
+2026-06-17T20:17:41.1222828Z 
+2026-06-17T20:17:41.1222885Z         GPU:              GPU 0: 	None
+2026-06-17T20:17:41.1223080Z                           GPU 1: 	None
+2026-06-17T20:17:41.1223281Z         RAM:              Total Physical Memory: 127.99 GB
+2026-06-17T20:17:41.1223488Z                           Avail Physical Memory: 119.06 GB
+2026-06-17T20:17:41.1223689Z                           Avail Virtual  Memory: 136.44 GB
+2026-06-17T20:17:41.1223813Z 
+2026-06-17T20:17:41.1223895Z         STORAGE:          Disk Total Space: 1535.94 GB
+2026-06-17T20:17:41.1224093Z                           Disk Avail Space: 1500.26 GB
+2026-06-17T20:17:41.1224281Z                           Disk Used  Space: 35.67 GB
+2026-06-17T20:17:41.1224467Z                           Disk Usage: 2.32 %
+2026-06-17T20:17:41.1226270Z                           Current Repo path: B:/runner/_work/TheRock/TheRock, Disk Device: B:
+2026-06-17T20:17:41.1226509Z 
+2026-06-17T20:17:41.1226640Z         FILE SYSTEM:      Filesystem            Size  Used Avail Use% Mounted on
+2026-06-17T20:17:41.1226917Z                           C:/Program Files/Git  127G   84G   43G  67% /
+2026-06-17T20:17:41.1227158Z                           B:                    1.5T   36G  1.5T   3% /b
+2026-06-17T20:17:41.1227296Z 
+2026-06-17T20:17:41.1227461Z         ENV:              Python ENV: B:/runner/_work/TheRock/TheRock/.venv/Scripts/python.exe (uv VENV)
+2026-06-17T20:17:41.1227909Z                           Visual Studio: False
+2026-06-17T20:17:41.1228088Z                           Cygwin: False
+2026-06-17T20:17:41.1228252Z                           MSYS2: False
+2026-06-17T20:17:41.1228358Z 
+2026-06-17T20:17:41.1228484Z         SDK:              Visual Studio:  Not Detected | Host/Target: None --> None
+2026-06-17T20:17:41.1228724Z                           VC++ Compiler:  None
+2026-06-17T20:17:41.1228912Z                           VC++ UCRT:      Not Detected
+2026-06-17T20:17:41.1229105Z                           AMD HIP SDK:    Not Detected
+2026-06-17T20:17:41.1229292Z                           AMD ROCm:       Not Detected
+2026-06-17T20:17:41.1229418Z 
+2026-06-17T20:17:41.1229488Z         MAX_PATH_ENABLED: True
+2026-06-17T20:17:41.1229587Z 
+2026-06-17T20:17:41.1229773Z         CCACHE:           Cache directory:       C:\Windows\system32\config\systemprofile\AppData\Local\ccache
+2026-06-17T20:17:41.1230199Z                           Config file:           C:\Windows\system32\config\systemprofile\AppData\Local\ccache\ccache.conf
+2026-06-17T20:17:41.1230514Z                           Directory config file:
+2026-06-17T20:17:41.1230752Z                           System config file:    C:\ProgramData\ccache\ccache.conf
+2026-06-17T20:17:41.1230989Z                           Stats updated:         never
+2026-06-17T20:17:41.1231168Z                           Local storage:
+2026-06-17T20:17:41.1231360Z                             Cache size (GiB):    0.0 / 5.0 ( 0.00%)
+2026-06-17T20:17:41.1231568Z                             Files:                 0
+2026-06-17T20:17:41.1231759Z                             Hits:                  0
+2026-06-17T20:17:41.1231940Z                             Misses:                0
+2026-06-17T20:17:41.1232124Z                             Reads:                 0
+2026-06-17T20:17:41.1232301Z                             Writes:                0
+2026-06-17T20:17:41.1232479Z                           -------------
+2026-06-17T20:17:41.1232648Z                           Config:
+2026-06-17T20:17:41.1232807Z                           -------------
+2026-06-17T20:17:41.1233003Z                           (default) absolute_paths_in_stderr = false
+2026-06-17T20:17:41.1233217Z                           (default) base_dir = 
+2026-06-17T20:17:41.1233511Z                           (default) cache_dir = C:\Windows\system32\config\systemprofile\AppData\Local\ccache
+2026-06-17T20:17:41.1233868Z                           (default) ceiling_dirs = C:\Windows\system32\config\systemprofile
+2026-06-17T20:17:41.1234133Z                           (default) ceiling_markers = .git
+2026-06-17T20:17:41.1234328Z                           (default) compiler = 
+2026-06-17T20:17:41.1234700Z                           (default) compiler_check = mtime
+2026-06-17T20:17:41.1234909Z                           (default) compiler_type = auto
+2026-06-17T20:17:41.1235105Z                           (default) compression = true
+2026-06-17T20:17:41.1235303Z                           (default) compression_level = 0
+2026-06-17T20:17:41.1235500Z                           (default) cpp_extension = 
+2026-06-17T20:17:41.1235688Z                           (default) debug = false
+2026-06-17T20:17:41.1235916Z                           (default) debug_dir = 
+2026-06-17T20:17:41.1236126Z                           (default) debug_level = 2
+2026-06-17T20:17:41.1236324Z                           (default) depend_mode = false
+2026-06-17T20:17:41.1236864Z                           (default) direct_mode = true
+2026-06-17T20:17:41.1237074Z                           (default) disable = false
+2026-06-17T20:17:41.1237266Z                           (default) extra_files_to_hash = 
+2026-06-17T20:17:41.1237462Z                           (default) file_clone = false
+2026-06-17T20:17:41.1237653Z                           (default) hard_link = false
+2026-06-17T20:17:41.1237839Z                           (default) hash_dir = true
+2026-06-17T20:17:41.1238112Z                           (default) ignore_headers_in_manifest = 
+2026-06-17T20:17:41.1238321Z                           (default) ignore_options = 
+2026-06-17T20:17:41.1238510Z                           (default) inode_cache = false
+2026-06-17T20:17:41.1238715Z                           (default) keep_comments_cpp = false
+2026-06-17T20:17:41.1238941Z                           (default) libexec_dirs = /Program\ Files/ccache/
+2026-06-17T20:17:41.1239159Z                           (default) log_file = 
+2026-06-17T20:17:41.1239356Z                           (default) max_files = 0
+2026-06-17T20:17:41.1239544Z                           (default) max_size = 5.0 GiB
+2026-06-17T20:17:41.1239762Z                           (default) msvc_dep_prefix = Note: including file:
+2026-06-17T20:17:41.1239984Z                           (default) msvc_utf8 = true
+2026-06-17T20:17:41.1240170Z                           (default) namespace = 
+2026-06-17T20:17:41.1240437Z                           (default) path = 
+2026-06-17T20:17:41.1240702Z                           (default) pch_external_checksum = false
+2026-06-17T20:17:41.1240910Z                           (default) prefix_command = 
+2026-06-17T20:17:41.1241102Z                           (default) prefix_command_cpp = 
+2026-06-17T20:17:41.1241296Z                           (default) read_only = false
+2026-06-17T20:17:41.1241495Z                           (default) read_only_direct = false
+2026-06-17T20:17:41.1241702Z                           (default) recache = false
+2026-06-17T20:17:41.1241900Z                           (default) remote_only = false
+2026-06-17T20:17:41.1242102Z                           (default) remote_storage = 
+2026-06-17T20:17:41.1242290Z                           (default) reshare = false
+2026-06-17T20:17:41.1242487Z                           (default) response_file_format = auto
+2026-06-17T20:17:41.1242686Z                           (default) safe_dirs = 
+2026-06-17T20:17:41.1242877Z                           (default) sloppiness = 
+2026-06-17T20:17:41.1243058Z                           (default) stats = true
+2026-06-17T20:17:41.1243232Z                           (default) stats_log = 
+2026-06-17T20:17:41.1243540Z                           (default) temporary_dir = C:\Windows\system32\config\systemprofile\AppData\Local\ccache\tmp
+2026-06-17T20:17:41.1243849Z                           (default) umask = 
+2026-06-17T20:17:41.1243969Z 
+2026-06-17T20:17:41.1243972Z 
+2026-06-17T20:17:41.1244288Z         ===================                Start detect compoments on: [38;2;115;201;201mROCm/TheRock[0m                ===================
+2026-06-17T20:17:41.1244561Z 
+2026-06-17T20:17:41.1245119Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mOperating System[0m] Detected OS is Windows 11 (25H2, Build 10.0.26200) 
+2026-06-17T20:17:41.1245587Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mCPU Arch[0m] Detected Available CPU Arch AMD64. 
+2026-06-17T20:17:41.1245973Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mDisk Usage[0m] Disk space check pass. 
+2026-06-17T20:17:41.1246337Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mMax PATH Limit[0m] Windows Long PATHs Enabled. 
+2026-06-17T20:17:41.1246739Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mGit[0m] Found Git 2.53.0 at C:/Program Files/Git/cmd/git.exe 
+2026-06-17T20:17:41.1247177Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mCMake[0m] Found CMake 3.31.0 at C:/Program Files/CMake/bin/cmake.exe 
+2026-06-17T20:17:41.1247755Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mCCache[0m] Found CCache 4.13.1 at C:/ProgramData/chocolatey/bin/ccache.exe 
+2026-06-17T20:17:41.1248279Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mNinja-Build[0m] Found Ninja-Build 1.13.2 at C:/ProgramData/chocolatey/bin/ninja.exe 
+2026-06-17T20:17:41.1248861Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mGCC/gfortran[0m] Found GCC compiler program gfortran 13.2.0 at C:/Strawberry/c/bin/gfortran.exe 
+2026-06-17T20:17:41.1249476Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mPython 3[0m] Found Python 3.12.10 at B:/runner/_work/TheRock/TheRock/.venv/Scripts/python.exe (uv VENV). 
+2026-06-17T20:17:41.1250166Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mAstral UV[0m] Found Astral UV 0.11.21 at C:/Windows/system32/config/systemprofile/.local/bin/uv.exe 
+2026-06-17T20:17:41.1250768Z         [[38;2;255;61;61m✗[0m][[38;2;255;61;61mVisual Studio[0m] Cannot Find Visual Studio Environment or VS version too old. [38;2;255;61;61m
+2026-06-17T20:17:41.1251271Z     TheRock needs Visual Studio 2015/2017/2019/2022. Please install it or update Visual studio Environment.
+2026-06-17T20:17:41.1251533Z 
+2026-06-17T20:17:41.1251704Z         traceback:  TheRock on Windows build requires Visual Studio 2022/2019/2017/2015 environment
+2026-06-17T20:17:41.1252004Z     [0m
+2026-06-17T20:17:41.1252374Z         [[38;2;255;61;61m✗[0m][[38;2;255;61;61mMSVC/VC++[0m] Cannot found Microsoft Optimized C/C++ compiler Driver cl.exe. [38;2;255;61;61m
+2026-06-17T20:17:41.1252785Z     We can't found any available MSVC compiler on your Windows device.
+2026-06-17T20:17:41.1253108Z     MSVC (Microsoft Visual C/C++), The C/C++ compliler for native Windows development.
+2026-06-17T20:17:41.1253434Z     Please re-configure your Visual Studio installed C/C++ correctly.
+2026-06-17T20:17:41.1253714Z         Visual Studio Installer > C/C++ Development for Desktop:
+2026-06-17T20:17:41.1253927Z         - MSVC v14X
+2026-06-17T20:17:41.1254060Z         - MSVC ALT
+2026-06-17T20:17:41.1254197Z         - Windows SDK 10.0.XXXXX
+2026-06-17T20:17:41.1254355Z         - CMake for Windows
+2026-06-17T20:17:41.1254513Z         - C++ Address Sanitizer
+2026-06-17T20:17:41.1254618Z 
+2026-06-17T20:17:41.1254851Z         traceback: Required MSVC compiler not found
+2026-06-17T20:17:41.1386499Z     [0m
+2026-06-17T20:17:41.1386893Z         [[38;2;255;61;61m✗[0m][[38;2;255;61;61mMSVC/ATL[0m] Cannot find MSVC ATL libraries. [38;2;255;61;61m
+2026-06-17T20:17:41.1387270Z     TheRock requires MSVC installed ATL (Active Template Library).
+2026-06-17T20:17:41.1387539Z     Please reconfig your Visual Studio install.
+2026-06-17T20:17:41.1387681Z 
+2026-06-17T20:17:41.1387746Z         traceback: MSVC ATL not found
+2026-06-17T20:17:41.1387926Z     [0m
+2026-06-17T20:17:41.1388244Z         [[38;2;255;61;61m✗[0m][[38;2;255;61;61mMSVC/ML64[0m] Cannot found Microsoft Macro Assembler. [38;2;255;61;61m
+2026-06-17T20:17:41.1388617Z     We can't found Microsoft Macro Assembler on your Windows device.
+2026-06-17T20:17:41.1388902Z     ml64.exe is the Assembler program targeting for Windows x64.
+2026-06-17T20:17:41.1389184Z     Please re-configure your Visual Studio installed C/C++ correctly.
+2026-06-17T20:17:41.1389472Z         Visual Studio Installer > C/C++ Development for Desktop:
+2026-06-17T20:17:41.1389688Z         - MSVC v14X
+2026-06-17T20:17:41.1389825Z         - MSVC MFC
+2026-06-17T20:17:41.1389951Z         - MSVC ALT
+2026-06-17T20:17:41.1390078Z         - Windows SDK 10.0.XXXXX
+2026-06-17T20:17:41.1390239Z         - CMake for Windows
+2026-06-17T20:17:41.1390393Z         - C++ Address Sanitizer
+2026-06-17T20:17:41.1390497Z 
+2026-06-17T20:17:41.1390579Z         traceback: Required MSVC Assembler not found
+2026-06-17T20:17:41.1390784Z     [0m
+2026-06-17T20:17:41.1391087Z         [[38;2;255;61;61m✗[0m][[38;2;255;61;61mMSVC/Archiver[0m] Cannot found MSVC program lib.exe. [38;2;255;61;61m
+2026-06-17T20:17:41.1391429Z     We cannot find lib.exe (Archiver: MSVC Library Manager).
+2026-06-17T20:17:41.1391958Z     Please check your Microsoft VC++ installation is correct, or re-check if the install is broken.
+2026-06-17T20:17:41.1392215Z 
+2026-06-17T20:17:41.1392331Z         traceback: Missing MSVC required linker compoments lib.exe
+2026-06-17T20:17:41.1392565Z     [0m
+2026-06-17T20:17:41.1392958Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mMSVC/Linker[0m] Found Microsoft Incremental Linker link.exe at C:/Program Files/Git/usr/bin/link.exe 
+2026-06-17T20:17:41.1393542Z         [[38;2;255;61;61m✗[0m][[38;2;255;61;61mWindows SDK/UCRT[0m] Cannot found Microsoft Resource Compiler. [38;2;255;61;61m
+2026-06-17T20:17:41.1394565Z     We cannot find rc.exe (Microsoft Resource Compiler) in your Windows SDK.
+2026-06-17T20:17:41.1394973Z     This might have Windows SDK not installed, install broken, or vcvarsXXXX.bat not load Windows SDK environment.
+2026-06-17T20:17:41.1395527Z     Please re-configure your MSVC and Windows SDK installation.
+2026-06-17T20:17:41.1395807Z         Visual Studio Installer > C/C++ Development for Desktop:
+2026-06-17T20:17:41.1396028Z             - MSVC v14X
+2026-06-17T20:17:41.1396169Z             - MSVC MFC
+2026-06-17T20:17:41.1396315Z             - MSVC ALT
+2026-06-17T20:17:41.1396462Z             - Windows SDK 10.0.XXXXX
+2026-06-17T20:17:41.1396633Z             - CMake for Windows
+2026-06-17T20:17:41.1396790Z             - C++ Address Sanitizer
+2026-06-17T20:17:41.1397086Z         traceback: Microsoft Resource Compiler not found in Windows SDK or Windows SDK not installed
+2026-06-17T20:17:41.1397396Z             > rc.exe: None
+2026-06-17T20:17:41.1397571Z     [0m
+2026-06-17T20:17:41.1397633Z 
+2026-06-17T20:17:41.1397989Z         ===================          Compoments check [38;2;6;161;60m12[0m Passed, [38;2;184;166;48m0[0m Warning, [38;2;255;61;61m6[0m Fatal Error          ===================
+2026-06-17T20:17:41.1398310Z 
+2026-06-17T20:17:41.1398313Z 
+2026-06-17T20:17:41.1398444Z         ===================                              Python List                               ===================
+2026-06-17T20:17:41.1398640Z 
+2026-06-17T20:17:41.1398691Z         pip==26.1.2
+2026-06-17T20:17:41.1398779Z 
+2026-06-17T20:17:41.1398782Z 
+2026-06-17T20:17:41.1398909Z         ===================                            End Python List                             ===================
+2026-06-17T20:17:41.1399089Z 
+2026-06-17T20:17:41.1399091Z 
+2026-06-17T20:17:41.1399381Z         ===================      TheRock build pre-diagnosis script completed in [38;2;115;201;201m1.41[0m seconds      ===================
+2026-06-17T20:17:41.1602995Z ##[group]Run python ./build_tools/print_driver_gpu_info.py
+2026-06-17T20:17:41.1603301Z [36;1mpython ./build_tools/print_driver_gpu_info.py[0m
+2026-06-17T20:17:41.1623562Z shell: C:\Program Files\Git\usr\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-06-17T20:17:41.1623814Z env:
+2026-06-17T20:17:41.1623963Z   VENV_DIR: B:\runner\_work\TheRock\TheRock/.venv
+2026-06-17T20:17:41.1624152Z   ARTIFACT_RUN_ID: 27710372755
+2026-06-17T20:17:41.1624311Z   OUTPUT_ARTIFACTS_DIR: ./build
+2026-06-17T20:17:41.1624467Z   THEROCK_BIN_DIR: ./build/bin
+2026-06-17T20:17:41.1624619Z   AMDGPU_FAMILIES: gfx110X-all
+2026-06-17T20:17:41.1624784Z   AMDGPU_TARGETS: gfx1100,gfx1101,gfx1102,gfx1103
+2026-06-17T20:17:41.1624965Z   ARTIFACT_GROUP: gfx110X-all
+2026-06-17T20:17:41.1625108Z   BENCHMARK_DB_URL: 
+2026-06-17T20:17:41.1625247Z   BENCHMARK_DB_FALLBACK_URL: 
+2026-06-17T20:17:41.1625430Z   pythonLocation: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:41.1625726Z   PKG_CONFIG_PATH: B:\runner\_work\_tool\Python\3.12.10\x64/lib/pkgconfig
+2026-06-17T20:17:41.1625986Z   Python_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:41.1626224Z   Python2_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:41.1626448Z   Python3_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:41.1626659Z   VIRTUAL_ENV: B:\runner\_work\TheRock\TheRock\.venv
+2026-06-17T20:17:41.1626839Z ##[endgroup]
+2026-06-17T20:17:41.2656135Z === Sanity check: driver / GPU info ===
+2026-06-17T20:17:41.2656333Z 
+2026-06-17T20:17:41.2656390Z === hipInfo.exe ===
+2026-06-17T20:17:41.2656607Z ++ Exec [B:\runner\_work\TheRock\TheRock]$ 'build\bin\hipInfo.exe'
+2026-06-17T20:17:41.4711834Z 
+2026-06-17T20:17:41.4712045Z --------------------------------------------------------------------------------
+2026-06-17T20:17:41.4712319Z device#                           0
+2026-06-17T20:17:41.4712532Z Name:                             AMD Radeon PRO V710 MxGPU
+2026-06-17T20:17:41.4713063Z pciBusID:                         0
+2026-06-17T20:17:41.4713228Z pciDeviceID:                      0
+2026-06-17T20:17:41.4713379Z pciDomainID:                      0
+2026-06-17T20:17:41.4713535Z multiProcessorCount:              27
+2026-06-17T20:17:41.4713711Z maxThreadsPerMultiProcessor:      2048
+2026-06-17T20:17:41.4713899Z isMultiGpuBoard:                  0
+2026-06-17T20:17:41.4714062Z clockRate:                        1280 Mhz
+2026-06-17T20:17:41.4714234Z memoryClockRate:                  1000 Mhz
+2026-06-17T20:17:41.4714402Z memoryBusWidth:                   112
+2026-06-17T20:17:41.4714566Z totalGlobalMem:                   25.11 GB
+2026-06-17T20:17:41.4714744Z totalConstMem:                    2147483647
+2026-06-17T20:17:41.4714921Z sharedMemPerBlock:                64.00 KB
+2026-06-17T20:17:41.4715086Z canMapHostMemory:                 1
+2026-06-17T20:17:41.4715249Z regsPerBlock:                     196608
+2026-06-17T20:17:41.4715420Z warpSize:                         32
+2026-06-17T20:17:41.4715587Z l2CacheSize:                      4194304
+2026-06-17T20:17:41.4715760Z computeMode:                      0
+2026-06-17T20:17:41.4715927Z maxThreadsPerBlock:               1024
+2026-06-17T20:17:41.4716098Z maxThreadsDim.x:                  1024
+2026-06-17T20:17:41.4716256Z maxThreadsDim.y:                  1024
+2026-06-17T20:17:41.4716411Z maxThreadsDim.z:                  1024
+2026-06-17T20:17:41.4716578Z maxGridSize.x:                    2147483647
+2026-06-17T20:17:41.4716754Z maxGridSize.y:                    65535
+2026-06-17T20:17:41.4716918Z maxGridSize.z:                    65535
+2026-06-17T20:17:41.4717070Z major:                            11
+2026-06-17T20:17:41.4717222Z minor:                            0
+2026-06-17T20:17:41.4717374Z concurrentKernels:                1
+2026-06-17T20:17:41.4717525Z cooperativeLaunch:                0
+2026-06-17T20:17:41.4717685Z cooperativeMultiDeviceLaunch:     0
+2026-06-17T20:17:41.4719331Z isIntegrated:                     0
+2026-06-17T20:17:41.4720288Z maxTexture1D:                     16384
+2026-06-17T20:17:41.4720526Z maxTexture2D.width:               16384
+2026-06-17T20:17:41.4720717Z maxTexture2D.height:              16384
+2026-06-17T20:17:41.4720902Z maxTexture3D.width:               2048
+2026-06-17T20:17:41.4721075Z maxTexture3D.height:              2048
+2026-06-17T20:17:41.4721254Z maxTexture3D.depth:               2048
+2026-06-17T20:17:41.4721436Z hostNativeAtomicSupported:        1
+2026-06-17T20:17:41.4721605Z isLargeBar:                       0
+2026-06-17T20:17:41.4721752Z asicRevision:                     0
+2026-06-17T20:17:41.4721922Z maxSharedMemoryPerMultiProcessor: 64.00 KB
+2026-06-17T20:17:41.4722124Z clockInstructionRate:             1000.00 Mhz
+2026-06-17T20:17:41.4722310Z arch.hasGlobalInt32Atomics:       1
+2026-06-17T20:17:41.4722476Z arch.hasGlobalFloatAtomicExch:    1
+2026-06-17T20:17:41.4722853Z arch.hasSharedInt32Atomics:       1
+2026-06-17T20:17:41.4723031Z arch.hasSharedFloatAtomicExch:    1
+2026-06-17T20:17:41.4723192Z arch.hasFloatAtomicAdd:           1
+2026-06-17T20:17:41.4723353Z arch.hasGlobalInt64Atomics:       1
+2026-06-17T20:17:41.4723510Z arch.hasSharedInt64Atomics:       1
+2026-06-17T20:17:41.4723662Z arch.hasDoubles:                  1
+2026-06-17T20:17:41.4723815Z arch.hasWarpVote:                 1
+2026-06-17T20:17:41.4723968Z arch.hasWarpBallot:               1
+2026-06-17T20:17:41.4724122Z arch.hasWarpShuffle:              1
+2026-06-17T20:17:41.4724274Z arch.hasFunnelShift:              0
+2026-06-17T20:17:41.4724431Z arch.hasThreadFenceSystem:        1
+2026-06-17T20:17:41.4724589Z arch.hasSyncThreadsExt:           0
+2026-06-17T20:17:41.4724747Z arch.hasSurfaceFuncs:             0
+2026-06-17T20:17:41.4724900Z arch.has3dGrid:                   1
+2026-06-17T20:17:41.4725052Z arch.hasDynamicParallelism:       0
+2026-06-17T20:17:41.4725213Z gcnArchName:                      gfx1101
+2026-06-17T20:17:41.4725549Z maxAvailableVgprsPerThread:       256 DWORDs
+2026-06-17T20:17:41.4725729Z peers:                            
+2026-06-17T20:17:41.4725896Z non-peers:                        device#0 
+2026-06-17T20:17:41.4726012Z 
+2026-06-17T20:17:41.4726080Z memInfo.total:                    25.11 GB
+2026-06-17T20:17:41.4726268Z memInfo.free:                     24.97 GB (99%)
+2026-06-17T20:17:41.4726395Z 
+2026-06-17T20:17:41.4726457Z === End of sanity check ===
+2026-06-17T20:17:41.4944298Z ##[group]Run python build_tools/github_actions/test_executable_scripts/test_runner.py
+2026-06-17T20:17:41.4944725Z [36;1mpython build_tools/github_actions/test_executable_scripts/test_runner.py[0m
+2026-06-17T20:17:41.4964731Z shell: C:\Program Files\Git\usr\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-06-17T20:17:41.4964998Z env:
+2026-06-17T20:17:41.4965149Z   VENV_DIR: B:\runner\_work\TheRock\TheRock/.venv
+2026-06-17T20:17:41.4965342Z   ARTIFACT_RUN_ID: 27710372755
+2026-06-17T20:17:41.4965499Z   OUTPUT_ARTIFACTS_DIR: ./build
+2026-06-17T20:17:41.4965667Z   THEROCK_BIN_DIR: ./build/bin
+2026-06-17T20:17:41.4965820Z   AMDGPU_FAMILIES: gfx110X-all
+2026-06-17T20:17:41.4965991Z   AMDGPU_TARGETS: gfx1100,gfx1101,gfx1102,gfx1103
+2026-06-17T20:17:41.4966184Z   ARTIFACT_GROUP: gfx110X-all
+2026-06-17T20:17:41.4966338Z   BENCHMARK_DB_URL: 
+2026-06-17T20:17:41.4966482Z   BENCHMARK_DB_FALLBACK_URL: 
+2026-06-17T20:17:41.4966710Z   pythonLocation: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:41.4966983Z   PKG_CONFIG_PATH: B:\runner\_work\_tool\Python\3.12.10\x64/lib/pkgconfig
+2026-06-17T20:17:41.4967253Z   Python_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:41.4967503Z   Python2_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:41.4967734Z   Python3_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:17:41.4967955Z   VIRTUAL_ENV: B:\runner\_work\TheRock\TheRock\.venv
+2026-06-17T20:17:41.4968141Z   SHARD_INDEX: 1
+2026-06-17T20:17:41.4968268Z   TOTAL_SHARDS: 1
+2026-06-17T20:17:41.4968399Z   TEST_TYPE: quick
+2026-06-17T20:17:41.4968538Z   TEST_COMPONENT: rocblas
+2026-06-17T20:17:41.4968690Z   ROCM_KPACK_DEBUG: 1
+2026-06-17T20:17:41.4968832Z   GPU_ENABLE_PAL: 
+2026-06-17T20:17:41.4968960Z   RETRY_THIS_STEP: true
+2026-06-17T20:17:41.4969094Z   RETRY_COUNT: 1
+2026-06-17T20:17:41.4969212Z   RETRY_DELAY: 7
+2026-06-17T20:17:41.4969335Z   STEP_TIMEOUT_MINUTES: 288
+2026-06-17T20:17:41.4969510Z   STEP_NAME: Test rocblas (shard 1/1) (gfx110X-all) 
+2026-06-17T20:17:41.4969698Z ##[endgroup]
+2026-06-17T20:17:41.6373903Z INFO:root:++ Exec [B:\runner\_work\TheRock\TheRock]$ ctest -L quick -LE ex_gpu --output-on-failure --parallel 8 --timeout 7200 --test-dir 'build\bin\rocblas' -V --tests-information 1,,1
+2026-06-17T20:17:41.6517739Z Internal ctest changing into directory: B:/runner/_work/TheRock/TheRock/build/bin/rocblas
+2026-06-17T20:17:41.6518903Z UpdateCTestConfiguration  from :B:/runner/_work/TheRock/TheRock/build/bin/rocblas/DartConfiguration.tcl
+2026-06-17T20:17:41.6521025Z UpdateCTestConfiguration  from :B:/runner/_work/TheRock/TheRock/build/bin/rocblas/DartConfiguration.tcl
+2026-06-17T20:17:41.6521602Z Test project B:/runner/_work/TheRock/TheRock/build/bin/rocblas
+2026-06-17T20:17:41.6522953Z Constructing a list of tests
+2026-06-17T20:17:41.6526653Z Done constructing a list of tests
+2026-06-17T20:17:41.6526985Z Updating test list for fixtures
+2026-06-17T20:17:41.6527215Z Added 0 tests to meet fixture requirements
+2026-06-17T20:17:41.6530669Z Checking test dependency graph...
+2026-06-17T20:17:41.6530864Z Checking test dependency graph end
+2026-06-17T20:17:41.6531034Z test 1
+2026-06-17T20:17:41.6531199Z     Start 1: rocblas-test_quick_suite
+2026-06-17T20:17:41.6531891Z 
+2026-06-17T20:17:41.6532187Z 1: Test command: B:\runner\_work\TheRock\TheRock\build\bin\rocblas-test.exe "--gtest_filter=*quick*-*known_bug*"
+2026-06-17T20:17:41.6532582Z 1: Working Directory: B:/runner/_work/TheRock/TheRock/build/bin/rocblas
+2026-06-17T20:17:41.6532824Z 1: Environment variables: 
+2026-06-17T20:17:41.6533279Z 1:  OPENBLAS_NUM_THREADS=48
+2026-06-17T20:17:41.6533436Z 1:  OMP_NUM_THREADS=48
+2026-06-17T20:17:41.6533590Z 1: Test timeout computed to be: 1800
+2026-06-17T20:17:42.0148979Z 1: rocBLAS info: Limiting OpenMP threads to 20 (detected 24 available, reduced by 4 to optimize AOCL performance)
+2026-06-17T20:17:42.0149437Z 1: rocBLAS info: Using reference library 'BLAS::BLAS'
+2026-06-17T20:17:42.0150987Z 1: rocBLAS version: 5.5.0.be5adb9b
+2026-06-17T20:17:42.0151266Z 1: rocBLAS-commit-hash: be5adb9ba3c978b388b4b5943daac6cdf9db839a
+2026-06-17T20:17:42.0151513Z 1: Tensile-commit-hash: 
+2026-06-17T20:17:42.0151693Z 1: hipBLASLt version: 1.4.1 commit-hash: be5adb9b
+2026-06-17T20:17:42.0335956Z 1: Query device success: there are 1 devices
+2026-06-17T20:17:42.0336247Z 1: -------------------------------------------------------------------------------
+2026-06-17T20:17:42.0336521Z 1: Device ID 0 : AMD Radeon(TM) Graphics gfx1101
+2026-06-17T20:17:42.0336852Z 1: with 26.7 GB memory, max. SCLK 1280 MHz, max. MCLK 1000 MHz, memoryBusWidth 14 Bytes, compute capability 11.0
+2026-06-17T20:17:42.0337301Z 1: maxGridDimX 2147483647, sharedMemPerBlock 65.5 KB, maxThreadsPerBlock 1024, warpSize 32
+2026-06-17T20:17:42.0337637Z 1: -------------------------------------------------------------------------------
+2026-06-17T20:17:42.0337968Z 1: info: parsing of test data may take a couple minutes before any test output appears...
+2026-06-17T20:17:42.0338220Z 1: 
+2026-06-17T20:19:26.1372434Z 1: Note: Google Test filter = *quick*-*known_bug*
+2026-06-17T20:19:26.1372729Z 1: [==========] Running 372837 tests from 203 test suites.
+2026-06-17T20:19:26.1372985Z 1: [----------] Global test environment set-up.
+2026-06-17T20:19:26.1373191Z 1: [----------] 2 tests from _/half_operators
+2026-06-17T20:19:26.1373412Z 1: [----------] 2 tests from _/half_operators (0 ms total)
+2026-06-17T20:19:26.1373600Z 1: 
+2026-06-17T20:19:26.1373741Z 1: [----------] 2 tests from _/complex_operators
+2026-06-17T20:19:26.1374019Z 1: [----------] 2 tests from _/complex_operators (0 ms total)
+2026-06-17T20:19:26.1374310Z 1: 
+2026-06-17T20:19:26.1374633Z 1: [----------] 7 tests from _/helper_utilities
+2026-06-17T20:19:26.1374948Z 1: [----------] 7 tests from _/helper_utilities (0 ms total)
+2026-06-17T20:19:26.1375227Z 1: 
+2026-06-17T20:19:26.1375416Z 1: [----------] 21 tests from _/check_numerics_vector
+2026-06-17T20:19:26.2343545Z 1: kpack: cache created: disabled=0, debug=1, override_paths=0, prefix_paths=0
+2026-06-17T20:19:26.2344424Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=52, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#52', 1 search paths
+2026-06-17T20:19:26.2349799Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:26.2350664Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:26.2472902Z 1: kpack: opened and cached archive: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:26.2473377Z 1: kpack:   architecture: gfx1101
+2026-06-17T20:19:26.2484083Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:26.2484703Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:26.2485253Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:26.2485719Z 1: kpack:   found kernel: 72840 bytes
+2026-06-17T20:19:26.2485960Z 1: kpack: loaded code object: 72840 bytes
+2026-06-17T20:19:26.3411437Z 1: [----------] 21 tests from _/check_numerics_vector (203 ms total)
+2026-06-17T20:19:26.3411825Z 1: 
+2026-06-17T20:19:26.3412004Z 1: [----------] 42 tests from _/check_numerics_matrix
+2026-06-17T20:19:26.3431132Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=53, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#53', 1 search paths
+2026-06-17T20:19:26.3432666Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:26.3434118Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:26.3434862Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:26.3435349Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:26.3435906Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:26.3439731Z 1: kpack:   found kernel: 147320 bytes
+2026-06-17T20:19:26.3440041Z 1: kpack: loaded code object: 147320 bytes
+2026-06-17T20:19:26.5305823Z 1: [----------] 42 tests from _/check_numerics_matrix (189 ms total)
+2026-06-17T20:19:26.5306262Z 1: 
+2026-06-17T20:19:26.5306513Z 1: [----------] 42 tests from _/check_numerics_matrix_batched
+2026-06-17T20:19:26.7107223Z 1: [----------] 42 tests from _/check_numerics_matrix_batched (180 ms total)
+2026-06-17T20:19:26.7107598Z 1: 
+2026-06-17T20:19:26.7107755Z 1: [----------] 1 test from _/set_get_pointer_mode
+2026-06-17T20:19:26.7120378Z 1: [----------] 1 test from _/set_get_pointer_mode (1 ms total)
+2026-06-17T20:19:26.7120729Z 1: 
+2026-06-17T20:19:26.7120961Z 1: [----------] 1 test from _/set_get_atomics_mode
+2026-06-17T20:19:26.7134476Z 1: [----------] 1 test from _/set_get_atomics_mode (1 ms total)
+2026-06-17T20:19:26.7135026Z 1: 
+2026-06-17T20:19:26.7135267Z 1: [----------] 1 test from _/set_get_alpha_beta_stride
+2026-06-17T20:19:26.7148239Z 1: [----------] 1 test from _/set_get_alpha_beta_stride (1 ms total)
+2026-06-17T20:19:26.7148564Z 1: 
+2026-06-17T20:19:26.7148752Z 1: [----------] 20 tests from _/logging
+2026-06-17T20:19:26.7189228Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=42, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#42', 1 search paths
+2026-06-17T20:19:26.7192054Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:26.7192998Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:26.7193738Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:26.7194233Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:26.7194743Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:26.7200973Z 1: kpack:   found kernel: 419256 bytes
+2026-06-17T20:19:26.7201329Z 1: kpack: loaded code object: 419256 bytes
+2026-06-17T20:19:26.7402430Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=44, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#44', 1 search paths
+2026-06-17T20:19:26.7405434Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:26.7406350Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:26.7407091Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:26.7407584Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:26.7408098Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:26.7418371Z 1: kpack:   found kernel: 864520 bytes
+2026-06-17T20:19:26.7419007Z 1: kpack: loaded code object: 864520 bytes
+2026-06-17T20:19:26.7839498Z 1: rocBLAS initialize,version,5.5.0.be5adb9b
+2026-06-17T20:19:27.0679558Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=41, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#41', 1 search paths
+2026-06-17T20:19:27.0680620Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:27.0681197Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.0681702Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.0682038Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:27.0682385Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:27.0682709Z 1: kpack:   found kernel: 82688 bytes
+2026-06-17T20:19:27.0682899Z 1: kpack: loaded code object: 82688 bytes
+2026-06-17T20:19:27.0712662Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=45, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#45', 1 search paths
+2026-06-17T20:19:27.0714365Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:27.0714986Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.0715479Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.0715811Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:27.0716166Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:27.0716482Z 1: kpack:   found kernel: 84832 bytes
+2026-06-17T20:19:27.0716657Z 1: kpack: loaded code object: 84832 bytes
+2026-06-17T20:19:27.0748857Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=43, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#43', 1 search paths
+2026-06-17T20:19:27.0750351Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:27.0750913Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.0751416Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.0751754Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:27.0752098Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:27.0752416Z 1: kpack:   found kernel: 54136 bytes
+2026-06-17T20:19:27.0752588Z 1: kpack: loaded code object: 54136 bytes
+2026-06-17T20:19:27.0802621Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=50, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#50', 1 search paths
+2026-06-17T20:19:27.0804268Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:27.0804833Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.0805309Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.0805639Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:27.0806194Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:27.0808837Z 1: kpack:   found kernel: 192064 bytes
+2026-06-17T20:19:27.0809024Z 1: kpack: loaded code object: 192064 bytes
+2026-06-17T20:19:27.0880134Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=51, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#51', 1 search paths
+2026-06-17T20:19:27.0881366Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:27.0881934Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.0882415Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.0882747Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:27.0883110Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:27.0883421Z 1: kpack:   found kernel: 34960 bytes
+2026-06-17T20:19:27.0883595Z 1: kpack: loaded code object: 34960 bytes
+2026-06-17T20:19:27.0902042Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=14, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#14', 1 search paths
+2026-06-17T20:19:27.0903569Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:27.0904145Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.0904647Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.0904983Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:27.0905335Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:27.0905652Z 1: kpack:   found kernel: 127288 bytes
+2026-06-17T20:19:27.0905828Z 1: kpack: loaded code object: 127288 bytes
+2026-06-17T20:19:27.0941575Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=12, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#12', 1 search paths
+2026-06-17T20:19:27.0943526Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:27.0944124Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.0944621Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.0944958Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:27.0945324Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:27.0969821Z 1: kpack:   found kernel: 3597224 bytes
+2026-06-17T20:19:27.0970033Z 1: kpack: loaded code object: 3597224 bytes
+2026-06-17T20:19:27.1824669Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=17, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#17', 1 search paths
+2026-06-17T20:19:27.1827869Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:27.1828502Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.1829008Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.1829698Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:27.1830055Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:27.1830684Z 1: kpack:   found kernel: 200632 bytes
+2026-06-17T20:19:27.1830924Z 1: kpack: loaded code object: 200632 bytes
+2026-06-17T20:19:27.1907084Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=32, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#32', 1 search paths
+2026-06-17T20:19:27.1908097Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:27.1908651Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.1909146Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.1909491Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:27.1909846Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:27.1910174Z 1: kpack:   found kernel: 69856 bytes
+2026-06-17T20:19:27.1910354Z 1: kpack: loaded code object: 69856 bytes
+2026-06-17T20:19:27.1936030Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=33, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#33', 1 search paths
+2026-06-17T20:19:27.1937422Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:27.1937976Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.1938488Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.1938840Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:27.1939193Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:27.1939505Z 1: kpack:   found kernel: 36880 bytes
+2026-06-17T20:19:27.1939691Z 1: kpack: loaded code object: 36880 bytes
+2026-06-17T20:19:27.1963678Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=25, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#25', 1 search paths
+2026-06-17T20:19:27.1966634Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:27.1967227Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.1967724Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.1968170Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:27.1968524Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:27.1968844Z 1: kpack:   found kernel: 26472 bytes
+2026-06-17T20:19:27.1969027Z 1: kpack: loaded code object: 26472 bytes
+2026-06-17T20:19:27.1983807Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=26, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#26', 1 search paths
+2026-06-17T20:19:27.1985407Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:27.1986125Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.1986612Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.1987094Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:27.1987475Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:27.1987795Z 1: kpack:   found kernel: 16256 bytes
+2026-06-17T20:19:27.1988057Z 1: kpack: loaded code object: 16256 bytes
+2026-06-17T20:19:27.1999901Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=19, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#19', 1 search paths
+2026-06-17T20:19:27.2001666Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:27.2002227Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.2002712Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.2003042Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:27.2003388Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:27.2017917Z 1: kpack:   found kernel: 1726632 bytes
+2026-06-17T20:19:27.2018133Z 1: kpack: loaded code object: 1726632 bytes
+2026-06-17T20:19:27.2273008Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=27, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#27', 1 search paths
+2026-06-17T20:19:27.2274942Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:27.2275665Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.2276170Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.2276515Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:27.2276869Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:27.2278151Z 1: kpack:   found kernel: 213488 bytes
+2026-06-17T20:19:27.2278684Z 1: kpack: loaded code object: 213488 bytes
+2026-06-17T20:19:27.2353079Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=28, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#28', 1 search paths
+2026-06-17T20:19:27.2356019Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:27.2356578Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.2357196Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.2357530Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:27.2357875Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:27.2358200Z 1: kpack:   found kernel: 61776 bytes
+2026-06-17T20:19:27.2358375Z 1: kpack: loaded code object: 61776 bytes
+2026-06-17T20:19:27.2391738Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=29, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#29', 1 search paths
+2026-06-17T20:19:27.2393610Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:27.2394156Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.2394921Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.2395241Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:27.2395575Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:27.2396005Z 1: kpack:   found kernel: 79696 bytes
+2026-06-17T20:19:27.2396172Z 1: kpack: loaded code object: 79696 bytes
+2026-06-17T20:19:27.2425719Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=13, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#13', 1 search paths
+2026-06-17T20:19:27.2427480Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:27.2428020Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.2428505Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.2428841Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:27.2429187Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:27.2429503Z 1: kpack:   found kernel: 92552 bytes
+2026-06-17T20:19:27.2429685Z 1: kpack: loaded code object: 92552 bytes
+2026-06-17T20:19:27.2465707Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=16, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#16', 1 search paths
+2026-06-17T20:19:27.2467204Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:27.2467750Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.2468238Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.2468570Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:27.2468917Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:27.2472662Z 1: kpack:   found kernel: 322912 bytes
+2026-06-17T20:19:27.2473065Z 1: kpack: loaded code object: 322912 bytes
+2026-06-17T20:19:27.2569595Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=15, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#15', 1 search paths
+2026-06-17T20:19:27.2571315Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:27.2571942Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.2572440Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.2572783Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:27.2573154Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:27.2573485Z 1: kpack:   found kernel: 157080 bytes
+2026-06-17T20:19:27.2573717Z 1: kpack: loaded code object: 157080 bytes
+2026-06-17T20:19:27.2597093Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=31, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#31', 1 search paths
+2026-06-17T20:19:27.2598710Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:27.2599585Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.2600065Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.2600394Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:27.2600911Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:27.2601251Z 1: kpack:   found kernel: 169288 bytes
+2026-06-17T20:19:27.2601436Z 1: kpack: loaded code object: 169288 bytes
+2026-06-17T20:19:27.2623894Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=11, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#11', 1 search paths
+2026-06-17T20:19:27.2625431Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:27.2625994Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.2626476Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.2626811Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:27.2627159Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:27.2689700Z 1: kpack:   found kernel: 8683472 bytes
+2026-06-17T20:19:27.2689987Z 1: kpack: loaded code object: 8683472 bytes
+2026-06-17T20:19:27.3189361Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=0, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#0', 1 search paths
+2026-06-17T20:19:27.3191461Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:27.3192093Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.3192750Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.3193095Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:27.3193460Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:27.3201450Z 1: kpack:   found kernel: 1659408 bytes
+2026-06-17T20:19:27.3201656Z 1: kpack: loaded code object: 1659408 bytes
+2026-06-17T20:19:27.3514650Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=10, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#10', 1 search paths
+2026-06-17T20:19:27.3516662Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:27.3517343Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.3517860Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.3518208Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:27.3518562Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:27.3519868Z 1: kpack:   found kernel: 233800 bytes
+2026-06-17T20:19:27.3520076Z 1: kpack: loaded code object: 233800 bytes
+2026-06-17T20:19:27.3596313Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=2, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#2', 1 search paths
+2026-06-17T20:19:27.3597867Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:27.3598791Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.3599270Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.3600425Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:27.3600780Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:27.3601213Z 1: kpack:   found kernel: 271552 bytes
+2026-06-17T20:19:27.3601396Z 1: kpack: loaded code object: 271552 bytes
+2026-06-17T20:19:27.3685732Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=4, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#4', 1 search paths
+2026-06-17T20:19:27.3686717Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:27.3687287Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.3687791Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.3688151Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:27.3688511Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:27.3721032Z 1: kpack:   found kernel: 8020656 bytes
+2026-06-17T20:19:27.3721559Z 1: kpack: loaded code object: 8020656 bytes
+2026-06-17T20:19:27.5423508Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=6, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#6', 1 search paths
+2026-06-17T20:19:27.5425310Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:27.5425873Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.5426364Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.5426698Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:27.5427054Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:27.5436113Z 1: kpack:   found kernel: 1368008 bytes
+2026-06-17T20:19:27.5436332Z 1: kpack: loaded code object: 1368008 bytes
+2026-06-17T20:19:27.6267203Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=59, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#59', 1 search paths
+2026-06-17T20:19:27.6268829Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:27.6269440Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.6269960Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:27.6270303Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:27.6270653Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:27.6270969Z 1: kpack:   found kernel: 97920 bytes
+2026-06-17T20:19:27.6271143Z 1: kpack: loaded code object: 97920 bytes
+2026-06-17T20:19:27.9119985Z 1: [----------] 20 tests from _/logging (1196 ms total)
+2026-06-17T20:19:27.9120310Z 1: 
+2026-06-17T20:19:27.9120969Z 1: [----------] 53 tests from _/set_get_vector
+2026-06-17T20:19:27.9869029Z 1: [----------] 53 tests from _/set_get_vector (74 ms total)
+2026-06-17T20:19:27.9869385Z 1: 
+2026-06-17T20:19:27.9869619Z 1: [----------] 53 tests from _/set_get_vector_async
+2026-06-17T20:19:28.1443889Z 1: [----------] 53 tests from _/set_get_vector_async (157 ms total)
+2026-06-17T20:19:28.1444306Z 1: 
+2026-06-17T20:19:28.1445164Z 1: [----------] 27 tests from _/set_get_matrix
+2026-06-17T20:19:28.1647168Z 1: [----------] 27 tests from _/set_get_matrix (20 ms total)
+2026-06-17T20:19:28.1647522Z 1: 
+2026-06-17T20:19:28.1647741Z 1: [----------] 27 tests from _/set_get_matrix_async
+2026-06-17T20:19:28.2203284Z 1: [----------] 27 tests from _/set_get_matrix_async (55 ms total)
+2026-06-17T20:19:28.2203557Z 1: 
+2026-06-17T20:19:28.2203831Z 1: [----------] 212 tests from _/asum
+2026-06-17T20:19:28.7028549Z 1: [----------] 212 tests from _/asum (482 ms total)
+2026-06-17T20:19:28.7028882Z 1: 
+2026-06-17T20:19:28.7029094Z 1: [----------] 276 tests from _/asum_batched
+2026-06-17T20:19:29.7882729Z 1: [----------] 276 tests from _/asum_batched (1085 ms total)
+2026-06-17T20:19:29.7883101Z 1: 
+2026-06-17T20:19:29.7883359Z 1: [----------] 324 tests from _/asum_strided_batched
+2026-06-17T20:19:31.1307101Z 1: [----------] 324 tests from _/asum_strided_batched (1342 ms total)
+2026-06-17T20:19:31.1307462Z 1: 
+2026-06-17T20:19:31.1307643Z 1: [----------] 171 tests from _/axpy
+2026-06-17T20:19:31.6713429Z 1: [----------] 171 tests from _/axpy (540 ms total)
+2026-06-17T20:19:31.6713795Z 1: 
+2026-06-17T20:19:31.6714010Z 1: [----------] 441 tests from _/axpy_batched
+2026-06-17T20:19:32.9119469Z 1: [----------] 441 tests from _/axpy_batched (1240 ms total)
+2026-06-17T20:19:32.9119801Z 1: 
+2026-06-17T20:19:32.9119999Z 1: [----------] 549 tests from _/axpy_strided_batched
+2026-06-17T20:19:34.2805056Z 1: [----------] 549 tests from _/axpy_strided_batched (1368 ms total)
+2026-06-17T20:19:34.2805467Z 1: 
+2026-06-17T20:19:34.2805692Z 1: [----------] 156 tests from _/copy
+2026-06-17T20:19:34.5872163Z 1: [----------] 156 tests from _/copy (306 ms total)
+2026-06-17T20:19:34.5872480Z 1: 
+2026-06-17T20:19:34.5872667Z 1: [----------] 108 tests from _/copy_batched
+2026-06-17T20:19:35.1028244Z 1: [----------] 108 tests from _/copy_batched (515 ms total)
+2026-06-17T20:19:35.1028502Z 1: 
+2026-06-17T20:19:35.1028727Z 1: [----------] 108 tests from _/copy_strided_batched
+2026-06-17T20:19:35.5915202Z 1: [----------] 108 tests from _/copy_strided_batched (488 ms total)
+2026-06-17T20:19:35.5915554Z 1: 
+2026-06-17T20:19:35.5915726Z 1: [----------] 289 tests from _/dot
+2026-06-17T20:19:36.3277593Z 1: [----------] 289 tests from _/dot (736 ms total)
+2026-06-17T20:19:36.3277922Z 1: 
+2026-06-17T20:19:36.3278109Z 1: [----------] 126 tests from _/dotc
+2026-06-17T20:19:36.6782811Z 1: [----------] 126 tests from _/dotc (350 ms total)
+2026-06-17T20:19:36.6783158Z 1: 
+2026-06-17T20:19:36.6783349Z 1: [----------] 699 tests from _/dot_batched
+2026-06-17T20:19:41.6240815Z 1: [----------] 699 tests from _/dot_batched (4945 ms total)
+2026-06-17T20:19:41.6241204Z 1: 
+2026-06-17T20:19:41.6241559Z 1: [----------] 282 tests from _/dotc_batched
+2026-06-17T20:19:44.0454546Z 1: [----------] 282 tests from _/dotc_batched (2421 ms total)
+2026-06-17T20:19:44.0454933Z 1: 
+2026-06-17T20:19:44.0455165Z 1: [----------] 759 tests from _/dot_strided_batched
+2026-06-17T20:19:48.7357297Z 1: [----------] 759 tests from _/dot_strided_batched (4690 ms total)
+2026-06-17T20:19:48.7357699Z 1: 
+2026-06-17T20:19:48.7357930Z 1: [----------] 306 tests from _/dotc_strided_batched
+2026-06-17T20:19:51.0597461Z 1: [----------] 306 tests from _/dotc_strided_batched (2323 ms total)
+2026-06-17T20:19:51.0597838Z 1: 
+2026-06-17T20:19:51.0598044Z 1: [----------] 212 tests from _/iamax
+2026-06-17T20:19:51.5082979Z 1: [----------] 212 tests from _/iamax (448 ms total)
+2026-06-17T20:19:51.5083309Z 1: 
+2026-06-17T20:19:51.5083501Z 1: [----------] 276 tests from _/iamax_batched
+2026-06-17T20:19:52.6133542Z 1: [----------] 276 tests from _/iamax_batched (1104 ms total)
+2026-06-17T20:19:52.6134036Z 1: 
+2026-06-17T20:19:52.6134248Z 1: [----------] 324 tests from _/iamax_strided_batched
+2026-06-17T20:19:53.9310188Z 1: [----------] 324 tests from _/iamax_strided_batched (1317 ms total)
+2026-06-17T20:19:53.9310540Z 1: 
+2026-06-17T20:19:53.9310712Z 1: [----------] 212 tests from _/iamin
+2026-06-17T20:19:54.3890422Z 1: [----------] 212 tests from _/iamin (457 ms total)
+2026-06-17T20:19:54.3890791Z 1: 
+2026-06-17T20:19:54.3891004Z 1: [----------] 276 tests from _/iamin_batched
+2026-06-17T20:19:55.4769601Z 1: [----------] 276 tests from _/iamin_batched (1087 ms total)
+2026-06-17T20:19:55.4769932Z 1: 
+2026-06-17T20:19:55.4770820Z 1: [----------] 324 tests from _/iamin_strided_batched
+2026-06-17T20:19:56.7840796Z 1: [----------] 324 tests from _/iamin_strided_batched (1306 ms total)
+2026-06-17T20:19:56.7841207Z 1: 
+2026-06-17T20:19:56.7841376Z 1: [----------] 212 tests from _/nrm2
+2026-06-17T20:19:57.2343035Z 1: [----------] 212 tests from _/nrm2 (450 ms total)
+2026-06-17T20:19:57.2343400Z 1: 
+2026-06-17T20:19:57.2343616Z 1: [----------] 276 tests from _/nrm2_batched
+2026-06-17T20:19:58.4084195Z 1: [----------] 276 tests from _/nrm2_batched (1173 ms total)
+2026-06-17T20:19:58.4084537Z 1: 
+2026-06-17T20:19:58.4085517Z 1: [----------] 324 tests from _/nrm2_strided_batched
+2026-06-17T20:19:59.8459876Z 1: [----------] 324 tests from _/nrm2_strided_batched (1437 ms total)
+2026-06-17T20:19:59.8460346Z 1: 
+2026-06-17T20:19:59.8460530Z 1: [----------] 378 tests from _/rot
+2026-06-17T20:19:59.9370813Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=46, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#46', 1 search paths
+2026-06-17T20:19:59.9372799Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:19:59.9373795Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:59.9374700Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:19:59.9375280Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:19:59.9375896Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:19:59.9376451Z 1: kpack:   found kernel: 126152 bytes
+2026-06-17T20:19:59.9376738Z 1: kpack: loaded code object: 126152 bytes
+2026-06-17T20:20:00.7339641Z 1: [----------] 378 tests from _/rot (887 ms total)
+2026-06-17T20:20:00.7340067Z 1: 
+2026-06-17T20:20:00.7340300Z 1: [----------] 414 tests from _/rot_batched
+2026-06-17T20:20:01.6999326Z 1: [----------] 414 tests from _/rot_batched (965 ms total)
+2026-06-17T20:20:01.6999715Z 1: 
+2026-06-17T20:20:01.6999949Z 1: [----------] 486 tests from _/rot_strided_batched
+2026-06-17T20:20:02.7688519Z 1: [----------] 486 tests from _/rot_strided_batched (1068 ms total)
+2026-06-17T20:20:02.7688873Z 1: 
+2026-06-17T20:20:02.7689010Z 1: [----------] 68 tests from _/rotg
+2026-06-17T20:20:02.8000468Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=47, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#47', 1 search paths
+2026-06-17T20:20:02.8002577Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:20:02.8003710Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:20:02.8004597Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:20:02.8005178Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:20:02.8005779Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:20:02.8006813Z 1: kpack:   found kernel: 48048 bytes
+2026-06-17T20:20:02.8007093Z 1: kpack: loaded code object: 48048 bytes
+2026-06-17T20:20:02.9764772Z 1: [----------] 68 tests from _/rotg (207 ms total)
+2026-06-17T20:20:02.9765029Z 1: 
+2026-06-17T20:20:02.9765175Z 1: [----------] 84 tests from _/rotg_batched
+2026-06-17T20:20:03.2150257Z 1: [----------] 84 tests from _/rotg_batched (238 ms total)
+2026-06-17T20:20:03.2150624Z 1: 
+2026-06-17T20:20:03.2150855Z 1: [----------] 84 tests from _/rotg_strided_batched
+2026-06-17T20:20:03.4413239Z 1: [----------] 84 tests from _/rotg_strided_batched (226 ms total)
+2026-06-17T20:20:03.4413584Z 1: 
+2026-06-17T20:20:03.4413749Z 1: [----------] 126 tests from _/rotm
+2026-06-17T20:20:03.4689361Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=48, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#48', 1 search paths
+2026-06-17T20:20:03.4691818Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:20:03.4692974Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:20:03.4693749Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:20:03.4694243Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:20:03.4694751Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:20:03.4695215Z 1: kpack:   found kernel: 27368 bytes
+2026-06-17T20:20:03.4695473Z 1: kpack: loaded code object: 27368 bytes
+2026-06-17T20:20:03.8010971Z 1: [----------] 126 tests from _/rotm (359 ms total)
+2026-06-17T20:20:03.8011284Z 1: 
+2026-06-17T20:20:03.8011477Z 1: [----------] 138 tests from _/rotm_batched
+2026-06-17T20:20:04.1461303Z 1: [----------] 138 tests from _/rotm_batched (344 ms total)
+2026-06-17T20:20:04.1461660Z 1: 
+2026-06-17T20:20:04.1461855Z 1: [----------] 162 tests from _/rotm_strided_batched
+2026-06-17T20:20:04.5306693Z 1: [----------] 162 tests from _/rotm_strided_batched (384 ms total)
+2026-06-17T20:20:04.5307050Z 1: 
+2026-06-17T20:20:04.5307216Z 1: [----------] 10 tests from _/rotmg
+2026-06-17T20:20:04.5482723Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=49, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#49', 1 search paths
+2026-06-17T20:20:04.5484567Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:20:04.5485489Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:20:04.5486233Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:20:04.5487028Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:20:04.5487567Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:20:04.5488039Z 1: kpack:   found kernel: 23104 bytes
+2026-06-17T20:20:04.5488286Z 1: kpack: loaded code object: 23104 bytes
+2026-06-17T20:20:04.7180267Z 1: [----------] 10 tests from _/rotmg (187 ms total)
+2026-06-17T20:20:04.7180582Z 1: 
+2026-06-17T20:20:04.7180904Z 1: [----------] 18 tests from _/rotmg_batched
+2026-06-17T20:20:04.9817422Z 1: [----------] 18 tests from _/rotmg_batched (263 ms total)
+2026-06-17T20:20:04.9817770Z 1: 
+2026-06-17T20:20:04.9817959Z 1: [----------] 18 tests from _/rotmg_strided_batched
+2026-06-17T20:20:05.2412226Z 1: [----------] 18 tests from _/rotmg_strided_batched (259 ms total)
+2026-06-17T20:20:05.2412831Z 1: 
+2026-06-17T20:20:05.2413524Z 1: [----------] 954 tests from _/scal
+2026-06-17T20:20:07.1710534Z 1: [----------] 954 tests from _/scal (1929 ms total)
+2026-06-17T20:20:07.1710941Z 1: 
+2026-06-17T20:20:07.1711134Z 1: [----------] 774 tests from _/scal_batched
+2026-06-17T20:20:08.7572985Z 1: [----------] 774 tests from _/scal_batched (1585 ms total)
+2026-06-17T20:20:08.7573315Z 1: 
+2026-06-17T20:20:08.7573517Z 1: [----------] 774 tests from _/scal_strided_batched
+2026-06-17T20:20:10.3306281Z 1: [----------] 774 tests from _/scal_strided_batched (1573 ms total)
+2026-06-17T20:20:10.3306749Z 1: 
+2026-06-17T20:20:10.3307044Z 1: [----------] 252 tests from _/swap
+2026-06-17T20:20:10.8139697Z 1: [----------] 252 tests from _/swap (483 ms total)
+2026-06-17T20:20:10.8139987Z 1: 
+2026-06-17T20:20:10.8140186Z 1: [----------] 276 tests from _/swap_batched
+2026-06-17T20:20:11.3710447Z 1: [----------] 276 tests from _/swap_batched (556 ms total)
+2026-06-17T20:20:11.3710826Z 1: 
+2026-06-17T20:20:11.3711062Z 1: [----------] 324 tests from _/swap_strided_batched
+2026-06-17T20:20:11.9666512Z 1: [----------] 324 tests from _/swap_strided_batched (595 ms total)
+2026-06-17T20:20:11.9666927Z 1: 
+2026-06-17T20:20:11.9667277Z 1: [----------] 502 tests from _/axpy_ex
+2026-06-17T20:20:13.4851636Z 1: [----------] 502 tests from _/axpy_ex (1518 ms total)
+2026-06-17T20:20:13.4852012Z 1: 
+2026-06-17T20:20:13.4853648Z 1: [----------] 1311 tests from _/axpy_batched_ex
+2026-06-17T20:20:17.1544459Z 1: [----------] 1311 tests from _/axpy_batched_ex (3668 ms total)
+2026-06-17T20:20:17.1544870Z 1: 
+2026-06-17T20:20:17.1548549Z 1: [----------] 1635 tests from _/axpy_strided_batched_ex
+2026-06-17T20:20:21.2792102Z 1: [----------] 1635 tests from _/axpy_strided_batched_ex (4124 ms total)
+2026-06-17T20:20:21.2792539Z 1: 
+2026-06-17T20:20:21.2792747Z 1: [----------] 391 tests from _/dot_ex
+2026-06-17T20:20:21.2978006Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=63, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#63', 1 search paths
+2026-06-17T20:20:21.2980795Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:20:21.2981836Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:20:21.2982759Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:20:21.2983353Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:20:21.2983976Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:20:21.2992069Z 1: kpack:   found kernel: 2055088 bytes
+2026-06-17T20:20:21.2992365Z 1: kpack: loaded code object: 2055088 bytes
+2026-06-17T20:20:22.3114358Z 1: [----------] 391 tests from _/dot_ex (1032 ms total)
+2026-06-17T20:20:22.3114721Z 1: 
+2026-06-17T20:20:22.3115108Z 1: [----------] 843 tests from _/dot_batched_ex
+2026-06-17T20:20:27.7768296Z 1: [----------] 843 tests from _/dot_batched_ex (5464 ms total)
+2026-06-17T20:20:27.7769070Z 1: 
+2026-06-17T20:20:27.7769986Z 1: [----------] 735 tests from _/dot_strided_batched_ex
+2026-06-17T20:20:32.6354552Z 1: [----------] 735 tests from _/dot_strided_batched_ex (4858 ms total)
+2026-06-17T20:20:32.6354950Z 1: 
+2026-06-17T20:20:32.6355171Z 1: [----------] 347 tests from _/dotc_ex
+2026-06-17T20:20:33.4377337Z 1: [----------] 347 tests from _/dotc_ex (802 ms total)
+2026-06-17T20:20:33.4377726Z 1: 
+2026-06-17T20:20:33.4377929Z 1: [----------] 843 tests from _/dotc_batched_ex
+2026-06-17T20:20:38.7486639Z 1: [----------] 843 tests from _/dotc_batched_ex (5310 ms total)
+2026-06-17T20:20:38.7487013Z 1: 
+2026-06-17T20:20:38.7487346Z 1: [----------] 915 tests from _/dotc_strided_batched_ex
+2026-06-17T20:20:43.8949372Z 1: [----------] 915 tests from _/dotc_strided_batched_ex (5145 ms total)
+2026-06-17T20:20:43.8953252Z 1: 
+2026-06-17T20:20:43.8953455Z 1: [----------] 306 tests from _/nrm2_ex
+2026-06-17T20:20:44.5345661Z 1: [----------] 306 tests from _/nrm2_ex (639 ms total)
+2026-06-17T20:20:44.5346008Z 1: 
+2026-06-17T20:20:44.5346199Z 1: [----------] 402 tests from _/nrm2_batched_ex
+2026-06-17T20:20:46.2224950Z 1: [----------] 402 tests from _/nrm2_batched_ex (1687 ms total)
+2026-06-17T20:20:46.2225373Z 1: 
+2026-06-17T20:20:46.2226202Z 1: [----------] 474 tests from _/nrm2_strided_batched_ex
+2026-06-17T20:20:48.1619265Z 1: [----------] 474 tests from _/nrm2_strided_batched_ex (1939 ms total)
+2026-06-17T20:20:48.1619648Z 1: 
+2026-06-17T20:20:48.1619820Z 1: [----------] 492 tests from _/rot_ex
+2026-06-17T20:20:49.2801681Z 1: [----------] 492 tests from _/rot_ex (1118 ms total)
+2026-06-17T20:20:49.2802082Z 1: 
+2026-06-17T20:20:49.2802276Z 1: [----------] 540 tests from _/rot_batched_ex
+2026-06-17T20:20:50.5254734Z 1: [----------] 540 tests from _/rot_batched_ex (1245 ms total)
+2026-06-17T20:20:50.5255143Z 1: 
+2026-06-17T20:20:50.5255352Z 1: [----------] 636 tests from _/rot_strided_batched_ex
+2026-06-17T20:20:51.8889936Z 1: [----------] 636 tests from _/rot_strided_batched_ex (1363 ms total)
+2026-06-17T20:20:51.8890312Z 1: 
+2026-06-17T20:20:51.8893892Z 1: [----------] 1731 tests from _/scal_ex
+2026-06-17T20:20:55.1238137Z 1: [----------] 1731 tests from _/scal_ex (3234 ms total)
+2026-06-17T20:20:55.1238588Z 1: 
+2026-06-17T20:20:55.1241152Z 1: [----------] 1401 tests from _/scal_batched_ex
+2026-06-17T20:20:57.7967246Z 1: [----------] 1401 tests from _/scal_batched_ex (2672 ms total)
+2026-06-17T20:20:57.7967598Z 1: 
+2026-06-17T20:20:57.7969609Z 1: [----------] 1401 tests from _/scal_strided_batched_ex
+2026-06-17T20:21:00.4168877Z 1: [----------] 1401 tests from _/scal_strided_batched_ex (2619 ms total)
+2026-06-17T20:21:00.4169264Z 1: 
+2026-06-17T20:21:00.4173447Z 1: [----------] 1474 tests from _/trsv
+2026-06-17T20:21:04.0887459Z 1: [----------] 1474 tests from _/trsv (3671 ms total)
+2026-06-17T20:21:04.0887803Z 1: 
+2026-06-17T20:21:04.0899942Z 1: [----------] 4354 tests from _/trsv_batched
+2026-06-17T20:21:15.9323755Z 1: [----------] 4354 tests from _/trsv_batched (11842 ms total)
+2026-06-17T20:21:15.9324158Z 1: 
+2026-06-17T20:21:15.9342722Z 1: [----------] 7954 tests from _/trsv_strided_batched
+2026-06-17T20:21:39.3883914Z 1: [----------] 7954 tests from _/trsv_strided_batched (23453 ms total)
+2026-06-17T20:21:39.3884291Z 1: 
+2026-06-17T20:21:39.3900801Z 1: [----------] 5960 tests from _/gbmv
+2026-06-17T20:21:56.1667402Z 1: [----------] 5960 tests from _/gbmv (16776 ms total)
+2026-06-17T20:21:56.1667991Z 1: 
+2026-06-17T20:21:56.1698556Z 1: [----------] 12200 tests from _/gbmv_batched
+2026-06-17T20:22:22.2936650Z 1: [----------] 12200 tests from _/gbmv_batched (26123 ms total)
+2026-06-17T20:22:22.2940720Z 1: 
+2026-06-17T20:22:22.2964017Z 1: [----------] 12200 tests from _/gbmv_strided_batched
+2026-06-17T20:22:47.6825798Z 1: [----------] 12200 tests from _/gbmv_strided_batched (25385 ms total)
+2026-06-17T20:22:47.6829882Z 1: 
+2026-06-17T20:22:47.6830180Z 1: [----------] 598 tests from _/gemv
+2026-06-17T20:22:49.3847295Z 1: [----------] 598 tests from _/gemv (1701 ms total)
+2026-06-17T20:22:49.3847601Z 1: 
+2026-06-17T20:22:49.3858818Z 1: [----------] 1504 tests from _/gemv_batched
+2026-06-17T20:23:11.6663066Z 1: [----------] 1504 tests from _/gemv_batched (22279 ms total)
+2026-06-17T20:23:11.6663354Z 1: 
+2026-06-17T20:23:11.6681499Z 1: [----------] 5180 tests from _/gemv_strided_batched
+2026-06-17T20:23:38.6063376Z 1: [----------] 5180 tests from _/gemv_strided_batched (26937 ms total)
+2026-06-17T20:23:38.6063938Z 1: 
+2026-06-17T20:23:38.6064607Z 1: [----------] 568 tests from _/hbmv
+2026-06-17T20:23:38.6087867Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=18, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#18', 1 search paths
+2026-06-17T20:23:38.6091442Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:23:38.6092806Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:23:38.6093556Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:23:38.6094063Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:23:38.6094757Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:23:38.6095227Z 1: kpack:   found kernel: 48256 bytes
+2026-06-17T20:23:38.6095466Z 1: kpack: loaded code object: 48256 bytes
+2026-06-17T20:23:40.6477505Z 1: [----------] 568 tests from _/hbmv (2041 ms total)
+2026-06-17T20:23:40.6477887Z 1: 
+2026-06-17T20:23:40.6478099Z 1: [----------] 632 tests from _/hbmv_batched
+2026-06-17T20:23:42.9881268Z 1: [----------] 632 tests from _/hbmv_batched (2340 ms total)
+2026-06-17T20:23:42.9881653Z 1: 
+2026-06-17T20:23:42.9881873Z 1: [----------] 632 tests from _/hbmv_strided_batched
+2026-06-17T20:23:45.1928273Z 1: [----------] 632 tests from _/hbmv_strided_batched (2204 ms total)
+2026-06-17T20:23:45.1928640Z 1: 
+2026-06-17T20:23:45.1928815Z 1: [----------] 686 tests from _/hemv
+2026-06-17T20:23:47.5036737Z 1: [----------] 686 tests from _/hemv (2310 ms total)
+2026-06-17T20:23:47.5037068Z 1: 
+2026-06-17T20:23:47.5037281Z 1: [----------] 766 tests from _/hemv_batched
+2026-06-17T20:23:50.2726828Z 1: [----------] 766 tests from _/hemv_batched (2768 ms total)
+2026-06-17T20:23:50.2727885Z 1: 
+2026-06-17T20:23:50.2728117Z 1: [----------] 766 tests from _/hemv_strided_batched
+2026-06-17T20:23:52.9636493Z 1: [----------] 766 tests from _/hemv_strided_batched (2690 ms total)
+2026-06-17T20:23:52.9637146Z 1: 
+2026-06-17T20:23:52.9637325Z 1: [----------] 302 tests from _/her
+2026-06-17T20:23:52.9703655Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=20, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#20', 1 search paths
+2026-06-17T20:23:52.9707456Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:23:52.9708510Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:23:52.9709299Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:23:52.9709803Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:23:52.9710327Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:23:52.9710788Z 1: kpack:   found kernel: 28656 bytes
+2026-06-17T20:23:52.9711029Z 1: kpack: loaded code object: 28656 bytes
+2026-06-17T20:23:53.7800270Z 1: [----------] 302 tests from _/her (816 ms total)
+2026-06-17T20:23:53.7800642Z 1: 
+2026-06-17T20:23:53.7800819Z 1: [----------] 609 tests from _/her_batched
+2026-06-17T20:23:55.4834144Z 1: [----------] 609 tests from _/her_batched (1703 ms total)
+2026-06-17T20:23:55.4834479Z 1: 
+2026-06-17T20:23:55.4834684Z 1: [----------] 273 tests from _/her_strided_batched
+2026-06-17T20:23:56.3545913Z 1: [----------] 273 tests from _/her_strided_batched (871 ms total)
+2026-06-17T20:23:56.3546481Z 1: 
+2026-06-17T20:23:56.3546649Z 1: [----------] 264 tests from _/her2
+2026-06-17T20:23:56.3596572Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=21, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#21', 1 search paths
+2026-06-17T20:23:56.3599698Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:23:56.3600625Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:23:56.3601956Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:23:56.3602450Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:23:56.3603120Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:23:56.3603794Z 1: kpack:   found kernel: 37840 bytes
+2026-06-17T20:23:56.3604045Z 1: kpack: loaded code object: 37840 bytes
+2026-06-17T20:23:57.1732601Z 1: [----------] 264 tests from _/her2 (818 ms total)
+2026-06-17T20:23:57.1732916Z 1: 
+2026-06-17T20:23:57.1733102Z 1: [----------] 311 tests from _/her2_batched
+2026-06-17T20:23:58.1402238Z 1: [----------] 311 tests from _/her2_batched (966 ms total)
+2026-06-17T20:23:58.1402575Z 1: 
+2026-06-17T20:23:58.1402775Z 1: [----------] 311 tests from _/her2_strided_batched
+2026-06-17T20:23:59.0548654Z 1: [----------] 311 tests from _/her2_strided_batched (914 ms total)
+2026-06-17T20:23:59.0549104Z 1: 
+2026-06-17T20:23:59.0549305Z 1: [----------] 562 tests from _/hpmv
+2026-06-17T20:23:59.0575649Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=22, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#22', 1 search paths
+2026-06-17T20:23:59.0578949Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:23:59.0579932Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:23:59.0580795Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:23:59.0581362Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:23:59.0581961Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:23:59.0582519Z 1: kpack:   found kernel: 35568 bytes
+2026-06-17T20:23:59.0582801Z 1: kpack: loaded code object: 35568 bytes
+2026-06-17T20:24:01.4307536Z 1: [----------] 562 tests from _/hpmv (2375 ms total)
+2026-06-17T20:24:01.4307866Z 1: 
+2026-06-17T20:24:01.4308051Z 1: [----------] 626 tests from _/hpmv_batched
+2026-06-17T20:24:04.3507471Z 1: [----------] 626 tests from _/hpmv_batched (2919 ms total)
+2026-06-17T20:24:04.3507861Z 1: 
+2026-06-17T20:24:04.3508067Z 1: [----------] 626 tests from _/hpmv_strided_batched
+2026-06-17T20:24:07.1382577Z 1: [----------] 626 tests from _/hpmv_strided_batched (2787 ms total)
+2026-06-17T20:24:07.1382924Z 1: 
+2026-06-17T20:24:07.1383056Z 1: [----------] 220 tests from _/hpr
+2026-06-17T20:24:07.1428260Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=23, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#23', 1 search paths
+2026-06-17T20:24:07.1431354Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:24:07.1433963Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:24:07.1443303Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:24:07.1443836Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:24:07.1444365Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:24:07.1444832Z 1: kpack:   found kernel: 28584 bytes
+2026-06-17T20:24:07.1445074Z 1: kpack: loaded code object: 28584 bytes
+2026-06-17T20:24:07.7831431Z 1: [----------] 220 tests from _/hpr (644 ms total)
+2026-06-17T20:24:07.7831764Z 1: 
+2026-06-17T20:24:07.7831943Z 1: [----------] 137 tests from _/hpr_batched
+2026-06-17T20:24:08.1562460Z 1: [----------] 137 tests from _/hpr_batched (372 ms total)
+2026-06-17T20:24:08.1563377Z 1: 
+2026-06-17T20:24:08.1563614Z 1: [----------] 257 tests from _/hpr_strided_batched
+2026-06-17T20:24:08.8969314Z 1: [----------] 257 tests from _/hpr_strided_batched (740 ms total)
+2026-06-17T20:24:08.8969661Z 1: 
+2026-06-17T20:24:08.8969828Z 1: [----------] 220 tests from _/hpr2
+2026-06-17T20:24:08.9035408Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=24, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#24', 1 search paths
+2026-06-17T20:24:08.9037693Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:24:08.9038616Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:24:08.9039438Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:24:08.9039970Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:24:08.9040485Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:24:08.9040947Z 1: kpack:   found kernel: 36560 bytes
+2026-06-17T20:24:08.9041192Z 1: kpack: loaded code object: 36560 bytes
+2026-06-17T20:24:09.7785405Z 1: [----------] 220 tests from _/hpr2 (881 ms total)
+2026-06-17T20:24:09.7785738Z 1: 
+2026-06-17T20:24:09.7785927Z 1: [----------] 259 tests from _/hpr2_batched
+2026-06-17T20:24:10.7470330Z 1: [----------] 259 tests from _/hpr2_batched (968 ms total)
+2026-06-17T20:24:10.7470653Z 1: 
+2026-06-17T20:24:10.7470853Z 1: [----------] 219 tests from _/hpr2_strided_batched
+2026-06-17T20:24:11.6361690Z 1: [----------] 219 tests from _/hpr2_strided_batched (889 ms total)
+2026-06-17T20:24:11.6362053Z 1: 
+2026-06-17T20:24:11.6367541Z 1: [----------] 2372 tests from _/trmv
+2026-06-17T20:24:15.4299861Z 1: [----------] 2372 tests from _/trmv (3792 ms total)
+2026-06-17T20:24:15.4300200Z 1: 
+2026-06-17T20:24:15.4309843Z 1: [----------] 5126 tests from _/trmv_batched
+2026-06-17T20:24:22.4970882Z 1: [----------] 5126 tests from _/trmv_batched (7065 ms total)
+2026-06-17T20:24:22.4971243Z 1: 
+2026-06-17T20:24:22.4981253Z 1: [----------] 5060 tests from _/trmv_strided_batched
+2026-06-17T20:24:29.4324184Z 1: [----------] 5060 tests from _/trmv_strided_batched (6934 ms total)
+2026-06-17T20:24:29.4324612Z 1: 
+2026-06-17T20:24:29.4326993Z 1: [----------] 1402 tests from _/tpmv
+2026-06-17T20:24:32.7993231Z 1: [----------] 1402 tests from _/tpmv (3366 ms total)
+2026-06-17T20:24:32.7993562Z 1: 
+2026-06-17T20:24:32.7996951Z 1: [----------] 1728 tests from _/tpmv_batched
+2026-06-17T20:24:36.7448532Z 1: [----------] 1728 tests from _/tpmv_batched (3944 ms total)
+2026-06-17T20:24:36.7448879Z 1: 
+2026-06-17T20:24:36.7451441Z 1: [----------] 1306 tests from _/tpmv_strided_batched
+2026-06-17T20:24:39.6956599Z 1: [----------] 1306 tests from _/tpmv_strided_batched (2950 ms total)
+2026-06-17T20:24:39.6956963Z 1: 
+2026-06-17T20:24:39.6964708Z 1: [----------] 1750 tests from _/tbmv
+2026-06-17T20:24:43.6375437Z 1: [----------] 1750 tests from _/tbmv (3940 ms total)
+2026-06-17T20:24:43.6375757Z 1: 
+2026-06-17T20:24:43.6386175Z 1: [----------] 2614 tests from _/tbmv_batched
+2026-06-17T20:24:43.7137054Z 1: kpack: parsed HIPK metadata: kernel_name='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll', co_index=30, lookup_key='math-libs/BLAS/rocBLAS/stage/bin/rocblas.dll#30', 1 search paths
+2026-06-17T20:24:43.7140144Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack
+2026-06-17T20:24:43.7141167Z 1: kpack: expanded pattern: ../.kpack/blas_lib_@GFXARCH@.kpack -> B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:24:43.7141929Z 1: kpack: archive not found: B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx11-generic.kpack
+2026-06-17T20:24:43.7142903Z 1: kpack: trying architecture: amdgcn-amd-amdhsa--gfx1101
+2026-06-17T20:24:43.7143496Z 1: kpack:   archive B:\runner\_work\TheRock\TheRock\build\.kpack\blas_lib_gfx1101.kpack has architecture gfx1101
+2026-06-17T20:24:43.7143969Z 1: kpack:   found kernel: 9464 bytes
+2026-06-17T20:24:43.7144212Z 1: kpack: loaded code object: 9464 bytes
+2026-06-17T20:24:49.0990163Z 1: [----------] 2614 tests from _/tbmv_batched (5460 ms total)
+2026-06-17T20:24:49.0990572Z 1: 
+2026-06-17T20:24:49.0997539Z 1: [----------] 1750 tests from _/tbmv_strided_batched
+2026-06-17T20:24:53.0525857Z 1: [----------] 1750 tests from _/tbmv_strided_batched (3952 ms total)
+2026-06-17T20:24:53.0526220Z 1: 
+2026-06-17T20:24:53.0528038Z 1: [----------] 1372 tests from _/tbsv
+2026-06-17T20:24:56.5255965Z 1: [----------] 1372 tests from _/tbsv (3472 ms total)
+2026-06-17T20:24:56.5256307Z 1: 
+2026-06-17T20:24:56.5261700Z 1: [----------] 2940 tests from _/tbsv_batched
+2026-06-17T20:25:04.4368967Z 1: [----------] 2940 tests from _/tbsv_batched (7910 ms total)
+2026-06-17T20:25:04.4369353Z 1: 
+2026-06-17T20:25:04.4378508Z 1: [----------] 4732 tests from _/tbsv_strided_batched
+2026-06-17T20:25:21.8181107Z 1: [----------] 4732 tests from _/tbsv_strided_batched (17379 ms total)
+2026-06-17T20:25:21.8181494Z 1: 
+2026-06-17T20:25:21.8184048Z 1: [----------] 1702 tests from _/tpsv
+2026-06-17T20:25:26.0706135Z 1: [----------] 1702 tests from _/tpsv (4251 ms total)
+2026-06-17T20:25:26.0706454Z 1: 
+2026-06-17T20:25:26.0714858Z 1: [----------] 3718 tests from _/tpsv_batched
+2026-06-17T20:25:38.6765156Z 1: [----------] 3718 tests from _/tpsv_batched (12604 ms total)
+2026-06-17T20:25:38.6765517Z 1: 
+2026-06-17T20:25:38.6777337Z 1: [----------] 6406 tests from _/tpsv_strided_batched
+2026-06-17T20:26:01.1564272Z 1: [----------] 6406 tests from _/tpsv_strided_batched (22478 ms total)
+2026-06-17T20:26:01.1564691Z 1: 
+2026-06-17T20:26:01.1564875Z 1: [----------] 256 tests from _/ger
+2026-06-17T20:26:01.9311742Z 1: [----------] 256 tests from _/ger (774 ms total)
+2026-06-17T20:26:01.9312091Z 1: 
+2026-06-17T20:26:01.9313969Z 1: [----------] 1144 tests from _/ger_batched
+2026-06-17T20:26:04.9273806Z 1: [----------] 1144 tests from _/ger_batched (2995 ms total)
+2026-06-17T20:26:04.9274159Z 1: 
+2026-06-17T20:26:04.9277030Z 1: [----------] 1503 tests from _/ger_strided_batched
+2026-06-17T20:26:08.6389062Z 1: [----------] 1503 tests from _/ger_strided_batched (3711 ms total)
+2026-06-17T20:26:08.6389425Z 1: 
+2026-06-17T20:26:08.6389591Z 1: [----------] 92 tests from _/geru
+2026-06-17T20:26:08.9644451Z 1: [----------] 92 tests from _/geru (325 ms total)
+2026-06-17T20:26:08.9644831Z 1: 
+2026-06-17T20:26:08.9645025Z 1: [----------] 235 tests from _/geru_batched
+2026-06-17T20:26:09.5385999Z 1: [----------] 235 tests from _/geru_batched (574 ms total)
+2026-06-17T20:26:09.5386325Z 1: 
+2026-06-17T20:26:09.5386536Z 1: [----------] 259 tests from _/geru_strided_batched
+2026-06-17T20:26:10.1219797Z 1: [----------] 259 tests from _/geru_strided_batched (583 ms total)
+2026-06-17T20:26:10.1223785Z 1: 
+2026-06-17T20:26:10.1224087Z 1: [----------] 92 tests from _/gerc
+2026-06-17T20:26:10.4431286Z 1: [----------] 92 tests from _/gerc (321 ms total)
+2026-06-17T20:26:10.4431624Z 1: 
+2026-06-17T20:26:10.4431811Z 1: [----------] 235 tests from _/gerc_batched
+2026-06-17T20:26:11.0130829Z 1: [----------] 235 tests from _/gerc_batched (569 ms total)
+2026-06-17T20:26:11.0131192Z 1: 
+2026-06-17T20:26:11.0131405Z 1: [----------] 259 tests from _/gerc_strided_batched
+2026-06-17T20:26:11.6027535Z 1: [----------] 259 tests from _/gerc_strided_batched (589 ms total)
+2026-06-17T20:26:11.6028020Z 1: 
+2026-06-17T20:26:11.6028187Z 1: [----------] 540 tests from _/spr
+2026-06-17T20:26:13.1929548Z 1: [----------] 540 tests from _/spr (1590 ms total)
+2026-06-17T20:26:13.1929869Z 1: 
+2026-06-17T20:26:13.1931927Z 1: [----------] 1098 tests from _/spr_batched
+2026-06-17T20:26:16.6127367Z 1: [----------] 1098 tests from _/spr_batched (3419 ms total)
+2026-06-17T20:26:16.6128201Z 1: 
+2026-06-17T20:26:16.6131515Z 1: [----------] 2057 tests from _/spr_strided_batched
+2026-06-17T20:26:22.6408072Z 1: [----------] 2057 tests from _/spr_strided_batched (6027 ms total)
+2026-06-17T20:26:22.6408453Z 1: 
+2026-06-17T20:26:22.6408624Z 1: [----------] 218 tests from _/spr2
+2026-06-17T20:26:23.3683992Z 1: [----------] 218 tests from _/spr2 (727 ms total)
+2026-06-17T20:26:23.3684767Z 1: 
+2026-06-17T20:26:23.3684956Z 1: [----------] 437 tests from _/spr2_batched
+2026-06-17T20:26:24.9517499Z 1: [----------] 437 tests from _/spr2_batched (1583 ms total)
+2026-06-17T20:26:24.9517847Z 1: 
+2026-06-17T20:26:24.9518049Z 1: [----------] 797 tests from _/spr2_strided_batched
+2026-06-17T20:26:27.7514220Z 1: [----------] 797 tests from _/spr2_strided_batched (2799 ms total)
+2026-06-17T20:26:27.7514578Z 1: 
+2026-06-17T20:26:27.7514743Z 1: [----------] 578 tests from _/syr
+2026-06-17T20:26:29.3003582Z 1: [----------] 578 tests from _/syr (1548 ms total)
+2026-06-17T20:26:29.3003949Z 1: 
+2026-06-17T20:26:29.3004153Z 1: [----------] 1211 tests from _/syr_batched
+2026-06-17T20:26:32.5597647Z 1: [----------] 1211 tests from _/syr_batched (3258 ms total)
+2026-06-17T20:26:32.5598001Z 1: 
+2026-06-17T20:26:32.5599636Z 1: [----------] 1211 tests from _/syr_strided_batched
+2026-06-17T20:26:35.6484478Z 1: [----------] 1211 tests from _/syr_strided_batched (3088 ms total)
+2026-06-17T20:26:35.6484863Z 1: 
+2026-06-17T20:26:35.6485075Z 1: [----------] 676 tests from _/syr2
+2026-06-17T20:26:37.7023947Z 1: [----------] 676 tests from _/syr2 (2053 ms total)
+2026-06-17T20:26:37.7024275Z 1: 
+2026-06-17T20:26:37.7029126Z 1: [----------] 2493 tests from _/syr2_batched
+2026-06-17T20:26:43.6997242Z 1: [----------] 2493 tests from _/syr2_batched (5996 ms total)
+2026-06-17T20:26:43.6997595Z 1: 
+2026-06-17T20:26:43.7005446Z 1: [----------] 4653 tests from _/syr2_strided_batched
+2026-06-17T20:26:54.4402716Z 1: [----------] 4653 tests from _/syr2_strided_batched (10739 ms total)
+2026-06-17T20:26:54.4403180Z 1: 
+2026-06-17T20:26:54.4403378Z 1: [----------] 35 tests from _/sbmv
+2026-06-17T20:26:54.5220731Z 1: [----------] 35 tests from _/sbmv (81 ms total)
+2026-06-17T20:26:54.5221107Z 1: 
+2026-06-17T20:26:54.5222455Z 1: [----------] 35 tests from _/sbmv_batched
+2026-06-17T20:26:54.5940580Z 1: [----------] 35 tests from _/sbmv_batched (71 ms total)
+2026-06-17T20:26:54.5940904Z 1: 
+2026-06-17T20:26:54.5941131Z 1: [----------] 35 tests from _/sbmv_strided_batched
+2026-06-17T20:26:54.6600312Z 1: [----------] 35 tests from _/sbmv_strided_batched (65 ms total)
+2026-06-17T20:26:54.6600712Z 1: 
+2026-06-17T20:26:54.6600905Z 1: [----------] 31 tests from _/spmv
+2026-06-17T20:26:54.7515458Z 1: [----------] 31 tests from _/spmv (91 ms total)
+2026-06-17T20:26:54.7515953Z 1: 
+2026-06-17T20:26:54.7516172Z 1: [----------] 62 tests from _/spmv_batched
+2026-06-17T20:26:54.8999205Z 1: [----------] 62 tests from _/spmv_batched (148 ms total)
+2026-06-17T20:26:54.8999627Z 1: 
+2026-06-17T20:26:54.8999851Z 1: [----------] 62 tests from _/spmv_strided_batched
+2026-06-17T20:26:55.0425655Z 1: [----------] 62 tests from _/spmv_strided_batched (142 ms total)
+2026-06-17T20:26:55.0426018Z 1: 
+2026-06-17T20:26:55.0426199Z 1: [----------] 99 tests from _/symv
+2026-06-17T20:26:55.3457332Z 1: [----------] 99 tests from _/symv (302 ms total)
+2026-06-17T20:26:55.3457654Z 1: 
+2026-06-17T20:26:55.3457868Z 1: [----------] 187 tests from _/symv_batched
+2026-06-17T20:26:55.8239977Z 1: [----------] 187 tests from _/symv_batched (478 ms total)
+2026-06-17T20:26:55.8240325Z 1: 
+2026-06-17T20:26:55.8240542Z 1: [----------] 183 tests from _/symv_strided_batched
+2026-06-17T20:26:56.2739871Z 1: [----------] 183 tests from _/symv_strided_batched (449 ms total)
+2026-06-17T20:26:56.2740243Z 1: 
+2026-06-17T20:26:56.4087019Z 1: [----------] 43268 tests from _/gemm
+2026-06-17T20:29:30.9702606Z 1: [----------] 43268 tests from _/gemm (154556 ms total)
+2026-06-17T20:29:30.9704633Z 1: 
+2026-06-17T20:29:30.9719768Z 1: [----------] 5478 tests from _/gemm_batched
+2026-06-17T20:29:54.1311147Z 1: [----------] 5478 tests from _/gemm_batched (23158 ms total)
+2026-06-17T20:29:54.1311508Z 1: 
+2026-06-17T20:29:54.1327513Z 1: [----------] 6166 tests from _/gemm_strided_batched
+2026-06-17T20:30:08.7905082Z 1: [----------] 6166 tests from _/gemm_strided_batched (14657 ms total)
+2026-06-17T20:30:08.7905602Z 1: 
+2026-06-17T20:30:09.2813060Z 1: [----------] 104930 tests from _/gemm_ex
+2026-06-17T20:36:56.0158814Z ##[error]The operation was canceled.
+2026-06-17T20:36:56.0442510Z ##[group]Run . 'B:\runner\_work\TheRock\TheRock\build_tools\github_actions\cleanup_processes.ps1'
+2026-06-17T20:36:56.0442997Z [36;1m. 'B:\runner\_work\TheRock\TheRock\build_tools\github_actions\cleanup_processes.ps1'[0m
+2026-06-17T20:36:56.0462768Z shell: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-06-17T20:36:56.0463050Z env:
+2026-06-17T20:36:56.0463199Z   VENV_DIR: B:\runner\_work\TheRock\TheRock/.venv
+2026-06-17T20:36:56.0463415Z   ARTIFACT_RUN_ID: 27710372755
+2026-06-17T20:36:56.0463575Z   OUTPUT_ARTIFACTS_DIR: ./build
+2026-06-17T20:36:56.0463737Z   THEROCK_BIN_DIR: ./build/bin
+2026-06-17T20:36:56.0463884Z   AMDGPU_FAMILIES: gfx110X-all
+2026-06-17T20:36:56.0464054Z   AMDGPU_TARGETS: gfx1100,gfx1101,gfx1102,gfx1103
+2026-06-17T20:36:56.0464243Z   ARTIFACT_GROUP: gfx110X-all
+2026-06-17T20:36:56.0464412Z   BENCHMARK_DB_URL: 
+2026-06-17T20:36:56.0464551Z   BENCHMARK_DB_FALLBACK_URL: 
+2026-06-17T20:36:56.0464775Z   pythonLocation: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:36:56.0465039Z   PKG_CONFIG_PATH: B:\runner\_work\_tool\Python\3.12.10\x64/lib/pkgconfig
+2026-06-17T20:36:56.0465305Z   Python_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:36:56.0465543Z   Python2_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:36:56.0465772Z   Python3_ROOT_DIR: B:\runner\_work\_tool\Python\3.12.10\x64
+2026-06-17T20:36:56.0472884Z   VIRTUAL_ENV: B:\runner\_work\TheRock\TheRock\.venv
+2026-06-17T20:36:56.0473093Z ##[endgroup]
+2026-06-17T20:36:56.2757895Z [*] ==== Starting cleanup_processes.ps1 ====
+2026-06-17T20:36:56.2855630Z [*] Checking if elevated: True | current user: NT AUTHORITY\SYSTEM
+2026-06-17T20:36:56.2877723Z [*] Running as a Windows Service (NT AUTHORITY\*) - Cleaning up system environment...
+2026-06-17T20:36:56.3132906Z [*] > Checking for "~/.gitconfig" file at: C:\Windows\system32\config\systemprofile\.gitconfig
+2026-06-17T20:36:56.3152839Z [*] >> .gitconfig file found, removing after logging contents:
+2026-06-17T20:36:56.3388692Z safe.directory=B:/runner/_work/TheRock/TheRock
+2026-06-17T20:36:56.3443822Z [+] >> Successfully removed .gitconfig
+2026-06-17T20:36:56.3454591Z [*] > Checking for uv.zip archives under: C:\Windows\SystemTemp\
+2026-06-17T20:36:56.7294454Z [*] >> Found 1 uv.zip file(s), total size: 22.37 MB
+2026-06-17T20:36:56.7346045Z [+] >> Removed 1 uv.zip file(s)
+2026-06-17T20:36:56.7347581Z [*] > Checking for empty GUID directories under: C:\Windows\SystemTemp\
+2026-06-17T20:36:56.8593088Z [*] >> Found 1 empty GUID folder(s)
+2026-06-17T20:36:56.8600526Z [+] >> Removed 1 empty GUID folder(s)
+2026-06-17T20:36:56.8617386Z [*] > Checking pip http-v2 cache under: B:\pip\cache\http-v2
+2026-06-17T20:36:56.9023847Z [*] >> Found 23 file(s) older than 1 day, total size: 1588.29 MB
+2026-06-17T20:36:56.9095286Z [+] >> Removed 23 old file(s) from http-v2 cache
+2026-06-17T20:36:57.0931533Z [+] >> Removed 76 empty directory(ies) from http-v2 cache
+2026-06-17T20:36:57.0934403Z [*] > Pip http-v2 cache not found at: C:\Windows\system32\config\systemprofile\AppData\Local\pip\cache\http-v2
+2026-06-17T20:36:57.0947883Z [*] Clearing stale git submodule working trees in workspace: B:\runner\_work\TheRock\TheRock
+2026-06-17T20:36:57.1302396Z       removing base/half
+2026-06-17T20:36:57.1316122Z       removing compiler/hipify
+2026-06-17T20:36:57.1324943Z       removing compiler/amd-llvm
+2026-06-17T20:36:57.1334420Z       removing base/rocm-cmake
+2026-06-17T20:36:57.1343118Z       removing rocm-libraries
+2026-06-17T20:36:57.1351953Z       removing rocm-systems
+2026-06-17T20:36:57.1361018Z       removing compiler/spirv-llvm-translator
+2026-06-17T20:36:57.1370829Z       removing third-party/sysdeps/linux/amd-mesa/mesa-fork
+2026-06-17T20:36:57.1380166Z       removing math-libs/libhipcxx
+2026-06-17T20:36:57.1389233Z       removing debug-tools/rocgdb/source
+2026-06-17T20:36:57.1396058Z [*] >> Submodule working-tree cleanup finished
+2026-06-17T20:36:57.1399024Z [*] Cleaning up processes...
+2026-06-17T20:36:57.1403901Z [*] GITHUB_WORKSPACE env var defined: B:\runner\_work\TheRock\TheRock
+2026-06-17T20:36:57.1415733Z [*] Checking for running build executables filtered by .exe regex: B:\\runner\\_work\\TheRock\\TheRock\\build\\.*[.]exe
+2026-06-17T20:36:57.9538391Z [+] No executables to clean up.
+2026-06-17T20:36:58.0028464Z Post job cleanup.
+2026-06-17T20:36:58.0282557Z Post job cleanup.
+2026-06-17T20:36:58.1386734Z [command]"C:\Program Files\Git\cmd\git.exe" version
+2026-06-17T20:36:58.1594658Z git version 2.53.0.windows.2
+2026-06-17T20:36:58.1644659Z Temporarily overriding HOME='B:\runner\_work\_temp\31ad3597-7f4a-4790-ac48-d7e8b97d4209' before making global git config changes
+2026-06-17T20:36:58.1645157Z Adding repository directory to the temporary git global config as a safe directory
+2026-06-17T20:36:58.1650410Z [command]"C:\Program Files\Git\cmd\git.exe" config --global --add safe.directory B:\runner\_work\TheRock\TheRock
+2026-06-17T20:36:58.1881777Z Removing SSH command configuration
+2026-06-17T20:36:58.1887711Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-06-17T20:36:58.2136511Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-06-17T20:36:58.6955868Z Removing HTTP extra header
+2026-06-17T20:36:58.6961405Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-06-17T20:36:58.7212775Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-06-17T20:36:59.2014497Z Removing includeIf entries pointing to credentials config files
+2026-06-17T20:36:59.2021510Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-06-17T20:36:59.2220133Z includeif.gitdir:B:/runner/_work/TheRock/TheRock/.git.path
+2026-06-17T20:36:59.2220474Z includeif.gitdir:B:/runner/_work/TheRock/TheRock/.git/worktrees/*.path
+2026-06-17T20:36:59.2220746Z includeif.gitdir:/github/workspace/.git.path
+2026-06-17T20:36:59.2221000Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-06-17T20:36:59.2259469Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --get-all includeif.gitdir:B:/runner/_work/TheRock/TheRock/.git.path
+2026-06-17T20:36:59.2460965Z B:\runner\_work\_temp\git-credentials-a13df114-a579-4583-a7c7-0f3920c105f1.config
+2026-06-17T20:36:59.2496424Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --unset includeif.gitdir:B:/runner/_work/TheRock/TheRock/.git.path B:\runner\_work\_temp\git-credentials-a13df114-a579-4583-a7c7-0f3920c105f1.config
+2026-06-17T20:36:59.2730545Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --get-all includeif.gitdir:B:/runner/_work/TheRock/TheRock/.git/worktrees/*.path
+2026-06-17T20:36:59.2929453Z B:\runner\_work\_temp\git-credentials-a13df114-a579-4583-a7c7-0f3920c105f1.config
+2026-06-17T20:36:59.2963957Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --unset includeif.gitdir:B:/runner/_work/TheRock/TheRock/.git/worktrees/*.path B:\runner\_work\_temp\git-credentials-a13df114-a579-4583-a7c7-0f3920c105f1.config
+2026-06-17T20:36:59.3193451Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-06-17T20:36:59.3389246Z /github/runner_temp/git-credentials-a13df114-a579-4583-a7c7-0f3920c105f1.config
+2026-06-17T20:36:59.3422617Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-a13df114-a579-4583-a7c7-0f3920c105f1.config
+2026-06-17T20:36:59.3650612Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-06-17T20:36:59.3866178Z /github/runner_temp/git-credentials-a13df114-a579-4583-a7c7-0f3920c105f1.config
+2026-06-17T20:36:59.3885247Z [command]"C:\Program Files\Git\cmd\git.exe" config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-a13df114-a579-4583-a7c7-0f3920c105f1.config
+2026-06-17T20:36:59.4148856Z [command]"C:\Program Files\Git\cmd\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-06-17T20:36:59.8829097Z Removing credentials config 'B:\runner\_work\_temp\git-credentials-a13df114-a579-4583-a7c7-0f3920c105f1.config'
+2026-06-17T20:36:59.9197966Z Post job cleanup.
+2026-06-17T20:37:00.0221141Z Cleaning up orphan processes

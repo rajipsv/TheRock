@@ -60,6 +60,22 @@
     "similar_errors": "Transaction failed"
   },
   {
+    "id": "rocm_hip_gpu_oom",
+    "pattern": "HIP GPU out of memory (hipErrorOutOfMemory)",
+    "category": "Memory",
+    "severity": "CRITICAL",
+    "signatures": [
+      "hiperroroutofmemory",
+      "hip error: out of memory",
+      "out of memory",
+      "rocsparse_create_handle",
+      "hip out of memory"
+    ],
+    "causes": "GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test",
+    "solutions": "Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits",
+    "similar_errors": "CUDA out of memory, HSA_STATUS_ERROR_MEMORY"
+  },
+  {
     "id": "rocm_hip_error",
     "pattern": "ROCm HIP API failure",
     "category": "GPU/Driver",

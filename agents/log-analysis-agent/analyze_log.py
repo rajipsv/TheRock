@@ -136,6 +136,90 @@ def write_outputs(
         (output_dir / "executive_summary.md").write_text(summary, encoding="utf-8")
 
 
+def write_run_rollup(
+    run_id: int,
+    repo: str,
+    run,
+    all_jobs: list,
+    reports: list[dict],
+    output_dir: Path,
+) -> Path:
+    """Aggregate per-job reports into a single run-level summary."""
+    failed_total = sum(
+        1 for j in all_jobs if j.conclusion in ("failure", "cancelled")
+    )
+    job_summaries = []
+    for report in reports:
+        errors = report.get("errors") or []
+        job_summaries.append(
+            {
+                "github_job_id": report.get("github_job_id"),
+                "job_name": report.get("job_name"),
+                "job_conclusion": report.get("job_conclusion"),
+                "errors_count": report.get("errors_count", len(errors)),
+                "summary": report.get("summary", ""),
+                "top_errors": [
+                    {
+                        "line_number": e.get("line_number"),
+                        "severity": e.get("severity"),
+                        "message": (e.get("message") or "")[:200],
+                        "recommendation": (e.get("recommendation") or "")[:160],
+                        "kb_pattern_id": e.get("kb_pattern_id"),
+                    }
+                    for e in errors[:3]
+                    if isinstance(e, dict)
+                ],
+                "report_path": str(
+                    output_dir / f"job-{report.get('github_job_id')}" / "report.json"
+                ).replace("\\", "/"),
+            }
+        )
+
+    rollup = {
+        "github_run_id": run_id,
+        "repo": repo,
+        "html_url": getattr(run, "html_url", None)
+        or f"https://github.com/{repo}/actions/runs/{run_id}",
+        "workflow_name": reports[0].get("workflow_name") if reports else None,
+        "branch": reports[0].get("branch") if reports else None,
+        "head_sha": reports[0].get("head_sha") if reports else None,
+        "run_conclusion": reports[0].get("run_conclusion") if reports else None,
+        "jobs_total": len(all_jobs),
+        "jobs_failed_or_cancelled": failed_total,
+        "jobs_analyzed": len(reports),
+        "total_errors": sum(s["errors_count"] for s in job_summaries),
+        "job_summaries": job_summaries,
+    }
+
+    out = output_dir / "run_summary.json"
+    out.write_text(json.dumps(rollup, indent=2), encoding="utf-8")
+
+    md_lines = [
+        "# Log Analysis Run Summary",
+        "",
+        f"**Run:** [{run_id}]({rollup['html_url']})",
+        f"**Repo:** {repo}",
+        f"**Jobs analyzed:** {rollup['jobs_analyzed']} of "
+        f"{rollup['jobs_failed_or_cancelled']} failed/cancelled "
+        f"({rollup['jobs_total']} total)",
+        f"**Total errors:** {rollup['total_errors']}",
+        "",
+    ]
+    for item in job_summaries:
+        md_lines.append(f"## {item['job_name']}")
+        md_lines.append(
+            f"- Job `{item['github_job_id']}` | conclusion: `{item['job_conclusion']}` | "
+            f"errors: {item['errors_count']}"
+        )
+        for err in item["top_errors"]:
+            md_lines.append(
+                f"  - L{err.get('line_number')}: {err.get('message', '')[:120]}"
+            )
+        md_lines.append("")
+    (output_dir / "run_summary.md").write_text("\n".join(md_lines), encoding="utf-8")
+    return out
+
+
 def analyze_github_run(
     run_id: int,
     *,
@@ -148,6 +232,8 @@ def analyze_github_run(
     model: str = "gpt-4o-mini",
     max_iterations: int = 16,
     max_jobs: int = 3,
+    all_failed: bool = False,
+    failures_only: bool = False,
     write_summary: bool = True,
     summary_backend: str | None = None,
 ) -> list[dict]:
@@ -160,7 +246,12 @@ def analyze_github_run(
         if not selected:
             raise RuntimeError(f"Job {job_id} not found in run {run_id}")
     else:
-        selected = select_failed_jobs(jobs, max_jobs=max_jobs)
+        limit = 0 if all_failed else max_jobs
+        selected = select_failed_jobs(
+            jobs,
+            max_jobs=limit,
+            include_cancelled=not failures_only,
+        )
         if not selected:
             raise RuntimeError(f"No jobs found for run {run_id}")
 
@@ -188,6 +279,9 @@ def analyze_github_run(
             summary_backend=summary_backend,
         )
         reports.append(report)
+
+    if len(reports) > 1:
+        write_run_rollup(run_id, repo, run, jobs, reports, output_dir)
 
     return reports
 
@@ -221,6 +315,16 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     parser.add_argument("--max-iterations", type=int, default=16)
     parser.add_argument("--max-jobs", type=int, default=3, help="Max failed jobs to analyze per run")
+    parser.add_argument(
+        "--all-failed",
+        action="store_true",
+        help="Analyze every failed/cancelled job in the run (overrides --max-jobs)",
+    )
+    parser.add_argument(
+        "--failures-only",
+        action="store_true",
+        help="With --all-failed, skip cancelled jobs and analyze failure conclusions only",
+    )
     parser.add_argument("--kb-dir", type=Path, default=None)
     parser.add_argument(
         "--record-resolution",
@@ -267,6 +371,8 @@ def main(argv: list[str] | None = None) -> int:
                 model=args.model,
                 max_iterations=args.max_iterations,
                 max_jobs=args.max_jobs,
+                all_failed=args.all_failed,
+                failures_only=args.failures_only,
                 write_summary=not args.no_summary,
                 summary_backend=args.summary_backend,
             )

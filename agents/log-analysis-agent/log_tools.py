@@ -11,6 +11,14 @@ from pathlib import Path
 
 ERROR_KEYWORDS = ("ERROR", "EXCEPTION", "CRITICAL", "FATAL", "WARNING")
 GITHUB_ERROR = re.compile(r"##\[error\]", re.IGNORECASE)
+ROCM_CI_PATTERNS: tuple[tuple[str, str], ...] = (
+    (r"hipErrorOutOfMemory", "hipErrorOutOfMemory"),
+    (r"rocsparse_create_handle", "rocsparse_create_handle"),
+    (r"\[\s+FAILED\s+\]", "gtest_failed"),
+    (r"exit code 127", "exit_code_127"),
+    (r"No GPU suite", "no_gpu_suite"),
+    (r"ctest.*failed|tests failed", "ctest_failed"),
+)
 STACK_START = re.compile(
     r"^\s*(at\s+[\w.$]+\(|Traceback|Caused by:|---\s*Crash)",
     re.IGNORECASE,
@@ -167,6 +175,10 @@ def run_tool_only_analysis(session: LogSession, kb=None, extra_patterns: list[st
     gh_errors = grep_log(session, r"##\[error\]", max_matches=15, context_lines=2)
     stacks = extract_stack_traces(session)
 
+    rocm_ci_samples: dict[str, str] = {}
+    for pattern, label in ROCM_CI_PATTERNS:
+        rocm_ci_samples[label] = grep_log(session, pattern, max_matches=12, context_lines=2)
+
     preset_samples: dict[str, str] = {}
     for pat in extra_patterns or []:
         preset_samples[pat] = grep_log(session, pat, max_matches=10, context_lines=2)
@@ -178,6 +190,9 @@ def run_tool_only_analysis(session: LogSession, kb=None, extra_patterns: list[st
             + _extract_highlight_messages(critical, 2)
             + _extract_highlight_messages(fatal, 2)
             + _extract_highlight_messages(gh_errors, 3)
+            + _extract_highlight_messages(
+                "\n\n".join(rocm_ci_samples.values()), 5
+            )
         )
         for sig in signatures[:5]:
             matches = kb.lookup_known_failure(sig, top_k=2)
@@ -197,6 +212,7 @@ def run_tool_only_analysis(session: LogSession, kb=None, extra_patterns: list[st
         "critical_samples": critical,
         "fatal_samples": fatal,
         "github_error_samples": gh_errors,
+        "rocm_ci_samples": rocm_ci_samples,
         "stack_traces": stacks,
         "preset_pattern_samples": preset_samples,
         "rag_lookups": rag_lookups,

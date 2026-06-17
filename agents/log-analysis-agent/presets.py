@@ -36,7 +36,16 @@ WORKFLOW_PRESETS: dict[str, WorkflowPreset] = {
         name="therock_multi_arch",
         label="TheRock — Multi-Arch CI",
         hint="Paste log from ROCm/TheRock Multi-Arch CI failed job",
-        extra_patterns=("therock", "ninja", "cmake", "gfx"),
+        extra_patterns=(
+            "therock",
+            "ninja",
+            "cmake",
+            "gfx",
+            "hipErrorOutOfMemory",
+            "rocsparse",
+            "ctest",
+            "FAILED",
+        ),
     ),
     "therock_install": WorkflowPreset(
         name="therock_install",

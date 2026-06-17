@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>TheRock Log Analysis Report</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; max-width: 960px; line-height: 1.5; }
+    h1 { color: #c41230; }
+    .badge { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 600; }
+    .CRITICAL, .FATAL { background: #fee; color: #900; }
+    .HIGH, .ERROR { background: #ffe8cc; color: #a60; }
+    .MEDIUM { background: #fff3cd; color: #856404; }
+    .LOW { background: #e8f5e9; color: #2e7d32; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; vertical-align: top; }
+    th { background: #f5f5f5; }
+    code, pre { background: #f0f0f0; padding: 0.1rem 0.3rem; font-size: 0.9em; }
+    pre { padding: 1rem; overflow-x: auto; white-space: pre-wrap; }
+    .meta { color: #666; font-size: 0.95em; }
+  </style>
+</head>
+<body>
+  <h1>Log Analysis Report (AGENTS_030)</h1>
+  <p class="meta">
+    <strong>Log:</strong> <code>C:\Users\Rajeswari\.gemini\antigravity\scratch\TheRock\TheRock\agents\log-analysis-agent\sample-runs\run-27710372755\job-81992436788\job-81992436788.log</code><br/>
+    
+    <strong>GitHub run:</strong>
+    <a href="https://github.com/ROCm/TheRock/actions/runs/27710372755">27710372755</a>
+    | <strong>Job:</strong> Windows::release / Test gfx110X-all / Test libhipcxx_hipcc / Test libhipcxx_hipcc (shard 1/1) (gfx110X-all)<br/>
+    <strong>Repo:</strong> ROCm/TheRock | <strong>Branch:</strong> users/geomin12/fix-configure-aws-external<br/>
+    
+    <strong>Mode:</strong> tool_only
+    <br/>
+    <strong>Preset:</strong> TheRock — Multi-Arch CI<br/>
+    <strong>Timestamp:</strong> 2026-06-18T03:14:56.761228
+  </p>
+
+  <h2>Summary</h2>
+  <p>Tool-only qualification pass found 7 highlighted error lines. Stats: path=C:\Users\Rajeswari\.gemini\antigravity\scratch\TheRock\TheRock\agents\log-analysis-agent\sample-runs\run-27710372755\job-81992436788\job-81992436788.log; lines=2376; bytes=99042; github_error=1; keyword_hits: ERROR=8, EXCEPTION=0, CRITICAL=0, FATAL=1, WARNING=7</p>
+  
+
+  <h2>Stats</h2>
+  <pre>path=C:\Users\Rajeswari\.gemini\antigravity\scratch\TheRock\TheRock\agents\log-analysis-agent\sample-runs\run-27710372755\job-81992436788\job-81992436788.log
+lines=2376
+bytes=99042
+github_error=1
+keyword_hits: ERROR=8, EXCEPTION=0, CRITICAL=0, FATAL=1, WARNING=7</pre>
+
+  
+  <h2>Errors (7)</h2>
+  <table>
+    <tr><th>Line</th><th>Type</th><th>Severity</th><th>Message</th><th>Category</th><th>Recommendation</th></tr>
+    
+    <tr>
+      <td>1721</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:18:32.4668035Z         ===================          Compoments check [38;2;6;161;60m12[0m Passed, [38;2;184;166;48m0[0m Warning, [38;2;255;61;61m6[0m Fatal Error          ===================</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>1997</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:18:32.9512404Z Error executing offload-arch: Command '['./build/lib/llvm/bin/offload-arch.exe']' returned non-zero exit status 1.</code></td>
+      <td>GPU/Driver</td>
+      <td>Check dmesg, reboot GPU, validate kernel+ROCm matrix, escalate to driver team</td>
+    </tr>
+    
+    <tr>
+      <td>2063</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:18:41.8515155Z CMake Error at C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeTestHIPCompiler.cmake:73 (message):</code></td>
+      <td>Runtime</td>
+      <td>Match torch+ROCm versions, reduce batch size, rocm-smi memory check</td>
+    </tr>
+    
+    <tr>
+      <td>2095</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:18:41.8528017Z     clang++: error: unsupported HIP gpu architecture: None</code></td>
+      <td>Runtime</td>
+      <td>Match torch+ROCm versions, reduce batch size, rocm-smi memory check</td>
+    </tr>
+    
+    <tr>
+      <td>2135</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:18:41.8743477Z ##[error]Process completed with exit code 1.</code></td>
+      <td>Configuration</td>
+      <td>Rebuild image, verify --device flags, rerun parallel matrix on clean containers</td>
+    </tr>
+    
+    <tr>
+      <td>1721</td>
+      <td>FATAL</td>
+      <td><span class="badge CRITICAL">CRITICAL</span></td>
+      <td><code>2026-06-17T20:18:32.4668035Z         ===================          Compoments check [38;2;6;161;60m12[0m Passed, [38;2;184;166;48m0[0m Warning, [38;2;255;61;61m6[0m Fatal Error          ===================</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>2135</td>
+      <td>GITHUB_ACTIONS</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:18:41.8743477Z ##[error]Process completed with exit code 1.</code></td>
+      <td>Configuration</td>
+      <td>Rebuild image, verify --device flags, rerun parallel matrix on clean containers</td>
+    </tr>
+    
+  </table>
+  
+
+  
+  <h2>Knowledge base lookups</h2>
+  
+  <h3>2026-06-17T20:18:32.4668035Z         ===================          Compoments check [38;2;6;161;60m12[0m Passed, [38;2</h3>
+  <pre>Match 1 [keyword] score=13.0 id=rocm_hip_gpu_oom
+  Pattern: HIP GPU out of memory (hipErrorOutOfMemory)
+  Category: Memory | Severity: CRITICAL
+  Causes: GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test
+  Solutions: Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits
+  Similar: CUDA out of memory, HSA_STATUS_ERROR_MEMORY
+
+Match 2 [keyword] score=11.5 id=rocm_hip_error
+  Pattern: ROCm HIP API failure
+  Category: GPU/Driver | Severity: HIGH
+  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device
+  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages
+  Similar: HIP initialization failed</pre>
+  
+  <h3>2026-06-17T20:18:32.9512404Z Error executing offload-arch: Command '['./build/lib/llvm/bin/offload-arch.exe']' returned </h3>
+  <pre>Match 1 [keyword] score=19.5 id=rocm_hsa_status
+  Pattern: HSA runtime / ROCr failure
+  Category: GPU/Driver | Severity: CRITICAL
+  Causes: Firmware, KFD issues, incompatible kernel, GPU reset required
+  Solutions: Check dmesg, reboot GPU, validate kernel+ROCm matrix, escalate to driver team
+  Similar: HSA_STATUS_ERROR
+
+Match 2 [keyword] score=13.0 id=rocm_hip_gpu_oom
+  Pattern: HIP GPU out of memory (hipErrorOutOfMemory)
+  Category: Memory | Severity: CRITICAL
+  Causes: GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test
+  Solutions: Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits
+  Similar: CUDA out of memory, HSA_STATUS_ERROR_MEMORY</pre>
+  
+  <h3>2026-06-17T20:18:41.8515155Z CMake Error at C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeTestHIPCompiler.cmake:7</h3>
+  <pre>Match 1 [keyword] score=21.5 id=pytorch_cuda_rocm
+  Pattern: PyTorch / training framework device error on ROCm
+  Category: Runtime | Severity: HIGH
+  Causes: Framework build mismatch, wrong torch-rocm wheel, OOM on GPU
+  Solutions: Match torch+ROCm versions, reduce batch size, rocm-smi memory check
+  Similar: HIP out of memory
+
+Match 2 [keyword] score=11.5 id=rocm_hip_gpu_oom
+  Pattern: HIP GPU out of memory (hipErrorOutOfMemory)
+  Category: Memory | Severity: CRITICAL
+  Causes: GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test
+  Solutions: Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits
+  Similar: CUDA out of memory, HSA_STATUS_ERROR_MEMORY</pre>
+  
+  <h3>2026-06-17T20:18:32.4668035Z         ===================          Compoments check [38;2;6;161;60m12[0m Passed, [38;2</h3>
+  <pre>Match 1 [keyword] score=13.0 id=rocm_hip_gpu_oom
+  Pattern: HIP GPU out of memory (hipErrorOutOfMemory)
+  Category: Memory | Severity: CRITICAL
+  Causes: GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test
+  Solutions: Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits
+  Similar: CUDA out of memory, HSA_STATUS_ERROR_MEMORY
+
+Match 2 [keyword] score=11.5 id=rocm_hip_error
+  Pattern: ROCm HIP API failure
+  Category: GPU/Driver | Severity: HIGH
+  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device
+  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages
+  Similar: HIP initialization failed</pre>
+  
+  <h3>2026-06-17T20:18:41.8743477Z ##[error]Process completed with exit code 1.</h3>
+  <pre>Match 1 [keyword] score=19.5 id=docker_install_test
+  Pattern: Containerized ROCm install test failure
+  Category: Configuration | Severity: MEDIUM
+  Causes: Image drift, missing privileges, stale cache layer
+  Solutions: Rebuild image, verify --device flags, rerun parallel matrix on clean containers
+  Similar: OCI runtime error
+
+Match 2 [keyword] score=14.0 id=gha_runner_shutdown_130
+  Pattern: GitHub Actions runner shutdown (exit 130)
+  Category: Configuration | Severity: HIGH
+  Causes: Runner/pod eviction, K8s node drain, resource limits, container runtime failure
+  Solutions: Check cluster events at failure time; review CPU/memory/disk; retry; contact runner admin — not a TheRock compile error
+  Similar: Process completed with exit code 130</pre>
+  
+  
+
+  
+  <h2>Stack traces</h2>
+  <pre>Stack traces (10):
+
+1607: 2026-06-17T20:18:32.4522753Z         traceback:  TheRock on Windows build requires Visual Studio 2022/2019/2017/2015 environment
+1608:
+
+---
+
+1633: 2026-06-17T20:18:32.4525663Z         traceback: Required MSVC compiler not found
+1634:
+
+---
+
+1645: 2026-06-17T20:18:32.4658407Z         traceback: MSVC ATL not found
+1646:
+
+---
+
+1673: 2026-06-17T20:18:32.4661571Z         traceback: Required MSVC Assembler not found
+1674:
+
+---
+
+1685: 2026-06-17T20:18:32.4663110Z         traceback: Missing MSVC required linker compoments lib.exe
+1686:
+
+---
+
+1713: 2026-06-17T20:18:32.4667143Z         traceback: Microsoft Resource Compiler not found in Windows SDK or Windows SDK not installed
+1714:
+
+---
+
+1721: 2026-06-17T20:18:32.4668035Z         ===================          Compoments check [38;2;6;161;60m12[0m Passed, [38;2;184;166;48m0[0m Warning, [38;2;255;61;61m6[0m Fatal Error          ===================
+1722:
+
+---
+
+1997: 2026-06-17T20:18:32.9512404Z Error executing offload-arch: Command '['./build/lib/llvm/bin/offload-arch.exe']' returned non-zero exit status 1.
+1998:
+
+---
+
+2063: 2026-06-17T20:18:41.8515155Z CMake Error at C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeTestHIPCompiler.cmake:73 (message):
+2064:
+
+---
+
+2095: 2026-06-17T20:18:41.8528017Z     clang++: error: unsupported HIP gpu architecture: None
+2096:</pre>
+  
+
+  
+  <h2>Preset pattern samples</h2>
+  
+  <h3>Pattern: therock</h3>
+  <pre>Matches for /therock/ (showing up to 10):
+
+   25: 2026-06-17T20:18:02.1562137Z Download action repository 'actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10' (SHA:df4cb1c069e1874edd31b4311f1884172cec0e10)
+   26: 
+>> 27: 2026-06-17T20:18:02.4348438Z Uses: ROCm/TheRock/.github/workflows/test_component.yml@refs/pull/5923/merge (669115c7a973bd7dffee5b0a1a0266ebb846b1e3)
+   28: 
+   29: 2026-06-17T20:18:02.4352342Z ##[group] Inputs
+
+---
+
+   79: 2026-06-17T20:18:02.5032256Z with:
+   80: 
+>> 81: 2026-06-17T20:18:02.5032846Z   repository: ROCm/TheRock
+   82: 
+   83: 2026-06-17T20:18:02.5033517Z   sparse-checkout: build_tools
+
+---
+
+   111: 2026-06-17T20:18:02.5047220Z env:
+   112: 
+>> 113: 2026-06-17T20:18:02.5047911Z   VENV_DIR: B:\runner\_work\TheRock\TheRock/.venv
+   114: 
+   115: 2026-06-17T20:18:02.5048725Z   ARTIFACT_RUN_ID: 27710372755
+
+---
+
+   117: 2026-06-17T20:18:02.5049400Z   OUTPUT_ARTIFACTS_DIR: ./build
+   118: 
+>> 119: 2026-06-17T20:18:02.5050065Z   THEROCK_BIN_DIR: ./build/bin
+   120: 
+   121: 2026-06-17T20:18:02.5050946Z   AMDGPU_FAMILIES: gfx110X-all
+
+---
+
+   131: 2026-06-17T20:18:02.5054381Z ##[endgroup]
+   132: 
+>> 133: 2026-06-17T20:18:02.5991359Z Syncing repository: ROCm/TheRock
+   134: 
+   135: 2026-06-17T20:18:02.6012990Z ##[group]Getting Git version info
+
+---
+
+   135: 2026-06-17T20:18:02.6012990Z ##[group]Getting Git version info
+   136: 
+>> 137: 2026-06-17T20:18:02.6015604Z Working directory is 'B:\runner\_work\TheRock\TheRock\prejob'
+   138: 
+   139: 2026-06-17T20:18:02.6178713Z [command]"C:\Program Files\Git\cmd\git.exe" version
+
+---
+
+   147: 2026-06-17T20:18:02.6438624Z Adding repository directory to the temporary git global config as a safe directory
+   148: 
+>> 149: 2026-06-17T20:18:02.6442368Z [command]"C:\Program Files\Git\cmd\git.exe" config --global --add safe.directory B:\runner\_work\TheRock\TheRock\prejob
+   150: 
+   151: 2026-06-17T20:18:02.6684677Z ##[group]Determining repository object format
+
+---
+
+   155: 2026-06-17T20:18:02.6687003Z ##[group]Initializing the repository
+   156: 
+>> 157: 2026-06-17T20:18:02.6692075Z [command]"C:\Program Files\Git\cmd\git.exe" init B:\runner\_work\TheRock\TheRock\prejob
+   158: 
+   159: 2026-06-17T20:18:02.6971099Z Initialized empty Git repository in B:/runner/_work/TheRock/TheRock/prejob/.git/
+
+---
+
+   157: 2026-06-17T20:18:02.6692075Z [command]"C:\Program Files\Git\cmd\git.exe" init B:\runner\_work\TheRock\TheRock\prejob
+   158: 
+>> 159: 2026-06-17T20:18:02.6971099Z Initialized empty Git repository in B:/runner/_work/TheRock/TheRock/prejob/.git/
+   160: 
+   161: 2026-06-17T20:18:02.7007658Z [command]"C:\Program Files\Git\cmd\git.exe" remote add origin https://github.com/ROCm/TheRock
+
+---
+
+   159: 2026-06-17T20:18:02.6971099Z Initialized empty Git repository in B:/runner/_work/TheRock/TheRock/prejob/.git/
+   160: 
+>> 161: 2026-06-17T20:18:02.7007658Z [command]"C:\Program Files\Git\cmd\git.exe" remote add origin https://github.com/ROCm/TheRock
+   162: 
+   163: 2026-06-17T20:18:02.7271179Z ##[endgroup]</pre>
+  
+  <h3>Pattern: ninja</h3>
+  <pre>Matches for /ninja/ (showing up to 10):
+
+   997: 2026-06-17T20:18:15.7324174Z wcwidth==0.8.1
+   998: 
+>> 999: 2026-06-17T20:18:15.7470861Z ##[group]Run choco install --no-progress -y ninja
+   1000: 
+   1001: 2026-06-17T20:18:15.7471128Z [36;1mchoco install --no-progress -y ninja[0m
+
+---
+
+   999: 2026-06-17T20:18:15.7470861Z ##[group]Run choco install --no-progress -y ninja
+   1000: 
+>> 1001: 2026-06-17T20:18:15.7471128Z [36;1mchoco install --no-progress -y ninja[0m
+   1002: 
+   1003: 2026-06-17T20:18:15.7491450Z shell: C:\Program Files\Git\usr\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+
+---
+
+   1045: 2026-06-17T20:18:16.5680555Z Installing the following packages:
+   1046: 
+>> 1047: 2026-06-17T20:18:16.5685191Z ninja
+   1048: 
+   1049: 2026-06-17T20:18:16.5691483Z By installing, you accept licenses for the packages.
+
+---
+
+   1049: 2026-06-17T20:18:16.5691483Z By installing, you accept licenses for the packages.
+   1050: 
+>> 1051: 2026-06-17T20:18:16.8695749Z ninja v1.13.2 already installed.
+   1052: 
+   1053: 2026-06-17T20:18:16.8696077Z  Use --force to reinstall, specify a version to install, or try upgrade.
+
+---
+
+   1063: 2026-06-17T20:18:16.8763934Z Warnings:
+   1064: 
+>> 1065: 2026-06-17T20:18:16.8769141Z  - ninja - ninja v1.13.2 already installed.
+   1066: 
+   1067: 2026-06-17T20:18:16.8769439Z  Use --force to reinstall, specify a version to install, or try upgrade.
+
+---
+
+   1591: 2026-06-17T20:18:32.4518715Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mCCache[0m] Found CCache 4.12.3 at C:/ProgramData/chocolatey/bin/ccache.exe
+   1592: 
+>> 1593: 2026-06-17T20:18:32.4519217Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mNinja-Build[0m] Found Ninja-Build 1.13.2 at C:/ProgramData/chocolatey/bin/ninja.exe
+   1594: 
+   1595: 2026-06-17T20:18:32.4519813Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mGCC/gfortran[0m] Found GCC compiler program gfortran 13.2.0 at C:/Strawberry/c/bin/gfortran.exe
+
+---
+
+   2013: 2026-06-17T20:18:32.9524683Z INFO: Changed working directory to: B:\runner\_work\TheRock\TheRock\build\libhipcxx\build
+   2014: 
+>> 2015: 2026-06-17T20:18:32.9526963Z INFO: ++ Exec [B:\runner\_work\TheRock\TheRock\build\libhipcxx\build]$ cmake '-DCMAKE_PREFIX_PATH=B:\runner\_work\TheRock\TheRock\build' -DHIP_HIPCC_EXECUTABLE=B:/runner/_work/TheRock/TheRock/build/bin/hipcc.exe '-DCMAKE_CXX_COMPILER=B:\runner\_work\TheRock\TheRock\build\bin\hipcc.exe' -DCMAKE_HIP_COMPILER_ROCM_ROOT=B:/runner/_work/TheRock/TheRock/build -DCMAKE_HIP_ARCHITECTURES=None -DCMAKE_RC_COMPILER=rc.exe -GNinja ..
+   2016: 
+   2017: 2026-06-17T20:18:34.5988294Z -- The CXX compiler identification is Clang 23.0.0 with GNU-like command-line
+
+---
+
+   2085: 2026-06-17T20:18:41.8517761Z
+   2086: 
+>> 2087: 2026-06-17T20:18:41.8517969Z     Run Build Command(s): C:/ProgramData/chocolatey/bin/ninja.exe -v cmTC_5eb80
+   2088: 
+   2089: 2026-06-17T20:18:41.8519421Z     [1/2] B:\runner\_work\TheRock\TheRock\build\lib\llvm\bin\amdclang++.exe  -D__HIP_ROCclr__=1 -isystem B:/runner/_work/TheRock/TheRock/build/include --cuda-host-only  -O0 -g -Xclang -gcodeview --offload-arch=None -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_5eb80.dir/testHIPCompiler.hip.obj -MF CMakeFiles\cmTC_5eb80.dir\testHIPCompiler.hip.obj.d -o CMakeFiles/cmTC_5eb80.dir/testHIPCompiler.hip.obj -x hip -c B:/runner/_work/TheRock/TheRock/build/libhipcxx/build/CMakeFiles/CMakeScratch/TryCompile-q2y8o8/testHIPCompiler.hip
+
+---
+
+   2095: 2026-06-17T20:18:41.8528017Z     clang++: error: unsupported HIP gpu architecture: None
+   2096: 
+>> 2097: 2026-06-17T20:18:41.8528263Z     ninja: build stopped: subcommand failed.
+   2098: 
+   2099: 2026-06-17T20:18:41.8528447Z
+
+---
+
+   2131: 2026-06-17T20:18:41.8624887Z     raise CalledProcessError(retcode, process.args,
+   2132: 
+>> 2133: 2026-06-17T20:18:41.8626008Z subprocess.CalledProcessError: Command '['cmake', '-DCMAKE_PREFIX_PATH=B:\\runner\\_work\\TheRock\\TheRock\\build', '-DHIP_HIPCC_EXECUTABLE=B:/runner/_work/TheRock/TheRock/build/bin/hipcc.exe', '-DCMAKE_CXX_COMPILER=B:\\runner\\_work\\TheRock\\TheRock\\build\\bin\\hipcc.exe', '-DCMAKE_HIP_COMPILER_ROCM_ROOT=B:/runner/_work/TheRock/TheRock/build', '-DCMAKE_HIP_ARCHITECTURES=None', '-DCMAKE_RC_COMPILER=rc.exe', '-GNinja', '..']' returned non-zero exit status 1.
+   2134: 
+   2135: 2026-06-17T20:18:41.8743477Z ##[error]Process completed with exit code 1.</pre>
+  
+  <h3>Pattern: cmake</h3>
+  <pre>Matches for /cmake/ (showing up to 10):
+
+   417: 2026-06-17T20:18:07.2960113Z -207ee58595a64b5c4a70df221f1e6e704b807811 base/half
+   418: 
+>> 419: 2026-06-17T20:18:07.2960677Z -10155d7272ea1bf79f6b5a9dbc339657af1aa372 base/rocm-cmake
+   420: 
+   421: 2026-06-17T20:18:07.2960967Z -2abe93d58c833c804914bed3ffcebb3a6a01e237 compiler/amd-llvm
+
+---
+
+   1587: 2026-06-17T20:18:32.4517830Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mGit[0m] Found Git 2.53.0 at C:/Program Files/Git/cmd/git.exe
+   1588: 
+>> 1589: 2026-06-17T20:18:32.4518257Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mCMake[0m] Found CMake 3.31.0 at C:/Program Files/CMake/bin/cmake.exe
+   1590: 
+   1591: 2026-06-17T20:18:32.4518715Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mCCache[0m] Found CCache 4.12.3 at C:/ProgramData/chocolatey/bin/ccache.exe
+
+---
+
+   1625: 2026-06-17T20:18:32.4525174Z         - Windows SDK 10.0.XXXXX
+   1626: 
+>> 1627: 2026-06-17T20:18:32.4525331Z         - CMake for Windows
+   1628: 
+   1629: 2026-06-17T20:18:32.4525486Z         - C++ Address Sanitizer
+
+---
+
+   1665: 2026-06-17T20:18:32.4661051Z         - Windows SDK 10.0.XXXXX
+   1666: 
+>> 1667: 2026-06-17T20:18:32.4661225Z         - CMake for Windows
+   1668: 
+   1669: 2026-06-17T20:18:32.4661381Z         - C++ Address Sanitizer
+
+---
+
+   1707: 2026-06-17T20:18:32.4666424Z             - Windows SDK 10.0.XXXXX
+   1708: 
+>> 1709: 2026-06-17T20:18:32.4666596Z             - CMake for Windows
+   1710: 
+   1711: 2026-06-17T20:18:32.4666746Z             - C++ Address Sanitizer
+
+---
+
+   2009: 2026-06-17T20:18:32.9520297Z INFO: HIP_PATH: B:\runner\_work\TheRock\TheRock\build
+   2010: 
+>> 2011: 2026-06-17T20:18:32.9522409Z INFO: PATH: B:\runner\_work\TheRock\TheRock\build\bin;B:\runner\_work\TheRock\TheRock\.venv\Scripts;C:\Windows\system32\config\systemprofile\.local\bin;C:\Windows\system32\config\systemprofile\AppData\Roaming\Python\Python312\Scripts;B:\runner\_work\_tool\Python\3.12.10\x64\Scripts;B:\runner\_work\_tool\Python\3.12.10\x64;B:\runner\_work\_tool\Python\3.13.13\x64\Scripts\;B:\runner\_work\_tool\Python\3.13.13\x64\;C:\Python313\Scripts\;C:\Python313\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\CMake\bin;C:\Strawberry\c\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\perl\bin;C:\Program Files (x86)\DVC (Data Version Control);C:\Windows\system32\config\systemprofile\.local\bin;C:\Windows\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps
+   2012: 
+   2013: 2026-06-17T20:18:32.9524683Z INFO: Changed working directory to: B:\runner\_work\TheRock\TheRock\build\libhipcxx\build
+
+---
+
+   2013: 2026-06-17T20:18:32.9524683Z INFO: Changed working directory to: B:\runner\_work\TheRock\TheRock\build\libhipcxx\build
+   2014: 
+>> 2015: 2026-06-17T20:18:32.9526963Z INFO: ++ Exec [B:\runner\_work\TheRock\TheRock\build\libhipcxx\build]$ cmake '-DCMAKE_PREFIX_PATH=B:\runner\_work\TheRock\TheRock\build' -DHIP_HIPCC_EXECUTABLE=B:/runner/_work/TheRock/TheRock/build/bin/hipcc.exe '-DCMAKE_CXX_COMPILER=B:\runner\_work\TheRock\TheRock\build\bin\hipcc.exe' -DCMAKE_HIP_COMPILER_ROCM_ROOT=B:/runner/_work/TheRock/TheRock/build -DCMAKE_HIP_ARCHITECTURES=None -DCMAKE_RC_COMPILER=rc.exe -GNinja ..
+   2016: 
+   2017: 2026-06-17T20:18:34.5988294Z -- The CXX compiler identification is Clang 23.0.0 with GNU-like command-line
+
+---
+
+   2027: 2026-06-17T20:18:38.6427144Z -- Detecting CXX compile features - done
+   2028: 
+>> 2029: 2026-06-17T20:18:38.6485585Z CMake Deprecation Warning at B:/runner/_work/TheRock/TheRock/build/share/rocm/cmake/ROCMConfig.cmake:12 (message):
+   2030: 
+   2031: 2026-06-17T20:18:38.6486042Z   Use of find_package(ROCM) is deprecated as of ROCm 6.4.  Please use
+
+---
+
+   2031: 2026-06-17T20:18:38.6486042Z   Use of find_package(ROCM) is deprecated as of ROCm 6.4.  Please use
+   2032: 
+>> 2033: 2026-06-17T20:18:38.6486330Z   find_package(ROCmCMakeBuildTools)
+   2034: 
+   2035: 2026-06-17T20:18:38.6486641Z Call Stack (most recent call first):
+
+---
+
+   2035: 2026-06-17T20:18:38.6486641Z Call Stack (most recent call first):
+   2036: 
+>> 2037: 2026-06-17T20:18:38.6486840Z   cmake/FindROCMCmake.cmake:33 (find_package)
+   2038: 
+   2039: 2026-06-17T20:18:38.6487051Z   CMakeLists.txt:42 (include)</pre>
+  
+  <h3>Pattern: gfx</h3>
+  <pre>Matches for /gfx/ (showing up to 10):
+
+   1: ﻿2026-06-17T20:18:01.0154737Z Current runner version: '2.335.1'
+   2: 
+>> 3: 2026-06-17T20:18:01.0159542Z Runner name: 'azure-windows-11-gfx1101-gpu-rocm-runner-14'
+   4: 
+   5: 2026-06-17T20:18:01.0160124Z Runner group name: 'default'
+
+---
+
+   5: 2026-06-17T20:18:01.0160124Z Runner group name: 'default'
+   6: 
+>> 7: 2026-06-17T20:18:01.0160664Z Machine name: 'azw11gfx1101r14'
+   8: 
+   9: 2026-06-17T20:18:01.0162303Z ##[group]GITHUB_TOKEN Permissions
+
+---
+
+   31: 2026-06-17T20:18:02.4352984Z   artifact_run_id:
+   32: 
+>> 33: 2026-06-17T20:18:02.4353589Z   artifact_group: gfx110X-all
+   34: 
+   35: 2026-06-17T20:18:02.4354254Z   amdgpu_families: gfx110X-all
+
+---
+
+   33: 2026-06-17T20:18:02.4353589Z   artifact_group: gfx110X-all
+   34: 
+>> 35: 2026-06-17T20:18:02.4354254Z   amdgpu_families: gfx110X-all
+   36: 
+   37: 2026-06-17T20:18:02.4354990Z   amdgpu_targets: gfx1100,gfx1101,gfx1102,gfx1103
+
+---
+
+   35: 2026-06-17T20:18:02.4354254Z   amdgpu_families: gfx110X-all
+   36: 
+>> 37: 2026-06-17T20:18:02.4354990Z   amdgpu_targets: gfx1100,gfx1101,gfx1102,gfx1103
+   38: 
+   39: 2026-06-17T20:18:02.4355796Z   test_runs_on: windows-gfx110X-gpu-rocm
+
+---
+
+   37: 2026-06-17T20:18:02.4354990Z   amdgpu_targets: gfx1100,gfx1101,gfx1102,gfx1103
+   38: 
+>> 39: 2026-06-17T20:18:02.4355796Z   test_runs_on: windows-gfx110X-gpu-rocm
+   40: 
+   41: 2026-06-17T20:18:02.4356508Z   platform: windows
+
+---
+
+   59:   ],
+   60:   "total_shards": 1,
+>> 61:   "test_runner": "windows-gfx110X-gpu-rocm",
+   62:   "container_options": ""
+   63: }
+
+---
+
+   73: 2026-06-17T20:18:02.4367165Z ##[endgroup]
+   74: 
+>> 75: 2026-06-17T20:18:02.4368302Z Complete job name: Windows::release / Test gfx110X-all / Test libhipcxx_hipcc / Test libhipcxx_hipcc (shard 1/1) (gfx110X-all)
+   76: 
+   77: 2026-06-17T20:18:02.5031023Z ##[group]Run actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+
+---
+
+   119: 2026-06-17T20:18:02.5050065Z   THEROCK_BIN_DIR: ./build/bin
+   120: 
+>> 121: 2026-06-17T20:18:02.5050946Z   AMDGPU_FAMILIES: gfx110X-all
+   122: 
+   123: 2026-06-17T20:18:02.5051670Z   AMDGPU_TARGETS: gfx1100,gfx1101,gfx1102,gfx1103
+
+---
+
+   121: 2026-06-17T20:18:02.5050946Z   AMDGPU_FAMILIES: gfx110X-all
+   122: 
+>> 123: 2026-06-17T20:18:02.5051670Z   AMDGPU_TARGETS: gfx1100,gfx1101,gfx1102,gfx1103
+   124: 
+   125: 2026-06-17T20:18:02.5052468Z   ARTIFACT_GROUP: gfx110X-all</pre>
+  
+  <h3>Pattern: hipErrorOutOfMemory</h3>
+  <pre>No matches for pattern: hipErrorOutOfMemory</pre>
+  
+  <h3>Pattern: rocsparse</h3>
+  <pre>No matches for pattern: rocsparse</pre>
+  
+  <h3>Pattern: ctest</h3>
+  <pre>No matches for pattern: ctest</pre>
+  
+  <h3>Pattern: FAILED</h3>
+  <pre>Matches for /FAILED/ (showing up to 10):
+
+   821: 2026-06-17T20:18:14.3346867Z Resolved 42 packages in 26ms
+   822: 
+>> 823: 2026-06-17T20:18:14.3485647Z warning: Failed to hardlink files; falling back to full copy. This may lead to degraded performance.
+   824: 
+   825: 2026-06-17T20:18:14.3486133Z          If the cache and target directories are on different filesystems, hardlinking may not be supported.
+
+---
+
+   2057: 2026-06-17T20:18:41.3927329Z -- Detecting HIP compiler ABI info
+   2058: 
+>> 2059: 2026-06-17T20:18:41.6249624Z -- Detecting HIP compiler ABI info - failed
+   2060: 
+   2061: 2026-06-17T20:18:41.6250021Z -- Check for working HIP compiler: B:/runner/_work/TheRock/TheRock/build/lib/llvm/bin/amdclang++.exe
+
+---
+
+   2089: 2026-06-17T20:18:41.8519421Z     [1/2] B:\runner\_work\TheRock\TheRock\build\lib\llvm\bin\amdclang++.exe  -D__HIP_ROCclr__=1 -isystem B:/runner/_work/TheRock/TheRock/build/include --cuda-host-only  -O0 -g -Xclang -gcodeview --offload-arch=None -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_5eb80.dir/testHIPCompiler.hip.obj -MF CMakeFiles\cmTC_5eb80.dir\testHIPCompiler.hip.obj.d -o CMakeFiles/cmTC_5eb80.dir/testHIPCompiler.hip.obj -x hip -c B:/runner/_work/TheRock/TheRock/build/libhipcxx/build/CMakeFiles/CMakeScratch/TryCompile-q2y8o8/testHIPCompiler.hip
+   2090: 
+>> 2091: 2026-06-17T20:18:41.8520997Z     FAILED: [code=1] CMakeFiles/cmTC_5eb80.dir/testHIPCompiler.hip.obj
+   2092: 
+   2093: 2026-06-17T20:18:41.8526414Z     B:\runner\_work\TheRock\TheRock\build\lib\llvm\bin\amdclang++.exe  -D__HIP_ROCclr__=1 -isystem B:/runner/_work/TheRock/TheRock/build/include --cuda-host-only  -O0 -g -Xclang -gcodeview --offload-arch=None -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -MD -MT CMakeFiles/cmTC_5eb80.dir/testHIPCompiler.hip.obj -MF CMakeFiles\cmTC_5eb80.dir\testHIPCompiler.hip.obj.d -o CMakeFiles/cmTC_5eb80.dir/testHIPCompiler.hip.obj -x hip -c B:/runner/_work/TheRock/TheRock/build/libhipcxx/build/CMakeFiles/CMakeScratch/TryCompile-q2y8o8/testHIPCompiler.hip
+
+---
+
+   2095: 2026-06-17T20:18:41.8528017Z     clang++: error: unsupported HIP gpu architecture: None
+   2096: 
+>> 2097: 2026-06-17T20:18:41.8528263Z     ninja: build stopped: subcommand failed.
+   2098: 
+   2099: 2026-06-17T20:18:41.8528447Z</pre>
+  
+  
+
+  
+  <h2>GitHub Actions errors</h2>
+  <pre>Matches for /##\[error\]/ (showing up to 15):
+
+   2133: 2026-06-17T20:18:41.8626008Z subprocess.CalledProcessError: Command '['cmake', '-DCMAKE_PREFIX_PATH=B:\\runner\\_work\\TheRock\\TheRock\\build', '-DHIP_HIPCC_EXECUTABLE=B:/runner/_work/TheRock/TheRock/build/bin/hipcc.exe', '-DCMAKE_CXX_COMPILER=B:\\runner\\_work\\TheRock\\TheRock\\build\\bin\\hipcc.exe', '-DCMAKE_HIP_COMPILER_ROCM_ROOT=B:/runner/_work/TheRock/TheRock/build', '-DCMAKE_HIP_ARCHITECTURES=None', '-DCMAKE_RC_COMPILER=rc.exe', '-GNinja', '..']' returned non-zero exit status 1.
+   2134: 
+>> 2135: 2026-06-17T20:18:41.8743477Z ##[error]Process completed with exit code 1.
+   2136: 
+   2137: 2026-06-17T20:18:41.8873836Z ##[group]Run python ./build_tools/github_actions/reproduce_test_failure.py \</pre>
+  
+</body>
+</html>

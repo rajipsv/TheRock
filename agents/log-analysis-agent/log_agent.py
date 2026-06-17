@@ -87,6 +87,8 @@ def count_errors_from_tool_only(tool_data: dict) -> int:
         tool_data.get("error_samples", "")
         + tool_data.get("critical_samples", "")
         + tool_data.get("fatal_samples", "")
+        + tool_data.get("github_error_samples", "")
+        + "\n".join((tool_data.get("rocm_ci_samples") or {}).values())
     )
     return len(re.findall(r"^>>\s+\d+:", text, re.MULTILINE))
 
@@ -97,10 +99,11 @@ def errors_from_tool_only(tool_data: dict, kb: FailureKnowledgeBase | None = Non
         rag_by_sig[item.get("error_signature", "")] = item.get("matches", [])
 
     errors = []
-    for field, default_type in (
-        ("error_samples", "ERROR"),
-        ("critical_samples", "CRITICAL"),
-        ("fatal_samples", "FATAL"),
+    for field, default_type, default_severity in (
+        ("error_samples", "ERROR", "HIGH"),
+        ("critical_samples", "CRITICAL", "CRITICAL"),
+        ("fatal_samples", "FATAL", "CRITICAL"),
+        ("github_error_samples", "GITHUB_ACTIONS", "HIGH"),
     ):
         block = tool_data.get(field, "")
         for match in re.finditer(r">>\s+(\d+):\s*(.+)", block):
@@ -122,7 +125,35 @@ def errors_from_tool_only(tool_data: dict, kb: FailureKnowledgeBase | None = Non
                     "type": default_type,
                     "line_number": int(match.group(1)),
                     "message": msg,
-                    "severity": "CRITICAL" if default_type in ("CRITICAL", "FATAL") else "HIGH",
+                    "severity": default_severity,
+                    "category": category,
+                    "recommendation": rec,
+                    "kb_pattern_id": kb_id,
+                }
+            )
+
+    for label, block in (tool_data.get("rocm_ci_samples") or {}).items():
+        if not block or block.startswith("No matches"):
+            continue
+        for match in re.finditer(r">>\s+(\d+):\s*(.+)", block):
+            msg = match.group(2).strip()
+            rec = "Inspect ROCm GPU memory, driver stack, and test parallelism on the runner."
+            category = "GPU/Driver"
+            kb_id = None
+            if kb is not None:
+                top = kb.lookup_known_failure(msg, top_k=1)
+                if top:
+                    m0 = top[0].to_dict()
+                    rec = m0.get("solutions", rec)
+                    category = m0.get("category", category)
+                    kb_id = m0.get("pattern_id")
+            severity = "CRITICAL" if label in ("hipErrorOutOfMemory", "gtest_failed") else "HIGH"
+            errors.append(
+                {
+                    "type": label.upper(),
+                    "line_number": int(match.group(1)),
+                    "message": msg,
+                    "severity": severity,
                     "category": category,
                     "recommendation": rec,
                     "kb_pattern_id": kb_id,
