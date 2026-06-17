@@ -17,11 +17,15 @@ NOTEBOOK_OUT = AGENTS_DIR / "notebook" / "out"
 DEMO_PRS = (5572, 5688, 5480, 5718)
 DEFAULT_DEMO_PR = 5572
 
-# Primary log-analysis demo: ROCm/TheRock Multi-Arch CI run (kfdtest PR #8864)
-DEFAULT_DEMO_RUN_ID = 27697860238
-DEFAULT_DEMO_JOB_ID = 81925995968
+# Primary log-analysis demo: ROCm/TheRock Multi-Arch CI run (rocSPARSE OOM on Windows gfx110X)
+DEFAULT_DEMO_RUN_ID = 27710372755
+DEFAULT_DEMO_JOB_ID = 81992436725
 DEFAULT_DEMO_LOG = (
-    LOG_ANALYSIS_DIR / "sample-runs" / f"run-{DEFAULT_DEMO_RUN_ID}" / f"job-{DEFAULT_DEMO_JOB_ID}.log"
+    LOG_ANALYSIS_DIR
+    / "sample-runs"
+    / f"run-{DEFAULT_DEMO_RUN_ID}"
+    / f"job-{DEFAULT_DEMO_JOB_ID}"
+    / f"job-{DEFAULT_DEMO_JOB_ID}.log"
 )
 DEFAULT_DEMO_LOG_URL = (
     f"https://github.com/ROCm/TheRock/actions/runs/{DEFAULT_DEMO_RUN_ID}"
@@ -168,7 +172,7 @@ def run_change_impact_for_pr(pr_number: int, *, use_sample: bool = True) -> str:
 
 def run_log_analysis_for_path(
     log_path: str,
-    preset: str = "custom",
+    preset: str = "therock_multi_arch",
     *,
     use_vllm_summary: bool = True,
 ) -> str:
@@ -207,7 +211,7 @@ def run_infrastructure_triage_loop(
     pr_number: int,
     log_path: str,
     *,
-    preset: str = "custom",
+    preset: str = "therock_multi_arch",
     use_sample: bool = True,
     use_vllm_summary: bool = True,
 ) -> str:
@@ -264,7 +268,7 @@ def build_pydantic_tools():
         return run_change_impact_for_pr(pr_number, use_sample=True)
 
     @Tool
-    def triage_ci_log(log_path: str, preset: str = "custom") -> str:
+    def triage_ci_log(log_path: str, preset: str = "therock_multi_arch") -> str:
         """Run log-analysis-agent on a CI/build log (post-failure KB triage)."""
         return run_log_analysis_for_path(log_path, preset=preset)
 
@@ -275,7 +279,7 @@ def build_pydantic_tools():
         return run_infrastructure_triage_loop(
             pr_number,
             log_path or default_log,
-            preset="custom",
+            preset="therock_multi_arch",
             use_sample=True,
         )
 

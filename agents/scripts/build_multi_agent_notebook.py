@@ -47,6 +47,8 @@ Orchestrates **change-impact-agent** (pre-merge) and **log-analysis-agent** (pos
 | log-analysis-agent | After CI fails | `triage_ci_log` |
 | Orchestrator | User chat | picks tools at runtime |
 
+**Demo CI run:** [27710372755](https://github.com/ROCm/TheRock/actions/runs/27710372755) — rocSPARSE `hipErrorOutOfMemory` (job `81992436725`).
+
 ## Steps
 1. Launch vLLM (terminal)
 2. Config + verify
@@ -95,7 +97,14 @@ NOTEBOOK_OUT = AGENTS_DIR / "notebook" / "out"
 if str(AGENTS_DIR) not in sys.path:
     sys.path.insert(0, str(AGENTS_DIR))
 
-from multi_agent_tools import DEFAULT_DEMO_LOG, DEFAULT_DEMO_LOG_URL, DEFAULT_DEMO_PR, DEMO_PRS
+from multi_agent_tools import (
+    DEFAULT_DEMO_LOG,
+    DEFAULT_DEMO_LOG_URL,
+    DEFAULT_DEMO_JOB_ID,
+    DEFAULT_DEMO_PR,
+    DEFAULT_DEMO_RUN_ID,
+    DEMO_PRS,
+)
 
 BASE_URL = os.environ.get("VLLM_BASE_URL", os.environ.get("BASE_URL", "http://localhost:8000/v1"))
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "abc-123")
@@ -120,9 +129,11 @@ print("THEROCK_ROOT =", THEROCK_ROOT)
 print("USE_VLLM     =", USE_VLLM)
 print("BASE_URL     =", BASE_URL)
 print("LLM_MODEL    =", LLM_MODEL)
-print("DEMO_PRS     =", DEMO_PRS)
-print("DEFAULT_LOG  =", DEFAULT_DEMO_LOG)
-print("RUN URL      =", DEFAULT_DEMO_LOG_URL)
+print("DEMO_PRS      =", DEMO_PRS)
+print("DEMO_RUN_ID   =", DEFAULT_DEMO_RUN_ID)
+print("DEMO_JOB_ID   =", DEFAULT_DEMO_JOB_ID)
+print("DEFAULT_LOG   =", DEFAULT_DEMO_LOG)
+print("RUN URL       =", DEFAULT_DEMO_LOG_URL)
 """
         ),
         code(

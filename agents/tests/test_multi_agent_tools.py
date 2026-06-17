@@ -32,9 +32,10 @@ class MultiAgentToolsTest(unittest.TestCase):
         summary = run_log_analysis_for_path(str(DEFAULT_DEMO_LOG))
         self.assertIn("Errors", summary)
         self.assertTrue(
-            "compiler" in summary.lower()
+            "rocsparse" in summary.lower()
             or "HIP" in summary
-            or "27697860238" in summary
+            or "27710372755" in summary
+            or "hipErrorOutOfMemory" in summary
             or "exit code" in summary.lower()
         )
 
