@@ -9,7 +9,7 @@ from unittest.mock import patch
 AGENT_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(AGENT_DIR))
 
-from llm import sanitize_llm_text
+from llm import configure_vllm_env, default_summary_backend, sanitize_llm_text, use_vllm_summary_enabled
 from summarize_log import generate_log_summary, template_log_summary
 
 
@@ -56,6 +56,22 @@ class SummarizeLogTest(unittest.TestCase):
         text = generate_log_summary(SAMPLE_REPORT, backend="vllm")
         self.assertIn("Log Analysis Executive Summary", text)
         self.assertNotIn("Triage brief (LLM)", text)
+
+    def test_default_summary_backend_respects_use_vllm_flag(self):
+        import os
+
+        for key in ("USE_VLLM", "USE_VLLM_SUMMARY", "LOG_SUMMARY_BACKEND"):
+            os.environ.pop(key, None)
+        self.assertEqual(default_summary_backend(), "template")
+        os.environ["USE_VLLM"] = "1"
+        self.assertEqual(default_summary_backend(), "vllm")
+        self.assertTrue(use_vllm_summary_enabled())
+        configure_vllm_env(use_vllm=False)
+        self.assertEqual(default_summary_backend(), "template")
+        configure_vllm_env(use_vllm=True)
+        self.assertEqual(default_summary_backend(), "vllm")
+        for key in ("USE_VLLM", "USE_VLLM_SUMMARY", "LOG_SUMMARY_BACKEND"):
+            os.environ.pop(key, None)
 
 
 if __name__ == "__main__":

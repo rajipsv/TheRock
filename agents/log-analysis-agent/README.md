@@ -102,19 +102,35 @@ python agents/log-analysis-agent/analyze_log.py `
 
 Tool-calling flags are required for LangGraph ReAct agent mode with Qwen3 on vLLM.
 
-### Executive summary with vLLM
+### Executive summary with vLLM (MI300 notebook)
+
+In Jupyter on MI300, set **`USE_VLLM = True`** (default in the demo notebooks). Errors stay **tool-only**; vLLM writes `executive_summary.md` only.
 
 ```powershell
-python agents/log-analysis-agent/analyze_log.py `
-  --log agents/log-analysis-agent/sample-runs/run-27697860238/job-81925995968.log `
-  --output-dir out/example --summary-backend vllm
+python agents/log-analysis-agent/scripts/build_log_analysis_notebook.py
+# Open agents/log-analysis-agent/notebook/log_analysis_demo.ipynb
+```
 
-# Or standalone:
+Or CLI / `.env`:
+
+```powershell
+# agents/log-analysis-agent/.env
+USE_VLLM=1
+USE_VLLM_SUMMARY=1
+
+python agents/log-analysis-agent/analyze_log.py `
+  --log agents/log-analysis-agent/sample-runs/run-27710372755/job-81992436725/job-81992436725.log `
+  --output-dir out/rocsparse-demo
+
+# Or explicit:
+python agents/log-analysis-agent/analyze_log.py `
+  --log job.log --output-dir out/example --summary-backend vllm
+
 python agents/log-analysis-agent/summarize_log.py `
   --backend vllm --input out/example/report.json
 ```
 
-Set `LOG_SUMMARY_BACKEND=vllm` in `.env` to default summaries to vLLM after every `analyze_log.py` run.
+Set `USE_VLLM=0` or `USE_VLLM_SUMMARY=0` in the notebook to force template-only summaries.
 
 ### OpenAI cloud
 

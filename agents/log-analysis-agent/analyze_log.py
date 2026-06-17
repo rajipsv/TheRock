@@ -32,6 +32,7 @@ from github_logs import (
     write_job_log,
 )
 from log_agent import LogAnalysisAgent, errors_from_tool_only, summary_from_tool_only
+from llm import default_summary_backend
 from log_tools import LogSession, run_tool_only_analysis
 from presets import PRESET_NAMES, get_preset
 
@@ -129,7 +130,7 @@ def write_outputs(
     if write_summary:
         from summarize_log import generate_log_summary
 
-        backend = summary_backend or os.environ.get("LOG_SUMMARY_BACKEND", "template")
+        backend = summary_backend or default_summary_backend()
         summary = generate_log_summary(report, backend=backend)
         report["executive_summary"] = summary.strip()
         json_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
@@ -337,7 +338,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--summary-backend",
         choices=("template", "openai", "vllm", "ollama"),
         default=None,
-        help="Executive summary backend (default: template or LOG_SUMMARY_BACKEND env)",
+        help="Executive summary backend (default: vllm when USE_VLLM=1, else template)",
     )
     return parser.parse_args(argv)
 

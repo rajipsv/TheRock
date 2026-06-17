@@ -166,8 +166,13 @@ def run_change_impact_for_pr(pr_number: int, *, use_sample: bool = True) -> str:
     return _format_change_impact_summary(report)
 
 
-def run_log_analysis_for_path(log_path: str, preset: str = "custom") -> str:
-    """Post-CI log triage: errors, KB matches, recommendations (tool-only)."""
+def run_log_analysis_for_path(
+    log_path: str,
+    preset: str = "custom",
+    *,
+    use_vllm_summary: bool = True,
+) -> str:
+    """Post-CI log triage: errors, KB matches, optional vLLM executive summary."""
     _load_env_files()
     path = Path(log_path).expanduser().resolve()
     if not path.is_file():
@@ -179,11 +184,23 @@ def run_log_analysis_for_path(log_path: str, preset: str = "custom") -> str:
 
     _ensure_log_analysis_path()
     from analyze_log import build_report, write_outputs
+    from llm import configure_vllm_env, default_summary_backend
+
+    if use_vllm_summary:
+        configure_vllm_env(use_vllm=True)
+    else:
+        configure_vllm_env(use_vllm=False)
 
     out_dir = NOTEBOOK_OUT / f"log-{path.stem}"
     report = build_report(path, preset_name=preset, use_agent=False)
-    write_outputs(report, out_dir, write_summary=True, summary_backend="template")
-    return _format_log_summary(report)
+    backend = default_summary_backend() if use_vllm_summary else "template"
+    write_outputs(report, out_dir, write_summary=True, summary_backend=backend)
+    lines = [_format_log_summary(report)]
+    if report.get("executive_summary"):
+        lines.append("")
+        lines.append("--- vLLM executive summary ---")
+        lines.append(report["executive_summary"][:2000])
+    return "\n".join(lines)
 
 
 def run_infrastructure_triage_loop(
@@ -192,6 +209,7 @@ def run_infrastructure_triage_loop(
     *,
     preset: str = "custom",
     use_sample: bool = True,
+    use_vllm_summary: bool = True,
 ) -> str:
     """
     Multi-agent infrastructure loop:
@@ -199,7 +217,7 @@ def run_infrastructure_triage_loop(
     2) log-analysis-agent (post-CI failure triage)
     """
     pre = run_change_impact_for_pr(pr_number, use_sample=use_sample)
-    post = run_log_analysis_for_path(log_path, preset=preset)
+    post = run_log_analysis_for_path(log_path, preset=preset, use_vllm_summary=use_vllm_summary)
     return (
         "=== Pre-merge (change-impact-agent) ===\n"
         f"{pre}\n\n"

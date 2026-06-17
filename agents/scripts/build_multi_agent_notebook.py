@@ -101,12 +101,23 @@ BASE_URL = os.environ.get("VLLM_BASE_URL", os.environ.get("BASE_URL", "http://lo
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "abc-123")
 LLM_MODEL = os.environ.get("VLLM_MODEL", os.environ.get("LLM_MODEL", "Qwen3-30B-A3B"))
 
+# MI300 notebook: vLLM executive summaries for log-analysis-agent (errors stay tool-only)
+USE_VLLM = True
+
 os.environ["BASE_URL"] = BASE_URL
 os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
 os.environ["LLM_MODEL"] = LLM_MODEL
 
+if USE_VLLM:
+    os.environ["USE_VLLM"] = "1"
+    os.environ["USE_VLLM_SUMMARY"] = "1"
+    os.environ["LOG_SUMMARY_BACKEND"] = "vllm"
+    os.environ.setdefault("VLLM_BASE_URL", BASE_URL)
+    os.environ.setdefault("VLLM_MODEL", LLM_MODEL)
+
 print("AGENTS_DIR   =", AGENTS_DIR)
 print("THEROCK_ROOT =", THEROCK_ROOT)
+print("USE_VLLM     =", USE_VLLM)
 print("BASE_URL     =", BASE_URL)
 print("LLM_MODEL    =", LLM_MODEL)
 print("DEMO_PRS     =", DEMO_PRS)
@@ -154,7 +165,7 @@ if VLLM_REACHABLE:
 !{sys.executable} -m pip install -q -r "{AGENTS_DIR / 'requirements-notebook.txt'}"
 """
         ),
-        md("## Step 4: Direct tool smoke test (deterministic, no LLM)"),
+        md("## Step 4: Direct tool smoke test (deterministic errors + vLLM summary when USE_VLLM=True)"),
         code(
             """from multi_agent_tools import (
     list_demo_assets,
@@ -167,9 +178,9 @@ print(list_demo_assets())
 print()
 print(run_change_impact_for_pr(DEFAULT_DEMO_PR))
 print()
-print(run_log_analysis_for_path(str(DEFAULT_DEMO_LOG)))
+print(run_log_analysis_for_path(str(DEFAULT_DEMO_LOG), use_vllm_summary=USE_VLLM))
 print()
-print(run_infrastructure_triage_loop(DEFAULT_DEMO_PR, str(DEFAULT_DEMO_LOG))[:1200], "...")
+print(run_infrastructure_triage_loop(DEFAULT_DEMO_PR, str(DEFAULT_DEMO_LOG), use_vllm_summary=USE_VLLM)[:1600], "...")
 """
         ),
         md(

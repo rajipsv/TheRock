@@ -17,7 +17,7 @@ if str(AGENT_DIR) not in sys.path:
     sys.path.insert(0, str(AGENT_DIR))
 
 from env_loader import load_agent_env
-from llm import DEFAULT_VLLM_BASE_URL, DEFAULT_VLLM_MODEL, invoke_llm_backend, llm_env_config
+from llm import DEFAULT_VLLM_BASE_URL, DEFAULT_VLLM_MODEL, default_summary_backend, invoke_llm_backend, llm_env_config
 
 load_agent_env()
 
@@ -152,8 +152,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--backend",
         choices=("template", "openai", "vllm", "ollama"),
-        default=os.environ.get("LOG_SUMMARY_BACKEND", "template"),
-        help="Summary backend (default: template or LOG_SUMMARY_BACKEND env)",
+        default=default_summary_backend(),
+        help="Summary backend (default: vllm when USE_VLLM=1, else template)",
     )
     parser.add_argument(
         "--llm",

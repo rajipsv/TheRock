@@ -35,6 +35,64 @@ def is_vllm_configured() -> bool:
     return os.getenv("USE_VLLM", "").lower() in ("1", "true", "yes")
 
 
+def use_vllm_summary_enabled() -> bool:
+    """True when executive summaries should call vLLM (notebook / MI300 default)."""
+    for key in ("USE_VLLM_SUMMARY", "USE_VLLM"):
+        val = os.getenv(key, "").strip().lower()
+        if val in ("0", "false", "no"):
+            return False
+        if val in ("1", "true", "yes"):
+            return True
+    return False
+
+
+def default_summary_backend() -> str:
+    """Resolve summary backend: explicit env > USE_VLLM* flag > template."""
+    backend = os.getenv("LOG_SUMMARY_BACKEND", "").strip().lower()
+    if backend in ("template", "openai", "vllm", "ollama"):
+        return backend
+    if use_vllm_summary_enabled():
+        return "vllm"
+    return "template"
+
+
+def configure_vllm_env(
+    *,
+    use_vllm: bool = True,
+    base_url: str | None = None,
+    model: str | None = None,
+    api_key: str | None = None,
+) -> dict[str, str]:
+    """
+    Apply vLLM settings for log-analysis notebooks (MI300 / local vLLM serve).
+
+    Set use_vllm=False to force template-only summaries.
+    """
+    if not use_vllm:
+        os.environ["USE_VLLM"] = "0"
+        os.environ["USE_VLLM_SUMMARY"] = "0"
+        os.environ["LOG_SUMMARY_BACKEND"] = "template"
+        return llm_env_config()
+
+    os.environ["USE_VLLM"] = "1"
+    os.environ["USE_VLLM_SUMMARY"] = "1"
+    os.environ["LOG_SUMMARY_BACKEND"] = "vllm"
+    cfg = llm_env_config()
+    if base_url:
+        os.environ["VLLM_BASE_URL"] = base_url
+    else:
+        os.environ.setdefault("VLLM_BASE_URL", cfg["base_url"])
+    if model:
+        os.environ["VLLM_MODEL"] = model
+    else:
+        os.environ.setdefault("VLLM_MODEL", cfg["model"])
+    if api_key:
+        os.environ["OPENAI_API_KEY"] = api_key
+    else:
+        os.environ.setdefault("OPENAI_API_KEY", cfg["api_key"])
+    return llm_env_config()
+
+
 def llm_env_config() -> dict[str, str]:
     """Resolve vLLM / OpenAI-compatible endpoint settings from environment."""
     base_url = (
