@@ -1,0 +1,22 @@
+[
+  {
+    "ticker": "AMD",
+    "company": "Advanced Micro Devices Inc",
+    "quarter": "Q4",
+    "earnings_year": 2023,
+    "call_date": "2024-01-30",
+    "title": "AMD Q4 2023 Earnings Call",
+    "source_url": "demo-fallback",
+    "transcript": "Operator: Welcome to the AMD fourth quarter 2023 earnings conference call.\n\nCEO: Data center revenue grew strongly driven by EPYC and Instinct GPU demand. Client segment remained mixed as PC recovery progressed gradually.\n\nCFO: Gross margin was 47 percent. We expect first quarter revenue to be approximately flat sequentially with continued data center growth.\n\nQuestion-and-Answer Session\n\nAnalyst: Can you quantify the data center growth rate and how much was driven by AI accelerators versus traditional server CPUs?\n\nCEO: Data center revenue increased significantly year-over-year. AI accelerator revenue contributed to growth but EPYC remained the largest component.\n\nAnalyst: How should we think about gross margin trajectory given mix shift toward accelerators?\n\nCFO: We expect margins to remain in a similar range near term with product mix as the primary driver.\n\nAnalyst: What is your view on PC TAM recovery and inventory in the channel?\n\nCEO: We believe PC demand is stabilizing but recovery timing remains uneven across geographies."
+  },
+  {
+    "ticker": "AMD",
+    "company": "Advanced Micro Devices Inc",
+    "quarter": "Q3",
+    "earnings_year": 2023,
+    "call_date": "2023-10-31",
+    "title": "AMD Q3 2023 Earnings Call",
+    "source_url": "demo-fallback",
+    "transcript": "Operator: Welcome to the AMD third quarter 2023 earnings call.\n\nCEO: We delivered solid results with record data center revenue. Instinct MI300 series customer engagement expanded.\n\nQuestion-and-Answer Session\n\nAnalyst: Can you update us on MI300 production ramp and customer adoption timelines?\n\nCEO: We remain on track for volume production with hyperscaler and enterprise interest increasing.\n\nAnalyst: How competitive is your AI portfolio versus alternatives in inference and training?\n\nCEO: We believe our open software stack and performance-per-dollar are differentiated.\n\nAnalyst: What are the main assumptions embedded in your guidance for the next quarter?\n\nCFO: Guidance assumes stable macro conditions and continued growth in data center offsetting client seasonality."
+  }
+]

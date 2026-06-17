@@ -1,0 +1,7 @@
+ticker,quarter,year,revenue_usd_b,gross_margin_pct,eps_usd,yoy_revenue_growth_pct,guidance_summary
+AMD,Q4,2023,6.17,47.0,0.77,10.0,Data center growth led results; cautious PC recovery timing
+AMD,Q3,2023,5.80,47.0,0.70,4.0,Strong Instinct and EPYC momentum; inventory normalized
+AMD,Q2,2023,5.36,46.0,0.58,-18.0,Client market soft; AI accelerator pipeline expanding
+AMD,Q1,2023,5.35,43.0,0.60,-9.0,Focused on AI workload wins and cost discipline
+NVDA,Q4,2024,22.1,76.0,4.93,265.0,Data center demand exceeded supply; H200 ramp on track
+NVDA,Q3,2024,18.1,74.0,3.71,206.0,Cloud capex supportive; sovereign AI projects emerging

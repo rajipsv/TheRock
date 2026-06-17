@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -114,16 +115,22 @@ def write_html(report: dict, output_dir: Path) -> Path:
     return html_path
 
 
-def write_outputs(report: dict, output_dir: Path, write_summary: bool = True) -> None:
+def write_outputs(
+    report: dict,
+    output_dir: Path,
+    write_summary: bool = True,
+    summary_backend: str | None = None,
+) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     json_path = output_dir / "report.json"
     json_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
     write_html(report, output_dir)
 
     if write_summary:
-        from summarize_log import template_log_summary
+        from summarize_log import generate_log_summary
 
-        summary = template_log_summary(report)
+        backend = summary_backend or os.environ.get("LOG_SUMMARY_BACKEND", "template")
+        summary = generate_log_summary(report, backend=backend)
         report["executive_summary"] = summary.strip()
         json_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
         (output_dir / "executive_summary.md").write_text(summary, encoding="utf-8")
@@ -142,6 +149,7 @@ def analyze_github_run(
     max_iterations: int = 16,
     max_jobs: int = 3,
     write_summary: bool = True,
+    summary_backend: str | None = None,
 ) -> list[dict]:
     """Download failed job log(s) from a GitHub Actions run and analyze."""
     run = get_run(repo, run_id)
@@ -173,7 +181,12 @@ def analyze_github_run(
             max_iterations=max_iterations,
             github_meta=meta,
         )
-        write_outputs(report, job_out, write_summary=write_summary)
+        write_outputs(
+            report,
+            job_out,
+            write_summary=write_summary,
+            summary_backend=summary_backend,
+        )
         reports.append(report)
 
     return reports
@@ -200,9 +213,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--agent",
         action="store_true",
-        help="Use LangGraph ReAct agent (default is tool-only; needs requirements-agent.txt + OPENAI_API_KEY)",
+        help="Use LangGraph ReAct agent (needs requirements-agent.txt + LLM: OpenAI, NVIDIA, or vLLM)",
     )
-    parser.add_argument("--model", default="gpt-4o-mini")
+    parser.add_argument(
+        "--model",
+        default=os.environ.get("VLLM_MODEL") or os.environ.get("OPENAI_MODEL") or "gpt-4o-mini",
+    )
     parser.add_argument("--max-iterations", type=int, default=16)
     parser.add_argument("--max-jobs", type=int, default=3, help="Max failed jobs to analyze per run")
     parser.add_argument("--kb-dir", type=Path, default=None)
@@ -213,6 +229,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="Add a learned resolution to the KB and exit",
     )
     parser.add_argument("--no-summary", action="store_true", help="Skip executive_summary.md")
+    parser.add_argument(
+        "--summary-backend",
+        choices=("template", "openai", "vllm", "ollama"),
+        default=None,
+        help="Executive summary backend (default: template or LOG_SUMMARY_BACKEND env)",
+    )
     return parser.parse_args(argv)
 
 
@@ -246,6 +268,7 @@ def main(argv: list[str] | None = None) -> int:
                 max_iterations=args.max_iterations,
                 max_jobs=args.max_jobs,
                 write_summary=not args.no_summary,
+                summary_backend=args.summary_backend,
             )
         except RuntimeError as e:
             print(str(e), file=sys.stderr)
@@ -281,7 +304,12 @@ def main(argv: list[str] | None = None) -> int:
         model=args.model,
         max_iterations=args.max_iterations,
     )
-    write_outputs(report, args.output_dir, write_summary=not args.no_summary)
+    write_outputs(
+        report,
+        args.output_dir,
+        write_summary=not args.no_summary,
+        summary_backend=args.summary_backend,
+    )
 
     print(f"Mode: {report['mode']}")
     print(f"Errors: {report.get('errors_count', len(report.get('errors', [])))}")

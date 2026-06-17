@@ -17,11 +17,17 @@ if str(AGENT_DIR) not in sys.path:
     sys.path.insert(0, str(AGENT_DIR))
 
 from env_loader import load_agent_env
+from llm import DEFAULT_VLLM_BASE_URL, DEFAULT_VLLM_MODEL, invoke_llm_backend, llm_env_config
 
 load_agent_env()
 
 DEFAULT_INPUT = AGENT_DIR / "out" / "report.json"
 DEFAULT_OUTPUT = AGENT_DIR / "out" / "executive_summary.md"
+LLM_BRIEF_HEADING = "## Triage brief (LLM)\n\n"
+SYSTEM_MESSAGE = (
+    "You summarize CI log triage reports for validation engineers. "
+    "Use only facts from the provided JSON. Do not invent errors or fixes."
+)
 
 
 def template_log_summary(report: dict) -> str:
@@ -78,49 +84,121 @@ def template_log_summary(report: dict) -> str:
     return "\n".join(lines) + "\n"
 
 
-def llm_summary(report: dict, provider: str = "openai") -> str:
-    prompt = (
-        "Write a concise executive summary (3-5 bullet points) for validation engineers "
-        "triaging this CI log failure. Focus on root causes and recommended next steps.\n\n"
-        + json.dumps(report, indent=2)[:12000]
+def llm_prompt(report: dict) -> str:
+    compact = {
+        "log_path": report.get("log_path"),
+        "mode": report.get("mode"),
+        "preset": report.get("preset"),
+        "errors_count": report.get("errors_count", len(report.get("errors", []))),
+        "summary": report.get("summary"),
+        "errors": (report.get("errors") or [])[:8],
+        "rag_lookups": (report.get("rag_lookups") or [])[:3],
+        "stats": report.get("stats"),
+    }
+    return (
+        "Write a concise triage brief (3-5 bullet points) for validation engineers. "
+        "Focus on root causes and recommended next steps from the data below.\n\n"
+        + json.dumps(compact, indent=2)
     )
 
-    if provider == "openai" and os.getenv("OPENAI_API_KEY"):
-        from openai import OpenAI
 
-        client = OpenAI()
-        resp = client.chat.completions.create(
-            model=os.getenv("OPENAI_MODEL", "gpt-4o-mini"),
-            messages=[
-                {"role": "system", "content": "You summarize CI log triage reports for engineers."},
-                {"role": "user", "content": prompt},
-            ],
-            temperature=0.2,
+def generate_log_summary(
+    report: dict,
+    *,
+    backend: str = "template",
+    model: str | None = None,
+    base_url: str | None = None,
+    llm_mode: str = "brief",
+) -> str:
+    if backend == "template":
+        return template_log_summary(report)
+
+    cfg = llm_env_config()
+    resolved_model = model or cfg["model"]
+    resolved_base = base_url or (
+        cfg["base_url"] if backend == "vllm" else "http://localhost:11434"
+    )
+
+    try:
+        llm_text = invoke_llm_backend(
+            backend,
+            llm_prompt(report),
+            model=resolved_model,
+            base_url=resolved_base,
+            system=SYSTEM_MESSAGE,
         )
-        return resp.choices[0].message.content or template_log_summary(report)
+    except Exception as exc:
+        print(f"LLM summary failed ({backend}): {exc}", file=sys.stderr)
+        return template_log_summary(report)
 
-    return template_log_summary(report)
+    if not llm_text.strip():
+        return template_log_summary(report)
+
+    if llm_mode == "brief":
+        return template_log_summary(report) + "\n" + LLM_BRIEF_HEADING + llm_text + "\n"
+    return llm_text + "\n"
 
 
-def main(argv: list[str] | None = None) -> int:
+def llm_summary(report: dict, provider: str = "openai") -> str:
+    """Backward-compatible wrapper."""
+    backend = "vllm" if provider == "vllm" else provider
+    return generate_log_summary(report, backend=backend, llm_mode="standalone")
+
+
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Generate executive summary from log report.json")
     parser.add_argument("--input", type=Path, default=DEFAULT_INPUT)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
-    parser.add_argument("--llm", choices=("template", "openai"), default="template")
-    args = parser.parse_args(argv)
+    parser.add_argument(
+        "--backend",
+        choices=("template", "openai", "vllm", "ollama"),
+        default=os.environ.get("LOG_SUMMARY_BACKEND", "template"),
+        help="Summary backend (default: template or LOG_SUMMARY_BACKEND env)",
+    )
+    parser.add_argument(
+        "--llm",
+        choices=("template", "openai"),
+        help="Deprecated alias for --backend (template|openai only)",
+    )
+    parser.add_argument("--model", default=DEFAULT_VLLM_MODEL)
+    parser.add_argument(
+        "--base-url",
+        default=DEFAULT_VLLM_BASE_URL,
+        help="Ollama base URL or OpenAI-compatible API (vLLM)",
+    )
+    parser.add_argument(
+        "--llm-mode",
+        choices=("brief", "standalone"),
+        default="brief",
+        help="brief: template + LLM section (default); standalone: LLM only",
+    )
+    return parser.parse_args(argv)
+
+
+def main(argv: list[str] | None = None) -> int:
+    args = parse_args(argv)
+
+    backend = args.backend
+    if args.llm:
+        backend = args.llm
 
     if not args.input.is_file():
         print(f"Report not found: {args.input}", file=sys.stderr)
         return 1
 
     report = json.loads(args.input.read_text(encoding="utf-8"))
-    if args.llm == "openai":
-        summary = llm_summary(report, provider="openai")
-    else:
-        summary = template_log_summary(report)
+    summary = generate_log_summary(
+        report,
+        backend=backend,
+        model=args.model,
+        base_url=args.base_url,
+        llm_mode=args.llm_mode,
+    )
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(summary, encoding="utf-8")
+    report["executive_summary"] = summary
+    args.input.write_text(json.dumps(report, indent=2), encoding="utf-8")
     print(f"Wrote {args.output}")
     return 0
 

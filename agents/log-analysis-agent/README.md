@@ -74,7 +74,48 @@ Dedup state: `out/.ingested_run_ids.json`.
 
 ## Optional agent mode
 
-Requires `requirements-agent.txt` and `OPENAI_API_KEY` (or `NVIDIA_API_KEY`):
+Requires `requirements-agent.txt` and an LLM backend: **OpenAI**, **NVIDIA API**, or **vLLM on MI300** (same pattern as [change-impact-agent](../change-impact-agent/)).
+
+### vLLM on MI300
+
+```bash
+VLLM_USE_TRITON_FLASH_ATTN=0 \
+vllm serve Qwen/Qwen3-30B-A3B \
+  --served-model-name Qwen3-30B-A3B \
+  --api-key abc-123 \
+  --port 8000 \
+  --enable-auto-tool-choice \
+  --tool-call-parser hermes \
+  --trust-remote-code
+```
+
+```powershell
+copy agents\log-analysis-agent\.env.example agents\log-analysis-agent\.env
+# Set USE_VLLM=1, VLLM_BASE_URL, VLLM_MODEL, OPENAI_API_KEY=abc-123
+
+pip install -r agents/log-analysis-agent/requirements-agent.txt
+
+python agents/log-analysis-agent/analyze_log.py `
+  --log job.log --agent --model Qwen3-30B-A3B
+```
+
+Tool-calling flags are required for LangGraph ReAct agent mode with Qwen3 on vLLM.
+
+### Executive summary with vLLM
+
+```powershell
+python agents/log-analysis-agent/analyze_log.py `
+  --log agents/log-analysis-agent/tests/fixtures/example.log `
+  --output-dir out/example --summary-backend vllm
+
+# Or standalone:
+python agents/log-analysis-agent/summarize_log.py `
+  --backend vllm --input out/example/report.json
+```
+
+Set `LOG_SUMMARY_BACKEND=vllm` in `.env` to default summaries to vLLM after every `analyze_log.py` run.
+
+### OpenAI cloud
 
 ```powershell
 pip install -r agents/log-analysis-agent/requirements-agent.txt

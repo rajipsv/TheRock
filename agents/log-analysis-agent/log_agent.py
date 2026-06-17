@@ -17,6 +17,7 @@ from langchain_openai import ChatOpenAI
 from langgraph.prebuilt import create_react_agent
 
 from failure_kb import FailureKnowledgeBase, get_default_kb
+from llm import is_vllm_configured, llm_credentials_available, llm_env_config, sanitize_llm_text
 from log_tools import LogSession, create_langchain_tools, run_tool_only_analysis
 from rag_tools import create_rag_tools
 
@@ -152,21 +153,46 @@ class LogAnalysisAgent:
     def _all_tools(self, session: LogSession) -> list:
         return create_langchain_tools(session) + create_rag_tools(self.kb)
 
+    def _resolve_model_name(self) -> str:
+        if is_vllm_configured():
+            cfg = llm_env_config()
+            return cfg["model"]
+        return self.model_name
+
     def _build_graph(self, tools: list):
         nvidia_key = os.getenv("NVIDIA_API_KEY")
         openai_key = os.getenv("OPENAI_API_KEY")
-        api_key = nvidia_key or openai_key
-        if not api_key:
+
+        if not llm_credentials_available():
             return None
 
-        kwargs: dict = {"model": self.model_name, "temperature": 0, "api_key": api_key}
+        kwargs: dict = {"temperature": 0}
+
         if nvidia_key:
+            kwargs["api_key"] = nvidia_key
             kwargs["base_url"] = os.getenv(
                 "NVIDIA_API_BASE", "https://integrate.api.nvidia.com/v1"
             )
             kwargs["model"] = os.getenv("NVIDIA_MODEL", "meta/llama-3.1-70b-instruct")
-        elif os.getenv("OPENAI_API_KEY"):
+        elif is_vllm_configured() or (
+            openai_key and os.getenv("VLLM_BASE_URL")
+        ):
+            cfg = llm_env_config()
+            kwargs["api_key"] = cfg["api_key"]
+            kwargs["base_url"] = cfg["base_url"]
+            kwargs["model"] = (
+                os.getenv("VLLM_MODEL")
+                or os.getenv("LLM_MODEL")
+                or self.model_name
+            )
+        elif openai_key:
+            kwargs["api_key"] = openai_key
             kwargs["model"] = self.model_name
+        else:
+            cfg = llm_env_config()
+            kwargs["api_key"] = cfg["api_key"]
+            kwargs["base_url"] = cfg["base_url"]
+            kwargs["model"] = cfg["model"]
 
         llm = ChatOpenAI(**kwargs)
         return create_react_agent(
@@ -189,7 +215,7 @@ class LogAnalysisAgent:
         session = LogSession(path=path)
         timestamp = datetime.now().isoformat()
 
-        has_llm = os.getenv("NVIDIA_API_KEY") or os.getenv("OPENAI_API_KEY")
+        has_llm = llm_credentials_available()
         if not use_llm or not has_llm:
             tool_data = run_tool_only_analysis(session, kb=self.kb, extra_patterns=extra_patterns)
             return {
@@ -207,7 +233,10 @@ class LogAnalysisAgent:
         tools = self._all_tools(session)
         graph = self._build_graph(tools)
         if graph is None:
-            raise RuntimeError("Failed to build agent graph — check OPENAI_API_KEY or NVIDIA_API_KEY")
+            raise RuntimeError(
+                "Failed to build agent graph — set OPENAI_API_KEY, NVIDIA_API_KEY, "
+                "or vLLM env (VLLM_BASE_URL / USE_VLLM=1)"
+            )
 
         user_msg = (
             f"Analyze this log file for qualification triage: {path}\n"
@@ -225,6 +254,7 @@ class LogAnalysisAgent:
             if isinstance(m, AIMessage) and m.content:
                 final_text = m.content if isinstance(m.content, str) else str(m.content)
                 break
+        final_text = sanitize_llm_text(final_text)
 
         parsed = _extract_json_from_text(final_text) or {}
         errors = parsed.get("errors", [])
@@ -235,7 +265,7 @@ class LogAnalysisAgent:
             "file": str(path),
             "timestamp": timestamp,
             "mode": "agent",
-            "model": self.model_name,
+            "model": self._resolve_model_name(),
             "errors": errors,
             "errors_count": parsed.get("total_errors", len(errors)),
             "summary": parsed.get("summary", final_text[:1500]),

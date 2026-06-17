@@ -1,0 +1,6 @@
+-r change-impact-agent/requirements.txt
+-r log-analysis-agent/requirements.txt
+jupyter>=1.1.0
+ipykernel>=6.29.0
+httpx>=0.27.0
+pydantic-ai-slim[openai]>=0.0.14
