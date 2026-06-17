@@ -1,0 +1,3 @@
+- Changed `build_tools/github_actions/fetch_test_configurations.py` to increase GHA wrapper timeout for `miopen` from 60 to 120 minutes (per-test limits remain governed by `test_categories.yaml`).  
+- Apply CI labels `test:miopen` and `test_filter:quick` to restrict test scope to `miopen` suite; no submodule changes detected.  
+- Rollout uses canary strategy for gfx family and component-specific tests; verify timeout adjustment aligns with `test_categories.yaml` per-test limits.

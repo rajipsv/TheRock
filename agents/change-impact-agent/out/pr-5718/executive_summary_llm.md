@@ -1,0 +1,4 @@
+- The PR updates the `rocm-libraries` superrepo and modifies components like `hipdnn`, `hipsolver`, `rocsparse`, and others, with no reported CI timeout changes.  
+- Apply CI labels: `test:hipblaslt`, `test:hipdnn`, `test:hiprand`, `test:hipsolver`, `test:hipsparselt`, `test:miopen`, `test:rocsolver`, `test:rocsparse`, and `test_filter:standard` for targeted validation.  
+- Rollout uses a canary strategy for gfx family and component-specific tests; verify component-specific test coverage aligns with changes.  
+- Severity: MEDIUM-HIGH, blast radius 70/100; focus on math-libs build stage and affected libraries per CI recommendations.

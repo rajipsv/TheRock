@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>TheRock Change Impact Report</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; max-width: 960px; line-height: 1.5; }
+    h1 { color: #c41230; }
+    .badge { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 600; }
+    .CRITICAL { background: #fee; color: #900; }
+    .HIGH { background: #ffe8cc; color: #a60; }
+    .MEDIUM, .MEDIUM-HIGH { background: #fff3cd; color: #856404; }
+    .LOW { background: #e8f5e9; color: #2e7d32; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; }
+    th { background: #f5f5f5; }
+    code { background: #f0f0f0; padding: 0.1rem 0.3rem; }
+    ul.tags li { display: inline-block; background: #e3f2fd; margin: 0.2rem; padding: 0.2rem 0.5rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Change Impact Report (AGENTS_030)</h1>
+  <p>
+    <strong>Commits:</strong>
+    <code>9100ec68</code> → <code>adbd8440</code>
+  </p>
+  <p>
+    Severity:
+    <span class="badge MEDIUM-HIGH">MEDIUM-HIGH</span>
+    (score 70/100)
+  </p>
+  <p><small>Manifest mode: full_github_manifest_diff</small></p>
+  
+  <ul>
+    
+    <li><small>Full mode: includes superrepo component drill-down via GitHub API.</small></li>
+    
+  </ul>
+  
+
+  <h2>What changed</h2>
+  
+  <table>
+    <tr><th>Name</th><th>Kind</th><th>Status</th><th>Parent</th><th>SHA change</th></tr>
+    
+    <tr>
+      <td><code>rocm-libraries</code></td>
+      <td>superrepo</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>9d056e8e</code> → <code>e981611a</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>rpp</code></td>
+      <td>component</td>
+      <td>added</td>
+      <td>rocm-libraries</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>hipdnn</code></td>
+      <td>component</td>
+      <td>changed</td>
+      <td>rocm-libraries</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>hipsolver</code></td>
+      <td>component</td>
+      <td>changed</td>
+      <td>rocm-libraries</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>rocsparse</code></td>
+      <td>component</td>
+      <td>changed</td>
+      <td>rocm-libraries</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>ctest</code></td>
+      <td>component</td>
+      <td>changed</td>
+      <td>rocm-libraries</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>composablekernel</code></td>
+      <td>component</td>
+      <td>changed</td>
+      <td>rocm-libraries</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>hiprand</code></td>
+      <td>component</td>
+      <td>changed</td>
+      <td>rocm-libraries</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>stinkytofu</code></td>
+      <td>component</td>
+      <td>changed</td>
+      <td>rocm-libraries</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>tensile</code></td>
+      <td>component</td>
+      <td>changed</td>
+      <td>rocm-libraries</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>hipsparselt</code></td>
+      <td>component</td>
+      <td>changed</td>
+      <td>rocm-libraries</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>miopen</code></td>
+      <td>component</td>
+      <td>changed</td>
+      <td>rocm-libraries</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>rocsolver</code></td>
+      <td>component</td>
+      <td>changed</td>
+      <td>rocm-libraries</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>hipblaslt</code></td>
+      <td>component</td>
+      <td>changed</td>
+      <td>rocm-libraries</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>rocm-libraries</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+  </table>
+  
+  
+  <h3>Changed repository paths (git diff)</h3>
+  <ul>
+    
+    <li><code>rocm-libraries</code></li>
+    
+  </ul>
+  
+
+  
+  
+
+  
+  <h3>Superrepo file changes by component</h3>
+  <table>
+    <tr><th>Component</th><th>Files changed</th><th>Sample paths</th></tr>
+    
+    <tr>
+      <td><code>composablekernel</code></td>
+      <td>0</td>
+      <td>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><code>ctest</code></td>
+      <td>0</td>
+      <td>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><code>hipblaslt</code></td>
+      <td>0</td>
+      <td>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><code>hipdnn</code></td>
+      <td>0</td>
+      <td>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><code>hiprand</code></td>
+      <td>0</td>
+      <td>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><code>hipsolver</code></td>
+      <td>0</td>
+      <td>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><code>hipsparselt</code></td>
+      <td>0</td>
+      <td>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><code>miopen</code></td>
+      <td>0</td>
+      <td>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><code>rocsolver</code></td>
+      <td>0</td>
+      <td>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><code>rocsparse</code></td>
+      <td>0</td>
+      <td>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><code>rpp</code></td>
+      <td>0</td>
+      <td>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><code>stinkytofu</code></td>
+      <td>0</td>
+      <td>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><code>tensile</code></td>
+      <td>0</td>
+      <td>
+        
+      </td>
+    </tr>
+    
+  </table>
+  
+
+  <h2>Blast radius</h2>
+  <ul>
+    
+    <li>ML library / hipDNN path change detected</li>
+    
+  </ul>
+  <p><strong>Source sets:</strong> math-libs, rocm-libraries</p>
+  <p><strong>Artifact groups:</strong> math-libs, ml-libs</p>
+  <p><strong>Build stages:</strong> math-libs</p>
+  <p><strong>Rollout:</strong> Canary gfx family + component-specific test labels</p>
+
+  <h2>CI recommendations</h2>
+  <p><strong>test_type:</strong> <code>standard</code>
+     — Submodule or superrepo component change (matches TheRock CI policy)</p>
+  <p>Suggested PR labels:</p>
+  <ul class="tags">
+    
+    <li><code>test:hipblaslt</code></li>
+    
+    <li><code>test:hipdnn</code></li>
+    
+    <li><code>test:hiprand</code></li>
+    
+    <li><code>test:hipsolver</code></li>
+    
+    <li><code>test:hipsparselt</code></li>
+    
+    <li><code>test:miopen</code></li>
+    
+    <li><code>test:rocsolver</code></li>
+    
+    <li><code>test:rocsparse</code></li>
+    
+    <li><code>test_filter:standard</code></li>
+    
+  </ul>
+  <p><strong>Test suites:</strong> hipblaslt, hipdnn, hiprand, hipsolver, hipsparselt, miopen, rocsolver, rocsparse</p>
+  <p><em>TheRock CI defaults to all test suites (PROJECTS_TO_TEST=*) unless test:* labels are set. These labels narrow scope to recommended suites. Recommendations are test_matrix jobs + test_filter depth — not individual ctest cases.</em></p>
+
+  <h2>Topology warnings</h2>
+  <p><small>Deterministic checks for gaps between changed files and BUILD_TOPOLOGY.toml (no LLM).</small></p>
+  
+  <p><em>No topology gaps detected for this change range.</em></p>
+  
+
+  
+
+  <hr/>
+  <p><small>Generated by agents/change-impact-agent — TheRock AGENTS_030 prototype</small></p>
+</body>
+</html>

@@ -1,0 +1,3 @@
+- Changed `third-party/openmpi/CMakeLists.txt` (third-party packaging/config): No CI timeout changes detected. Reviewer should verify build configuration updates.  
+- Apply `test_filter:quick` for CI validation per recommendations; no broader test suites inferred.  
+- Rollout uses `Canary gfx family` strategy; ensure `GITHUB_TOKEN` is set for full manifest validation as per `test_filter:quick` guidance.

@@ -1,0 +1,57 @@
+{
+  "start_ref": "42cdfac66fed8bcabe230611e6517d577a1127f9",
+  "end_ref": "pr-5480",
+  "start_sha": "42cdfac66fed8bcabe230611e6517d577a1127f9",
+  "end_sha": "bdaf2213051fe032b3906f40da96733a334e6c34",
+  "manifest_mode": "full_github_manifest_diff",
+  "manifest_notes": [
+    "Full mode: includes superrepo component drill-down via GitHub API."
+  ],
+  "changed_components": [
+    {
+      "name": "third-party/openmpi/CMakeLists.txt",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    }
+  ],
+  "changed_files": [
+    "third-party/openmpi/CMakeLists.txt"
+  ],
+  "changed_file_count": 1,
+  "affected_source_sets": [],
+  "affected_artifact_groups": [],
+  "affected_build_stages": [],
+  "severity": "MEDIUM",
+  "blast_radius_score": 45,
+  "rationale": [
+    "Changes detected with moderate default scoring"
+  ],
+  "content_insights": {
+    "test_matrix_changes": null,
+    "artifact_toml_changes": [],
+    "disabled_test_jobs": [],
+    "timeout_changed_jobs": [],
+    "notes": []
+  },
+  "superrepo_diffs": {},
+  "changed_paths_in_components": {},
+  "ci_recommendations": {
+    "test_type": "quick",
+    "test_type_reason": "Third-party packaging/config change \u2014 quick sanity per test_filtering.md",
+    "suggested_pr_labels": [
+      "test_filter:quick"
+    ],
+    "suggested_test_suites": [],
+    "suite_inference": "none",
+    "disabled_test_jobs": [],
+    "notes": "TheRock CI defaults to all test suites (PROJECTS_TO_TEST=*) unless test:* labels are set. These labels narrow scope to recommended suites. Recommendations are test_matrix jobs + test_filter depth \u2014 not individual ctest cases."
+  },
+  "topology_warnings": [],
+  "executive_summary": "- Changed `third-party/openmpi/CMakeLists.txt` (third-party packaging/config): No CI timeout changes detected. Reviewer should verify build configuration updates.  \n- Apply `test_filter:quick` for CI validation per recommendations; no broader test suites inferred.  \n- Rollout uses `Canary gfx family` strategy; ensure `GITHUB_TOKEN` is set for full manifest validation as per `test_filter:quick` guidance.",
+  "rollout_strategy": "Canary gfx family + test_filter:standard (no test:* inferred \u2014 set GITHUB_TOKEN and use --full-manifest)",
+  "pr_number": 5480,
+  "upstream_repo": "ROCm/TheRock"
+}

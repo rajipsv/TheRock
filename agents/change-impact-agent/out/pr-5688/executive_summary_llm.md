@@ -1,0 +1,3 @@
+- Changed: Updated CI config script (`build_tools/github_actions/fetch_test_configurations.py`) and artifact exclusion rules (`ml-libs/artifact-hipdnn.toml`), removing `hipdnn_python_bindings` test job and adding `share/hipdnn/python/**` exclusion.  
+- CI impact: Test matrix simplification; apply `test:hipdnn` + `test_filter:quick` labels for narrow validation. Disabled job `hipdnn_python_bindings` not to be labeled.  
+- Rollout: Canary strategy for gfx family; verify artifact exclusions and test scope alignment with `hipdnn` suite. Severity: MEDIUM-HIGH, blast radius 70/100.

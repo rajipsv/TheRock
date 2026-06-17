@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>TheRock Change Impact Report</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; max-width: 960px; line-height: 1.5; }
+    h1 { color: #c41230; }
+    .badge { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 600; }
+    .CRITICAL { background: #fee; color: #900; }
+    .HIGH { background: #ffe8cc; color: #a60; }
+    .MEDIUM, .MEDIUM-HIGH { background: #fff3cd; color: #856404; }
+    .LOW { background: #e8f5e9; color: #2e7d32; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; }
+    th { background: #f5f5f5; }
+    code { background: #f0f0f0; padding: 0.1rem 0.3rem; }
+    ul.tags li { display: inline-block; background: #e3f2fd; margin: 0.2rem; padding: 0.2rem 0.5rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Change Impact Report (AGENTS_030)</h1>
+  <p>
+    <strong>Commits:</strong>
+    <code>ed6966b6</code> → <code>512cdea8</code>
+  </p>
+  <p>
+    Severity:
+    <span class="badge LOW">LOW</span>
+    (score 20/100)
+  </p>
+  <p><small>Manifest mode: local_git_pins</small></p>
+  
+  <ul>
+    
+    <li><small>Local mode: compared top-level submodule SHAs via git (no GitHub API).</small></li>
+    
+    <li><small>Superrepo internal component list requires --full-manifest and GITHUB_TOKEN.</small></li>
+    
+    <li><small>Pick a range that spans submodule bumps (e.g. main~6..main not main~5..main).</small></li>
+    
+  </ul>
+  
+
+  <h2>What changed</h2>
+  
+  <table>
+    <tr><th>Name</th><th>Kind</th><th>Status</th><th>Parent</th><th>SHA change</th></tr>
+    
+    <tr>
+      <td><code>agents/README.md</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/change-impact-agent/.env.example</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/change-impact-agent/README.md</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/change-impact-agent/notebook/hackathon_demo.ipynb</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/change-impact-agent/summarize.py</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/change-impact-agent/tests/test_summarize.py</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/.env.example</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/.gitignore</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/README.md</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/app/__init__.py</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/app/config.py</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/app/env_loader.py</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/app/llm/client.py</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/app/main.py</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/app/models.py</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/app/services/github_regulatory.py</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/app/services/impact_analyzer.py</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/app/services/llm_diff.py</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/app/services/pdf_parser.py</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/app/services/pipeline.py</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/app/services/section_align.py</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/app/services/semantic_compare.py</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/app/services/structural_diff.py</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/data/samples/legacy_mismatch.pdf</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/data/samples/legacy_policy.pdf</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/data/samples/modernized_mismatch.pdf</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/data/samples/modernized_policy.pdf</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/notebook/document_comparison_demo.ipynb</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/requirements-notebook.txt</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/requirements.txt</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/scripts/compare_cli.py</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/scripts/compare_github_cli.py</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/scripts/download_github_dataset.py</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/scripts/make_mismatch_sample_pdfs.py</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/scripts/make_sample_pdfs.py</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+    <tr>
+      <td><code>agents/document-comparison-agent/tests/test_section_align.py</code></td>
+      <td>path</td>
+      <td>changed</td>
+      <td>—</td>
+      <td><code>—</code> → <code>—</code></td>
+    </tr>
+    
+  </table>
+  
+  
+  <h3>Changed repository paths (git diff)</h3>
+  <ul>
+    
+    <li><code>agents/README.md</code></li>
+    
+    <li><code>agents/change-impact-agent/.env.example</code></li>
+    
+    <li><code>agents/change-impact-agent/README.md</code></li>
+    
+    <li><code>agents/change-impact-agent/notebook/hackathon_demo.ipynb</code></li>
+    
+    <li><code>agents/change-impact-agent/summarize.py</code></li>
+    
+    <li><code>agents/change-impact-agent/tests/test_summarize.py</code></li>
+    
+    <li><code>agents/document-comparison-agent/.env.example</code></li>
+    
+    <li><code>agents/document-comparison-agent/.gitignore</code></li>
+    
+    <li><code>agents/document-comparison-agent/README.md</code></li>
+    
+    <li><code>agents/document-comparison-agent/app/__init__.py</code></li>
+    
+    <li><code>agents/document-comparison-agent/app/config.py</code></li>
+    
+    <li><code>agents/document-comparison-agent/app/env_loader.py</code></li>
+    
+    <li><code>agents/document-comparison-agent/app/llm/client.py</code></li>
+    
+    <li><code>agents/document-comparison-agent/app/main.py</code></li>
+    
+    <li><code>agents/document-comparison-agent/app/models.py</code></li>
+    
+    <li><code>agents/document-comparison-agent/app/services/github_regulatory.py</code></li>
+    
+    <li><code>agents/document-comparison-agent/app/services/impact_analyzer.py</code></li>
+    
+    <li><code>agents/document-comparison-agent/app/services/llm_diff.py</code></li>
+    
+    <li><code>agents/document-comparison-agent/app/services/pdf_parser.py</code></li>
+    
+    <li><code>agents/document-comparison-agent/app/services/pipeline.py</code></li>
+    
+    <li><code>agents/document-comparison-agent/app/services/section_align.py</code></li>
+    
+    <li><code>agents/document-comparison-agent/app/services/semantic_compare.py</code></li>
+    
+    <li><code>agents/document-comparison-agent/app/services/structural_diff.py</code></li>
+    
+    <li><code>agents/document-comparison-agent/data/samples/legacy_mismatch.pdf</code></li>
+    
+    <li><code>agents/document-comparison-agent/data/samples/legacy_policy.pdf</code></li>
+    
+    <li><code>agents/document-comparison-agent/data/samples/modernized_mismatch.pdf</code></li>
+    
+    <li><code>agents/document-comparison-agent/data/samples/modernized_policy.pdf</code></li>
+    
+    <li><code>agents/document-comparison-agent/notebook/document_comparison_demo.ipynb</code></li>
+    
+    <li><code>agents/document-comparison-agent/requirements-notebook.txt</code></li>
+    
+    <li><code>agents/document-comparison-agent/requirements.txt</code></li>
+    
+    <li><code>agents/document-comparison-agent/scripts/compare_cli.py</code></li>
+    
+    <li><code>agents/document-comparison-agent/scripts/compare_github_cli.py</code></li>
+    
+    <li><code>agents/document-comparison-agent/scripts/download_github_dataset.py</code></li>
+    
+    <li><code>agents/document-comparison-agent/scripts/make_mismatch_sample_pdfs.py</code></li>
+    
+    <li><code>agents/document-comparison-agent/scripts/make_sample_pdfs.py</code></li>
+    
+    <li><code>agents/document-comparison-agent/tests/test_section_align.py</code></li>
+    
+  </ul>
+  
+
+  
+  
+
+  
+
+  <h2>Blast radius</h2>
+  <ul>
+    
+    <li>Low-risk path or documentation change</li>
+    
+  </ul>
+  <p><strong>Source sets:</strong> none</p>
+  <p><strong>Artifact groups:</strong> none</p>
+  <p><strong>Build stages:</strong> none</p>
+  <p><strong>Rollout:</strong> Quick or standard tests; manifest-diff sibling job sufficient</p>
+
+  <h2>CI recommendations</h2>
+  <p><strong>test_type:</strong> <code>standard</code>
+     — Repository path changes (packaging/config/topology manifests)</p>
+  <p>Suggested PR labels:</p>
+  <ul class="tags">
+    
+    <li><code>test_filter:standard</code></li>
+    
+  </ul>
+  <p><strong>Test suites:</strong> none</p>
+  <p><em>TheRock CI defaults to all test suites (PROJECTS_TO_TEST=*) unless test:* labels are set. These labels narrow scope to recommended suites. Recommendations are test_matrix jobs + test_filter depth — not individual ctest cases.</em></p>
+
+  <h2>Topology warnings</h2>
+  <p><small>Deterministic checks for gaps between changed files and BUILD_TOPOLOGY.toml (no LLM).</small></p>
+  
+  <p><em>No topology gaps detected for this change range.</em></p>
+  
+
+  
+
+  <hr/>
+  <p><small>Generated by agents/change-impact-agent — TheRock AGENTS_030 prototype</small></p>
+</body>
+</html>

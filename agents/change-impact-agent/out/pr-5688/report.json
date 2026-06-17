@@ -1,0 +1,104 @@
+{
+  "start_ref": "31b738c3f3fc0bd7be498befe72a7920b2324853",
+  "end_ref": "pr-5688",
+  "start_sha": "31b738c3f3fc0bd7be498befe72a7920b2324853",
+  "end_sha": "e5eed22238b83431f31cadce1ed5bffbbabd47a2",
+  "manifest_mode": "full_github_manifest_diff",
+  "manifest_notes": [
+    "Full mode: includes superrepo component drill-down via GitHub API."
+  ],
+  "changed_components": [
+    {
+      "name": "build_tools/github_actions/fetch_test_configurations.py",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "ml-libs/artifact-hipdnn.toml",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    }
+  ],
+  "changed_files": [
+    "build_tools/github_actions/fetch_test_configurations.py",
+    "ml-libs/artifact-hipdnn.toml"
+  ],
+  "changed_file_count": 2,
+  "affected_source_sets": [],
+  "affected_artifact_groups": [
+    "ml-libs"
+  ],
+  "affected_build_stages": [
+    "math-libs"
+  ],
+  "severity": "MEDIUM-HIGH",
+  "blast_radius_score": 70,
+  "rationale": [
+    "ML library / hipDNN path change detected",
+    "Test matrix jobs removed or commented out: hipdnn_python_bindings",
+    "Artifact exclude patterns added: share/hipdnn/python/**"
+  ],
+  "content_insights": {
+    "test_matrix_changes": {
+      "file": "build_tools/github_actions/fetch_test_configurations.py",
+      "disabled_test_jobs": [
+        "hipdnn_python_bindings"
+      ],
+      "enabled_test_jobs": [],
+      "timeout_changes": [],
+      "timeout_changed_jobs": [],
+      "notes": [
+        "Test matrix jobs removed or commented out: hipdnn_python_bindings"
+      ]
+    },
+    "artifact_toml_changes": [
+      {
+        "file": "ml-libs/artifact-hipdnn.toml",
+        "added_excludes": [
+          "share/hipdnn/python/**"
+        ],
+        "removed_excludes": [],
+        "notes": [
+          "Artifact exclude patterns added: share/hipdnn/python/**"
+        ]
+      }
+    ],
+    "disabled_test_jobs": [
+      "hipdnn_python_bindings"
+    ],
+    "timeout_changed_jobs": [],
+    "notes": [
+      "Test matrix jobs removed or commented out: hipdnn_python_bindings",
+      "Artifact exclude patterns added: share/hipdnn/python/**"
+    ]
+  },
+  "superrepo_diffs": {},
+  "changed_paths_in_components": {},
+  "ci_recommendations": {
+    "test_type": "quick",
+    "test_type_reason": "CI config change with test jobs disabled \u2014 quick sanity per test_filtering.md",
+    "suggested_pr_labels": [
+      "test:hipdnn",
+      "test_filter:quick"
+    ],
+    "suggested_test_suites": [
+      "hipdnn"
+    ],
+    "suite_inference": "keyword",
+    "disabled_test_jobs": [
+      "hipdnn_python_bindings"
+    ],
+    "notes": "TheRock CI defaults to all test suites (PROJECTS_TO_TEST=*) unless test:* labels are set. These labels narrow scope to recommended suites. Recommendations are test_matrix jobs + test_filter depth \u2014 not individual ctest cases. Do not label disabled jobs: hipdnn_python_bindings."
+  },
+  "topology_warnings": [],
+  "executive_summary": "- Changed: Updated CI config script (`build_tools/github_actions/fetch_test_configurations.py`) and artifact exclusion rules (`ml-libs/artifact-hipdnn.toml`), removing `hipdnn_python_bindings` test job and adding `share/hipdnn/python/**` exclusion.  \n- CI impact: Test matrix simplification; apply `test:hipdnn` + `test_filter:quick` labels for narrow validation. Disabled job `hipdnn_python_bindings` not to be labeled.  \n- Rollout: Canary strategy for gfx family; verify artifact exclusions and test scope alignment with `hipdnn` suite. Severity: MEDIUM-HIGH, blast radius 70/100.",
+  "rollout_strategy": "Canary gfx family + component-specific test labels",
+  "pr_number": 5688,
+  "upstream_repo": "ROCm/TheRock"
+}

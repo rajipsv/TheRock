@@ -1,0 +1,334 @@
+{
+  "start_ref": "9100ec681955d4af7e1c720fb5c9b208fc838172",
+  "end_ref": "pr-5718",
+  "start_sha": "9100ec681955d4af7e1c720fb5c9b208fc838172",
+  "end_sha": "adbd8440509b35e4425e04c529f3dc59244037b6",
+  "manifest_mode": "full_github_manifest_diff",
+  "manifest_notes": [
+    "Full mode: includes superrepo component drill-down via GitHub API."
+  ],
+  "changed_components": [
+    {
+      "name": "rocm-libraries",
+      "kind": "superrepo",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "9d056e8e32874c7ca818886acc51c990727b0adc",
+      "new_sha": "e981611a34ed6b3baa3c11a6f0b4ec211a1f926f"
+    },
+    {
+      "name": "rpp",
+      "kind": "component",
+      "status": "added",
+      "parent": "rocm-libraries",
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "hipdnn",
+      "kind": "component",
+      "status": "changed",
+      "parent": "rocm-libraries",
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "hipsolver",
+      "kind": "component",
+      "status": "changed",
+      "parent": "rocm-libraries",
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "rocsparse",
+      "kind": "component",
+      "status": "changed",
+      "parent": "rocm-libraries",
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "ctest",
+      "kind": "component",
+      "status": "changed",
+      "parent": "rocm-libraries",
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "composablekernel",
+      "kind": "component",
+      "status": "changed",
+      "parent": "rocm-libraries",
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "hiprand",
+      "kind": "component",
+      "status": "changed",
+      "parent": "rocm-libraries",
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "stinkytofu",
+      "kind": "component",
+      "status": "changed",
+      "parent": "rocm-libraries",
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "tensile",
+      "kind": "component",
+      "status": "changed",
+      "parent": "rocm-libraries",
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "hipsparselt",
+      "kind": "component",
+      "status": "changed",
+      "parent": "rocm-libraries",
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "miopen",
+      "kind": "component",
+      "status": "changed",
+      "parent": "rocm-libraries",
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "rocsolver",
+      "kind": "component",
+      "status": "changed",
+      "parent": "rocm-libraries",
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "hipblaslt",
+      "kind": "component",
+      "status": "changed",
+      "parent": "rocm-libraries",
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "rocm-libraries",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    }
+  ],
+  "changed_files": [
+    "rocm-libraries"
+  ],
+  "changed_file_count": 1,
+  "affected_source_sets": [
+    "math-libs",
+    "rocm-libraries"
+  ],
+  "affected_artifact_groups": [
+    "math-libs",
+    "ml-libs"
+  ],
+  "affected_build_stages": [
+    "math-libs"
+  ],
+  "severity": "MEDIUM-HIGH",
+  "blast_radius_score": 70,
+  "rationale": [
+    "ML library / hipDNN path change detected"
+  ],
+  "content_insights": {
+    "test_matrix_changes": null,
+    "artifact_toml_changes": [],
+    "disabled_test_jobs": [],
+    "timeout_changed_jobs": [],
+    "notes": []
+  },
+  "superrepo_diffs": {
+    "rocm-libraries": {
+      "github_repo": "ROCm/rocm-libraries",
+      "old_sha": "9d056e8e32874c7ca818886acc51c990727b0adc",
+      "new_sha": "e981611a34ed6b3baa3c11a6f0b4ec211a1f926f",
+      "total_files": 200,
+      "components": {
+        "composablekernel": {
+          "file_count": 0,
+          "sample_paths": [],
+          "commit_count": 7,
+          "detection": "commit_allocation"
+        },
+        "ctest": {
+          "file_count": 0,
+          "sample_paths": [],
+          "commit_count": 1,
+          "detection": "commit_allocation"
+        },
+        "hipblaslt": {
+          "file_count": 0,
+          "sample_paths": [],
+          "commit_count": 13,
+          "detection": "commit_allocation"
+        },
+        "hipdnn": {
+          "file_count": 0,
+          "sample_paths": [],
+          "commit_count": 5,
+          "detection": "commit_allocation"
+        },
+        "hiprand": {
+          "file_count": 0,
+          "sample_paths": [],
+          "commit_count": 1,
+          "detection": "commit_allocation"
+        },
+        "hipsolver": {
+          "file_count": 0,
+          "sample_paths": [],
+          "commit_count": 3,
+          "detection": "commit_allocation"
+        },
+        "hipsparselt": {
+          "file_count": 0,
+          "sample_paths": [],
+          "commit_count": 2,
+          "detection": "commit_allocation"
+        },
+        "miopen": {
+          "file_count": 0,
+          "sample_paths": [],
+          "commit_count": 5,
+          "detection": "commit_allocation"
+        },
+        "rocsolver": {
+          "file_count": 0,
+          "sample_paths": [],
+          "commit_count": 1,
+          "detection": "commit_allocation"
+        },
+        "rocsparse": {
+          "file_count": 0,
+          "sample_paths": [],
+          "commit_count": 1,
+          "detection": "commit_allocation"
+        },
+        "rpp": {
+          "file_count": 0,
+          "sample_paths": [],
+          "commit_count": 1,
+          "detection": "commit_allocation"
+        },
+        "stinkytofu": {
+          "file_count": 0,
+          "sample_paths": [],
+          "commit_count": 4,
+          "detection": "commit_allocation"
+        },
+        "tensile": {
+          "file_count": 0,
+          "sample_paths": [],
+          "commit_count": 2,
+          "detection": "commit_allocation"
+        }
+      }
+    }
+  },
+  "changed_paths_in_components": {
+    "composablekernel": {
+      "file_count": 0,
+      "sample_paths": []
+    },
+    "ctest": {
+      "file_count": 0,
+      "sample_paths": []
+    },
+    "hipblaslt": {
+      "file_count": 0,
+      "sample_paths": []
+    },
+    "hipdnn": {
+      "file_count": 0,
+      "sample_paths": []
+    },
+    "hiprand": {
+      "file_count": 0,
+      "sample_paths": []
+    },
+    "hipsolver": {
+      "file_count": 0,
+      "sample_paths": []
+    },
+    "hipsparselt": {
+      "file_count": 0,
+      "sample_paths": []
+    },
+    "miopen": {
+      "file_count": 0,
+      "sample_paths": []
+    },
+    "rocsolver": {
+      "file_count": 0,
+      "sample_paths": []
+    },
+    "rocsparse": {
+      "file_count": 0,
+      "sample_paths": []
+    },
+    "rpp": {
+      "file_count": 0,
+      "sample_paths": []
+    },
+    "stinkytofu": {
+      "file_count": 0,
+      "sample_paths": []
+    },
+    "tensile": {
+      "file_count": 0,
+      "sample_paths": []
+    }
+  },
+  "ci_recommendations": {
+    "test_type": "standard",
+    "test_type_reason": "Submodule or superrepo component change (matches TheRock CI policy)",
+    "suggested_pr_labels": [
+      "test:hipblaslt",
+      "test:hipdnn",
+      "test:hiprand",
+      "test:hipsolver",
+      "test:hipsparselt",
+      "test:miopen",
+      "test:rocsolver",
+      "test:rocsparse",
+      "test_filter:standard"
+    ],
+    "suggested_test_suites": [
+      "hipblaslt",
+      "hipdnn",
+      "hiprand",
+      "hipsolver",
+      "hipsparselt",
+      "miopen",
+      "rocsolver",
+      "rocsparse"
+    ],
+    "suite_inference": "mixed",
+    "disabled_test_jobs": [],
+    "notes": "TheRock CI defaults to all test suites (PROJECTS_TO_TEST=*) unless test:* labels are set. These labels narrow scope to recommended suites. Recommendations are test_matrix jobs + test_filter depth \u2014 not individual ctest cases."
+  },
+  "topology_warnings": [],
+  "executive_summary": "- The PR updates the `rocm-libraries` superrepo and modifies components like `hipdnn`, `hipsolver`, `rocsparse`, and others, with no reported CI timeout changes.  \n- Apply CI labels: `test:hipblaslt`, `test:hipdnn`, `test:hiprand`, `test:hipsolver`, `test:hipsparselt`, `test:miopen`, `test:rocsolver`, `test:rocsparse`, and `test_filter:standard` for targeted validation.  \n- Rollout uses a canary strategy for gfx family and component-specific tests; verify component-specific test coverage aligns with changes.  \n- Severity: MEDIUM-HIGH, blast radius 70/100; focus on math-libs build stage and affected libraries per CI recommendations.",
+  "rollout_strategy": "Canary gfx family + component-specific test labels",
+  "pr_number": 5718,
+  "upstream_repo": "ROCm/TheRock"
+}

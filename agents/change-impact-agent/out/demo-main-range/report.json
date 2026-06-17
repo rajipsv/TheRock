@@ -1,0 +1,372 @@
+{
+  "start_ref": "HEAD~6",
+  "end_ref": "HEAD",
+  "start_sha": "ed6966b634aeddc05eee4b38b40a2879fc4bc7e7",
+  "end_sha": "512cdea8174f9222ee7cf183adb4b3d2329681e7",
+  "manifest_mode": "local_git_pins",
+  "manifest_notes": [
+    "Local mode: compared top-level submodule SHAs via git (no GitHub API).",
+    "Superrepo internal component list requires --full-manifest and GITHUB_TOKEN.",
+    "Pick a range that spans submodule bumps (e.g. main~6..main not main~5..main)."
+  ],
+  "changed_components": [
+    {
+      "name": "agents/README.md",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/change-impact-agent/.env.example",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/change-impact-agent/README.md",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/change-impact-agent/notebook/hackathon_demo.ipynb",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/change-impact-agent/summarize.py",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/change-impact-agent/tests/test_summarize.py",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/.env.example",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/.gitignore",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/README.md",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/app/__init__.py",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/app/config.py",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/app/env_loader.py",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/app/llm/client.py",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/app/main.py",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/app/models.py",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/app/services/github_regulatory.py",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/app/services/impact_analyzer.py",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/app/services/llm_diff.py",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/app/services/pdf_parser.py",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/app/services/pipeline.py",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/app/services/section_align.py",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/app/services/semantic_compare.py",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/app/services/structural_diff.py",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/data/samples/legacy_mismatch.pdf",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/data/samples/legacy_policy.pdf",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/data/samples/modernized_mismatch.pdf",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/data/samples/modernized_policy.pdf",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/notebook/document_comparison_demo.ipynb",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/requirements-notebook.txt",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/requirements.txt",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/scripts/compare_cli.py",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/scripts/compare_github_cli.py",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/scripts/download_github_dataset.py",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/scripts/make_mismatch_sample_pdfs.py",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/scripts/make_sample_pdfs.py",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    },
+    {
+      "name": "agents/document-comparison-agent/tests/test_section_align.py",
+      "kind": "path",
+      "status": "changed",
+      "parent": null,
+      "old_sha": "",
+      "new_sha": ""
+    }
+  ],
+  "changed_files": [
+    "agents/README.md",
+    "agents/change-impact-agent/.env.example",
+    "agents/change-impact-agent/README.md",
+    "agents/change-impact-agent/notebook/hackathon_demo.ipynb",
+    "agents/change-impact-agent/summarize.py",
+    "agents/change-impact-agent/tests/test_summarize.py",
+    "agents/document-comparison-agent/.env.example",
+    "agents/document-comparison-agent/.gitignore",
+    "agents/document-comparison-agent/README.md",
+    "agents/document-comparison-agent/app/__init__.py",
+    "agents/document-comparison-agent/app/config.py",
+    "agents/document-comparison-agent/app/env_loader.py",
+    "agents/document-comparison-agent/app/llm/client.py",
+    "agents/document-comparison-agent/app/main.py",
+    "agents/document-comparison-agent/app/models.py",
+    "agents/document-comparison-agent/app/services/github_regulatory.py",
+    "agents/document-comparison-agent/app/services/impact_analyzer.py",
+    "agents/document-comparison-agent/app/services/llm_diff.py",
+    "agents/document-comparison-agent/app/services/pdf_parser.py",
+    "agents/document-comparison-agent/app/services/pipeline.py",
+    "agents/document-comparison-agent/app/services/section_align.py",
+    "agents/document-comparison-agent/app/services/semantic_compare.py",
+    "agents/document-comparison-agent/app/services/structural_diff.py",
+    "agents/document-comparison-agent/data/samples/legacy_mismatch.pdf",
+    "agents/document-comparison-agent/data/samples/legacy_policy.pdf",
+    "agents/document-comparison-agent/data/samples/modernized_mismatch.pdf",
+    "agents/document-comparison-agent/data/samples/modernized_policy.pdf",
+    "agents/document-comparison-agent/notebook/document_comparison_demo.ipynb",
+    "agents/document-comparison-agent/requirements-notebook.txt",
+    "agents/document-comparison-agent/requirements.txt",
+    "agents/document-comparison-agent/scripts/compare_cli.py",
+    "agents/document-comparison-agent/scripts/compare_github_cli.py",
+    "agents/document-comparison-agent/scripts/download_github_dataset.py",
+    "agents/document-comparison-agent/scripts/make_mismatch_sample_pdfs.py",
+    "agents/document-comparison-agent/scripts/make_sample_pdfs.py",
+    "agents/document-comparison-agent/tests/test_section_align.py"
+  ],
+  "changed_file_count": 36,
+  "affected_source_sets": [],
+  "affected_artifact_groups": [],
+  "affected_build_stages": [],
+  "severity": "LOW",
+  "blast_radius_score": 20,
+  "rationale": [
+    "Low-risk path or documentation change"
+  ],
+  "content_insights": {
+    "test_matrix_changes": null,
+    "artifact_toml_changes": [],
+    "disabled_test_jobs": [],
+    "timeout_changed_jobs": [],
+    "notes": []
+  },
+  "superrepo_diffs": {},
+  "changed_paths_in_components": {},
+  "ci_recommendations": {
+    "test_type": "standard",
+    "test_type_reason": "Repository path changes (packaging/config/topology manifests)",
+    "suggested_pr_labels": [
+      "test_filter:standard"
+    ],
+    "suggested_test_suites": [],
+    "suite_inference": "none",
+    "disabled_test_jobs": [],
+    "notes": "TheRock CI defaults to all test suites (PROJECTS_TO_TEST=*) unless test:* labels are set. These labels narrow scope to recommended suites. Recommendations are test_matrix jobs + test_filter depth \u2014 not individual ctest cases."
+  },
+  "topology_warnings": [],
+  "executive_summary": "# Change Impact Executive Summary\n\n**Range:** `ed6966b6` \u2192 `512cdea8`\n**Severity:** LOW (blast radius 20/100)\n\n## What changed\n\n### Changed files (git diff)\n- `agents/README.md`\n- `agents/change-impact-agent/.env.example`\n- `agents/change-impact-agent/README.md`\n- `agents/change-impact-agent/notebook/hackathon_demo.ipynb`\n- `agents/change-impact-agent/summarize.py`\n- `agents/change-impact-agent/tests/test_summarize.py`\n- `agents/document-comparison-agent/.env.example`\n- `agents/document-comparison-agent/.gitignore`\n- `agents/document-comparison-agent/README.md`\n- `agents/document-comparison-agent/app/__init__.py`\n- `agents/document-comparison-agent/app/config.py`\n- `agents/document-comparison-agent/app/env_loader.py`\n- `agents/document-comparison-agent/app/llm/client.py`\n- `agents/document-comparison-agent/app/main.py`\n- `agents/document-comparison-agent/app/models.py`\n- `agents/document-comparison-agent/app/services/github_regulatory.py`\n- `agents/document-comparison-agent/app/services/impact_analyzer.py`\n- `agents/document-comparison-agent/app/services/llm_diff.py`\n- `agents/document-comparison-agent/app/services/pdf_parser.py`\n- `agents/document-comparison-agent/app/services/pipeline.py`\n- ... and 16 more files\n\n## Blast radius\n\n- Low-risk path or documentation change\n\n**Affected build stages:** none\n**Rollout:** Quick or standard tests; manifest-diff sibling job sufficient\n\n## CI recommendations (assistant \u2014 apply labels manually)\n\n- **test_type:** `standard` \u2014 Repository path changes (packaging/config/topology manifests)\n- **Suggested PR labels:** test_filter:standard\n- **Suggested test suites:** \n- _TheRock CI defaults to all test suites (PROJECTS_TO_TEST=*) unless test:* labels are set. These labels narrow scope to recommended suites. Recommendations are test_matrix jobs + test_filter depth \u2014 not individual ctest cases._\n\n## Topology warnings\n\n_Deterministic gaps between changed files and BUILD_TOPOLOGY.toml \u2014 review at PR time._\n\n- No topology gaps detected for this change range.\n",
+  "rollout_strategy": "Quick or standard tests; manifest-diff sibling job sufficient"
+}
