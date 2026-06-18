@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>TheRock Log Analysis Report</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; max-width: 960px; line-height: 1.5; }
+    h1 { color: #c41230; }
+    .badge { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 600; }
+    .CRITICAL, .FATAL { background: #fee; color: #900; }
+    .HIGH, .ERROR { background: #ffe8cc; color: #a60; }
+    .MEDIUM { background: #fff3cd; color: #856404; }
+    .LOW { background: #e8f5e9; color: #2e7d32; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; vertical-align: top; }
+    th { background: #f5f5f5; }
+    code, pre { background: #f0f0f0; padding: 0.1rem 0.3rem; font-size: 0.9em; }
+    pre { padding: 1rem; overflow-x: auto; white-space: pre-wrap; }
+    .meta { color: #666; font-size: 0.95em; }
+  </style>
+</head>
+<body>
+  <h1>Log Analysis Report (AGENTS_030)</h1>
+  <p class="meta">
+    <strong>Log:</strong> <code>/workspace/TheRock-old/agents/log-analysis-agent/sample-runs/run-27710372755/job-81975007413/job-81975007413.log</code><br/>
+    
+    <strong>GitHub run:</strong>
+    <a href="https://github.com/ROCm/TheRock/actions/runs/27710372755">27710372755</a>
+    | <strong>Job:</strong> Linux::release / Build Multi-Arch Stages / comm-libs / Stage - Comm Libs<br/>
+    <strong>Repo:</strong> ROCm/TheRock | <strong>Branch:</strong> users/geomin12/fix-configure-aws-external<br/>
+    
+    <strong>Mode:</strong> tool_only
+    <br/>
+    <strong>Preset:</strong> TheRock — Multi-Arch CI<br/>
+    <strong>Timestamp:</strong> 2026-06-18T03:59:44.429476
+  </p>
+
+  <h2>Summary</h2>
+  <p>Tool-only qualification pass found 4 highlighted error lines. Stats: path=/workspace/TheRock-old/agents/log-analysis-agent/sample-runs/run-27710372755/job-81975007413/job-81975007413.log; lines=1706; bytes=141857; github_error=1; keyword_hits: ERROR=2, EXCEPTION=0, CRITICAL=0, FATAL=1, WARNING=22</p>
+  
+
+  <h2>Stats</h2>
+  <pre>path=/workspace/TheRock-old/agents/log-analysis-agent/sample-runs/run-27710372755/job-81975007413/job-81975007413.log
+lines=1706
+bytes=141857
+github_error=1
+keyword_hits: ERROR=2, EXCEPTION=0, CRITICAL=0, FATAL=1, WARNING=22</pre>
+
+  
+  <h2>Errors (2)</h2>
+  <table>
+    <tr><th>Line</th><th>Type</th><th>Severity</th><th>Message</th><th>Category</th><th>Recommendation</th></tr>
+    
+    <tr>
+      <td>1534</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:36:48.3343455Z ##[error]The operation was canceled.</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>765</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T18:56:41.2935176Z         ===================          Compoments check [38;2;6;161;60m15[0m Passed, [38;2;184;166;48m0[0m Warning, [38;2;255;61;61m0[0m Fatal Error          ===================</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+  </table>
+  
+
+  
+  <h2>Knowledge base lookups</h2>
+  
+  <h3>2026-06-17T18:56:41.2935176Z         ===================          Compoments check [38;2;6;161;60m15[0m Passed, [38;2</h3>
+  <pre>Match 1 [keyword] score=13.0 id=rocm_hip_gpu_oom
+  Pattern: HIP GPU out of memory (hipErrorOutOfMemory)
+  Category: Memory | Severity: CRITICAL
+  Causes: GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test
+  Solutions: Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits
+  Similar: CUDA out of memory, HSA_STATUS_ERROR_MEMORY
+
+Match 2 [keyword] score=11.5 id=rocm_hip_error
+  Pattern: ROCm HIP API failure
+  Category: GPU/Driver | Severity: HIGH
+  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device
+  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages
+  Similar: HIP initialization failed</pre>
+  
+  <h3>2026-06-17T20:36:48.3343455Z ##[error]The operation was canceled.</h3>
+  <pre>Match 1 [keyword] score=11.5 id=rocm_hip_gpu_oom
+  Pattern: HIP GPU out of memory (hipErrorOutOfMemory)
+  Category: Memory | Severity: CRITICAL
+  Causes: GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test
+  Solutions: Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits
+  Similar: CUDA out of memory, HSA_STATUS_ERROR_MEMORY
+
+Match 2 [keyword] score=11.5 id=rocm_hip_error
+  Pattern: ROCm HIP API failure
+  Category: GPU/Driver | Severity: HIGH
+  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device
+  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages
+  Similar: HIP initialization failed</pre>
+  
+  <h3>2026-06-17T18:56:41.2935176Z         ===================          Compoments check [38;2;6;161;60m15[0m Passed, [38;2</h3>
+  <pre>Match 1 [keyword] score=13.0 id=rocm_hip_gpu_oom
+  Pattern: HIP GPU out of memory (hipErrorOutOfMemory)
+  Category: Memory | Severity: CRITICAL
+  Causes: GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test
+  Solutions: Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits
+  Similar: CUDA out of memory, HSA_STATUS_ERROR_MEMORY
+
+Match 2 [keyword] score=11.5 id=rocm_hip_error
+  Pattern: ROCm HIP API failure
+  Category: GPU/Driver | Severity: HIGH
+  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device
+  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages
+  Similar: HIP initialization failed</pre>
+  
+  <h3>2026-06-17T20:36:48.3343455Z ##[error]The operation was canceled.</h3>
+  <pre>Match 1 [keyword] score=11.5 id=rocm_hip_gpu_oom
+  Pattern: HIP GPU out of memory (hipErrorOutOfMemory)
+  Category: Memory | Severity: CRITICAL
+  Causes: GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test
+  Solutions: Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits
+  Similar: CUDA out of memory, HSA_STATUS_ERROR_MEMORY
+
+Match 2 [keyword] score=11.5 id=rocm_hip_error
+  Pattern: ROCm HIP API failure
+  Category: GPU/Driver | Severity: HIGH
+  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device
+  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages
+  Similar: HIP initialization failed</pre>
+  
+  
+
+  
+  <h2>Stack traces</h2>
+  <pre>Stack traces (8):
+
+765: 2026-06-17T18:56:41.2935176Z         ===================          Compoments check [38;2;6;161;60m15[0m Passed, [38;2;184;166;48m0[0m Warning, [38;2;255;61;61m0[0m Fatal Error          ===================
+766: 2026-06-17T18:56:41.2935674Z
+
+---
+
+1217: 2026-06-17T18:56:59.6385210Z -- Including subproject therock-libbacktrace (from /__w/TheRock/TheRock/third-party/sysdeps/common/libbacktrace/.)
+1218: 2026-06-17T18:56:59.6473923Z --   DISABLING BUILD: Marked as pre-built
+
+---
+
+1302: 2026-06-17T18:57:05.4440183Z -- Including subproject rocprof-trace-decoder (from /__w/TheRock/TheRock/rocm-systems/projects/rocprof-trace-decoder)
+1303: 2026-06-17T18:57:06.0576846Z --   DISABLING BUILD: Marked as pre-built
+
+---
+
+1316: 2026-06-17T18:57:07.4467956Z -- Including subproject roctracer (from /__w/TheRock/TheRock/rocm-systems/projects/roctracer)
+1317: 2026-06-17T18:57:08.0755469Z --   DISABLING BUILD: Marked as pre-built
+
+---
+
+1319: 2026-06-17T18:57:08.0762709Z -- Cannot compute fprint for artifact rocprofiler-sdk (no fprint for roctracer)
+1320: 2026-06-17T18:57:08.0792638Z -- Including subproject rccl (from /__w/TheRock/TheRock/rocm-systems/projects/rccl)
+
+---
+
+1440: 2026-06-17T18:57:10.6291438Z [16/122] Generating rocprof-trace-decoder/stamp/stage.stamp
+1441: 2026-06-17T18:57:10.6294036Z [17/122] Generating build/stamp/stage.stamp
+
+---
+
+1500: 2026-06-17T18:57:11.2284351Z [74/122] Generating roctracer/stamp/stage.stamp
+1501: 2026-06-17T18:57:11.2348450Z [76/122] Generating rocprofiler-sdk/stamp/stage.stamp
+
+---
+
+1534: 2026-06-17T20:36:48.3343455Z ##[error]The operation was canceled.
+1535: 2026-06-17T20:36:48.3661775Z Prepare all required actions</pre>
+  
+
+  
+  <h2>Preset pattern samples</h2>
+  
+  <h3>Pattern: therock</h3>
+  <pre>Matches for /therock/ (showing up to 10):
+
+   11: 2026-06-17T18:55:33.7577612Z Getting action download info
+   12: 2026-06-17T18:55:33.9327801Z Download action repository 'actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10' (SHA:df4cb1c069e1874edd31b4311f1884172cec0e10)
+>> 13: 2026-06-17T18:55:34.2032235Z Uses: ROCm/TheRock/.github/workflows/multi_arch_build_portable_linux_artifacts.yml@refs/pull/5923/merge (669115c7a973bd7dffee5b0a1a0266ebb846b1e3)
+   14: 2026-06-17T18:55:34.2037503Z ##[group] Inputs
+   15: 2026-06-17T18:55:34.2038070Z   stage_name: comm-libs
+
+---
+
+   45: 2026-06-17T18:55:34.4125294Z ##[group]Starting job container
+   46: 2026-06-17T18:55:34.4151010Z ##[command]/usr/bin/docker --config /home/runner/_work/_temp/.docker_e122fd45-9785-4dc9-9e66-0602a253d20f login ghcr.io -u geomin12 --password-stdin
+>> 47: 2026-06-17T18:55:34.6340013Z ##[command]/usr/bin/docker --config /home/runner/_work/_temp/.docker_e122fd45-9785-4dc9-9e66-0602a253d20f pull ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6
+   48: 2026-06-17T18:55:34.8869243Z ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6: Pulling from rocm/therock_build_manylinux_x86_64
+   49: 2026-06-17T18:55:34.8871939Z 09720f817e0c: Pulling fs layer
+
+---
+
+   46: 2026-06-17T18:55:34.4151010Z ##[command]/usr/bin/docker --config /home/runner/_work/_temp/.docker_e122fd45-9785-4dc9-9e66-0602a253d20f login ghcr.io -u geomin12 --password-stdin
+   47: 2026-06-17T18:55:34.6340013Z ##[command]/usr/bin/docker --config /home/runner/_work/_temp/.docker_e122fd45-9785-4dc9-9e66-0602a253d20f pull ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6
+>> 48: 2026-06-17T18:55:34.8869243Z ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6: Pulling from rocm/therock_build_manylinux_x86_64
+   49: 2026-06-17T18:55:34.8871939Z 09720f817e0c: Pulling fs layer
+   50: 2026-06-17T18:55:34.8873094Z 2da756f29325: Pulling fs layer
+
+---
+
+   300: 2026-06-17T18:56:29.0641349Z 785e87bd963c: Pull complete
+   301: 2026-06-17T18:56:29.0684440Z Digest: sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6
+>> 302: 2026-06-17T18:56:29.0692631Z Status: Downloaded newer image for ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6
+   303: 2026-06-17T18:56:29.0700528Z ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6
+   304: 2026-06-17T18:56:29.0796471Z ##[command]/usr/bin/docker create --name 994e426950ec4af180aca4e5fa6a6919_ghcriorocmtherock_build_manylinux_x86_64sha256a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6_eb02c9 --label a375d8 --workdir /__w/TheRock/TheRock --network github_network_d37d68d755ab485aaeeea22988477406 -v /runner/config:/home/awsconfig/ -e "HOME=/github/home" -e GITHUB_ACTIONS=true -e CI=true -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/home/runner/_work":"/__w" -v "/home/runner/externals":"/__e":ro -v "/home/runner/_work/_temp":"/__w/_temp" -v "/home/runner/_work/_actions":"/__w/_actions" -v "/home/runner/_work/_tool":"/__w/_tool" -v "/home/runner/_work/_temp/_github_home":"/github/home" -v "/home/runner/_work/_temp/_github_workflow":"/github/workflow" --entrypoint "tail" ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6 "-f" "/dev/null"
+
+---
+
+   301: 2026-06-17T18:56:29.0684440Z Digest: sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6
+   302: 2026-06-17T18:56:29.0692631Z Status: Downloaded newer image for ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6
+>> 303: 2026-06-17T18:56:29.0700528Z ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6
+   304: 2026-06-17T18:56:29.0796471Z ##[command]/usr/bin/docker create --name 994e426950ec4af180aca4e5fa6a6919_ghcriorocmtherock_build_manylinux_x86_64sha256a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6_eb02c9 --label a375d8 --workdir /__w/TheRock/TheRock --network github_network_d37d68d755ab485aaeeea22988477406 -v /runner/config:/home/awsconfig/ -e "HOME=/github/home" -e GITHUB_ACTIONS=true -e CI=true -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/home/runner/_work":"/__w" -v "/home/runner/externals":"/__e":ro -v "/home/runner/_work/_temp":"/__w/_temp" -v "/home/runner/_work/_actions":"/__w/_actions" -v "/home/runner/_work/_tool":"/__w/_tool" -v "/home/runner/_work/_temp/_github_home":"/github/home" -v "/home/runner/_work/_temp/_github_workflow":"/github/workflow" --entrypoint "tail" ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6 "-f" "/dev/null"
+   305: 2026-06-17T18:56:29.1094738Z 14519381bcbef64edbc61b224fc8010717bf7a7f18a55b8d82690ddba0b9a207
+
+---
+
+   302: 2026-06-17T18:56:29.0692631Z Status: Downloaded newer image for ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6
+   303: 2026-06-17T18:56:29.0700528Z ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6
+>> 304: 2026-06-17T18:56:29.0796471Z ##[command]/usr/bin/docker create --name 994e426950ec4af180aca4e5fa6a6919_ghcriorocmtherock_build_manylinux_x86_64sha256a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6_eb02c9 --label a375d8 --workdir /__w/TheRock/TheRock --network github_network_d37d68d755ab485aaeeea22988477406 -v /runner/config:/home/awsconfig/ -e "HOME=/github/home" -e GITHUB_ACTIONS=true -e CI=true -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/home/runner/_work":"/__w" -v "/home/runner/externals":"/__e":ro -v "/home/runner/_work/_temp":"/__w/_temp" -v "/home/runner/_work/_actions":"/__w/_actions" -v "/home/runner/_work/_tool":"/__w/_tool" -v "/home/runner/_work/_temp/_github_home":"/github/home" -v "/home/runner/_work/_temp/_github_workflow":"/github/workflow" --entrypoint "tail" ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6 "-f" "/dev/null"
+   305: 2026-06-17T18:56:29.1094738Z 14519381bcbef64edbc61b224fc8010717bf7a7f18a55b8d82690ddba0b9a207
+   306: 2026-06-17T18:56:29.1120551Z ##[command]/usr/bin/docker start 14519381bcbef64edbc61b224fc8010717bf7a7f18a55b8d82690ddba0b9a207
+
+---
+
+   312: 2026-06-17T18:56:29.2800483Z HOME=/github/home
+   313: 2026-06-17T18:56:29.2800698Z GITHUB_ACTIONS=true
+>> 314: 2026-06-17T18:56:29.2801775Z PATH=/opt/rh/gcc-toolset-13/root/usr/bin:/usr/local/therock-tools/bin:/opt/python/cp312-cp312/bin:/opt/rh/gcc-toolset-14/root/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+   315: 2026-06-17T18:56:29.2802982Z AUDITWHEEL_POLICY=manylinux_2_28
+   316: 2026-06-17T18:56:29.2803394Z AUDITWHEEL_ARCH=x86_64
+
+---
+
+   336: 2026-06-17T18:56:29.3140081Z ##[group]Run actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+   337: 2026-06-17T18:56:29.3140772Z with:
+>> 338: 2026-06-17T18:56:29.3140983Z   repository: ROCm/TheRock
+   339: 2026-06-17T18:56:29.3144099Z   token: ***
+   340: 2026-06-17T18:56:29.3144296Z   ssh-strict: true
+
+---
+
+   354: 2026-06-17T18:56:29.3147601Z   AMDGPU_FAMILIES:
+   355: 2026-06-17T18:56:29.3147843Z   BUILD_DIR: build
+>> 356: 2026-06-17T18:56:29.3148213Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf
+   357: 2026-06-17T18:56:29.3148750Z   CACHE_DIR: /home/runner/_work/TheRock/TheRock/.container-cache
+   358: 2026-06-17T18:56:29.3149150Z   TEATIME_FORCE_INTERACTIVE: 0
+
+---
+
+   355: 2026-06-17T18:56:29.3147843Z   BUILD_DIR: build
+   356: 2026-06-17T18:56:29.3148213Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf
+>> 357: 2026-06-17T18:56:29.3148750Z   CACHE_DIR: /home/runner/_work/TheRock/TheRock/.container-cache
+   358: 2026-06-17T18:56:29.3149150Z   TEATIME_FORCE_INTERACTIVE: 0
+   359: 2026-06-17T18:56:29.3149413Z   RELEASE_TYPE: ci</pre>
+  
+  <h3>Pattern: ninja</h3>
+  <pre>Matches for /ninja/ (showing up to 10):
+
+   324: 2026-06-17T18:56:29.2805787Z SSL_CERT_FILE=/opt/_internal/certs.pem
+   325: 2026-06-17T18:56:29.2806042Z CMAKE_VERSION=3.27.9
+>> 326: 2026-06-17T18:56:29.2806240Z NINJA_VERSION=1.12.1
+   327: 2026-06-17T18:56:29.2806438Z GOOGLE_TEST_VERSION=1.16.0
+   328: 2026-06-17T18:56:29.2806667Z RUSTUP_HOME=/usr/local/rustup
+
+---
+
+   753: 2026-06-17T18:56:41.2925443Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mCMake[0m] Found CMake 3.27.9 at /usr/local/therock-tools/bin/cmake
+   754: 2026-06-17T18:56:41.2926106Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mCCache[0m] Found CCache 4.11.2 at /usr/local/bin/ccache
+>> 755: 2026-06-17T18:56:41.2926756Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mNinja-Build[0m] Found Ninja-Build 1.12.1 at /usr/local/bin/ninja
+   756: 2026-06-17T18:56:41.2927812Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mGCC/gfortran[0m] Found GCC compiler program gfortran 13.3.1 at /opt/rh/gcc-toolset-13/root/usr/bin/gfortran
+   757: 2026-06-17T18:56:41.2928748Z         [[38;2;6;161;60m✓[0m][[38;2;6;161;60mPython 3[0m] Found Python 3.12.10 at /opt/python/cp312-cp312/bin/python (Global ENV).
+
+---
+
+   1096: 2026-06-17T18:56:58.9443678Z OUTPUT cmake_args=-DTHEROCK_DIST_AMDGPU_FAMILIES="gfx94X-dcgpu;gfx110X-all;gfx1151;gfx120X-all" -DTHEROCK_DIST_PYTHON_EXECUTABLES="/opt/python/cp310-cp310/bin/python;/opt/python/cp311-cp311/bin/python;/opt/python/cp312-cp312/bin/python;/opt/python/cp313-cp313/bin/python" -DTHEROCK_SHARED_PYTHON_EXECUTABLES="/opt/python-shared/cp310-cp310/bin/python3;/opt/python-shared/cp311-cp311/bin/python3;/opt/python-shared/cp312-cp312/bin/python3;/opt/python-shared/cp313-cp313/bin/python3;/opt/python-shared/cp314-cp314/bin/python3" -DTHEROCK_ENABLE_ALL=OFF -DTHEROCK_ENABLE_AQLPROFILE=ON -DTHEROCK_ENABLE_BASE=ON -DTHEROCK_ENABLE_COMPILER=ON -DTHEROCK_ENABLE_CORE_AMDSMI=ON -DTHEROCK_ENABLE_CORE_HIPINFO=ON -DTHEROCK_ENABLE_CORE_RUNTIME=ON -DTHEROCK_ENABLE_ELFIO=ON -DTHEROCK_ENABLE_HIPIFY=ON -DTHEROCK_ENABLE_HIP_RUNTIME=ON -DTHEROCK_ENABLE_KPACK=ON -DTHEROCK_ENABLE_OPENMPI=ON -DTHEROCK_ENABLE_RCCL=ON -DTHEROCK_ENABLE_ROCPROFV3=ON -DTHEROCK_ENABLE_ROCSHMEM=ON -DTHEROCK_ENABLE_SYSDEPS=ON -DTHEROCK_ENABLE_SYSDEPS_LIBMNL=ON -DTHEROCK_ENABLE_SYSDEPS_LIBNL=ON
+   1097: 2026-06-17T18:56:58.9453733Z OUTPUT pip_install_cmd=
+>> 1098: 2026-06-17T18:56:58.9638112Z ##[group]Run cmake -B "${BUILD_DIR}" -S . -GNinja \
+   1099: 2026-06-17T18:56:58.9638551Z [36;1mcmake -B "${BUILD_DIR}" -S . -GNinja \[0m
+   1100: 2026-06-17T18:56:58.9639036Z [36;1m  -DTHEROCK_PACKAGE_VERSION=7.14.0.dev0+669115c7a973bd7dffee5b0a1a0266ebb846b1e3 \[0m
+
+---
+
+   1097: 2026-06-17T18:56:58.9453733Z OUTPUT pip_install_cmd=
+   1098: 2026-06-17T18:56:58.9638112Z ##[group]Run cmake -B "${BUILD_DIR}" -S . -GNinja \
+>> 1099: 2026-06-17T18:56:58.9638551Z [36;1mcmake -B "${BUILD_DIR}" -S . -GNinja \[0m
+   1100: 2026-06-17T18:56:58.9639036Z [36;1m  -DTHEROCK_PACKAGE_VERSION=7.14.0.dev0+669115c7a973bd7dffee5b0a1a0266ebb846b1e3 \[0m
+   1101: 2026-06-17T18:56:58.9639517Z [36;1m  -DCMAKE_C_COMPILER_LAUNCHER=ccache \[0m
+
+---
+
+   1599: 2026-06-17T20:36:49.3919518Z ##[endgroup]
+   1600: 2026-06-17T20:36:49.7174322Z Creating log archives for stage 'comm-libs'
+>> 1601: 2026-06-17T20:36:50.7843844Z [+] Archived: .ninja_log
+   1602: 2026-06-17T20:36:50.7926404Z [+] Archived: comm-libs/rocshmem/build/.ninja_log
+   1603: 2026-06-17T20:36:51.0633974Z [+] Archived: comm-libs/rccl/build/.ninja_log
+
+---
+
+   1600: 2026-06-17T20:36:49.7174322Z Creating log archives for stage 'comm-libs'
+   1601: 2026-06-17T20:36:50.7843844Z [+] Archived: .ninja_log
+>> 1602: 2026-06-17T20:36:50.7926404Z [+] Archived: comm-libs/rocshmem/build/.ninja_log
+   1603: 2026-06-17T20:36:51.0633974Z [+] Archived: comm-libs/rccl/build/.ninja_log
+   1604: 2026-06-17T20:36:51.0639695Z [+] Archived: third-party/googletest/build/.ninja_log
+
+---
+
+   1601: 2026-06-17T20:36:50.7843844Z [+] Archived: .ninja_log
+   1602: 2026-06-17T20:36:50.7926404Z [+] Archived: comm-libs/rocshmem/build/.ninja_log
+>> 1603: 2026-06-17T20:36:51.0633974Z [+] Archived: comm-libs/rccl/build/.ninja_log
+   1604: 2026-06-17T20:36:51.0639695Z [+] Archived: third-party/googletest/build/.ninja_log
+   1605: 2026-06-17T20:36:51.0660718Z [+] Archived: third-party/fmt/build/.ninja_log
+
+---
+
+   1602: 2026-06-17T20:36:50.7926404Z [+] Archived: comm-libs/rocshmem/build/.ninja_log
+   1603: 2026-06-17T20:36:51.0633974Z [+] Archived: comm-libs/rccl/build/.ninja_log
+>> 1604: 2026-06-17T20:36:51.0639695Z [+] Archived: third-party/googletest/build/.ninja_log
+   1605: 2026-06-17T20:36:51.0660718Z [+] Archived: third-party/fmt/build/.ninja_log
+   1606: 2026-06-17T20:36:51.0665589Z [+] Archived: third-party/yaml-cpp/build/.ninja_log
+
+---
+
+   1603: 2026-06-17T20:36:51.0633974Z [+] Archived: comm-libs/rccl/build/.ninja_log
+   1604: 2026-06-17T20:36:51.0639695Z [+] Archived: third-party/googletest/build/.ninja_log
+>> 1605: 2026-06-17T20:36:51.0660718Z [+] Archived: third-party/fmt/build/.ninja_log
+   1606: 2026-06-17T20:36:51.0665589Z [+] Archived: third-party/yaml-cpp/build/.ninja_log
+   1607: 2026-06-17T20:36:51.0669899Z [+] Archived: third-party/flatbuffers/build/.ninja_log
+
+---
+
+   1604: 2026-06-17T20:36:51.0639695Z [+] Archived: third-party/googletest/build/.ninja_log
+   1605: 2026-06-17T20:36:51.0660718Z [+] Archived: third-party/fmt/build/.ninja_log
+>> 1606: 2026-06-17T20:36:51.0665589Z [+] Archived: third-party/yaml-cpp/build/.ninja_log
+   1607: 2026-06-17T20:36:51.0669899Z [+] Archived: third-party/flatbuffers/build/.ninja_log
+   1608: 2026-06-17T20:36:51.0687211Z [+] Archived: third-party/fftw3/build_fftw3f/build/.ninja_log</pre>
+  
+  <h3>Pattern: cmake</h3>
+  <pre>Matches for /cmake/ (showing up to 10):
+
+   19: 2026-06-17T18:55:34.2040840Z   dist_amdgpu_families: gfx94X-dcgpu;gfx110X-all;gfx1151;gfx120X-all
+   20: 2026-06-17T18:55:34.2041756Z   rocm_package_version: 7.14.0.dev0+669115c7a973bd7dffee5b0a1a0266ebb846b1e3
+>> 21: 2026-06-17T18:55:34.2042524Z   build_variant_cmake_preset:
+   22: 2026-06-17T18:55:34.2043033Z   release_type: ci
+   23: 2026-06-17T18:55:34.2043508Z   build_runs_on: azure-linux-scale-rocm
+
+---
+
+   323: 2026-06-17T18:56:29.2805509Z PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+   324: 2026-06-17T18:56:29.2805787Z SSL_CERT_FILE=/opt/_internal/certs.pem
+>> 325: 2026-06-17T18:56:29.2806042Z CMAKE_VERSION=3.27.9
+   326: 2026-06-17T18:56:29.2806240Z NINJA_VERSION=1.12.1
+   327: 2026-06-17T18:56:29.2806438Z GOOGLE_TEST_VERSION=1.16.0
+
+---
+
+   467: 2026-06-17T18:56:31.3864790Z Collecting setuptools<82.0.0,>=80.9.0 (from -r requirements.txt (line 10))
+   468: 2026-06-17T18:56:31.3908471Z   Downloading setuptools-81.0.0-py3-none-any.whl.metadata (6.6 kB)
+>> 469: 2026-06-17T18:56:31.4019511Z Collecting pytest-cmake==0.13.0 (from -r requirements.txt (line 12))
+   470: 2026-06-17T18:56:31.4059426Z   Downloading pytest_cmake-0.13.0.tar.gz (7.5 kB)
+   471: 2026-06-17T18:56:31.4110500Z   Installing build dependencies: started
+
+---
+
+   468: 2026-06-17T18:56:31.3908471Z   Downloading setuptools-81.0.0-py3-none-any.whl.metadata (6.6 kB)
+   469: 2026-06-17T18:56:31.4019511Z Collecting pytest-cmake==0.13.0 (from -r requirements.txt (line 12))
+>> 470: 2026-06-17T18:56:31.4059426Z   Downloading pytest_cmake-0.13.0.tar.gz (7.5 kB)
+   471: 2026-06-17T18:56:31.4110500Z   Installing build dependencies: started
+   472: 2026-06-17T18:56:33.3259721Z   Installing build dependencies: finished with status 'done'
+
+---
+
+   495: 2026-06-17T18:56:35.4130206Z Collecting psutil==7.1.3 (from -r requirements.txt (line 33))
+   496: 2026-06-17T18:56:35.4181222Z   Downloading psutil-7.1.3-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl.metadata (23 kB)
+>> 497: 2026-06-17T18:56:35.4450437Z Collecting pytest<9,>=4 (from pytest-cmake==0.13.0->-r requirements.txt (line 12))
+   498: 2026-06-17T18:56:35.4492322Z   Downloading pytest-8.4.2-py3-none-any.whl.metadata (7.7 kB)
+   499: 2026-06-17T18:56:35.4541460Z Requirement already satisfied: botocore<1.43.0,>=1.42.84 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from boto3<1.42.85,>=1.42.79->-r requirements.txt (line 20)) (1.42.84)
+
+---
+
+   503: 2026-06-17T18:56:35.4711662Z Requirement already satisfied: python-dateutil<3.0.0,>=2.1 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from botocore<1.43.0,>=1.42.84->boto3<1.42.85,>=1.42.79->-r requirements.txt (line 20)) (2.9.0.post0)
+   504: 2026-06-17T18:56:35.4719643Z Requirement already satisfied: urllib3!=2.2.0,<3,>=1.25.4 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from botocore<1.43.0,>=1.42.84->boto3<1.42.85,>=1.42.79->-r requirements.txt (line 20)) (2.7.0)
+>> 505: 2026-06-17T18:56:35.4788211Z Collecting iniconfig>=1 (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12))
+   506: 2026-06-17T18:56:35.5265592Z   Downloading iniconfig-2.3.0-py3-none-any.whl.metadata (2.5 kB)
+   507: 2026-06-17T18:56:35.5287160Z Requirement already satisfied: packaging>=20 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12)) (25.0)
+
+---
+
+   505: 2026-06-17T18:56:35.4788211Z Collecting iniconfig>=1 (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12))
+   506: 2026-06-17T18:56:35.5265592Z   Downloading iniconfig-2.3.0-py3-none-any.whl.metadata (2.5 kB)
+>> 507: 2026-06-17T18:56:35.5287160Z Requirement already satisfied: packaging>=20 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12)) (25.0)
+   508: 2026-06-17T18:56:35.5359982Z Collecting pluggy<2,>=1.5 (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12))
+   509: 2026-06-17T18:56:35.5395606Z   Downloading pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+
+---
+
+   506: 2026-06-17T18:56:35.5265592Z   Downloading iniconfig-2.3.0-py3-none-any.whl.metadata (2.5 kB)
+   507: 2026-06-17T18:56:35.5287160Z Requirement already satisfied: packaging>=20 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12)) (25.0)
+>> 508: 2026-06-17T18:56:35.5359982Z Collecting pluggy<2,>=1.5 (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12))
+   509: 2026-06-17T18:56:35.5395606Z   Downloading pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+   510: 2026-06-17T18:56:35.5419484Z Requirement already satisfied: pygments>=2.7.2 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12)) (2.20.0)
+
+---
+
+   508: 2026-06-17T18:56:35.5359982Z Collecting pluggy<2,>=1.5 (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12))
+   509: 2026-06-17T18:56:35.5395606Z   Downloading pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+>> 510: 2026-06-17T18:56:35.5419484Z Requirement already satisfied: pygments>=2.7.2 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12)) (2.20.0)
+   511: 2026-06-17T18:56:35.5436069Z Requirement already satisfied: six>=1.5 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from python-dateutil<3.0.0,>=2.1->botocore<1.43.0,>=1.42.84->boto3<1.42.85,>=1.42.79->-r requirements.txt (line 20)) (1.17.0)
+   512: 2026-06-17T18:56:35.5467876Z Requirement already satisfied: ply in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from CppHeaderParser>=2.7.4->-r requirements.txt (line 1)) (3.11)
+
+---
+
+   559: 2026-06-17T18:56:35.9420031Z Downloading distlib-0.4.3-py2.py3-none-any.whl (470 kB)
+   560: 2026-06-17T18:56:35.9471223Z Downloading python_discovery-1.4.2-py3-none-any.whl (33 kB)
+>> 561: 2026-06-17T18:56:35.9783811Z Building wheels for collected packages: pytest-cmake
+   562: 2026-06-17T18:56:35.9793216Z   Building wheel for pytest-cmake (pyproject.toml): started
+   563: 2026-06-17T18:56:36.0131152Z   Building wheel for pytest-cmake (pyproject.toml): finished with status 'done'</pre>
+  
+  <h3>Pattern: gfx</h3>
+  <pre>Matches for /gfx/ (showing up to 10):
+
+   17: 2026-06-17T18:55:34.2039717Z   timeout_minutes: 240
+   18: 2026-06-17T18:55:34.2040217Z   amdgpu_family:
+>> 19: 2026-06-17T18:55:34.2040840Z   dist_amdgpu_families: gfx94X-dcgpu;gfx110X-all;gfx1151;gfx120X-all
+   20: 2026-06-17T18:55:34.2041756Z   rocm_package_version: 7.14.0.dev0+669115c7a973bd7dffee5b0a1a0266ebb846b1e3
+   21: 2026-06-17T18:55:34.2042524Z   build_variant_cmake_preset:
+
+---
+
+   1074: 2026-06-17T18:56:58.8058398Z [36;1m  --stage="${STAGE_NAME}" \[0m
+   1075: 2026-06-17T18:56:58.8058672Z [36;1m  --amdgpu-families="" \[0m
+>> 1076: 2026-06-17T18:56:58.8059070Z [36;1m  --dist-amdgpu-families="gfx94X-dcgpu;gfx110X-all;gfx1151;gfx120X-all" \[0m
+   1077: 2026-06-17T18:56:58.8059487Z [36;1m  --manylinux \[0m
+   1078: 2026-06-17T18:56:58.8059722Z [36;1m  --gha-output[0m
+
+---
+
+   1091: 2026-06-17T18:56:58.9429308Z Setting github output:
+   1092: 2026-06-17T18:56:58.9429715Z {
+>> 1093: 2026-06-17T18:56:58.9434605Z   "cmake_args": "-DTHEROCK_DIST_AMDGPU_FAMILIES=\"gfx94X-dcgpu;gfx110X-all;gfx1151;gfx120X-all\" -DTHEROCK_DIST_PYTHON_EXECUTABLES=\"/opt/python/cp310-cp310/bin/python;/opt/python/cp311-cp311/bin/python;/opt/python/cp312-cp312/bin/python;/opt/python/cp313-cp313/bin/python\" -DTHEROCK_SHARED_PYTHON_EXECUTABLES=\"/opt/python-shared/cp310-cp310/bin/python3;/opt/python-shared/cp311-cp311/bin/python3;/opt/python-shared/cp312-cp312/bin/python3;/opt/python-shared/cp313-cp313/bin/python3;/opt/python-shared/cp314-cp314/bin/python3\" -DTHEROCK_ENABLE_ALL=OFF -DTHEROCK_ENABLE_AQLPROFILE=ON -DTHEROCK_ENABLE_BASE=ON -DTHEROCK_ENABLE_COMPILER=ON -DTHEROCK_ENABLE_CORE_AMDSMI=ON -DTHEROCK_ENABLE_CORE_HIPINFO=ON -DTHEROCK_ENABLE_CORE_RUNTIME=ON -DTHEROCK_ENABLE_ELFIO=ON -DTHEROCK_ENABLE_HIPIFY=ON -DTHEROCK_ENABLE_HIP_RUNTIME=ON -DTHEROCK_ENABLE_KPACK=ON -DTHEROCK_ENABLE_OPENMPI=ON -DTHEROCK_ENABLE_RCCL=ON -DTHEROCK_ENABLE_ROCPROFV3=ON -DTHEROCK_ENABLE_ROCSHMEM=ON -DTHEROCK_ENABLE_SYSDEPS=ON -DTHEROCK_ENABLE_SYSDEPS_LIBMNL=ON -DTHEROCK_ENABLE_SYSDEPS_LIBNL=ON",
+   1094: 2026-06-17T18:56:58.9439701Z   "pip_install_cmd": ""
+   1095: 2026-06-17T18:56:58.9439915Z }
+
+---
+
+   1094: 2026-06-17T18:56:58.9439701Z   "pip_install_cmd": ""
+   1095: 2026-06-17T18:56:58.9439915Z }
+>> 1096: 2026-06-17T18:56:58.9443678Z OUTPUT cmake_args=-DTHEROCK_DIST_AMDGPU_FAMILIES="gfx94X-dcgpu;gfx110X-all;gfx1151;gfx120X-all" -DTHEROCK_DIST_PYTHON_EXECUTABLES="/opt/python/cp310-cp310/bin/python;/opt/python/cp311-cp311/bin/python;/opt/python/cp312-cp312/bin/python;/opt/python/cp313-cp313/bin/python" -DTHEROCK_SHARED_PYTHON_EXECUTABLES="/opt/python-shared/cp310-cp310/bin/python3;/opt/python-shared/cp311-cp311/bin/python3;/opt/python-shared/cp312-cp312/bin/python3;/opt/python-shared/cp313-cp313/bin/python3;/opt/python-shared/cp314-cp314/bin/python3" -DTHEROCK_ENABLE_ALL=OFF -DTHEROCK_ENABLE_AQLPROFILE=ON -DTHEROCK_ENABLE_BASE=ON -DTHEROCK_ENABLE_COMPILER=ON -DTHEROCK_ENABLE_CORE_AMDSMI=ON -DTHEROCK_ENABLE_CORE_HIPINFO=ON -DTHEROCK_ENABLE_CORE_RUNTIME=ON -DTHEROCK_ENABLE_ELFIO=ON -DTHEROCK_ENABLE_HIPIFY=ON -DTHEROCK_ENABLE_HIP_RUNTIME=ON -DTHEROCK_ENABLE_KPACK=ON -DTHEROCK_ENABLE_OPENMPI=ON -DTHEROCK_ENABLE_RCCL=ON -DTHEROCK_ENABLE_ROCPROFV3=ON -DTHEROCK_ENABLE_ROCSHMEM=ON -DTHEROCK_ENABLE_SYSDEPS=ON -DTHEROCK_ENABLE_SYSDEPS_LIBMNL=ON -DTHEROCK_ENABLE_SYSDEPS_LIBNL=ON
+   1097: 2026-06-17T18:56:58.9453733Z OUTPUT pip_install_cmd=
+   1098: 2026-06-17T18:56:58.9638112Z ##[group]Run cmake -B "${BUILD_DIR}" -S . -GNinja \
+
+---
+
+   1103: 2026-06-17T18:56:58.9640128Z [36;1m   \[0m
+   1104: 2026-06-17T18:56:58.9640317Z [36;1m   \[0m
+>> 1105: 2026-06-17T18:56:58.9643862Z [36;1m  -DTHEROCK_DIST_AMDGPU_FAMILIES="gfx94X-dcgpu;gfx110X-all;gfx1151;gfx120X-all" -DTHEROCK_DIST_PYTHON_EXECUTABLES="/opt/python/cp310-cp310/bin/python;/opt/python/cp311-cp311/bin/python;/opt/python/cp312-cp312/bin/python;/opt/python/cp313-cp313/bin/python" -DTHEROCK_SHARED_PYTHON_EXECUTABLES="/opt/python-shared/cp310-cp310/bin/python3;/opt/python-shared/cp311-cp311/bin/python3;/opt/python-shared/cp312-cp312/bin/python3;/opt/python-shared/cp313-cp313/bin/python3;/opt/python-shared/cp314-cp314/bin/python3" -DTHEROCK_ENABLE_ALL=OFF -DTHEROCK_ENABLE_AQLPROFILE=ON -DTHEROCK_ENABLE_BASE=ON -DTHEROCK_ENABLE_COMPILER=ON -DTHEROCK_ENABLE_CORE_AMDSMI=ON -DTHEROCK_ENABLE_CORE_HIPINFO=ON -DTHEROCK_ENABLE_CORE_RUNTIME=ON -DTHEROCK_ENABLE_ELFIO=ON -DTHEROCK_ENABLE_HIPIFY=ON -DTHEROCK_ENABLE_HIP_RUNTIME=ON -DTHEROCK_ENABLE_KPACK=ON -DTHEROCK_ENABLE_OPENMPI=ON -DTHEROCK_ENABLE_RCCL=ON -DTHEROCK_ENABLE_ROCPROFV3=ON -DTHEROCK_ENABLE_ROCSHMEM=ON -DTHEROCK_ENABLE_SYSDEPS=ON -DTHEROCK_ENABLE_SYSDEPS_LIBMNL=ON -DTHEROCK_ENABLE_SYSDEPS_LIBNL=ON[0m
+   1106: 2026-06-17T18:56:58.9647750Z shell: sh -e {0}
+   1107: 2026-06-17T18:56:58.9647945Z env:
+
+---
+
+   1209: 2026-06-17T18:56:59.6019623Z --   * ROCJPEG (-DTHEROCK_ENABLE_ROCJPEG=OFF)
+   1210: 2026-06-17T18:56:59.6019901Z -- Configured AMDGPU Targets:
+>> 1211: 2026-06-17T18:56:59.6020252Z --   Dist targets: gfx942;gfx1100;gfx1101;gfx1102;gfx1103;gfx1151;gfx1200;gfx1201
+   1212: 2026-06-17T18:56:59.6021217Z --   Test targets: gfx900;gfx90c;gfx906;gfx908;gfx90a;gfx942;gfx950;gfx1010;gfx1011;gfx1012;gfx1030;gfx1031;gfx1032;gfx1033;gfx1034;gfx1035;gfx1036;gfx1100;gfx1101;gfx1102;gfx1103;gfx1150;gfx1151;gfx1152;gfx1153;gfx1200;gfx1201;gfx1250
+   1213: 2026-06-17T18:56:59.6022191Z --   (No per-arch targets - generic stage using dist targets only)
+
+---
+
+   1210: 2026-06-17T18:56:59.6019901Z -- Configured AMDGPU Targets:
+   1211: 2026-06-17T18:56:59.6020252Z --   Dist targets: gfx942;gfx1100;gfx1101;gfx1102;gfx1103;gfx1151;gfx1200;gfx1201
+>> 1212: 2026-06-17T18:56:59.6021217Z --   Test targets: gfx900;gfx90c;gfx906;gfx908;gfx90a;gfx942;gfx950;gfx1010;gfx1011;gfx1012;gfx1030;gfx1031;gfx1032;gfx1033;gfx1034;gfx1035;gfx1036;gfx1100;gfx1101;gfx1102;gfx1103;gfx1150;gfx1151;gfx1152;gfx1153;gfx1200;gfx1201;gfx1250
+   1213: 2026-06-17T18:56:59.6022191Z --   (No per-arch targets - generic stage using dist targets only)
+   1214: 2026-06-17T18:56:59.6022568Z -- Building with bundled system dependencies enabled
+
+---
+
+   1320: 2026-06-17T18:57:08.0792638Z -- Including subproject rccl (from /__w/TheRock/TheRock/rocm-systems/projects/rccl)
+   1321: 2026-06-17T18:57:08.7234851Z CMake Warning at cmake/therock_subproject.cmake:1583 (message):
+>> 1322: 2026-06-17T18:57:08.7235492Z   Excluding support for gfx1103 in rccl because it was manually marked for
+   1323: 2026-06-17T18:57:08.7236178Z   exclusion in therock_amdgpu_targets.cmake.  This warning should never be
+   1324: 2026-06-17T18:57:08.7236681Z   issued for production/supported gfx targets.
+
+---
+
+   1322: 2026-06-17T18:57:08.7235492Z   Excluding support for gfx1103 in rccl because it was manually marked for
+   1323: 2026-06-17T18:57:08.7236178Z   exclusion in therock_amdgpu_targets.cmake.  This warning should never be
+>> 1324: 2026-06-17T18:57:08.7236681Z   issued for production/supported gfx targets.
+   1325: 2026-06-17T18:57:08.7237049Z Call Stack (most recent call first):
+   1326: 2026-06-17T18:57:08.7237510Z   cmake/therock_subproject.cmake:1626 (_therock_filter_project_gpu_targets)
+
+---
+
+   1330: 2026-06-17T18:57:08.7239105Z
+   1331: 2026-06-17T18:57:08.7239316Z CMake Warning at cmake/therock_subproject.cmake:1583 (message):
+>> 1332: 2026-06-17T18:57:08.7239870Z   Excluding support for gfx1150 in rccl because it was manually marked for
+   1333: 2026-06-17T18:57:08.7240454Z   exclusion in therock_amdgpu_targets.cmake.  This warning should never be
+   1334: 2026-06-17T18:57:08.7240957Z   issued for production/supported gfx targets.</pre>
+  
+  <h3>Pattern: hipErrorOutOfMemory</h3>
+  <pre>No matches for pattern: hipErrorOutOfMemory</pre>
+  
+  <h3>Pattern: rocsparse</h3>
+  <pre>No matches for pattern: rocsparse</pre>
+  
+  <h3>Pattern: ctest</h3>
+  <pre>No matches for pattern: ctest</pre>
+  
+  <h3>Pattern: FAILED</h3>
+  <pre>No matches for pattern: FAILED</pre>
+  
+  
+
+  
+  <h2>GitHub Actions errors</h2>
+  <pre>Matches for /##\[error\]/ (showing up to 15):
+
+   1532: 2026-06-17T19:06:37.8647822Z [107/122] Stage installing sub-project rocshmem
+   1533: 2026-06-17T19:06:38.6709057Z [108/122] Populate artifact rocshmem
+>> 1534: 2026-06-17T20:36:48.3343455Z ##[error]The operation was canceled.
+   1535: 2026-06-17T20:36:48.3661775Z Prepare all required actions
+   1536: 2026-06-17T20:36:48.3662720Z Getting action download info</pre>
+  
+</body>
+</html>

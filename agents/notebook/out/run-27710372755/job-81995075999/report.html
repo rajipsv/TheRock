@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>TheRock Log Analysis Report</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; max-width: 960px; line-height: 1.5; }
+    h1 { color: #c41230; }
+    .badge { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 600; }
+    .CRITICAL, .FATAL { background: #fee; color: #900; }
+    .HIGH, .ERROR { background: #ffe8cc; color: #a60; }
+    .MEDIUM { background: #fff3cd; color: #856404; }
+    .LOW { background: #e8f5e9; color: #2e7d32; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; vertical-align: top; }
+    th { background: #f5f5f5; }
+    code, pre { background: #f0f0f0; padding: 0.1rem 0.3rem; font-size: 0.9em; }
+    pre { padding: 1rem; overflow-x: auto; white-space: pre-wrap; }
+    .meta { color: #666; font-size: 0.95em; }
+  </style>
+</head>
+<body>
+  <h1>Log Analysis Report (AGENTS_030)</h1>
+  <p class="meta">
+    <strong>Log:</strong> <code>/workspace/TheRock-old/agents/log-analysis-agent/sample-runs/run-27710372755/job-81995075999/job-81995075999.log</code><br/>
+    
+    <strong>GitHub run:</strong>
+    <a href="https://github.com/ROCm/TheRock/actions/runs/27710372755">27710372755</a>
+    | <strong>Job:</strong> Windows::release / Build PyTorch (fat + split) / Build PyTorch | multi-arch-release | torch release/2.10 | py3.12<br/>
+    <strong>Repo:</strong> ROCm/TheRock | <strong>Branch:</strong> users/geomin12/fix-configure-aws-external<br/>
+    
+    <strong>Mode:</strong> tool_only
+    <br/>
+    <strong>Preset:</strong> TheRock — Multi-Arch CI<br/>
+    <strong>Timestamp:</strong> 2026-06-18T04:00:27.112388
+  </p>
+
+  <h2>Summary</h2>
+  <p>Tool-only qualification pass found 6 highlighted error lines. Stats: path=/workspace/TheRock-old/agents/log-analysis-agent/sample-runs/run-27710372755/job-81995075999/job-81995075999.log; lines=20358; bytes=1055252; github_error=1; keyword_hits: ERROR=20, EXCEPTION=30, CRITICAL=0, FATAL=0, WARNING=18</p>
+  
+
+  <h2>Stats</h2>
+  <pre>path=/workspace/TheRock-old/agents/log-analysis-agent/sample-runs/run-27710372755/job-81995075999/job-81995075999.log
+lines=20358
+bytes=1055252
+github_error=1
+keyword_hits: ERROR=20, EXCEPTION=30, CRITICAL=0, FATAL=0, WARNING=18</pre>
+
+  
+  <h2>Errors (5)</h2>
+  <table>
+    <tr><th>Line</th><th>Type</th><th>Severity</th><th>Message</th><th>Category</th><th>Recommendation</th></tr>
+    
+    <tr>
+      <td>20287</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:36:55.6849157Z ##[error]The operation was canceled.</code></td>
+      <td>Memory</td>
+      <td>Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits</td>
+    </tr>
+    
+    <tr>
+      <td>20205</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:36:55.2467644Z C:\D2ABF21E-C2D6-4097-97F0-5F8FB5FF667D\src\torch\torch\csrc\distributed\c10d\error.h -> C:\D2ABF21E-C2D6-4097-97F0-5F8FB5FF667D\src\torch\torch\csrc\distributed\c10d\error.h [skipped, already hipified]</code></td>
+      <td>Runtime</td>
+      <td>Match torch+ROCm versions, reduce batch size, rocm-smi memory check</td>
+    </tr>
+    
+    <tr>
+      <td>12889</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:32:06.8394907Z -a----          4/8/2025  12:56 PM           2489 error.py</code></td>
+      <td>Runtime</td>
+      <td>Inspect surrounding context and stack traces; check recent CI changes.</td>
+    </tr>
+    
+    <tr>
+      <td>12915</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:32:06.8489420Z -a----         6/17/2026   8:31 PM           3678 error.cpython-312.pyc</code></td>
+      <td>Runtime</td>
+      <td>Inspect surrounding context and stack traces; check recent CI changes.</td>
+    </tr>
+    
+    <tr>
+      <td>1519</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:32:01.8778318Z -a----          4/8/2025  12:57 PM          23451 urllib.error.html</code></td>
+      <td>Runtime</td>
+      <td>Inspect surrounding context and stack traces; check recent CI changes.</td>
+    </tr>
+    
+  </table>
+  
+
+  
+  <h2>Knowledge base lookups</h2>
+  
+  <h3>2026-06-17T20:32:01.8778318Z -a----          4/8/2025  12:57 PM          23451 urllib.error.html</h3>
+  <pre>No known failure patterns matched. Consider record_resolution after triage.</pre>
+  
+  <h3>2026-06-17T20:32:06.8394907Z -a----          4/8/2025  12:56 PM           2489 error.py</h3>
+  <pre>No known failure patterns matched. Consider record_resolution after triage.</pre>
+  
+  <h3>2026-06-17T20:32:06.8489420Z -a----         6/17/2026   8:31 PM           3678 error.cpython-312.pyc</h3>
+  <pre>No known failure patterns matched. Consider record_resolution after triage.</pre>
+  
+  <h3>2026-06-17T20:36:55.6849157Z ##[error]The operation was canceled.</h3>
+  <pre>Match 1 [keyword] score=11.5 id=rocm_hip_gpu_oom
+  Pattern: HIP GPU out of memory (hipErrorOutOfMemory)
+  Category: Memory | Severity: CRITICAL
+  Causes: GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test
+  Solutions: Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits
+  Similar: CUDA out of memory, HSA_STATUS_ERROR_MEMORY
+
+Match 2 [keyword] score=11.5 id=rocm_hip_error
+  Pattern: ROCm HIP API failure
+  Category: GPU/Driver | Severity: HIGH
+  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device
+  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages
+  Similar: HIP initialization failed</pre>
+  
+  
+
+  
+  <h2>Stack traces</h2>
+  <pre>Stack traces (10):
+
+339: 2026-06-17T20:31:31.1764414Z [command]"C:\Program Files\PowerShell\7\pwsh.exe" -NoLogo -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -Command "$ErrorActionPreference = 'Stop' ; try { Add-Type -AssemblyName System.IO.Compression.ZipFile } catch { } ; try { [System.IO.Compression.ZipFile]::ExtractToDirectory('C:\home\runner\_work\_temp\python-3.12.10-win32-x64.zip', 'C:\home\runner\_work\_temp\780b95e8-3016-4235-abe4-37ca83e1c94c', $true) } catch { if (($_.Exception.GetType().FullName -eq 'System.Management.Automation.MethodException') -or ($_.Exception.GetType().FullName -eq 'System.Management.Automation.RuntimeException') ){ Expand-Archive -LiteralPath 'C:\home\runner\_work\_temp\python-3.12.10-win32-x64.zip' -DestinationPath 'C:\home\runner\_work\_temp\780b95e8-3016-4235-abe4-37ca83e1c94c' -Force } else { throw $_ } } ;"
+340:
+
+---
+
+663: 2026-06-17T20:32:01.3838337Z -a----          4/8/2025  12:57 PM         215010 exceptions.html
+664:
+
+---
+
+977: 2026-06-17T20:32:01.5318849Z -a----          4/8/2025  12:57 PM          20764 asyncio-exceptions.html
+978:
+
+---
+
+1125: 2026-06-17T20:32:01.6263170Z -a----          4/8/2025  12:57 PM          33679 email.errors.html
+1126:
+
+---
+
+1155: 2026-06-17T20:32:01.6453178Z -a----          4/8/2025  12:57 PM         140990 exceptions.html
+1156:
+
+---
+
+1495: 2026-06-17T20:32:01.8623195Z -a----          4/8/2025  12:57 PM          42977 trace.html
+1496:
+
+---
+
+1497: 2026-06-17T20:32:01.8636326Z -a----          4/8/2025  12:57 PM         111056 traceback.html
+1498:
+
+---
+
+1499: 2026-06-17T20:32:01.8649271Z -a----          4/8/2025  12:57 PM         129076 tracemalloc.html
+1500:
+
+---
+
+1519: 2026-06-17T20:32:01.8778318Z -a----          4/8/2025  12:57 PM          23451 urllib.error.html
+1520:
+
+---
+
+1653: 2026-06-17T20:32:01.9492289Z -a----          4/8/2025  12:57 PM          80782 errors.html
+1654:</pre>
+  
+
+  
+  <h2>Preset pattern samples</h2>
+  
+  <h3>Pattern: therock</h3>
+  <pre>Matches for /therock/ (showing up to 10):
+
+   31: 2026-06-17T20:31:24.3487811Z Download action repository 'aws-actions/configure-aws-credentials@e7f100cf4c008499ea8adda475de1042d6975c7b' (SHA:e7f100cf4c008499ea8adda475de1042d6975c7b)
+   32: 
+>> 33: 2026-06-17T20:31:25.0084112Z Uses: ROCm/TheRock/.github/workflows/build_windows_pytorch_wheels_ci.yml@refs/pull/5923/merge (669115c7a973bd7dffee5b0a1a0266ebb846b1e3)
+   34: 
+   35: 2026-06-17T20:31:25.0088483Z ##[group] Inputs
+
+---
+
+   41: 2026-06-17T20:31:25.0089619Z   pytorch_git_ref: release/2.10
+   42: 
+>> 43: 2026-06-17T20:31:25.0090411Z   rocm_package_find_links_url: https://therock-ci-artifacts-external.s3.amazonaws.com/ROCm-TheRock/27710372755-windows/python/index.html
+   44: 
+   45: 2026-06-17T20:31:25.0091292Z   rocm_version: 7.14.0.dev0+669115c7a973bd7dffee5b0a1a0266ebb846b1e3
+
+---
+
+   63: 2026-06-17T20:31:25.1089543Z with:
+   64: 
+>> 65: 2026-06-17T20:31:25.1089865Z   repository: ROCm/TheRock
+   66: 
+   67: 2026-06-17T20:31:25.1093142Z   token: ***
+
+---
+
+   93: 2026-06-17T20:31:25.1097487Z   CHECKOUT_ROOT: B:/src
+   94: 
+>> 95: 2026-06-17T20:31:25.1097951Z   PACKAGE_DIST_DIR: C:\home\runner\_work\TheRock\TheRock\output\packages\dist
+   96: 
+   97: 2026-06-17T20:31:25.1098511Z   RELEASE_TYPE: ci
+
+---
+
+   99: 2026-06-17T20:31:25.1098889Z   optional_build_prod_arguments:
+   100: 
+>> 101: 2026-06-17T20:31:25.1099280Z   SCCACHE_BUCKET: therock-pytorch-sccache-ci
+   102: 
+   103: 2026-06-17T20:31:25.1099673Z   SCCACHE_REGION: us-east-1
+
+---
+
+   115: 2026-06-17T20:31:25.1101789Z ##[endgroup]
+   116: 
+>> 117: 2026-06-17T20:31:25.3903479Z Syncing repository: ROCm/TheRock
+   118: 
+   119: 2026-06-17T20:31:25.3904939Z ##[group]Getting Git version info
+
+---
+
+   119: 2026-06-17T20:31:25.3904939Z ##[group]Getting Git version info
+   120: 
+>> 121: 2026-06-17T20:31:25.3905470Z Working directory is 'C:\home\runner\_work\TheRock\TheRock'
+   122: 
+   123: 2026-06-17T20:31:25.4066612Z [command]"C:\Program Files\Git\cmd\git.exe" version
+
+---
+
+   131: 2026-06-17T20:31:25.4729548Z Adding repository directory to the temporary git global config as a safe directory
+   132: 
+>> 133: 2026-06-17T20:31:25.4736777Z [command]"C:\Program Files\Git\cmd\git.exe" config --global --add safe.directory C:\home\runner\_work\TheRock\TheRock
+   134: 
+   135: 2026-06-17T20:31:25.5128253Z Deleting the contents of 'C:\home\runner\_work\TheRock\TheRock'
+
+---
+
+   133: 2026-06-17T20:31:25.4736777Z [command]"C:\Program Files\Git\cmd\git.exe" config --global --add safe.directory C:\home\runner\_work\TheRock\TheRock
+   134: 
+>> 135: 2026-06-17T20:31:25.5128253Z Deleting the contents of 'C:\home\runner\_work\TheRock\TheRock'
+   136: 
+   137: 2026-06-17T20:31:25.5136643Z ##[group]Determining repository object format
+
+---
+
+   141: 2026-06-17T20:31:25.5139732Z ##[group]Initializing the repository
+   142: 
+>> 143: 2026-06-17T20:31:25.5147662Z [command]"C:\Program Files\Git\cmd\git.exe" init C:\home\runner\_work\TheRock\TheRock
+   144: 
+   145: 2026-06-17T20:31:25.6266890Z Initialized empty Git repository in C:/home/runner/_work/TheRock/TheRock/.git/</pre>
+  
+  <h3>Pattern: ninja</h3>
+  <pre>Matches for /ninja/ (showing up to 10):
+
+   16927: 2026-06-17T20:32:21.1435352Z [36;1mchoco source add -n=internal -s http://10.0.167.96:8081/repository/choco-group/ --priority=1[0m
+   16928: 
+>> 16929: 2026-06-17T20:32:21.1435900Z [36;1mchoco install --no-progress -y ninja --version 1.13.1[0m
+   16930: 
+   16931: 2026-06-17T20:32:21.1557938Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+
+---
+
+   16981: 2026-06-17T20:32:25.8609662Z Installing the following packages:
+   16982: 
+>> 16983: 2026-06-17T20:32:25.8613437Z ninja
+   16984: 
+   16985: 2026-06-17T20:32:25.8616012Z By installing, you accept licenses for the packages.
+
+---
+
+   16989: 2026-06-17T20:32:27.0813537Z
+   16990: 
+>> 16991: 2026-06-17T20:32:27.0814490Z ninja v1.13.1
+   16992: 
+   16993: 2026-06-17T20:32:27.1067519Z ninja package files install completed. Performing other installation steps.
+
+---
+
+   16991: 2026-06-17T20:32:27.0814490Z ninja v1.13.1
+   16992: 
+>> 16993: 2026-06-17T20:32:27.1067519Z ninja package files install completed. Performing other installation steps.
+   16994: 
+   16995: 2026-06-17T20:32:29.3974770Z Extracting C:\ProgramData\chocolatey\lib\ninja\tools\ninja-win_x32.zip to C:\ProgramData\chocolatey\lib\ninja\tools...
+
+---
+
+   16993: 2026-06-17T20:32:27.1067519Z ninja package files install completed. Performing other installation steps.
+   16994: 
+>> 16995: 2026-06-17T20:32:29.3974770Z Extracting C:\ProgramData\chocolatey\lib\ninja\tools\ninja-win_x32.zip to C:\ProgramData\chocolatey\lib\ninja\tools...
+   16996: 
+   16997: 2026-06-17T20:32:29.5959672Z C:\ProgramData\chocolatey\lib\ninja\tools
+
+---
+
+   16995: 2026-06-17T20:32:29.3974770Z Extracting C:\ProgramData\chocolatey\lib\ninja\tools\ninja-win_x32.zip to C:\ProgramData\chocolatey\lib\ninja\tools...
+   16996: 
+>> 16997: 2026-06-17T20:32:29.5959672Z C:\ProgramData\chocolatey\lib\ninja\tools
+   16998: 
+   16999: 2026-06-17T20:32:29.5966320Z Installed to: 'C:\ProgramData\chocolatey\lib\ninja\tools'
+
+---
+
+   16997: 2026-06-17T20:32:29.5959672Z C:\ProgramData\chocolatey\lib\ninja\tools
+   16998: 
+>> 16999: 2026-06-17T20:32:29.5966320Z Installed to: 'C:\ProgramData\chocolatey\lib\ninja\tools'
+   17000: 
+   17001: 2026-06-17T20:32:30.1265695Z  ShimGen has successfully created a shim for ninja.exe
+
+---
+
+   16999: 2026-06-17T20:32:29.5966320Z Installed to: 'C:\ProgramData\chocolatey\lib\ninja\tools'
+   17000: 
+>> 17001: 2026-06-17T20:32:30.1265695Z  ShimGen has successfully created a shim for ninja.exe
+   17002: 
+   17003: 2026-06-17T20:32:30.1508095Z  The install of ninja was successful.
+
+---
+
+   17001: 2026-06-17T20:32:30.1265695Z  ShimGen has successfully created a shim for ninja.exe
+   17002: 
+>> 17003: 2026-06-17T20:32:30.1508095Z  The install of ninja was successful.
+   17004: 
+   17005: 2026-06-17T20:32:30.1510540Z   Deployed to 'C:\ProgramData\chocolatey\lib\ninja\tools'
+
+---
+
+   17003: 2026-06-17T20:32:30.1508095Z  The install of ninja was successful.
+   17004: 
+>> 17005: 2026-06-17T20:32:30.1510540Z   Deployed to 'C:\ProgramData\chocolatey\lib\ninja\tools'
+   17006: 
+   17007: 2026-06-17T20:32:30.1591722Z</pre>
+  
+  <h3>Pattern: cmake</h3>
+  <pre>Matches for /cmake/ (showing up to 10):
+
+   17227: 2026-06-17T20:32:33.7762707Z   NETFXSDKDir: C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\
+   17228: 
+>> 17229: 2026-06-17T20:32:33.7770407Z   PATH: C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\VC\VCPackages;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer;C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\bin\Roslyn;C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\x64\;C:\Program Files\Microsoft Visual Studio\2022\Community\Team Tools\DiagnosticsHub\Collector;C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\\x64;C:\Program Files (x86)\Windows Kits\10\bin\\x64;C:\Program Files\Microsoft Visual Studio\2022\Community\\MSBuild\Current\Bin\amd64;C:\Windows\Microsoft.NET\Framework64\v4.0.30319;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\;C:\Users\ContainerAdministrator\AppData\Roaming\Python\Python312\Scripts;C:\home\runner\_work\_tool\Python\3.12.10\x64\Scripts;C:\home\runner\_work\_tool\Python\3.12.10\x64;C:\vcpkg;C:\Python313\Scripts\;C:\Python313\;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Users\ContainerAdministrator\AppData\Local\Microsoft\WindowsApps;C:/home/runner;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\GitHub CLI\;C:\Program Files\PowerShell\7\;;C:\Program Files\Git\bin;C:\Program Files (x86)\DVC (Data Version Control);C:\Program Files\CMake\bin;C:\Program Files\dotnet\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Users\ContainerAdministrator\.dotnet\tools;C:\Program Files (x86)\Microsoft Visual Studio\Installer;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\Ninja;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\VC\Linux\bin\ConnectionManagerExe;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\vcpkg
+   17230: 
+   17231: 2026-06-17T20:32:33.7778226Z   Platform: x64
+
+---
+
+   17281: 2026-06-17T20:32:33.7788723Z   __DOTNET_PREFERRED_BITNESS: 64
+   17282: 
+>> 17283: 2026-06-17T20:32:33.7791914Z   __VSCMD_PREINIT_PATH: C:\Users\ContainerAdministrator\AppData\Roaming\Python\Python312\Scripts;C:\home\runner\_work\_tool\Python\3.12.10\x64\Scripts;C:\home\runner\_work\_tool\Python\3.12.10\x64;C:\vcpkg;C:\Python313\Scripts\;C:\Python313\;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Users\ContainerAdministrator\AppData\Local\Microsoft\WindowsApps;C:/home/runner;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\GitHub CLI\;C:\Program Files\PowerShell\7\;;C:\Program Files\Git\bin;C:\Program Files (x86)\DVC (Data Version Control);;C:\Program Files (x86)\DVC (Data Version Control);C:\Program Files\CMake\bin;C:\Program Files\dotnet\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Users\ContainerAdministrator\.dotnet\tools;;C:\Program Files (x86)\Microsoft Visual Studio\Installer
+   17284: 
+   17285: 2026-06-17T20:32:33.7795126Z ##[endgroup]
+
+---
+
+   17419: 2026-06-17T20:32:42.8432579Z   NETFXSDKDir: C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\
+   17420: 
+>> 17421: 2026-06-17T20:32:42.8440304Z   PATH: C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\VC\VCPackages;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer;C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\bin\Roslyn;C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\x64\;C:\Program Files\Microsoft Visual Studio\2022\Community\Team Tools\DiagnosticsHub\Collector;C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\\x64;C:\Program Files (x86)\Windows Kits\10\bin\\x64;C:\Program Files\Microsoft Visual Studio\2022\Community\\MSBuild\Current\Bin\amd64;C:\Windows\Microsoft.NET\Framework64\v4.0.30319;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\;C:\Users\ContainerAdministrator\AppData\Roaming\Python\Python312\Scripts;C:\home\runner\_work\_tool\Python\3.12.10\x64\Scripts;C:\home\runner\_work\_tool\Python\3.12.10\x64;C:\vcpkg;C:\Python313\Scripts\;C:\Python313\;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Users\ContainerAdministrator\AppData\Local\Microsoft\WindowsApps;C:/home/runner;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\GitHub CLI\;C:\Program Files\PowerShell\7\;;C:\Program Files\Git\bin;C:\Program Files (x86)\DVC (Data Version Control);C:\Program Files\CMake\bin;C:\Program Files\dotnet\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Users\ContainerAdministrator\.dotnet\tools;C:\Program Files (x86)\Microsoft Visual Studio\Installer;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\Ninja;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\VC\Linux\bin\ConnectionManagerExe;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\vcpkg
+   17422: 
+   17423: 2026-06-17T20:32:42.8448226Z   Platform: x64
+
+---
+
+   17473: 2026-06-17T20:32:42.8458620Z   __DOTNET_PREFERRED_BITNESS: 64
+   17474: 
+>> 17475: 2026-06-17T20:32:42.8461805Z   __VSCMD_PREINIT_PATH: C:\Users\ContainerAdministrator\AppData\Roaming\Python\Python312\Scripts;C:\home\runner\_work\_tool\Python\3.12.10\x64\Scripts;C:\home\runner\_work\_tool\Python\3.12.10\x64;C:\vcpkg;C:\Python313\Scripts\;C:\Python313\;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Users\ContainerAdministrator\AppData\Local\Microsoft\WindowsApps;C:/home/runner;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\GitHub CLI\;C:\Program Files\PowerShell\7\;;C:\Program Files\Git\bin;C:\Program Files (x86)\DVC (Data Version Control);;C:\Program Files (x86)\DVC (Data Version Control);C:\Program Files\CMake\bin;C:\Program Files\dotnet\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Users\ContainerAdministrator\.dotnet\tools;;C:\Program Files (x86)\Microsoft Visual Studio\Installer
+   17476: 
+   17477: 2026-06-17T20:32:42.8465020Z ##[endgroup]
+
+---
+
+   17973: 2026-06-17T20:36:22.8602322Z Submodule path 'third_party/tensorpipe/third_party/pybind11/tools/clang': checked out '6a00cbc4a9b8e68b71caf7f774b3f9c753ae84d5'
+   17974: 
+>> 17975: 2026-06-17T20:36:45.7369575Z third_party/fbgemm/fbgemm_gpu/CMakeLists.txt skipped
+   17976: 
+   17977: 2026-06-17T20:36:45.7387443Z third_party/fbgemm/fbgemm_gpu/cmake/Hip.cmake updated
+
+---
+
+   17975: 2026-06-17T20:36:45.7369575Z third_party/fbgemm/fbgemm_gpu/CMakeLists.txt skipped
+   17976: 
+>> 17977: 2026-06-17T20:36:45.7387443Z third_party/fbgemm/fbgemm_gpu/cmake/Hip.cmake updated
+   17978: 
+   17979: 2026-06-17T20:36:45.7387950Z third_party/fbgemm/fbgemm_gpu/include/fbgemm_gpu/utils/cuda_prelude.cuh skipped
+
+---
+
+   17991: 2026-06-17T20:36:45.7391092Z third_party/fbgemm/src/EmbeddingSpMDM.cc skipped
+   17992: 
+>> 17993: 2026-06-17T20:36:45.7391414Z third_party/gloo/cmake/Dependencies.cmake updated
+   17994: 
+   17995: 2026-06-17T20:36:45.7391705Z third_party/gloo/gloo/cuda.cu updated
+
+---
+
+   17995: 2026-06-17T20:36:45.7391705Z third_party/gloo/gloo/cuda.cu updated
+   17996: 
+>> 17997: 2026-06-17T20:36:45.7391989Z third_party/kineto/libkineto/CMakeLists.txt updated
+   17998: 
+   17999: 2026-06-17T20:36:45.7392784Z C:\D2ABF21E-C2D6-4097-97F0-5F8FB5FF667D\src\torch\aten\src\ATen\cuda\ApplyGridUtils.cuh -> C:\D2ABF21E-C2D6-4097-97F0-5F8FB5FF667D\src\torch\aten\src\ATen\hip\ApplyGridUtils.cuh [ok]
+
+---
+
+   19175: 2026-06-17T20:36:50.9858994Z C:\D2ABF21E-C2D6-4097-97F0-5F8FB5FF667D\src\torch\aten\src\ATen\test\test_install\main.cpp -> C:\D2ABF21E-C2D6-4097-97F0-5F8FB5FF667D\src\torch\aten\src\ATen\test\test_install\hip\main.cpp [ok]
+   19176: 
+>> 19177: 2026-06-17T20:36:50.9944341Z C:\D2ABF21E-C2D6-4097-97F0-5F8FB5FF667D\src\torch\aten\src\THC\CMakeLists.txt -> C:\D2ABF21E-C2D6-4097-97F0-5F8FB5FF667D\src\torch\aten\src\THH\CMakeLists.txt [ok]
+   19178: 
+   19179: 2026-06-17T20:36:51.0006524Z C:\D2ABF21E-C2D6-4097-97F0-5F8FB5FF667D\src\torch\aten\src\THC\THCAtomics.cuh -> C:\D2ABF21E-C2D6-4097-97F0-5F8FB5FF667D\src\torch\aten\src\THH\THHAtomics.cuh [ok]
+
+---
+
+   19235: 2026-06-17T20:36:51.2428724Z C:\D2ABF21E-C2D6-4097-97F0-5F8FB5FF667D\src\torch\c10\cuda\impl\CUDATest.h -> C:\D2ABF21E-C2D6-4097-97F0-5F8FB5FF667D\src\torch\c10\hip\impl\HIPTest.h [ok]
+   19236: 
+>> 19237: 2026-06-17T20:36:51.2492761Z C:\D2ABF21E-C2D6-4097-97F0-5F8FB5FF667D\src\torch\c10\cuda\impl\cuda_cmake_macros.h.in -> C:\D2ABF21E-C2D6-4097-97F0-5F8FB5FF667D\src\torch\c10\hip\impl\hip_cmake_macros.h.in [ok]
+   19238: 
+   19239: 2026-06-17T20:36:51.2564299Z C:\D2ABF21E-C2D6-4097-97F0-5F8FB5FF667D\src\torch\c10\cuda\test\CMakeLists.txt -> C:\D2ABF21E-C2D6-4097-97F0-5F8FB5FF667D\src\torch\c10\hip\test\CMakeLists.txt [ok]</pre>
+  
+  <h3>Pattern: gfx</h3>
+  <pre>Matches for /gfx/ (showing up to 10):
+
+   47: 2026-06-17T20:31:25.0091799Z   cache_type: sccache
+   48: 
+>> 49: 2026-06-17T20:31:25.0092178Z   amdgpu_families: gfx110X-all;gfx1151;gfx120X-all
+   50: 
+   51: 2026-06-17T20:31:25.0092601Z   kpack_split: true</pre>
+  
+  <h3>Pattern: hipErrorOutOfMemory</h3>
+  <pre>No matches for pattern: hipErrorOutOfMemory</pre>
+  
+  <h3>Pattern: rocsparse</h3>
+  <pre>No matches for pattern: rocsparse</pre>
+  
+  <h3>Pattern: ctest</h3>
+  <pre>Matches for /ctest/ (showing up to 10):
+
+   1113: 2026-06-17T20:32:01.6187482Z -a----          4/8/2025  12:57 PM          15097 distutils.html
+   1114: 
+>> 1115: 2026-06-17T20:32:01.6200807Z -a----          4/8/2025  12:57 PM         214298 doctest.html
+   1116: 
+   1117: 2026-06-17T20:32:01.6213183Z -a----          4/8/2025  12:57 PM          35613 email.charset.html
+
+---
+
+   2423: 2026-06-17T20:32:02.3783793Z -a----          4/8/2025  12:56 PM          31032 dis.py
+   2424: 
+>> 2425: 2026-06-17T20:32:02.3795796Z -a----          4/8/2025  12:56 PM         109594 doctest.py
+   2426: 
+   2427: 2026-06-17T20:32:02.3807807Z -a----          4/8/2025  12:56 PM          83648 enum.py
+
+---
+
+   7789: 2026-06-17T20:32:04.6280976Z -a----          4/8/2025  12:56 PM          15748 seq_tests.py
+   7790: 
+>> 7791: 2026-06-17T20:32:04.6294061Z -a----          4/8/2025  12:56 PM           3288 signalinterproctester.py
+   7792: 
+   7793: 2026-06-17T20:32:04.6306189Z -a----          4/8/2025  12:56 PM          61696 Sine-1000Hz-300ms.aif
+
+---
+
+   8939: 2026-06-17T20:32:05.2790843Z ----                 -------------         ------ ----
+   8940: 
+>> 8941: 2026-06-17T20:32:05.2800108Z -a----          4/8/2025  12:56 PM           6290 abs.decTest
+   8942: 
+   8943: 2026-06-17T20:32:05.2812298Z -a----          4/8/2025  12:56 PM         140338 add.decTest
+
+---
+
+   8941: 2026-06-17T20:32:05.2800108Z -a----          4/8/2025  12:56 PM           6290 abs.decTest
+   8942: 
+>> 8943: 2026-06-17T20:32:05.2812298Z -a----          4/8/2025  12:56 PM         140338 add.decTest
+   8944: 
+   8945: 2026-06-17T20:32:05.2824422Z -a----          4/8/2025  12:56 PM          16364 and.decTest
+
+---
+
+   8943: 2026-06-17T20:32:05.2812298Z -a----          4/8/2025  12:56 PM         140338 add.decTest
+   8944: 
+>> 8945: 2026-06-17T20:32:05.2824422Z -a----          4/8/2025  12:56 PM          16364 and.decTest
+   8946: 
+   8947: 2026-06-17T20:32:05.2836542Z -a----          4/8/2025  12:56 PM          61355 base.decTest
+
+---
+
+   8945: 2026-06-17T20:32:05.2824422Z -a----          4/8/2025  12:56 PM          16364 and.decTest
+   8946: 
+>> 8947: 2026-06-17T20:32:05.2836542Z -a----          4/8/2025  12:56 PM          61355 base.decTest
+   8948: 
+   8949: 2026-06-17T20:32:05.2848748Z -a----          4/8/2025  12:56 PM          11009 clamp.decTest
+
+---
+
+   8947: 2026-06-17T20:32:05.2836542Z -a----          4/8/2025  12:56 PM          61355 base.decTest
+   8948: 
+>> 8949: 2026-06-17T20:32:05.2848748Z -a----          4/8/2025  12:56 PM          11009 clamp.decTest
+   8950: 
+   8951: 2026-06-17T20:32:05.2860718Z -a----          4/8/2025  12:56 PM           6376 class.decTest
+
+---
+
+   8949: 2026-06-17T20:32:05.2848748Z -a----          4/8/2025  12:56 PM          11009 clamp.decTest
+   8950: 
+>> 8951: 2026-06-17T20:32:05.2860718Z -a----          4/8/2025  12:56 PM           6376 class.decTest
+   8952: 
+   8953: 2026-06-17T20:32:05.2872867Z -a----          4/8/2025  12:56 PM          29627 compare.decTest
+
+---
+
+   8951: 2026-06-17T20:32:05.2860718Z -a----          4/8/2025  12:56 PM           6376 class.decTest
+   8952: 
+>> 8953: 2026-06-17T20:32:05.2872867Z -a----          4/8/2025  12:56 PM          29627 compare.decTest
+   8954: 
+   8955: 2026-06-17T20:32:05.2884945Z -a----          4/8/2025  12:56 PM          34423 comparetotal.decTest</pre>
+  
+  <h3>Pattern: FAILED</h3>
+  <pre>No matches for pattern: FAILED</pre>
+  
+  
+
+  
+  <h2>GitHub Actions errors</h2>
+  <pre>Matches for /##\[error\]/ (showing up to 15):
+
+   20285: 2026-06-17T20:36:55.6648012Z C:\D2ABF21E-C2D6-4097-97F0-5F8FB5FF667D\src\torch\torch\csrc\distributed\c10d\ProcessGroupNCCL.hpp -> C:\D2ABF21E-C2D6-4097-97F0-5F8FB5FF667D\src\torch\torch\csrc\distributed\c10d\ProcessGroupNCCL.hpp [ok]
+   20286: 
+>> 20287: 2026-06-17T20:36:55.6849157Z ##[error]The operation was canceled.
+   20288: 
+   20289: 2026-06-17T20:36:55.7397539Z Post job cleanup.</pre>
+  
+</body>
+</html>

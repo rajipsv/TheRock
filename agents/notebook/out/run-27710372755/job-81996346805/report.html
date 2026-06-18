@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>TheRock Log Analysis Report</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; max-width: 960px; line-height: 1.5; }
+    h1 { color: #c41230; }
+    .badge { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 600; }
+    .CRITICAL, .FATAL { background: #fee; color: #900; }
+    .HIGH, .ERROR { background: #ffe8cc; color: #a60; }
+    .MEDIUM { background: #fff3cd; color: #856404; }
+    .LOW { background: #e8f5e9; color: #2e7d32; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; vertical-align: top; }
+    th { background: #f5f5f5; }
+    code, pre { background: #f0f0f0; padding: 0.1rem 0.3rem; font-size: 0.9em; }
+    pre { padding: 1rem; overflow-x: auto; white-space: pre-wrap; }
+    .meta { color: #666; font-size: 0.95em; }
+  </style>
+</head>
+<body>
+  <h1>Log Analysis Report (AGENTS_030)</h1>
+  <p class="meta">
+    <strong>Log:</strong> <code>/workspace/TheRock-old/agents/log-analysis-agent/sample-runs/run-27710372755/job-81996346805/job-81996346805.log</code><br/>
+    
+    <strong>GitHub run:</strong>
+    <a href="https://github.com/ROCm/TheRock/actions/runs/27710372755">27710372755</a>
+    | <strong>Job:</strong> CI Summary<br/>
+    <strong>Repo:</strong> ROCm/TheRock | <strong>Branch:</strong> users/geomin12/fix-configure-aws-external<br/>
+    
+    <strong>Mode:</strong> tool_only
+    <br/>
+    <strong>Preset:</strong> TheRock — Multi-Arch CI<br/>
+    <strong>Timestamp:</strong> 2026-06-18T04:00:32.547179
+  </p>
+
+  <h2>Summary</h2>
+  <p>Tool-only qualification pass found 2 highlighted error lines. Stats: path=/workspace/TheRock-old/agents/log-analysis-agent/sample-runs/run-27710372755/job-81996346805/job-81996346805.log; lines=214; bytes=20011; github_error=1; keyword_hits: ERROR=1, EXCEPTION=0, CRITICAL=0, FATAL=0, WARNING=1</p>
+  
+
+  <h2>Stats</h2>
+  <pre>path=/workspace/TheRock-old/agents/log-analysis-agent/sample-runs/run-27710372755/job-81996346805/job-81996346805.log
+lines=214
+bytes=20011
+github_error=1
+keyword_hits: ERROR=1, EXCEPTION=0, CRITICAL=0, FATAL=0, WARNING=1</pre>
+
+  
+  <h2>Errors (1)</h2>
+  <table>
+    <tr><th>Line</th><th>Type</th><th>Severity</th><th>Message</th><th>Category</th><th>Recommendation</th></tr>
+    
+    <tr>
+      <td>181</td>
+      <td>ERROR</td>
+      <td><span class="badge HIGH">HIGH</span></td>
+      <td><code>2026-06-17T20:38:13.2811474Z ##[error]Process completed with exit code 1.</code></td>
+      <td>Configuration</td>
+      <td>Rebuild image, verify --device flags, rerun parallel matrix on clean containers</td>
+    </tr>
+    
+  </table>
+  
+
+  
+  <h2>Knowledge base lookups</h2>
+  
+  <h3>2026-06-17T20:38:13.2811474Z ##[error]Process completed with exit code 1.</h3>
+  <pre>Match 1 [keyword] score=19.5 id=docker_install_test
+  Pattern: Containerized ROCm install test failure
+  Category: Configuration | Severity: MEDIUM
+  Causes: Image drift, missing privileges, stale cache layer
+  Solutions: Rebuild image, verify --device flags, rerun parallel matrix on clean containers
+  Similar: OCI runtime error
+
+Match 2 [keyword] score=14.0 id=gha_runner_shutdown_130
+  Pattern: GitHub Actions runner shutdown (exit 130)
+  Category: Configuration | Severity: HIGH
+  Causes: Runner/pod eviction, K8s node drain, resource limits, container runtime failure
+  Solutions: Check cluster events at failure time; review CPU/memory/disk; retry; contact runner admin — not a TheRock compile error
+  Similar: Process completed with exit code 130</pre>
+  
+  <h3>2026-06-17T20:38:13.2811474Z ##[error]Process completed with exit code 1.</h3>
+  <pre>Match 1 [keyword] score=19.5 id=docker_install_test
+  Pattern: Containerized ROCm install test failure
+  Category: Configuration | Severity: MEDIUM
+  Causes: Image drift, missing privileges, stale cache layer
+  Solutions: Rebuild image, verify --device flags, rerun parallel matrix on clean containers
+  Similar: OCI runtime error
+
+Match 2 [keyword] score=14.0 id=gha_runner_shutdown_130
+  Pattern: GitHub Actions runner shutdown (exit 130)
+  Category: Configuration | Severity: HIGH
+  Causes: Runner/pod eviction, K8s node drain, resource limits, container runtime failure
+  Solutions: Check cluster events at failure time; review CPU/memory/disk; retry; contact runner admin — not a TheRock compile error
+  Similar: Process completed with exit code 130</pre>
+  
+  
+
+  
+  <h2>Stack traces</h2>
+  <pre>Stack traces (1):
+
+181: 2026-06-17T20:38:13.2811474Z ##[error]Process completed with exit code 1.
+182: 2026-06-17T20:38:13.3022953Z Post job cleanup.</pre>
+  
+
+  
+  <h2>Preset pattern samples</h2>
+  
+  <h3>Pattern: therock</h3>
+  <pre>Matches for /therock/ (showing up to 10):
+
+   31: 2026-06-17T20:38:09.4399950Z ##[group]Run actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+   32: 2026-06-17T20:38:09.4402155Z with:
+>> 33: 2026-06-17T20:38:09.4403072Z   repository: ROCm/TheRock
+   34: 2026-06-17T20:38:09.4414854Z   token: ***
+   35: 2026-06-17T20:38:09.4415823Z   ssh-strict: true
+
+---
+
+   45: 2026-06-17T20:38:09.4425810Z   set-safe-directory: true
+   46: 2026-06-17T20:38:09.4427151Z ##[endgroup]
+>> 47: 2026-06-17T20:38:09.5437476Z Syncing repository: ROCm/TheRock
+   48: 2026-06-17T20:38:09.5440436Z ##[group]Getting Git version info
+   49: 2026-06-17T20:38:09.5442546Z Working directory is '/home/runner/work/TheRock/TheRock'
+
+---
+
+   47: 2026-06-17T20:38:09.5437476Z Syncing repository: ROCm/TheRock
+   48: 2026-06-17T20:38:09.5440436Z ##[group]Getting Git version info
+>> 49: 2026-06-17T20:38:09.5442546Z Working directory is '/home/runner/work/TheRock/TheRock'
+   50: 2026-06-17T20:38:09.5444759Z [command]/usr/bin/git version
+   51: 2026-06-17T20:38:09.5479209Z git version 2.54.0
+
+---
+
+   53: 2026-06-17T20:38:09.5517476Z Temporarily overriding HOME='/home/runner/work/_temp/7189b54c-a9b9-477c-9b12-9d8183d03ce9' before making global git config changes
+   54: 2026-06-17T20:38:09.5521486Z Adding repository directory to the temporary git global config as a safe directory
+>> 55: 2026-06-17T20:38:09.5524151Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/TheRock/TheRock
+   56: 2026-06-17T20:38:09.5565236Z Deleting the contents of '/home/runner/work/TheRock/TheRock'
+   57: 2026-06-17T20:38:09.5568896Z ##[group]Determining repository object format
+
+---
+
+   54: 2026-06-17T20:38:09.5521486Z Adding repository directory to the temporary git global config as a safe directory
+   55: 2026-06-17T20:38:09.5524151Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/TheRock/TheRock
+>> 56: 2026-06-17T20:38:09.5565236Z Deleting the contents of '/home/runner/work/TheRock/TheRock'
+   57: 2026-06-17T20:38:09.5568896Z ##[group]Determining repository object format
+   58: 2026-06-17T20:38:09.5571503Z ##[endgroup]
+
+---
+
+   58: 2026-06-17T20:38:09.5571503Z ##[endgroup]
+   59: 2026-06-17T20:38:09.5573656Z ##[group]Initializing the repository
+>> 60: 2026-06-17T20:38:09.5575703Z [command]/usr/bin/git init /home/runner/work/TheRock/TheRock
+   61: 2026-06-17T20:38:09.5660579Z hint: Using 'master' as the name for the initial branch. This default branch name
+   62: 2026-06-17T20:38:09.5663316Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+
+---
+
+   72: 2026-06-17T20:38:09.5681011Z hint:
+   73: 2026-06-17T20:38:09.5682449Z hint: Disable this message with "git config set advice.defaultBranchName false"
+>> 74: 2026-06-17T20:38:09.5684587Z Initialized empty Git repository in /home/runner/work/TheRock/TheRock/.git/
+   75: 2026-06-17T20:38:09.5687871Z [command]/usr/bin/git remote add origin https://github.com/ROCm/TheRock
+   76: 2026-06-17T20:38:09.5719553Z ##[endgroup]
+
+---
+
+   73: 2026-06-17T20:38:09.5682449Z hint: Disable this message with "git config set advice.defaultBranchName false"
+   74: 2026-06-17T20:38:09.5684587Z Initialized empty Git repository in /home/runner/work/TheRock/TheRock/.git/
+>> 75: 2026-06-17T20:38:09.5687871Z [command]/usr/bin/git remote add origin https://github.com/ROCm/TheRock
+   76: 2026-06-17T20:38:09.5719553Z ##[endgroup]
+   77: 2026-06-17T20:38:09.5721631Z ##[group]Disabling automatic garbage collection
+
+---
+
+   89: 2026-06-17T20:38:09.6391894Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+   90: 2026-06-17T20:38:09.6608598Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-654d8049-5443-4e35-a977-98c239446e09.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+>> 91: 2026-06-17T20:38:09.6643950Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/TheRock/TheRock/.git.path /home/runner/work/_temp/git-credentials-654d8049-5443-4e35-a977-98c239446e09.config
+   92: 2026-06-17T20:38:09.6673596Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/TheRock/TheRock/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-654d8049-5443-4e35-a977-98c239446e09.config
+   93: 2026-06-17T20:38:09.6705995Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-654d8049-5443-4e35-a977-98c239446e09.config
+
+---
+
+   90: 2026-06-17T20:38:09.6608598Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-654d8049-5443-4e35-a977-98c239446e09.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+   91: 2026-06-17T20:38:09.6643950Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/TheRock/TheRock/.git.path /home/runner/work/_temp/git-credentials-654d8049-5443-4e35-a977-98c239446e09.config
+>> 92: 2026-06-17T20:38:09.6673596Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/TheRock/TheRock/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-654d8049-5443-4e35-a977-98c239446e09.config
+   93: 2026-06-17T20:38:09.6705995Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-654d8049-5443-4e35-a977-98c239446e09.config
+   94: 2026-06-17T20:38:09.6768863Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-654d8049-5443-4e35-a977-98c239446e09.config</pre>
+  
+  <h3>Pattern: ninja</h3>
+  <pre>No matches for pattern: ninja</pre>
+  
+  <h3>Pattern: cmake</h3>
+  <pre>Matches for /cmake/ (showing up to 10):
+
+   134: 2026-06-17T20:38:10.6679406Z [36;1m      "enable_build_jobs": "true",[0m
+   135: 2026-06-17T20:38:10.6679756Z [36;1m      "external_repo_config": "",[0m
+>> 136: 2026-06-17T20:38:10.6683745Z [36;1m      "linux_build_config": "{\"per_family_info\": [{\"amdgpu_family\": \"gfx94X-dcgpu\", \"amdgpu_targets\": \"gfx942\", \"test-runs-on\": \"linux-gfx942-1gpu-core42-ossci-rocm\", \"sanity_check_only_for_family\": false}, {\"amdgpu_family\": \"gfx110X-all\", \"amdgpu_targets\": \"\", \"test-runs-on\": \"\", \"sanity_check_only_for_family\": false}, {\"amdgpu_family\": \"gfx1151\", \"amdgpu_targets\": \"gfx1151\", \"test-runs-on\": \"\", \"sanity_check_only_for_family\": false}, {\"amdgpu_family\": \"gfx120X-all\", \"amdgpu_targets\": \"gfx1200,gfx1201\", \"test-runs-on\": \"\", \"sanity_check_only_for_family\": false}], \"dist_amdgpu_families\": \"gfx94X-dcgpu;gfx110X-all;gfx1151;gfx120X-all\", \"artifact_group\": \"multi-arch-release\", \"build_variant_label\": \"release\", \"build_variant_suffix\": \"\", \"build_variant_cmake_preset\": \"\", \"expect_failure\": false, \"build_native_linux\": true, \"build_pytorch\": true, \"build_runs_on\": \"azure-linux-scale-rocm\", \"prebuilt_stages\": \"\", \"baseline_run_id\": \"\", \"linux_amdgpu_families\": \"gfx94X-dcgpu;gfx110X-all;gfx1151;gfx120X-all\", \"windows_amdgpu_families\": \"gfx110X-all;gfx1151;gfx120X-all\"}",[0m
+   137: 2026-06-17T20:38:10.6687751Z [36;1m      "linux_test_labels": "[]",[0m
+   138: 2026-06-17T20:38:10.6688145Z [36;1m      "ref": "669115c7a973bd7dffee5b0a1a0266ebb846b1e3",[0m
+
+---
+
+   141: 2026-06-17T20:38:10.6689698Z [36;1m      "rocm_rpm_package_version": "7.14.0~20260617g669115c7",[0m
+   142: 2026-06-17T20:38:10.6690118Z [36;1m      "test_type": "quick",[0m
+>> 143: 2026-06-17T20:38:10.6693737Z [36;1m      "windows_build_config": "{\"per_family_info\": [{\"amdgpu_family\": \"gfx110X-all\", \"amdgpu_targets\": \"gfx1100,gfx1101,gfx1102,gfx1103\", \"test-runs-on\": \"windows-gfx110X-gpu-rocm\", \"sanity_check_only_for_family\": false}, {\"amdgpu_family\": \"gfx1151\", \"amdgpu_targets\": \"gfx1151\", \"test-runs-on\": \"\", \"sanity_check_only_for_family\": false}, {\"amdgpu_family\": \"gfx120X-all\", \"amdgpu_targets\": \"gfx1200,gfx1201\", \"test-runs-on\": \"\", \"sanity_check_only_for_family\": false}], \"dist_amdgpu_families\": \"gfx110X-all;gfx1151;gfx120X-all\", \"artifact_group\": \"multi-arch-release\", \"build_variant_label\": \"release\", \"build_variant_suffix\": \"\", \"build_variant_cmake_preset\": \"windows-release\", \"expect_failure\": false, \"build_native_linux\": true, \"build_pytorch\": true, \"build_runs_on\": \"azure-windows-scale-rocm\", \"prebuilt_stages\": \"\", \"baseline_run_id\": \"\", \"linux_amdgpu_families\": \"gfx94X-dcgpu;gfx110X-all;gfx1151;gfx120X-all\", \"windows_amdgpu_families\": \"gfx110X-all;gfx1151;gfx120X-all\"}",[0m
+   144: 2026-06-17T20:38:10.6697647Z [36;1m      "windows_test_labels": "[]"[0m
+   145: 2026-06-17T20:38:10.6697967Z [36;1m    }[0m</pre>
+  
+  <h3>Pattern: gfx</h3>
+  <pre>Matches for /gfx/ (showing up to 10):
+
+   134: 2026-06-17T20:38:10.6679406Z [36;1m      "enable_build_jobs": "true",[0m
+   135: 2026-06-17T20:38:10.6679756Z [36;1m      "external_repo_config": "",[0m
+>> 136: 2026-06-17T20:38:10.6683745Z [36;1m      "linux_build_config": "{\"per_family_info\": [{\"amdgpu_family\": \"gfx94X-dcgpu\", \"amdgpu_targets\": \"gfx942\", \"test-runs-on\": \"linux-gfx942-1gpu-core42-ossci-rocm\", \"sanity_check_only_for_family\": false}, {\"amdgpu_family\": \"gfx110X-all\", \"amdgpu_targets\": \"\", \"test-runs-on\": \"\", \"sanity_check_only_for_family\": false}, {\"amdgpu_family\": \"gfx1151\", \"amdgpu_targets\": \"gfx1151\", \"test-runs-on\": \"\", \"sanity_check_only_for_family\": false}, {\"amdgpu_family\": \"gfx120X-all\", \"amdgpu_targets\": \"gfx1200,gfx1201\", \"test-runs-on\": \"\", \"sanity_check_only_for_family\": false}], \"dist_amdgpu_families\": \"gfx94X-dcgpu;gfx110X-all;gfx1151;gfx120X-all\", \"artifact_group\": \"multi-arch-release\", \"build_variant_label\": \"release\", \"build_variant_suffix\": \"\", \"build_variant_cmake_preset\": \"\", \"expect_failure\": false, \"build_native_linux\": true, \"build_pytorch\": true, \"build_runs_on\": \"azure-linux-scale-rocm\", \"prebuilt_stages\": \"\", \"baseline_run_id\": \"\", \"linux_amdgpu_families\": \"gfx94X-dcgpu;gfx110X-all;gfx1151;gfx120X-all\", \"windows_amdgpu_families\": \"gfx110X-all;gfx1151;gfx120X-all\"}",[0m
+   137: 2026-06-17T20:38:10.6687751Z [36;1m      "linux_test_labels": "[]",[0m
+   138: 2026-06-17T20:38:10.6688145Z [36;1m      "ref": "669115c7a973bd7dffee5b0a1a0266ebb846b1e3",[0m
+
+---
+
+   141: 2026-06-17T20:38:10.6689698Z [36;1m      "rocm_rpm_package_version": "7.14.0~20260617g669115c7",[0m
+   142: 2026-06-17T20:38:10.6690118Z [36;1m      "test_type": "quick",[0m
+>> 143: 2026-06-17T20:38:10.6693737Z [36;1m      "windows_build_config": "{\"per_family_info\": [{\"amdgpu_family\": \"gfx110X-all\", \"amdgpu_targets\": \"gfx1100,gfx1101,gfx1102,gfx1103\", \"test-runs-on\": \"windows-gfx110X-gpu-rocm\", \"sanity_check_only_for_family\": false}, {\"amdgpu_family\": \"gfx1151\", \"amdgpu_targets\": \"gfx1151\", \"test-runs-on\": \"\", \"sanity_check_only_for_family\": false}, {\"amdgpu_family\": \"gfx120X-all\", \"amdgpu_targets\": \"gfx1200,gfx1201\", \"test-runs-on\": \"\", \"sanity_check_only_for_family\": false}], \"dist_amdgpu_families\": \"gfx110X-all;gfx1151;gfx120X-all\", \"artifact_group\": \"multi-arch-release\", \"build_variant_label\": \"release\", \"build_variant_suffix\": \"\", \"build_variant_cmake_preset\": \"windows-release\", \"expect_failure\": false, \"build_native_linux\": true, \"build_pytorch\": true, \"build_runs_on\": \"azure-windows-scale-rocm\", \"prebuilt_stages\": \"\", \"baseline_run_id\": \"\", \"linux_amdgpu_families\": \"gfx94X-dcgpu;gfx110X-all;gfx1151;gfx120X-all\", \"windows_amdgpu_families\": \"gfx110X-all;gfx1151;gfx120X-all\"}",[0m
+   144: 2026-06-17T20:38:10.6697647Z [36;1m      "windows_test_labels": "[]"[0m
+   145: 2026-06-17T20:38:10.6697967Z [36;1m    }[0m
+
+---
+
+   173: 2026-06-17T20:38:13.2682160Z
+   174: 2026-06-17T20:38:13.2682393Z [31mFailed sub-jobs:[0m
+>> 175: 2026-06-17T20:38:13.2688171Z   [31mWindows::release / Test gfx110X-all / Test rocsparse / Test rocsparse (shard 1/1) (gfx110X-all)[0m
+   176: 2026-06-17T20:38:13.2689262Z     https://github.com/ROCm/TheRock/actions/runs/27710372755/job/81992436725
+   177: 2026-06-17T20:38:13.2690592Z   [31mWindows::release / Test gfx110X-all / Test libhipcxx_hipcc / Test libhipcxx_hipcc (shard 1/1) (gfx110X-all)[0m
+
+---
+
+   175: 2026-06-17T20:38:13.2688171Z   [31mWindows::release / Test gfx110X-all / Test rocsparse / Test rocsparse (shard 1/1) (gfx110X-all)[0m
+   176: 2026-06-17T20:38:13.2689262Z     https://github.com/ROCm/TheRock/actions/runs/27710372755/job/81992436725
+>> 177: 2026-06-17T20:38:13.2690592Z   [31mWindows::release / Test gfx110X-all / Test libhipcxx_hipcc / Test libhipcxx_hipcc (shard 1/1) (gfx110X-all)[0m
+   178: 2026-06-17T20:38:13.2692207Z     https://github.com/ROCm/TheRock/actions/runs/27710372755/job/81992436788
+   179: 2026-06-17T20:38:13.2693606Z   [31mWindows::release / Test gfx110X-all / Test hipsparse / Test hipsparse (shard 1/1) (gfx110X-all)[0m
+
+---
+
+   177: 2026-06-17T20:38:13.2690592Z   [31mWindows::release / Test gfx110X-all / Test libhipcxx_hipcc / Test libhipcxx_hipcc (shard 1/1) (gfx110X-all)[0m
+   178: 2026-06-17T20:38:13.2692207Z     https://github.com/ROCm/TheRock/actions/runs/27710372755/job/81992436788
+>> 179: 2026-06-17T20:38:13.2693606Z   [31mWindows::release / Test gfx110X-all / Test hipsparse / Test hipsparse (shard 1/1) (gfx110X-all)[0m
+   180: 2026-06-17T20:38:13.2694719Z     https://github.com/ROCm/TheRock/actions/runs/27710372755/job/81992436901
+   181: 2026-06-17T20:38:13.2811474Z ##[error]Process completed with exit code 1.</pre>
+  
+  <h3>Pattern: hipErrorOutOfMemory</h3>
+  <pre>No matches for pattern: hipErrorOutOfMemory</pre>
+  
+  <h3>Pattern: rocsparse</h3>
+  <pre>Matches for /rocsparse/ (showing up to 10):
+
+   173: 2026-06-17T20:38:13.2682160Z
+   174: 2026-06-17T20:38:13.2682393Z [31mFailed sub-jobs:[0m
+>> 175: 2026-06-17T20:38:13.2688171Z   [31mWindows::release / Test gfx110X-all / Test rocsparse / Test rocsparse (shard 1/1) (gfx110X-all)[0m
+   176: 2026-06-17T20:38:13.2689262Z     https://github.com/ROCm/TheRock/actions/runs/27710372755/job/81992436725
+   177: 2026-06-17T20:38:13.2690592Z   [31mWindows::release / Test gfx110X-all / Test libhipcxx_hipcc / Test libhipcxx_hipcc (shard 1/1) (gfx110X-all)[0m</pre>
+  
+  <h3>Pattern: ctest</h3>
+  <pre>No matches for pattern: ctest</pre>
+  
+  <h3>Pattern: FAILED</h3>
+  <pre>Matches for /FAILED/ (showing up to 10):
+
+   168: 2026-06-17T20:38:13.2679868Z   [32mmanifest_diff: success[0m
+   169: 2026-06-17T20:38:13.2680187Z
+>> 170: 2026-06-17T20:38:13.2680466Z [31mThe following job(s) failed:[0m
+   171: 2026-06-17T20:38:13.2681304Z   [31mlinux_build_and_test[0m
+   172: 2026-06-17T20:38:13.2681840Z   [31mwindows_build_and_test[0m
+
+---
+
+   172: 2026-06-17T20:38:13.2681840Z   [31mwindows_build_and_test[0m
+   173: 2026-06-17T20:38:13.2682160Z
+>> 174: 2026-06-17T20:38:13.2682393Z [31mFailed sub-jobs:[0m
+   175: 2026-06-17T20:38:13.2688171Z   [31mWindows::release / Test gfx110X-all / Test rocsparse / Test rocsparse (shard 1/1) (gfx110X-all)[0m
+   176: 2026-06-17T20:38:13.2689262Z     https://github.com/ROCm/TheRock/actions/runs/27710372755/job/81992436725</pre>
+  
+  
+
+  
+  <h2>GitHub Actions errors</h2>
+  <pre>Matches for /##\[error\]/ (showing up to 15):
+
+   179: 2026-06-17T20:38:13.2693606Z   [31mWindows::release / Test gfx110X-all / Test hipsparse / Test hipsparse (shard 1/1) (gfx110X-all)[0m
+   180: 2026-06-17T20:38:13.2694719Z     https://github.com/ROCm/TheRock/actions/runs/27710372755/job/81992436901
+>> 181: 2026-06-17T20:38:13.2811474Z ##[error]Process completed with exit code 1.
+   182: 2026-06-17T20:38:13.3022953Z Post job cleanup.
+   183: 2026-06-17T20:38:13.3808055Z [command]/usr/bin/git version</pre>
+  
+</body>
+</html>

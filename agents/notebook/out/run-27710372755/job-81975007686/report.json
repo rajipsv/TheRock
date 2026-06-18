@@ -1,0 +1,324 @@
+{
+  "log_path": "/workspace/TheRock-old/agents/log-analysis-agent/sample-runs/run-27710372755/job-81975007686/job-81975007686.log",
+  "timestamp": "2026-06-18T03:59:49.485801",
+  "mode": "tool_only",
+  "preset": "therock_multi_arch",
+  "preset_label": "TheRock \u2014 Multi-Arch CI",
+  "stats": "path=/workspace/TheRock-old/agents/log-analysis-agent/sample-runs/run-27710372755/job-81975007686/job-81975007686.log\nlines=2233\nbytes=190961\ngithub_error=1\nkeyword_hits: ERROR=2, EXCEPTION=0, CRITICAL=0, FATAL=1, WARNING=20",
+  "chunk_overview": "total_lines=2233, chunk_size=500, chunks=5\nchunk 1: lines 1-500, keyword_hits=2\nchunk 2: lines 501-1000, keyword_hits=2\nchunk 3: lines 1001-1500, keyword_hits=16\nchunk 4: lines 1501-2000, keyword_hits=1\nchunk 5: lines 2001-2233, keyword_hits=0",
+  "errors": [
+    {
+      "type": "ERROR",
+      "line_number": 1952,
+      "message": "2026-06-17T20:36:48.5684534Z ##[error]The operation was canceled.",
+      "severity": "HIGH",
+      "category": "Memory",
+      "recommendation": "Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits",
+      "kb_pattern_id": "rocm_hip_gpu_oom"
+    },
+    {
+      "type": "ERROR",
+      "line_number": 761,
+      "message": "2026-06-17T18:57:34.9106303Z         ===================          Compoments check \u001b[38;2;6;161;60m15\u001b[0m Passed, \u001b[38;2;184;166;48m0\u001b[0m Warning, \u001b[38;2;255;61;61m0\u001b[0m Fatal Error          ===================",
+      "severity": "HIGH",
+      "category": "Memory",
+      "recommendation": "Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits",
+      "kb_pattern_id": "rocm_hip_gpu_oom"
+    }
+  ],
+  "errors_count": 2,
+  "primary_root_cause": {
+    "type": "ERROR",
+    "line_number": 1952,
+    "message": "2026-06-17T20:36:48.5684534Z ##[error]The operation was canceled.",
+    "severity": "HIGH",
+    "category": "Memory",
+    "recommendation": "Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits",
+    "kb_pattern_id": "rocm_hip_gpu_oom"
+  },
+  "stack_traces": "Stack traces (8):\n\n761: 2026-06-17T18:57:34.9106303Z         ===================          Compoments check \u001b[38;2;6;161;60m15\u001b[0m Passed, \u001b[38;2;184;166;48m0\u001b[0m Warning, \u001b[38;2;255;61;61m0\u001b[0m Fatal Error          ===================\n762: 2026-06-17T18:57:34.9106787Z\n\n---\n\n1322: 2026-06-17T19:06:15.4392060Z -- Including subproject therock-libbacktrace (from /__w/TheRock/TheRock/third-party/sysdeps/common/libbacktrace/.)\n1323: 2026-06-17T19:06:15.4495765Z --   DISABLING BUILD: Marked as pre-built\n\n---\n\n1414: 2026-06-17T19:06:20.5350900Z -- Including subproject rocprof-trace-decoder (from /__w/TheRock/TheRock/rocm-systems/projects/rocprof-trace-decoder)\n1415: 2026-06-17T19:06:21.0448685Z --   DISABLING BUILD: Marked as pre-built\n\n---\n\n1428: 2026-06-17T19:06:22.2292490Z -- Including subproject roctracer (from /__w/TheRock/TheRock/rocm-systems/projects/roctracer)\n1429: 2026-06-17T19:06:22.7532846Z --   DISABLING BUILD: Marked as pre-built\n\n---\n\n1431: 2026-06-17T19:06:22.7541398Z -- Cannot compute fprint for artifact rocprofiler-sdk (no fprint for roctracer)\n1432: 2026-06-17T19:06:22.7546399Z -- Including subproject rocprofiler-compute (from /__w/TheRock/TheRock/rocm-systems/projects/rocprofiler-compute)\n\n---\n\n1605: 2026-06-17T19:06:43.1481877Z [25/341] Generating rocprof-trace-decoder/stamp/stage.stamp\n1606: 2026-06-17T19:06:43.1486741Z [26/341] Generating rocm-kpack/stamp/stage.stamp\n\n---\n\n1708: 2026-06-17T19:06:43.7729570Z [127/341] Generating roctracer/stamp/stage.stamp\n1709: 2026-06-17T19:06:43.7786320Z [129/341] Performing download step (download, verify and extract) for 'therock-eigen-sources'\n\n---\n\n1952: 2026-06-17T20:36:48.5684534Z ##[error]The operation was canceled.\n1953: 2026-06-17T20:36:48.5952202Z Prepare all required actions",
+  "rag_lookups": [
+    {
+      "error_signature": "2026-06-17T18:57:34.9106303Z         ===================          Compoments check \u001b[38;2;6;161;60m15\u001b[0m Passed, \u001b[38;2;184;166;48m0\u001b[0m Warning, \u001b[38;2;255;61;61m0\u001b[0m Fatal Error          ===================",
+      "matches": [
+        {
+          "pattern_id": "rocm_hip_gpu_oom",
+          "pattern": "HIP GPU out of memory (hipErrorOutOfMemory)",
+          "category": "Memory",
+          "severity": "CRITICAL",
+          "score": 13.0,
+          "causes": "GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test",
+          "solutions": "Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits",
+          "similar_errors": "CUDA out of memory, HSA_STATUS_ERROR_MEMORY",
+          "source": "keyword",
+          "resolution_notes": ""
+        },
+        {
+          "pattern_id": "rocm_hip_error",
+          "pattern": "ROCm HIP API failure",
+          "category": "GPU/Driver",
+          "severity": "HIGH",
+          "score": 11.5,
+          "causes": "Driver mismatch, wrong GPU visible, ROCm version skew, missing device",
+          "solutions": "Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages",
+          "similar_errors": "HIP initialization failed",
+          "source": "keyword",
+          "resolution_notes": ""
+        }
+      ],
+      "formatted": "Match 1 [keyword] score=13.0 id=rocm_hip_gpu_oom\n  Pattern: HIP GPU out of memory (hipErrorOutOfMemory)\n  Category: Memory | Severity: CRITICAL\n  Causes: GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test\n  Solutions: Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits\n  Similar: CUDA out of memory, HSA_STATUS_ERROR_MEMORY\n\nMatch 2 [keyword] score=11.5 id=rocm_hip_error\n  Pattern: ROCm HIP API failure\n  Category: GPU/Driver | Severity: HIGH\n  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device\n  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages\n  Similar: HIP initialization failed"
+    },
+    {
+      "error_signature": "2026-06-17T20:36:48.5684534Z ##[error]The operation was canceled.",
+      "matches": [
+        {
+          "pattern_id": "rocm_hip_gpu_oom",
+          "pattern": "HIP GPU out of memory (hipErrorOutOfMemory)",
+          "category": "Memory",
+          "severity": "CRITICAL",
+          "score": 11.5,
+          "causes": "GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test",
+          "solutions": "Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits",
+          "similar_errors": "CUDA out of memory, HSA_STATUS_ERROR_MEMORY",
+          "source": "keyword",
+          "resolution_notes": ""
+        },
+        {
+          "pattern_id": "rocm_hip_error",
+          "pattern": "ROCm HIP API failure",
+          "category": "GPU/Driver",
+          "severity": "HIGH",
+          "score": 11.5,
+          "causes": "Driver mismatch, wrong GPU visible, ROCm version skew, missing device",
+          "solutions": "Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages",
+          "similar_errors": "HIP initialization failed",
+          "source": "keyword",
+          "resolution_notes": ""
+        }
+      ],
+      "formatted": "Match 1 [keyword] score=11.5 id=rocm_hip_gpu_oom\n  Pattern: HIP GPU out of memory (hipErrorOutOfMemory)\n  Category: Memory | Severity: CRITICAL\n  Causes: GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test\n  Solutions: Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits\n  Similar: CUDA out of memory, HSA_STATUS_ERROR_MEMORY\n\nMatch 2 [keyword] score=11.5 id=rocm_hip_error\n  Pattern: ROCm HIP API failure\n  Category: GPU/Driver | Severity: HIGH\n  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device\n  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages\n  Similar: HIP initialization failed"
+    },
+    {
+      "error_signature": "2026-06-17T18:57:34.9106303Z         ===================          Compoments check \u001b[38;2;6;161;60m15\u001b[0m Passed, \u001b[38;2;184;166;48m0\u001b[0m Warning, \u001b[38;2;255;61;61m0\u001b[0m Fatal Error          ===================",
+      "matches": [
+        {
+          "pattern_id": "rocm_hip_gpu_oom",
+          "pattern": "HIP GPU out of memory (hipErrorOutOfMemory)",
+          "category": "Memory",
+          "severity": "CRITICAL",
+          "score": 13.0,
+          "causes": "GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test",
+          "solutions": "Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits",
+          "similar_errors": "CUDA out of memory, HSA_STATUS_ERROR_MEMORY",
+          "source": "keyword",
+          "resolution_notes": ""
+        },
+        {
+          "pattern_id": "rocm_hip_error",
+          "pattern": "ROCm HIP API failure",
+          "category": "GPU/Driver",
+          "severity": "HIGH",
+          "score": 11.5,
+          "causes": "Driver mismatch, wrong GPU visible, ROCm version skew, missing device",
+          "solutions": "Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages",
+          "similar_errors": "HIP initialization failed",
+          "source": "keyword",
+          "resolution_notes": ""
+        }
+      ],
+      "formatted": "Match 1 [keyword] score=13.0 id=rocm_hip_gpu_oom\n  Pattern: HIP GPU out of memory (hipErrorOutOfMemory)\n  Category: Memory | Severity: CRITICAL\n  Causes: GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test\n  Solutions: Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits\n  Similar: CUDA out of memory, HSA_STATUS_ERROR_MEMORY\n\nMatch 2 [keyword] score=11.5 id=rocm_hip_error\n  Pattern: ROCm HIP API failure\n  Category: GPU/Driver | Severity: HIGH\n  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device\n  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages\n  Similar: HIP initialization failed"
+    },
+    {
+      "error_signature": "2026-06-17T20:36:48.5684534Z ##[error]The operation was canceled.",
+      "matches": [
+        {
+          "pattern_id": "rocm_hip_gpu_oom",
+          "pattern": "HIP GPU out of memory (hipErrorOutOfMemory)",
+          "category": "Memory",
+          "severity": "CRITICAL",
+          "score": 11.5,
+          "causes": "GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test",
+          "solutions": "Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits",
+          "similar_errors": "CUDA out of memory, HSA_STATUS_ERROR_MEMORY",
+          "source": "keyword",
+          "resolution_notes": ""
+        },
+        {
+          "pattern_id": "rocm_hip_error",
+          "pattern": "ROCm HIP API failure",
+          "category": "GPU/Driver",
+          "severity": "HIGH",
+          "score": 11.5,
+          "causes": "Driver mismatch, wrong GPU visible, ROCm version skew, missing device",
+          "solutions": "Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages",
+          "similar_errors": "HIP initialization failed",
+          "source": "keyword",
+          "resolution_notes": ""
+        }
+      ],
+      "formatted": "Match 1 [keyword] score=11.5 id=rocm_hip_gpu_oom\n  Pattern: HIP GPU out of memory (hipErrorOutOfMemory)\n  Category: Memory | Severity: CRITICAL\n  Causes: GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test\n  Solutions: Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits\n  Similar: CUDA out of memory, HSA_STATUS_ERROR_MEMORY\n\nMatch 2 [keyword] score=11.5 id=rocm_hip_error\n  Pattern: ROCm HIP API failure\n  Category: GPU/Driver | Severity: HIGH\n  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device\n  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages\n  Similar: HIP initialization failed"
+    }
+  ],
+  "summary": "Tool-only qualification pass found 4 highlighted error lines. Stats: path=/workspace/TheRock-old/agents/log-analysis-agent/sample-runs/run-27710372755/job-81975007686/job-81975007686.log; lines=2233; bytes=190961; github_error=1; keyword_hits: ERROR=2, EXCEPTION=0, CRITICAL=0, FATAL=1, WARNING=20",
+  "executive_summary": "# Log Analysis Executive Summary\n\n**Log:** `/workspace/TheRock-old/agents/log-analysis-agent/sample-runs/run-27710372755/job-81975007686/job-81975007686.log`\n**GitHub run:** [27710372755](https://github.com/ROCm/TheRock/actions/runs/27710372755) (ROCm/TheRock, job: Linux::release / Build Multi-Arch Stages / math-libs (gfx94X-dcgpu, gfx942, linux-gfx942-1gpu-core42-ossci-rocm, false) / Stage - Math Libs (gfx94X-dcgpu))\n**Mode:** tool_only\n**Preset:** therock_multi_arch\n**Errors found:** 2\n\n## Summary\nTool-only qualification pass found 4 highlighted error lines. Stats: path=/workspace/TheRock-old/agents/log-analysis-agent/sample-runs/run-27710372755/job-81975007686/job-81975007686.log; lines=2233; bytes=190961; github_error=1; keyword_hits: ERROR=2, EXCEPTION=0, CRITICAL=0, FATAL=1, WARNING=20\n\n## Primary root cause (ranked)\n- **Line 1952** (HIGH): 2026-06-17T20:36:48.5684534Z ##[error]The operation was canceled.\n  - Recommendation: Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits\n\n## Top errors (ranked)\n- **Line 1952** (HIGH): 2026-06-17T20:36:48.5684534Z ##[error]The operation was canceled.\n  - Recommendation: Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits\n- **Line 761** (HIGH): 2026-06-17T18:57:34.9106303Z         ===================          Compoments check \u001b[38;2;6;161;60m15\u001b[0m Passed, \u001b[38;2\n  - Recommendation: Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits\n\n## Knowledge base matches\n- `2026-06-17T18:57:34.9106303Z         ===================          Compoments che` \u2192 HIP GPU out of memory (hipErrorOutOfMemory) (Memory, score=13.0)\n- `2026-06-17T20:36:48.5684534Z ##[error]The operation was canceled.` \u2192 HIP GPU out of memory (hipErrorOutOfMemory) (Memory, score=11.5)\n- `2026-06-17T18:57:34.9106303Z         ===================          Compoments che` \u2192 HIP GPU out of memory (hipErrorOutOfMemory) (Memory, score=13.0)\n\n## Triage brief (LLM)\n\n- **Primary Root Cause**: GPU OOM (hipErrorOutOfMemory) triggered by \"The operation was canceled\" (line 1952), linked to memory exhaustion during parallel ctest execution.  \n- **Failed Tests/Components**: Isolate failing `bsric0` tests and verify `rocsparse_create_handle` stability; no explicit test suite failures (e.g., gtest) reported.  \n- **Next Steps**: Reduce `ctest --parallel` count, validate GPU memory via `rocm-smi` on gfx110X, and audit recent rocSPARSE commits for memory leaks.  \n- **Exit Code**: No explicit final exit code provided, but high-severity memory errors suggest test termination.",
+  "tool_analysis": {
+    "mode": "tool_only",
+    "stats": "path=/workspace/TheRock-old/agents/log-analysis-agent/sample-runs/run-27710372755/job-81975007686/job-81975007686.log\nlines=2233\nbytes=190961\ngithub_error=1\nkeyword_hits: ERROR=2, EXCEPTION=0, CRITICAL=0, FATAL=1, WARNING=20",
+    "chunk_overview": "total_lines=2233, chunk_size=500, chunks=5\nchunk 1: lines 1-500, keyword_hits=2\nchunk 2: lines 501-1000, keyword_hits=2\nchunk 3: lines 1001-1500, keyword_hits=16\nchunk 4: lines 1501-2000, keyword_hits=1\nchunk 5: lines 2001-2233, keyword_hits=0",
+    "error_samples": "Matches for /\\bERROR\\b/ (showing up to 25):\n\n   758: 2026-06-17T18:57:34.9104277Z         [\u001b[38;2;6;161;60m\u2713\u001b[0m][\u001b[38;2;6;161;60mBinutils/Archiver\u001b[0m] Found GNU/Binutils Archiver 2.40.0 at /opt/rh/gcc-toolset-13/root/usr/bin/ar\n   759: 2026-06-17T18:57:34.9105327Z         [\u001b[38;2;6;161;60m\u2713\u001b[0m][\u001b[38;2;6;161;60mBinutils/Linker\u001b[0m] Found GNU/Binutils Linker 2.40.0 at /opt/rh/gcc-toolset-13/root/usr/bin/ld\n   760: 2026-06-17T18:57:34.9105783Z\n>> 761: 2026-06-17T18:57:34.9106303Z         ===================          Compoments check \u001b[38;2;6;161;60m15\u001b[0m Passed, \u001b[38;2;184;166;48m0\u001b[0m Warning, \u001b[38;2;255;61;61m0\u001b[0m Fatal Error          ===================\n   762: 2026-06-17T18:57:34.9106787Z\n   763: 2026-06-17T18:57:34.9106791Z\n   764: 2026-06-17T18:57:34.9106988Z         ===================                              Python List                               ===================\n\n---\n\n   1949: 2026-06-17T19:15:58.4248910Z Output directory: /__w/TheRock/TheRock/build/artifacts\n   1950: 2026-06-17T19:15:58.4249362Z Splitting complete!\n   1951: 2026-06-17T19:15:58.4843058Z [275/341] Flatten split artifacts for fft to dist/rocm\n>> 1952: 2026-06-17T20:36:48.5684534Z ##[error]The operation was canceled.\n   1953: 2026-06-17T20:36:48.5952202Z Prepare all required actions\n   1954: 2026-06-17T20:36:48.5952992Z Getting action download info\n   1955: 2026-06-17T20:36:48.8792424Z Download action repository 'aws-actions/configure-aws-credentials@e7f100cf4c008499ea8adda475de1042d6975c7b' (SHA:e7f100cf4c008499ea8adda475de1042d6975c7b)",
+    "critical_samples": "No matches for pattern: \\bCRITICAL\\b",
+    "fatal_samples": "Matches for /\\bFATAL\\b/ (showing up to 10):\n\n   758: 2026-06-17T18:57:34.9104277Z         [\u001b[38;2;6;161;60m\u2713\u001b[0m][\u001b[38;2;6;161;60mBinutils/Archiver\u001b[0m] Found GNU/Binutils Archiver 2.40.0 at /opt/rh/gcc-toolset-13/root/usr/bin/ar\n   759: 2026-06-17T18:57:34.9105327Z         [\u001b[38;2;6;161;60m\u2713\u001b[0m][\u001b[38;2;6;161;60mBinutils/Linker\u001b[0m] Found GNU/Binutils Linker 2.40.0 at /opt/rh/gcc-toolset-13/root/usr/bin/ld\n   760: 2026-06-17T18:57:34.9105783Z\n>> 761: 2026-06-17T18:57:34.9106303Z         ===================          Compoments check \u001b[38;2;6;161;60m15\u001b[0m Passed, \u001b[38;2;184;166;48m0\u001b[0m Warning, \u001b[38;2;255;61;61m0\u001b[0m Fatal Error          ===================\n   762: 2026-06-17T18:57:34.9106787Z\n   763: 2026-06-17T18:57:34.9106791Z\n   764: 2026-06-17T18:57:34.9106988Z         ===================                              Python List                               ===================",
+    "github_error_samples": "Matches for /##\\[error\\]/ (showing up to 15):\n\n   1950: 2026-06-17T19:15:58.4249362Z Splitting complete!\n   1951: 2026-06-17T19:15:58.4843058Z [275/341] Flatten split artifacts for fft to dist/rocm\n>> 1952: 2026-06-17T20:36:48.5684534Z ##[error]The operation was canceled.\n   1953: 2026-06-17T20:36:48.5952202Z Prepare all required actions\n   1954: 2026-06-17T20:36:48.5952992Z Getting action download info",
+    "rocm_ci_samples": {
+      "hipErrorOutOfMemory": "No matches for pattern: hipErrorOutOfMemory",
+      "rocsparse_create_handle": "No matches for pattern: rocsparse_create_handle",
+      "gtest_failed": "No matches for pattern: \\[\\s+FAILED\\s+\\]",
+      "exit_code_127": "No matches for pattern: exit code 127",
+      "no_gpu_suite": "No matches for pattern: No GPU suite",
+      "ctest_failed": "No matches for pattern: ctest.*failed|tests failed"
+    },
+    "stack_traces": "Stack traces (8):\n\n761: 2026-06-17T18:57:34.9106303Z         ===================          Compoments check \u001b[38;2;6;161;60m15\u001b[0m Passed, \u001b[38;2;184;166;48m0\u001b[0m Warning, \u001b[38;2;255;61;61m0\u001b[0m Fatal Error          ===================\n762: 2026-06-17T18:57:34.9106787Z\n\n---\n\n1322: 2026-06-17T19:06:15.4392060Z -- Including subproject therock-libbacktrace (from /__w/TheRock/TheRock/third-party/sysdeps/common/libbacktrace/.)\n1323: 2026-06-17T19:06:15.4495765Z --   DISABLING BUILD: Marked as pre-built\n\n---\n\n1414: 2026-06-17T19:06:20.5350900Z -- Including subproject rocprof-trace-decoder (from /__w/TheRock/TheRock/rocm-systems/projects/rocprof-trace-decoder)\n1415: 2026-06-17T19:06:21.0448685Z --   DISABLING BUILD: Marked as pre-built\n\n---\n\n1428: 2026-06-17T19:06:22.2292490Z -- Including subproject roctracer (from /__w/TheRock/TheRock/rocm-systems/projects/roctracer)\n1429: 2026-06-17T19:06:22.7532846Z --   DISABLING BUILD: Marked as pre-built\n\n---\n\n1431: 2026-06-17T19:06:22.7541398Z -- Cannot compute fprint for artifact rocprofiler-sdk (no fprint for roctracer)\n1432: 2026-06-17T19:06:22.7546399Z -- Including subproject rocprofiler-compute (from /__w/TheRock/TheRock/rocm-systems/projects/rocprofiler-compute)\n\n---\n\n1605: 2026-06-17T19:06:43.1481877Z [25/341] Generating rocprof-trace-decoder/stamp/stage.stamp\n1606: 2026-06-17T19:06:43.1486741Z [26/341] Generating rocm-kpack/stamp/stage.stamp\n\n---\n\n1708: 2026-06-17T19:06:43.7729570Z [127/341] Generating roctracer/stamp/stage.stamp\n1709: 2026-06-17T19:06:43.7786320Z [129/341] Performing download step (download, verify and extract) for 'therock-eigen-sources'\n\n---\n\n1952: 2026-06-17T20:36:48.5684534Z ##[error]The operation was canceled.\n1953: 2026-06-17T20:36:48.5952202Z Prepare all required actions",
+    "preset_pattern_samples": {
+      "therock": "Matches for /therock/ (showing up to 10):\n\n   11: 2026-06-17T18:56:26.5463514Z Getting action download info\n   12: 2026-06-17T18:56:26.7227619Z Download action repository 'actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10' (SHA:df4cb1c069e1874edd31b4311f1884172cec0e10)\n>> 13: 2026-06-17T18:56:26.9770172Z Uses: ROCm/TheRock/.github/workflows/multi_arch_build_portable_linux_artifacts.yml@refs/pull/5923/merge (669115c7a973bd7dffee5b0a1a0266ebb846b1e3)\n   14: 2026-06-17T18:56:26.9775409Z ##[group] Inputs\n   15: 2026-06-17T18:56:26.9775975Z   stage_name: math-libs\n\n---\n\n   45: 2026-06-17T18:56:27.1479496Z ##[group]Starting job container\n   46: 2026-06-17T18:56:27.1502290Z ##[command]/usr/bin/docker --config /home/runner/_work/_temp/.docker_dfe73613-5191-479a-b436-fab06ebeab51 login ghcr.io -u geomin12 --password-stdin\n>> 47: 2026-06-17T18:56:27.3643991Z ##[command]/usr/bin/docker --config /home/runner/_work/_temp/.docker_dfe73613-5191-479a-b436-fab06ebeab51 pull ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6\n   48: 2026-06-17T18:56:27.5871671Z ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6: Pulling from rocm/therock_build_manylinux_x86_64\n   49: 2026-06-17T18:56:27.5873887Z 09720f817e0c: Pulling fs layer\n\n---\n\n   46: 2026-06-17T18:56:27.1502290Z ##[command]/usr/bin/docker --config /home/runner/_work/_temp/.docker_dfe73613-5191-479a-b436-fab06ebeab51 login ghcr.io -u geomin12 --password-stdin\n   47: 2026-06-17T18:56:27.3643991Z ##[command]/usr/bin/docker --config /home/runner/_work/_temp/.docker_dfe73613-5191-479a-b436-fab06ebeab51 pull ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6\n>> 48: 2026-06-17T18:56:27.5871671Z ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6: Pulling from rocm/therock_build_manylinux_x86_64\n   49: 2026-06-17T18:56:27.5873887Z 09720f817e0c: Pulling fs layer\n   50: 2026-06-17T18:56:27.5874453Z 2da756f29325: Pulling fs layer\n\n---\n\n   296: 2026-06-17T18:57:22.1484417Z 785e87bd963c: Pull complete\n   297: 2026-06-17T18:57:22.1520197Z Digest: sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6\n>> 298: 2026-06-17T18:57:22.1529905Z Status: Downloaded newer image for ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6\n   299: 2026-06-17T18:57:22.1538866Z ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6\n   300: 2026-06-17T18:57:22.1635674Z ##[command]/usr/bin/docker create --name 311889d1401841279db04428053dcace_ghcriorocmtherock_build_manylinux_x86_64sha256a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6_7dba69 --label b18a8a --workdir /__w/TheRock/TheRock --network github_network_c57e130c5cae41298ebabbd7b5619c52 -v /runner/config:/home/awsconfig/ -e \"HOME=/github/home\" -e GITHUB_ACTIONS=true -e CI=true -v \"/var/run/docker.sock\":\"/var/run/docker.sock\" -v \"/home/runner/_work\":\"/__w\" -v \"/home/runner/externals\":\"/__e\":ro -v \"/home/runner/_work/_temp\":\"/__w/_temp\" -v \"/home/runner/_work/_actions\":\"/__w/_actions\" -v \"/home/runner/_work/_tool\":\"/__w/_tool\" -v \"/home/runner/_work/_temp/_github_home\":\"/github/home\" -v \"/home/runner/_work/_temp/_github_workflow\":\"/github/workflow\" --entrypoint \"tail\" ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6 \"-f\" \"/dev/null\"\n\n---\n\n   297: 2026-06-17T18:57:22.1520197Z Digest: sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6\n   298: 2026-06-17T18:57:22.1529905Z Status: Downloaded newer image for ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6\n>> 299: 2026-06-17T18:57:22.1538866Z ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6\n   300: 2026-06-17T18:57:22.1635674Z ##[command]/usr/bin/docker create --name 311889d1401841279db04428053dcace_ghcriorocmtherock_build_manylinux_x86_64sha256a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6_7dba69 --label b18a8a --workdir /__w/TheRock/TheRock --network github_network_c57e130c5cae41298ebabbd7b5619c52 -v /runner/config:/home/awsconfig/ -e \"HOME=/github/home\" -e GITHUB_ACTIONS=true -e CI=true -v \"/var/run/docker.sock\":\"/var/run/docker.sock\" -v \"/home/runner/_work\":\"/__w\" -v \"/home/runner/externals\":\"/__e\":ro -v \"/home/runner/_work/_temp\":\"/__w/_temp\" -v \"/home/runner/_work/_actions\":\"/__w/_actions\" -v \"/home/runner/_work/_tool\":\"/__w/_tool\" -v \"/home/runner/_work/_temp/_github_home\":\"/github/home\" -v \"/home/runner/_work/_temp/_github_workflow\":\"/github/workflow\" --entrypoint \"tail\" ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6 \"-f\" \"/dev/null\"\n   301: 2026-06-17T18:57:22.1920811Z ee8fb84a2649ad0ff26502a7041ebd80eb09af3da419f924d6d6aca94016ca38\n\n---\n\n   298: 2026-06-17T18:57:22.1529905Z Status: Downloaded newer image for ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6\n   299: 2026-06-17T18:57:22.1538866Z ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6\n>> 300: 2026-06-17T18:57:22.1635674Z ##[command]/usr/bin/docker create --name 311889d1401841279db04428053dcace_ghcriorocmtherock_build_manylinux_x86_64sha256a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6_7dba69 --label b18a8a --workdir /__w/TheRock/TheRock --network github_network_c57e130c5cae41298ebabbd7b5619c52 -v /runner/config:/home/awsconfig/ -e \"HOME=/github/home\" -e GITHUB_ACTIONS=true -e CI=true -v \"/var/run/docker.sock\":\"/var/run/docker.sock\" -v \"/home/runner/_work\":\"/__w\" -v \"/home/runner/externals\":\"/__e\":ro -v \"/home/runner/_work/_temp\":\"/__w/_temp\" -v \"/home/runner/_work/_actions\":\"/__w/_actions\" -v \"/home/runner/_work/_tool\":\"/__w/_tool\" -v \"/home/runner/_work/_temp/_github_home\":\"/github/home\" -v \"/home/runner/_work/_temp/_github_workflow\":\"/github/workflow\" --entrypoint \"tail\" ghcr.io/rocm/therock_build_manylinux_x86_64@sha256:a382085df3ba2419b58aa9051350883a0d0b732a4bc0a4ef60458f8161bb08c6 \"-f\" \"/dev/null\"\n   301: 2026-06-17T18:57:22.1920811Z ee8fb84a2649ad0ff26502a7041ebd80eb09af3da419f924d6d6aca94016ca38\n   302: 2026-06-17T18:57:22.1950929Z ##[command]/usr/bin/docker start ee8fb84a2649ad0ff26502a7041ebd80eb09af3da419f924d6d6aca94016ca38\n\n---\n\n   308: 2026-06-17T18:57:22.4226871Z GITHUB_ACTIONS=true\n   309: 2026-06-17T18:57:22.4227093Z CI=true\n>> 310: 2026-06-17T18:57:22.4228165Z PATH=/opt/rh/gcc-toolset-13/root/usr/bin:/usr/local/therock-tools/bin:/opt/python/cp312-cp312/bin:/opt/rh/gcc-toolset-14/root/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\n   311: 2026-06-17T18:57:22.4229308Z AUDITWHEEL_POLICY=manylinux_2_28\n   312: 2026-06-17T18:57:22.4229585Z AUDITWHEEL_ARCH=x86_64\n\n---\n\n   332: 2026-06-17T18:57:22.4543612Z ##[group]Run actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10\n   333: 2026-06-17T18:57:22.4544500Z with:\n>> 334: 2026-06-17T18:57:22.4544706Z   repository: ROCm/TheRock\n   335: 2026-06-17T18:57:22.4547278Z   token: ***\n   336: 2026-06-17T18:57:22.4547478Z   ssh-strict: true\n\n---\n\n   350: 2026-06-17T18:57:22.4550758Z   AMDGPU_FAMILIES: gfx94X-dcgpu\n   351: 2026-06-17T18:57:22.4551043Z   BUILD_DIR: build\n>> 352: 2026-06-17T18:57:22.4551363Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf\n   353: 2026-06-17T18:57:22.4552067Z   CACHE_DIR: /home/runner/_work/TheRock/TheRock/.container-cache\n   354: 2026-06-17T18:57:22.4552400Z   TEATIME_FORCE_INTERACTIVE: 0\n\n---\n\n   351: 2026-06-17T18:57:22.4551043Z   BUILD_DIR: build\n   352: 2026-06-17T18:57:22.4551363Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf\n>> 353: 2026-06-17T18:57:22.4552067Z   CACHE_DIR: /home/runner/_work/TheRock/TheRock/.container-cache\n   354: 2026-06-17T18:57:22.4552400Z   TEATIME_FORCE_INTERACTIVE: 0\n   355: 2026-06-17T18:57:22.4552621Z   RELEASE_TYPE: ci",
+      "ninja": "Matches for /ninja/ (showing up to 10):\n\n   320: 2026-06-17T18:57:22.4232723Z SSL_CERT_FILE=/opt/_internal/certs.pem\n   321: 2026-06-17T18:57:22.4233138Z CMAKE_VERSION=3.27.9\n>> 322: 2026-06-17T18:57:22.4233456Z NINJA_VERSION=1.12.1\n   323: 2026-06-17T18:57:22.4233729Z GOOGLE_TEST_VERSION=1.16.0\n   324: 2026-06-17T18:57:22.4233998Z RUSTUP_HOME=/usr/local/rustup\n\n---\n\n   749: 2026-06-17T18:57:34.9096845Z         [\u001b[38;2;6;161;60m\u2713\u001b[0m][\u001b[38;2;6;161;60mCMake\u001b[0m] Found CMake 3.27.9 at /usr/local/therock-tools/bin/cmake\n   750: 2026-06-17T18:57:34.9097495Z         [\u001b[38;2;6;161;60m\u2713\u001b[0m][\u001b[38;2;6;161;60mCCache\u001b[0m] Found CCache 4.11.2 at /usr/local/bin/ccache\n>> 751: 2026-06-17T18:57:34.9098148Z         [\u001b[38;2;6;161;60m\u2713\u001b[0m][\u001b[38;2;6;161;60mNinja-Build\u001b[0m] Found Ninja-Build 1.12.1 at /usr/local/bin/ninja\n   752: 2026-06-17T18:57:34.9099235Z         [\u001b[38;2;6;161;60m\u2713\u001b[0m][\u001b[38;2;6;161;60mGCC/gfortran\u001b[0m] Found GCC compiler program gfortran 13.3.1 at /opt/rh/gcc-toolset-13/root/usr/bin/gfortran\n   753: 2026-06-17T18:57:34.9100151Z         [\u001b[38;2;6;161;60m\u2713\u001b[0m][\u001b[38;2;6;161;60mPython 3\u001b[0m] Found Python 3.12.10 at /opt/python/cp312-cp312/bin/python (Global ENV).\n\n---\n\n   1200: 2026-06-17T19:06:14.6938704Z OUTPUT cmake_args=-DTHEROCK_AMDGPU_FAMILIES=gfx94X-dcgpu -DTHEROCK_DIST_AMDGPU_FAMILIES=\"gfx94X-dcgpu;gfx110X-all;gfx1151;gfx120X-all\" -DTHEROCK_DIST_PYTHON_EXECUTABLES=\"/opt/python/cp310-cp310/bin/python;/opt/python/cp311-cp311/bin/python;/opt/python/cp312-cp312/bin/python;/opt/python/cp313-cp313/bin/python\" -DTHEROCK_SHARED_PYTHON_EXECUTABLES=\"/opt/python-shared/cp310-cp310/bin/python3;/opt/python-shared/cp311-cp311/bin/python3;/opt/python-shared/cp312-cp312/bin/python3;/opt/python-shared/cp313-cp313/bin/python3;/opt/python-shared/cp314-cp314/bin/python3\" -DTHEROCK_ENABLE_ALL=OFF -DTHEROCK_ENABLE_AQLPROFILE=ON -DTHEROCK_ENABLE_BASE=ON -DTHEROCK_ENABLE_BLAS=ON -DTHEROCK_ENABLE_COMPILER=ON -DTHEROCK_ENABLE_COMPOSABLE_KERNEL=ON -DTHEROCK_ENABLE_CORE_AMDSMI=ON -DTHEROCK_ENABLE_CORE_HIPINFO=ON -DTHEROCK_ENABLE_CORE_RUNTIME=ON -DTHEROCK_ENABLE_ELFIO=ON -DTHEROCK_ENABLE_FFT=ON -DTHEROCK_ENABLE_FFTW3=ON -DTHEROCK_ENABLE_HIPBLASLTPROVIDER=ON -DTHEROCK_ENABLE_HIPDNN=ON -DTHEROCK_ENABLE_HIPDNN_INTEGRATION_TESTS=ON -DTHEROCK_ENABLE_HIPDNN_SAMPLES=ON -DTHEROCK_ENABLE_HIPKERNELPROVIDER=ON -DTHEROCK_ENABLE_HIP_RUNTIME=ON -DTHEROCK_ENABLE_HOST_BLAS=ON -DTHEROCK_ENABLE_HOST_SUITE_SPARSE=ON -DTHEROCK_ENABLE_KPACK=ON -DTHEROCK_ENABLE_LIBHIPCXX=ON -DTHEROCK_ENABLE_MIOPEN=ON -DTHEROCK_ENABLE_MIOPENPROVIDER=ON -DTHEROCK_ENABLE_OPENMPI=ON -DTHEROCK_ENABLE_PRIM=ON -DTHEROCK_ENABLE_RAND=ON -DTHEROCK_ENABLE_ROCPROFILER_COMPUTE=ON -DTHEROCK_ENABLE_ROCPROFV3=ON -DTHEROCK_ENABLE_ROCWMMA=ON -DTHEROCK_ENABLE_SOLVER=ON -DTHEROCK_ENABLE_SPARSE=ON -DTHEROCK_ENABLE_SPDLOG=ON -DTHEROCK_ENABLE_SUPPORT=ON -DTHEROCK_ENABLE_SYSDEPS=ON -DTHEROCK_ENABLE_SYSDEPS_LIBMNL=ON -DTHEROCK_ENABLE_SYSDEPS_LIBNL=ON\n   1201: 2026-06-17T19:06:14.6944601Z OUTPUT pip_install_cmd=\n>> 1202: 2026-06-17T19:06:14.7104262Z ##[group]Run cmake -B \"${BUILD_DIR}\" -S . -GNinja \\\n   1203: 2026-06-17T19:06:14.7104667Z \u001b[36;1mcmake -B \"${BUILD_DIR}\" -S . -GNinja \\\u001b[0m\n   1204: 2026-06-17T19:06:14.7105116Z \u001b[36;1m  -DTHEROCK_PACKAGE_VERSION=7.14.0.dev0+669115c7a973bd7dffee5b0a1a0266ebb846b1e3 \\\u001b[0m\n\n---\n\n   1201: 2026-06-17T19:06:14.6944601Z OUTPUT pip_install_cmd=\n   1202: 2026-06-17T19:06:14.7104262Z ##[group]Run cmake -B \"${BUILD_DIR}\" -S . -GNinja \\\n>> 1203: 2026-06-17T19:06:14.7104667Z \u001b[36;1mcmake -B \"${BUILD_DIR}\" -S . -GNinja \\\u001b[0m\n   1204: 2026-06-17T19:06:14.7105116Z \u001b[36;1m  -DTHEROCK_PACKAGE_VERSION=7.14.0.dev0+669115c7a973bd7dffee5b0a1a0266ebb846b1e3 \\\u001b[0m\n   1205: 2026-06-17T19:06:14.7105589Z \u001b[36;1m  -DCMAKE_C_COMPILER_LAUNCHER=ccache \\\u001b[0m\n\n---\n\n   2017: 2026-06-17T20:36:49.4677708Z ##[endgroup]\n   2018: 2026-06-17T20:36:49.7156749Z Creating log archives for stage 'math-libs'\n>> 2019: 2026-06-17T20:36:53.8239468Z [+] Archived: .ninja_log\n   2020: 2026-06-17T20:36:53.8241956Z [+] Archived: math-libs/hipRAND/build/.ninja_log\n   2021: 2026-06-17T20:36:53.8245174Z [+] Archived: math-libs/rocPRIM/build/.ninja_log\n\n---\n\n   2018: 2026-06-17T20:36:49.7156749Z Creating log archives for stage 'math-libs'\n   2019: 2026-06-17T20:36:53.8239468Z [+] Archived: .ninja_log\n>> 2020: 2026-06-17T20:36:53.8241956Z [+] Archived: math-libs/hipRAND/build/.ninja_log\n   2021: 2026-06-17T20:36:53.8245174Z [+] Archived: math-libs/rocPRIM/build/.ninja_log\n   2022: 2026-06-17T20:36:53.8248452Z [+] Archived: math-libs/rocFFT/build/.ninja_log\n\n---\n\n   2019: 2026-06-17T20:36:53.8239468Z [+] Archived: .ninja_log\n   2020: 2026-06-17T20:36:53.8241956Z [+] Archived: math-libs/hipRAND/build/.ninja_log\n>> 2021: 2026-06-17T20:36:53.8245174Z [+] Archived: math-libs/rocPRIM/build/.ninja_log\n   2022: 2026-06-17T20:36:53.8248452Z [+] Archived: math-libs/rocFFT/build/.ninja_log\n   2023: 2026-06-17T20:36:53.8252447Z [+] Archived: math-libs/rocFFT/build/_deps/sqlite_local-subbuild/.ninja_log\n\n---\n\n   2020: 2026-06-17T20:36:53.8241956Z [+] Archived: math-libs/hipRAND/build/.ninja_log\n   2021: 2026-06-17T20:36:53.8245174Z [+] Archived: math-libs/rocPRIM/build/.ninja_log\n>> 2022: 2026-06-17T20:36:53.8248452Z [+] Archived: math-libs/rocFFT/build/.ninja_log\n   2023: 2026-06-17T20:36:53.8252447Z [+] Archived: math-libs/rocFFT/build/_deps/sqlite_local-subbuild/.ninja_log\n   2024: 2026-06-17T20:36:53.8256270Z [+] Archived: math-libs/support/mxDataGenerator/build/.ninja_log\n\n---\n\n   2021: 2026-06-17T20:36:53.8245174Z [+] Archived: math-libs/rocPRIM/build/.ninja_log\n   2022: 2026-06-17T20:36:53.8248452Z [+] Archived: math-libs/rocFFT/build/.ninja_log\n>> 2023: 2026-06-17T20:36:53.8252447Z [+] Archived: math-libs/rocFFT/build/_deps/sqlite_local-subbuild/.ninja_log\n   2024: 2026-06-17T20:36:53.8256270Z [+] Archived: math-libs/support/mxDataGenerator/build/.ninja_log\n   2025: 2026-06-17T20:36:53.8295774Z [+] Archived: math-libs/BLAS/rocRoller/build/.ninja_log\n\n---\n\n   2022: 2026-06-17T20:36:53.8248452Z [+] Archived: math-libs/rocFFT/build/.ninja_log\n   2023: 2026-06-17T20:36:53.8252447Z [+] Archived: math-libs/rocFFT/build/_deps/sqlite_local-subbuild/.ninja_log\n>> 2024: 2026-06-17T20:36:53.8256270Z [+] Archived: math-libs/support/mxDataGenerator/build/.ninja_log\n   2025: 2026-06-17T20:36:53.8295774Z [+] Archived: math-libs/BLAS/rocRoller/build/.ninja_log\n   2026: 2026-06-17T20:36:53.8333731Z [+] Archived: math-libs/BLAS/hipBLASLt/build/.ninja_log",
+      "cmake": "Matches for /cmake/ (showing up to 10):\n\n   19: 2026-06-17T18:56:26.9779076Z   dist_amdgpu_families: gfx94X-dcgpu;gfx110X-all;gfx1151;gfx120X-all\n   20: 2026-06-17T18:56:26.9780008Z   rocm_package_version: 7.14.0.dev0+669115c7a973bd7dffee5b0a1a0266ebb846b1e3\n>> 21: 2026-06-17T18:56:26.9780796Z   build_variant_cmake_preset:\n   22: 2026-06-17T18:56:26.9781343Z   release_type: ci\n   23: 2026-06-17T18:56:26.9781846Z   build_runs_on: azure-linux-scale-rocm\n\n---\n\n   319: 2026-06-17T18:57:22.4232245Z PKG_CONFIG_PATH=/usr/local/lib/pkgconfig\n   320: 2026-06-17T18:57:22.4232723Z SSL_CERT_FILE=/opt/_internal/certs.pem\n>> 321: 2026-06-17T18:57:22.4233138Z CMAKE_VERSION=3.27.9\n   322: 2026-06-17T18:57:22.4233456Z NINJA_VERSION=1.12.1\n   323: 2026-06-17T18:57:22.4233729Z GOOGLE_TEST_VERSION=1.16.0\n\n---\n\n   463: 2026-06-17T18:57:25.0710973Z Collecting setuptools<82.0.0,>=80.9.0 (from -r requirements.txt (line 10))\n   464: 2026-06-17T18:57:25.0752430Z   Downloading setuptools-81.0.0-py3-none-any.whl.metadata (6.6 kB)\n>> 465: 2026-06-17T18:57:25.0862668Z Collecting pytest-cmake==0.13.0 (from -r requirements.txt (line 12))\n   466: 2026-06-17T18:57:25.0897092Z   Downloading pytest_cmake-0.13.0.tar.gz (7.5 kB)\n   467: 2026-06-17T18:57:25.0946512Z   Installing build dependencies: started\n\n---\n\n   464: 2026-06-17T18:57:25.0752430Z   Downloading setuptools-81.0.0-py3-none-any.whl.metadata (6.6 kB)\n   465: 2026-06-17T18:57:25.0862668Z Collecting pytest-cmake==0.13.0 (from -r requirements.txt (line 12))\n>> 466: 2026-06-17T18:57:25.0897092Z   Downloading pytest_cmake-0.13.0.tar.gz (7.5 kB)\n   467: 2026-06-17T18:57:25.0946512Z   Installing build dependencies: started\n   468: 2026-06-17T18:57:26.9549566Z   Installing build dependencies: finished with status 'done'\n\n---\n\n   491: 2026-06-17T18:57:29.0189396Z Collecting psutil==7.1.3 (from -r requirements.txt (line 33))\n   492: 2026-06-17T18:57:29.0222411Z   Downloading psutil-7.1.3-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl.metadata (23 kB)\n>> 493: 2026-06-17T18:57:29.0493109Z Collecting pytest<9,>=4 (from pytest-cmake==0.13.0->-r requirements.txt (line 12))\n   494: 2026-06-17T18:57:29.0531153Z   Downloading pytest-8.4.2-py3-none-any.whl.metadata (7.7 kB)\n   495: 2026-06-17T18:57:29.0577739Z Requirement already satisfied: botocore<1.43.0,>=1.42.84 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from boto3<1.42.85,>=1.42.79->-r requirements.txt (line 20)) (1.42.84)\n\n---\n\n   499: 2026-06-17T18:57:29.0753784Z Requirement already satisfied: python-dateutil<3.0.0,>=2.1 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from botocore<1.43.0,>=1.42.84->boto3<1.42.85,>=1.42.79->-r requirements.txt (line 20)) (2.9.0.post0)\n   500: 2026-06-17T18:57:29.0764722Z Requirement already satisfied: urllib3!=2.2.0,<3,>=1.25.4 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from botocore<1.43.0,>=1.42.84->boto3<1.42.85,>=1.42.79->-r requirements.txt (line 20)) (2.7.0)\n>> 501: 2026-06-17T18:57:29.0825884Z Collecting iniconfig>=1 (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12))\n   502: 2026-06-17T18:57:29.1028432Z   Downloading iniconfig-2.3.0-py3-none-any.whl.metadata (2.5 kB)\n   503: 2026-06-17T18:57:29.1045699Z Requirement already satisfied: packaging>=20 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12)) (25.0)\n\n---\n\n   501: 2026-06-17T18:57:29.0825884Z Collecting iniconfig>=1 (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12))\n   502: 2026-06-17T18:57:29.1028432Z   Downloading iniconfig-2.3.0-py3-none-any.whl.metadata (2.5 kB)\n>> 503: 2026-06-17T18:57:29.1045699Z Requirement already satisfied: packaging>=20 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12)) (25.0)\n   504: 2026-06-17T18:57:29.1108963Z Collecting pluggy<2,>=1.5 (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12))\n   505: 2026-06-17T18:57:29.1143145Z   Downloading pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)\n\n---\n\n   502: 2026-06-17T18:57:29.1028432Z   Downloading iniconfig-2.3.0-py3-none-any.whl.metadata (2.5 kB)\n   503: 2026-06-17T18:57:29.1045699Z Requirement already satisfied: packaging>=20 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12)) (25.0)\n>> 504: 2026-06-17T18:57:29.1108963Z Collecting pluggy<2,>=1.5 (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12))\n   505: 2026-06-17T18:57:29.1143145Z   Downloading pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)\n   506: 2026-06-17T18:57:29.1166405Z Requirement already satisfied: pygments>=2.7.2 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12)) (2.20.0)\n\n---\n\n   504: 2026-06-17T18:57:29.1108963Z Collecting pluggy<2,>=1.5 (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12))\n   505: 2026-06-17T18:57:29.1143145Z   Downloading pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)\n>> 506: 2026-06-17T18:57:29.1166405Z Requirement already satisfied: pygments>=2.7.2 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from pytest<9,>=4->pytest-cmake==0.13.0->-r requirements.txt (line 12)) (2.20.0)\n   507: 2026-06-17T18:57:29.1181932Z Requirement already satisfied: six>=1.5 in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from python-dateutil<3.0.0,>=2.1->botocore<1.43.0,>=1.42.84->boto3<1.42.85,>=1.42.79->-r requirements.txt (line 20)) (1.17.0)\n   508: 2026-06-17T18:57:29.1211101Z Requirement already satisfied: ply in /opt/_internal/cpython-3.12.10/lib/python3.12/site-packages (from CppHeaderParser>=2.7.4->-r requirements.txt (line 1)) (3.11)\n\n---\n\n   555: 2026-06-17T18:57:29.4725080Z Downloading distlib-0.4.3-py2.py3-none-any.whl (470 kB)\n   556: 2026-06-17T18:57:29.4778362Z Downloading python_discovery-1.4.2-py3-none-any.whl (33 kB)\n>> 557: 2026-06-17T18:57:29.5092263Z Building wheels for collected packages: pytest-cmake\n   558: 2026-06-17T18:57:29.5100841Z   Building wheel for pytest-cmake (pyproject.toml): started\n   559: 2026-06-17T18:57:29.5449938Z   Building wheel for pytest-cmake (pyproject.toml): finished with status 'done'",
+      "gfx": "Matches for /gfx/ (showing up to 10):\n\n   14: 2026-06-17T18:56:26.9775409Z ##[group] Inputs\n   15: 2026-06-17T18:56:26.9775975Z   stage_name: math-libs\n>> 16: 2026-06-17T18:56:26.9776634Z   stage_display_name: Stage - Math Libs (gfx94X-dcgpu)\n   17: 2026-06-17T18:56:26.9777844Z   timeout_minutes: 480\n   18: 2026-06-17T18:56:26.9778377Z   amdgpu_family: gfx94X-dcgpu\n\n---\n\n   16: 2026-06-17T18:56:26.9776634Z   stage_display_name: Stage - Math Libs (gfx94X-dcgpu)\n   17: 2026-06-17T18:56:26.9777844Z   timeout_minutes: 480\n>> 18: 2026-06-17T18:56:26.9778377Z   amdgpu_family: gfx94X-dcgpu\n   19: 2026-06-17T18:56:26.9779076Z   dist_amdgpu_families: gfx94X-dcgpu;gfx110X-all;gfx1151;gfx120X-all\n   20: 2026-06-17T18:56:26.9780008Z   rocm_package_version: 7.14.0.dev0+669115c7a973bd7dffee5b0a1a0266ebb846b1e3\n\n---\n\n   17: 2026-06-17T18:56:26.9777844Z   timeout_minutes: 480\n   18: 2026-06-17T18:56:26.9778377Z   amdgpu_family: gfx94X-dcgpu\n>> 19: 2026-06-17T18:56:26.9779076Z   dist_amdgpu_families: gfx94X-dcgpu;gfx110X-all;gfx1151;gfx120X-all\n   20: 2026-06-17T18:56:26.9780008Z   rocm_package_version: 7.14.0.dev0+669115c7a973bd7dffee5b0a1a0266ebb846b1e3\n   21: 2026-06-17T18:56:26.9780796Z   build_variant_cmake_preset:\n\n---\n\n   26: 2026-06-17T18:56:26.9783305Z   external_repo_config:\n   27: 2026-06-17T18:56:26.9783818Z ##[endgroup]\n>> 28: 2026-06-17T18:56:26.9785021Z Complete job name: Linux::release / Build Multi-Arch Stages / math-libs (gfx94X-dcgpu, gfx942, linux-gfx942-1gpu-core42-ossci-rocm, false) / Stage - Math Libs (gfx94X-dcgpu)\n   29: 2026-06-17T18:56:27.0184564Z ##[group]Checking docker version\n   30: 2026-06-17T18:56:27.0197123Z ##[command]/usr/bin/docker version --format '{{.Server.APIVersion}}'\n\n---\n\n   348: 2026-06-17T18:57:22.4550182Z   AWS_SHARED_CREDENTIALS_FILE: /home/awsconfig/credentials.ini\n   349: 2026-06-17T18:57:22.4550534Z   STAGE_NAME: math-libs\n>> 350: 2026-06-17T18:57:22.4550758Z   AMDGPU_FAMILIES: gfx94X-dcgpu\n   351: 2026-06-17T18:57:22.4551043Z   BUILD_DIR: build\n   352: 2026-06-17T18:57:22.4551363Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf\n\n---\n\n   441: 2026-06-17T18:57:24.3730866Z   AWS_SHARED_CREDENTIALS_FILE: /home/awsconfig/credentials.ini\n   442: 2026-06-17T18:57:24.3731216Z   STAGE_NAME: math-libs\n>> 443: 2026-06-17T18:57:24.3731440Z   AMDGPU_FAMILIES: gfx94X-dcgpu\n   444: 2026-06-17T18:57:24.3731678Z   BUILD_DIR: build\n   445: 2026-06-17T18:57:24.3732012Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf\n\n---\n\n   580: 2026-06-17T18:57:32.5017784Z   AWS_SHARED_CREDENTIALS_FILE: /home/awsconfig/credentials.ini\n   581: 2026-06-17T18:57:32.5018116Z   STAGE_NAME: math-libs\n>> 582: 2026-06-17T18:57:32.5018333Z   AMDGPU_FAMILIES: gfx94X-dcgpu\n   583: 2026-06-17T18:57:32.5018558Z   BUILD_DIR: build\n   584: 2026-06-17T18:57:32.5018880Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf\n\n---\n\n   597: 2026-06-17T18:57:32.5662386Z   AWS_SHARED_CREDENTIALS_FILE: /home/awsconfig/credentials.ini\n   598: 2026-06-17T18:57:32.5662719Z   STAGE_NAME: math-libs\n>> 599: 2026-06-17T18:57:32.5662943Z   AMDGPU_FAMILIES: gfx94X-dcgpu\n   600: 2026-06-17T18:57:32.5663175Z   BUILD_DIR: build\n   601: 2026-06-17T18:57:32.5663487Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf\n\n---\n\n   627: 2026-06-17T18:57:32.7319350Z   AWS_SHARED_CREDENTIALS_FILE: /home/awsconfig/credentials.ini\n   628: 2026-06-17T18:57:32.7319689Z   STAGE_NAME: math-libs\n>> 629: 2026-06-17T18:57:32.7319911Z   AMDGPU_FAMILIES: gfx94X-dcgpu\n   630: 2026-06-17T18:57:32.7320136Z   BUILD_DIR: build\n   631: 2026-06-17T18:57:32.7320450Z   CCACHE_CONFIGPATH: /home/runner/_work/TheRock/TheRock/.ccache/ccache.conf\n\n---\n\n   914: 2026-06-17T18:57:34.9178186Z \u001b[36;1m  --run-id=27710372755 \\\u001b[0m\n   915: 2026-06-17T18:57:34.9178451Z \u001b[36;1m  --stage=\"${STAGE_NAME}\" \\\u001b[0m\n>> 916: 2026-06-17T18:57:34.9178740Z \u001b[36;1m  --amdgpu-families=\"gfx94X-dcgpu\" \\\u001b[0m\n   917: 2026-06-17T18:57:34.9179063Z \u001b[36;1m  --output-dir=\"${BUILD_DIR}\" \\\u001b[0m\n   918: 2026-06-17T18:57:34.9179328Z \u001b[36;1m  --bootstrap\u001b[0m",
+      "hipErrorOutOfMemory": "No matches for pattern: hipErrorOutOfMemory",
+      "rocsparse": "Matches for /rocsparse/ (showing up to 10):\n\n   1526: 2026-06-17T19:06:29.5761982Z -- Including subproject hipBLASLt (from /__w/TheRock/TheRock/rocm-libraries/projects/hipblaslt)\n   1527: 2026-06-17T19:06:30.3330877Z -- Including subproject rocBLAS (from /__w/TheRock/TheRock/rocm-libraries/projects/rocblas)\n>> 1528: 2026-06-17T19:06:31.0384799Z -- Including subproject rocSPARSE (from /__w/TheRock/TheRock/rocm-libraries/projects/rocsparse)\n   1529: 2026-06-17T19:06:31.6686263Z -- Including subproject hipSPARSE (from /__w/TheRock/TheRock/rocm-libraries/projects/hipsparse)\n   1530: 2026-06-17T19:06:32.2349105Z -- Including subproject hipSPARSELt (from /__w/TheRock/TheRock/rocm-libraries/projects/hipsparselt)",
+      "ctest": "No matches for pattern: ctest",
+      "FAILED": "No matches for pattern: FAILED"
+    },
+    "rag_lookups": [
+      {
+        "error_signature": "2026-06-17T18:57:34.9106303Z         ===================          Compoments check \u001b[38;2;6;161;60m15\u001b[0m Passed, \u001b[38;2;184;166;48m0\u001b[0m Warning, \u001b[38;2;255;61;61m0\u001b[0m Fatal Error          ===================",
+        "matches": [
+          {
+            "pattern_id": "rocm_hip_gpu_oom",
+            "pattern": "HIP GPU out of memory (hipErrorOutOfMemory)",
+            "category": "Memory",
+            "severity": "CRITICAL",
+            "score": 13.0,
+            "causes": "GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test",
+            "solutions": "Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits",
+            "similar_errors": "CUDA out of memory, HSA_STATUS_ERROR_MEMORY",
+            "source": "keyword",
+            "resolution_notes": ""
+          },
+          {
+            "pattern_id": "rocm_hip_error",
+            "pattern": "ROCm HIP API failure",
+            "category": "GPU/Driver",
+            "severity": "HIGH",
+            "score": 11.5,
+            "causes": "Driver mismatch, wrong GPU visible, ROCm version skew, missing device",
+            "solutions": "Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages",
+            "similar_errors": "HIP initialization failed",
+            "source": "keyword",
+            "resolution_notes": ""
+          }
+        ],
+        "formatted": "Match 1 [keyword] score=13.0 id=rocm_hip_gpu_oom\n  Pattern: HIP GPU out of memory (hipErrorOutOfMemory)\n  Category: Memory | Severity: CRITICAL\n  Causes: GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test\n  Solutions: Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits\n  Similar: CUDA out of memory, HSA_STATUS_ERROR_MEMORY\n\nMatch 2 [keyword] score=11.5 id=rocm_hip_error\n  Pattern: ROCm HIP API failure\n  Category: GPU/Driver | Severity: HIGH\n  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device\n  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages\n  Similar: HIP initialization failed"
+      },
+      {
+        "error_signature": "2026-06-17T20:36:48.5684534Z ##[error]The operation was canceled.",
+        "matches": [
+          {
+            "pattern_id": "rocm_hip_gpu_oom",
+            "pattern": "HIP GPU out of memory (hipErrorOutOfMemory)",
+            "category": "Memory",
+            "severity": "CRITICAL",
+            "score": 11.5,
+            "causes": "GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test",
+            "solutions": "Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits",
+            "similar_errors": "CUDA out of memory, HSA_STATUS_ERROR_MEMORY",
+            "source": "keyword",
+            "resolution_notes": ""
+          },
+          {
+            "pattern_id": "rocm_hip_error",
+            "pattern": "ROCm HIP API failure",
+            "category": "GPU/Driver",
+            "severity": "HIGH",
+            "score": 11.5,
+            "causes": "Driver mismatch, wrong GPU visible, ROCm version skew, missing device",
+            "solutions": "Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages",
+            "similar_errors": "HIP initialization failed",
+            "source": "keyword",
+            "resolution_notes": ""
+          }
+        ],
+        "formatted": "Match 1 [keyword] score=11.5 id=rocm_hip_gpu_oom\n  Pattern: HIP GPU out of memory (hipErrorOutOfMemory)\n  Category: Memory | Severity: CRITICAL\n  Causes: GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test\n  Solutions: Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits\n  Similar: CUDA out of memory, HSA_STATUS_ERROR_MEMORY\n\nMatch 2 [keyword] score=11.5 id=rocm_hip_error\n  Pattern: ROCm HIP API failure\n  Category: GPU/Driver | Severity: HIGH\n  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device\n  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages\n  Similar: HIP initialization failed"
+      },
+      {
+        "error_signature": "2026-06-17T18:57:34.9106303Z         ===================          Compoments check \u001b[38;2;6;161;60m15\u001b[0m Passed, \u001b[38;2;184;166;48m0\u001b[0m Warning, \u001b[38;2;255;61;61m0\u001b[0m Fatal Error          ===================",
+        "matches": [
+          {
+            "pattern_id": "rocm_hip_gpu_oom",
+            "pattern": "HIP GPU out of memory (hipErrorOutOfMemory)",
+            "category": "Memory",
+            "severity": "CRITICAL",
+            "score": 13.0,
+            "causes": "GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test",
+            "solutions": "Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits",
+            "similar_errors": "CUDA out of memory, HSA_STATUS_ERROR_MEMORY",
+            "source": "keyword",
+            "resolution_notes": ""
+          },
+          {
+            "pattern_id": "rocm_hip_error",
+            "pattern": "ROCm HIP API failure",
+            "category": "GPU/Driver",
+            "severity": "HIGH",
+            "score": 11.5,
+            "causes": "Driver mismatch, wrong GPU visible, ROCm version skew, missing device",
+            "solutions": "Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages",
+            "similar_errors": "HIP initialization failed",
+            "source": "keyword",
+            "resolution_notes": ""
+          }
+        ],
+        "formatted": "Match 1 [keyword] score=13.0 id=rocm_hip_gpu_oom\n  Pattern: HIP GPU out of memory (hipErrorOutOfMemory)\n  Category: Memory | Severity: CRITICAL\n  Causes: GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test\n  Solutions: Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits\n  Similar: CUDA out of memory, HSA_STATUS_ERROR_MEMORY\n\nMatch 2 [keyword] score=11.5 id=rocm_hip_error\n  Pattern: ROCm HIP API failure\n  Category: GPU/Driver | Severity: HIGH\n  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device\n  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages\n  Similar: HIP initialization failed"
+      },
+      {
+        "error_signature": "2026-06-17T20:36:48.5684534Z ##[error]The operation was canceled.",
+        "matches": [
+          {
+            "pattern_id": "rocm_hip_gpu_oom",
+            "pattern": "HIP GPU out of memory (hipErrorOutOfMemory)",
+            "category": "Memory",
+            "severity": "CRITICAL",
+            "score": 11.5,
+            "causes": "GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test",
+            "solutions": "Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits",
+            "similar_errors": "CUDA out of memory, HSA_STATUS_ERROR_MEMORY",
+            "source": "keyword",
+            "resolution_notes": ""
+          },
+          {
+            "pattern_id": "rocm_hip_error",
+            "pattern": "ROCm HIP API failure",
+            "category": "GPU/Driver",
+            "severity": "HIGH",
+            "score": 11.5,
+            "causes": "Driver mismatch, wrong GPU visible, ROCm version skew, missing device",
+            "solutions": "Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages",
+            "similar_errors": "HIP initialization failed",
+            "source": "keyword",
+            "resolution_notes": ""
+          }
+        ],
+        "formatted": "Match 1 [keyword] score=11.5 id=rocm_hip_gpu_oom\n  Pattern: HIP GPU out of memory (hipErrorOutOfMemory)\n  Category: Memory | Severity: CRITICAL\n  Causes: GPU VRAM exhausted during parallel ctest shards, large sparse preconditioner matrices, or memory leak in library under test\n  Solutions: Reduce ctest --parallel count, isolate failing quick/bsric0 tests, verify rocm-smi free memory on gfx110X runner, check for GPU memory leaks in recent rocSPARSE commits\n  Similar: CUDA out of memory, HSA_STATUS_ERROR_MEMORY\n\nMatch 2 [keyword] score=11.5 id=rocm_hip_error\n  Pattern: ROCm HIP API failure\n  Category: GPU/Driver | Severity: HIGH\n  Causes: Driver mismatch, wrong GPU visible, ROCm version skew, missing device\n  Solutions: Verify rocm-smi, matching driver/stack, GPU passthrough, reinstall ROCm packages\n  Similar: HIP initialization failed"
+      }
+    ]
+  },
+  "repo": "ROCm/TheRock",
+  "github_run_id": 27710372755,
+  "github_job_id": 81975007686,
+  "html_url": "https://github.com/ROCm/TheRock/actions/runs/27710372755",
+  "workflow_name": "Multi-Arch CI",
+  "branch": "users/geomin12/fix-configure-aws-external",
+  "head_sha": "bb6d7fef6f13b48f912eb03defea95ccb51557fe",
+  "run_conclusion": "cancelled",
+  "job_name": "Linux::release / Build Multi-Arch Stages / math-libs (gfx94X-dcgpu, gfx942, linux-gfx942-1gpu-core42-ossci-rocm, false) / Stage - Math Libs (gfx94X-dcgpu)",
+  "job_conclusion": "cancelled"
+}
