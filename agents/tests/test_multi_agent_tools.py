@@ -11,6 +11,7 @@ sys.path.insert(0, str(AGENTS_DIR))
 from multi_agent_tools import (
     DEFAULT_DEMO_LOG,
     DEFAULT_DEMO_PR,
+    check_demo_notebook_api,
     list_demo_assets,
     run_change_impact_for_demo_pr,
     run_change_impact_for_pr,
@@ -21,6 +22,9 @@ from multi_agent_tools import (
 
 
 class MultiAgentToolsTest(unittest.TestCase):
+    def test_demo_notebook_api_present(self):
+        check_demo_notebook_api()
+
     def test_list_demo_assets(self):
         text = list_demo_assets()
         self.assertIn("5572", text)

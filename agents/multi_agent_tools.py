@@ -17,6 +17,33 @@ CHANGE_IMPACT_DIR = AGENTS_DIR / "change-impact-agent"
 LOG_ANALYSIS_DIR = AGENTS_DIR / "log-analysis-agent"
 NOTEBOOK_OUT = AGENTS_DIR / "notebook" / "out"
 
+# Bump when Step 5/6 demo API changes (notebook Step 2 checks this).
+DEMO_NOTEBOOK_API_REVISION = 2
+_REQUIRED_DEMO_API = (
+    "run_change_impact_for_demo_pr",
+    "run_log_analysis_for_demo_run",
+    "ensure_demo_run_samples",
+)
+
+
+def check_demo_notebook_api(module_path: Path | None = None) -> None:
+    """Fail fast with git-pull instructions when multi_agent_tools.py is stale."""
+    path = (module_path or (AGENTS_DIR / "multi_agent_tools.py")).resolve()
+    text = path.read_text(encoding="utf-8")
+    missing = [name for name in _REQUIRED_DEMO_API if f"def {name}" not in text]
+    if missing:
+        raise RuntimeError(
+            f"Stale {path} — missing: {', '.join(missing)} "
+            f"(need demo API revision {DEMO_NOTEBOOK_API_REVISION}+).\n"
+            "Terminal:\n"
+            "  cd /workspace/TheRock-old\n"
+            "  git fetch origin\n"
+            "  git checkout feature/change-impact-agent\n"
+            "  git pull origin feature/change-impact-agent\n"
+            "  git log -1 --oneline   # c9c176c3a or newer\n"
+            "Jupyter: Kernel → Restart, re-run from Step 2."
+        )
+
 DEMO_PRS = (5572, 5688, 5480, 5718)
 DEFAULT_DEMO_PR = 5572
 

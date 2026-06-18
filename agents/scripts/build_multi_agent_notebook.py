@@ -133,6 +133,22 @@ print("DEMO_RUN_ID  =", DEFAULT_DEMO_RUN_ID)
 print("DEMO_JOB_ID  =", DEFAULT_DEMO_JOB_ID)
 print("DEFAULT_LOG  =", DEFAULT_DEMO_LOG)
 print("RUN URL      =", DEFAULT_DEMO_LOG_URL)
+
+# Fail fast if MI300 checkout is behind (reads file on disk — no stale import cache).
+_mat_py = AGENTS_DIR / "multi_agent_tools.py"
+_required_api = ("run_change_impact_for_demo_pr", "run_log_analysis_for_demo_run")
+_missing_api = [n for n in _required_api if f"def {n}" not in _mat_py.read_text(encoding="utf-8")]
+if _missing_api:
+    raise RuntimeError(
+        f"Stale {_mat_py} — missing: {', '.join(_missing_api)}.\\n"
+        "Terminal:\\n"
+        "  cd /workspace/TheRock-old\\n"
+        "  git fetch origin && git checkout feature/change-impact-agent\\n"
+        "  git pull origin feature/change-impact-agent\\n"
+        "  git log -1 --oneline   # c9c176c3a+\\n"
+        "Then Kernel → Restart and re-run from Step 2."
+    )
+print("multi_agent_tools API OK (live analysis Steps 5–6)")
 """
         ),
         code(
@@ -194,9 +210,13 @@ Falls back to committed `sample-runs/` only if PR refs cannot be resolved.
 """
         ),
         code(
-            """from multi_agent_tools import run_change_impact_for_demo_pr
+            """import importlib
+import multi_agent_tools
 
-change_impact_summary = run_change_impact_for_demo_pr(
+importlib.reload(multi_agent_tools)
+multi_agent_tools.check_demo_notebook_api()
+
+change_impact_summary = multi_agent_tools.run_change_impact_for_demo_pr(
     DEFAULT_DEMO_PR,
     use_vllm_summary=USE_VLLM,
 )
@@ -217,9 +237,13 @@ Job `81992436725` (rocSPARSE OOM) is the demo focus, but all 8 bundled jobs get 
 """
         ),
         code(
-            """from multi_agent_tools import run_log_analysis_for_demo_run
+            """import importlib
+import multi_agent_tools
 
-log_analysis_summary = run_log_analysis_for_demo_run(
+importlib.reload(multi_agent_tools)
+multi_agent_tools.check_demo_notebook_api()
+
+log_analysis_summary = multi_agent_tools.run_log_analysis_for_demo_run(
     preset="therock_multi_arch",
     use_vllm_summary=USE_VLLM,
 )
