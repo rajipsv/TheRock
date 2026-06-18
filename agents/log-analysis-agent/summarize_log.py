@@ -17,6 +17,7 @@ if str(AGENT_DIR) not in sys.path:
     sys.path.insert(0, str(AGENT_DIR))
 
 from env_loader import load_agent_env
+from log_agent import infer_primary_root_cause, rank_errors_for_root_cause
 from llm import DEFAULT_VLLM_BASE_URL, DEFAULT_VLLM_MODEL, default_summary_backend, invoke_llm_backend, llm_env_config
 
 load_agent_env()
@@ -26,7 +27,11 @@ DEFAULT_OUTPUT = AGENT_DIR / "out" / "executive_summary.md"
 LLM_BRIEF_HEADING = "## Triage brief (LLM)\n\n"
 SYSTEM_MESSAGE = (
     "You summarize CI log triage reports for validation engineers. "
-    "Use only facts from the provided JSON. Do not invent errors or fixes."
+    "Use only facts from the provided JSON. Do not invent errors or fixes. "
+    "IGNORE environment setup banners (e.g. 'Compoments check' / 'Components check' "
+    "with Passed/Warning/Fatal counts) — they are runner health noise, not the test root cause. "
+    "Prioritize primary_root_cause and root_cause_errors: GPU OOM (hipErrorOutOfMemory), "
+    "failed test suites (bsric0, gtest FAILED), rocsparse_create_handle, and final exit codes."
 )
 
 
@@ -51,9 +56,20 @@ def template_log_summary(report: dict) -> str:
         "",
     ])
 
-    errors = report.get("errors") or []
+    errors = rank_errors_for_root_cause(report.get("errors") or [], limit=5)
+    primary = report.get("primary_root_cause") or infer_primary_root_cause(report.get("errors") or [])
+    if primary:
+        lines.append("## Primary root cause (ranked)")
+        lines.append(
+            f"- **Line {primary.get('line_number', '?')}** ({primary.get('severity', '?')}): "
+            f"{primary.get('message', '')[:160]}"
+        )
+        if primary.get("recommendation"):
+            lines.append(f"  - Recommendation: {primary['recommendation']}")
+        lines.append("")
+
     if errors:
-        lines.append("## Top errors")
+        lines.append("## Top errors (ranked)")
         for err in errors[:5]:
             if isinstance(err, dict):
                 lines.append(
@@ -85,19 +101,29 @@ def template_log_summary(report: dict) -> str:
 
 
 def llm_prompt(report: dict) -> str:
+    all_errors = report.get("errors") or []
+    ranked = rank_errors_for_root_cause(all_errors, limit=8)
+    primary = report.get("primary_root_cause") or infer_primary_root_cause(all_errors)
     compact = {
         "log_path": report.get("log_path"),
+        "job_name": report.get("job_name"),
+        "github_run_id": report.get("github_run_id"),
+        "github_job_id": report.get("github_job_id"),
         "mode": report.get("mode"),
         "preset": report.get("preset"),
-        "errors_count": report.get("errors_count", len(report.get("errors", []))),
+        "errors_count": report.get("errors_count", len(all_errors)),
         "summary": report.get("summary"),
-        "errors": (report.get("errors") or [])[:8],
-        "rag_lookups": (report.get("rag_lookups") or [])[:3],
+        "primary_root_cause": primary,
+        "root_cause_errors": ranked,
         "stats": report.get("stats"),
+        "rag_lookups": (report.get("rag_lookups") or [])[:3],
+        "instructions": (
+            "Write 3-5 bullets: (1) primary root cause, (2) failed test/component if any, "
+            "(3) recommended next steps. Do NOT cite Compoments/Components check banners as root cause."
+        ),
     }
     return (
-        "Write a concise triage brief (3-5 bullet points) for validation engineers. "
-        "Focus on root causes and recommended next steps from the data below.\n\n"
+        "Write a concise triage brief for validation engineers.\n\n"
         + json.dumps(compact, indent=2)
     )
 

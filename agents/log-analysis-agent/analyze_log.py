@@ -31,7 +31,13 @@ from github_logs import (
     select_failed_jobs,
     write_job_log,
 )
-from log_agent import LogAnalysisAgent, errors_from_tool_only, summary_from_tool_only
+from log_agent import (
+    LogAnalysisAgent,
+    errors_from_tool_only,
+    infer_primary_root_cause,
+    rank_errors_for_root_cause,
+    summary_from_tool_only,
+)
 from llm import default_summary_backend
 from log_tools import LogSession, run_tool_only_analysis
 from presets import PRESET_NAMES, get_preset
@@ -80,7 +86,8 @@ def build_report(
     else:
         session = LogSession(path=log_path.resolve())
         tool_data = run_tool_only_analysis(session, kb=kb, extra_patterns=extra)
-        errors = errors_from_tool_only(tool_data, kb)
+        errors = rank_errors_for_root_cause(errors_from_tool_only(tool_data, kb))
+        primary = infer_primary_root_cause(errors)
         report = {
             "log_path": str(log_path.resolve()),
             "timestamp": datetime.now().isoformat(),
@@ -91,6 +98,7 @@ def build_report(
             "chunk_overview": tool_data.get("chunk_overview", ""),
             "errors": errors,
             "errors_count": len(errors),
+            "primary_root_cause": primary,
             "stack_traces": tool_data.get("stack_traces", ""),
             "rag_lookups": tool_data.get("rag_lookups", []),
             "summary": summary_from_tool_only(tool_data),
@@ -152,12 +160,15 @@ def write_run_rollup(
     job_summaries = []
     for report in reports:
         errors = report.get("errors") or []
+        top_ranked = rank_errors_for_root_cause(errors, limit=3)
+        primary = report.get("primary_root_cause") or infer_primary_root_cause(errors)
         job_summaries.append(
             {
                 "github_job_id": report.get("github_job_id"),
                 "job_name": report.get("job_name"),
                 "job_conclusion": report.get("job_conclusion"),
                 "errors_count": report.get("errors_count", len(errors)),
+                "primary_root_cause": primary,
                 "summary": report.get("summary", ""),
                 "top_errors": [
                     {
@@ -167,7 +178,7 @@ def write_run_rollup(
                         "recommendation": (e.get("recommendation") or "")[:160],
                         "kb_pattern_id": e.get("kb_pattern_id"),
                     }
-                    for e in errors[:3]
+                    for e in top_ranked
                     if isinstance(e, dict)
                 ],
                 "report_path": str(

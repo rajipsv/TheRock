@@ -162,6 +162,98 @@ def errors_from_tool_only(tool_data: dict, kb: FailureKnowledgeBase | None = Non
     return errors[:50]
 
 
+_SETUP_NOISE_MARKERS = (
+    "compoments check",
+    "components check",
+    "traceback: the rock on windows build requires",
+    "traceback: required msvc",
+    "traceback: msvc atl not found",
+    "traceback: missing msvc required linker",
+)
+
+_ROOT_CAUSE_SIGNALS: tuple[tuple[str, int], ...] = (
+    ("hiperroroutofmemory", 100),
+    ("hip error: out of memory", 95),
+    ("out of memory", 85),
+    ("bsric0", 90),
+    ("test_bsric0", 90),
+    ("rocsparse_create_handle", 88),
+    ("blas_create_handle", 82),
+    ("memory error", 80),
+    ("exit code 127", 75),
+    ("##[error]process completed with exit code", 70),
+    ("[  failed  ]", 68),
+    ("gtest_failed", 65),
+    ("no gpu suite", 60),
+)
+
+
+def _is_setup_noise(message: str) -> bool:
+    lower = message.lower()
+    return any(marker in lower for marker in _SETUP_NOISE_MARKERS)
+
+
+def error_root_cause_score(err: dict) -> int:
+    """Higher score = more likely true root cause (not env setup banner)."""
+    msg = (err.get("message") or "").lower()
+    score = 0
+    if _is_setup_noise(msg):
+        score -= 80
+    for needle, boost in _ROOT_CAUSE_SIGNALS:
+        if needle in msg:
+            score += boost
+    if err.get("severity") == "CRITICAL":
+        score += 8
+    if err.get("kb_pattern_id") == "rocm_hip_gpu_oom":
+        score += 25
+    err_type = (err.get("type") or "").upper()
+    if err_type in ("HIPERROROUTOFMEMORY", "GTEST_FAILED", "ROCSPARSE_CREATE_HANDLE"):
+        score += 20
+    line = int(err.get("line_number") or 0)
+    if line > 5000:
+        score += min(15, line // 5000)
+    return score
+
+
+def rank_errors_for_root_cause(
+    errors: list[dict],
+    *,
+    limit: int | None = None,
+) -> list[dict]:
+    """Dedupe and sort errors so GPU/test failures rank above setup banners."""
+    seen: set[tuple[int, str]] = set()
+    unique: list[dict] = []
+    for err in errors:
+        if not isinstance(err, dict):
+            continue
+        key = (int(err.get("line_number") or 0), (err.get("message") or "")[:100])
+        if key in seen:
+            continue
+        seen.add(key)
+        unique.append(err)
+    ranked = sorted(unique, key=error_root_cause_score, reverse=True)
+    if limit is not None:
+        return ranked[:limit]
+    return ranked
+
+
+def infer_primary_root_cause(errors: list[dict]) -> dict | None:
+    """Best-effort primary failure for summaries and rollups."""
+    ranked = rank_errors_for_root_cause(errors, limit=5)
+    for err in ranked:
+        if error_root_cause_score(err) < 40:
+            continue
+        return {
+            "line_number": err.get("line_number"),
+            "severity": err.get("severity"),
+            "message": (err.get("message") or "")[:240],
+            "category": err.get("category"),
+            "kb_pattern_id": err.get("kb_pattern_id"),
+            "recommendation": err.get("recommendation"),
+        }
+    return ranked[0] if ranked else None
+
+
 def summary_from_tool_only(tool_data: dict) -> str:
     stats = tool_data.get("stats", "")
     n = count_errors_from_tool_only(tool_data)
