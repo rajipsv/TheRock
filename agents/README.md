@@ -18,7 +18,7 @@ Hackathon and experimental agents built on top of TheRock (not part of upstream 
 
 Coordinates **change-impact-agent** (Step 5) + **log-analysis-agent** (Step 6) on MI300 with vLLM executive summaries for log triage.
 
-Notebook flow: launch vLLM → config → **Step 5** PR 5572 impact briefing → **Step 6** GHA run `27710372755` rocSPARSE log. Step 4 combined smoke test is commented out.
+Notebook flow: launch vLLM → config → **Step 5** re-analyze PR 5572 (manifest/topology/CI) + vLLM → **Step 6** re-analyze all 8 failed jobs from GHA run `27710372755` (tool_only + vLLM per job). Step 4 combined smoke test is commented out.
 
 ```powershell
 pip install -r agents/requirements-notebook.txt

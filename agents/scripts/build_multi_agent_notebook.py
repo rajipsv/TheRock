@@ -182,40 +182,44 @@ Skipped in the MI300 / vLLM workflow — run **Step 5** (change-impact) and **St
         md(
             """## Step 5: change-impact-agent (pre-merge)
 
-Loads committed sample `sample-runs/pr-5572/report.json` — blast radius, CI labels, rollout strategy.
+Re-runs the **deterministic analysis pipeline** on PR **5572** when git refs / GitHub token are available:
 
-**Output:** `agents/notebook/out/pr-5572/report.json`
+`manifest_diff` → `path_diff` → `content_diff` → `impact_graph` → `ci_mapping` → `rollout_strategy`
+
+1. **Analyze:** `analyze.build_report()` (live) — not just loading `sample-runs/pr-5572/report.json`
+2. **Output:** `agents/notebook/out/pr-5572/report.json` + `report.html`
+3. **Then vLLM:** `executive_summary.md` when `USE_VLLM=True` (Step 2)
+
+Falls back to committed `sample-runs/` only if PR refs cannot be resolved.
 """
         ),
         code(
-            """from multi_agent_tools import run_change_impact_for_pr
+            """from multi_agent_tools import run_change_impact_for_demo_pr
 
-change_impact_summary = run_change_impact_for_pr(DEFAULT_DEMO_PR, use_sample=True)
+change_impact_summary = run_change_impact_for_demo_pr(
+    DEFAULT_DEMO_PR,
+    use_vllm_summary=USE_VLLM,
+)
 print(change_impact_summary)
 """
         ),
         md(
             """## Step 6: log-analysis-agent (post-CI)
 
-Analyzes bundled log for GHA run **27710372755** / job **81992436725** (rocSPARSE `hipErrorOutOfMemory`).
+Re-runs **full tool_only analysis** (grep + KB → fresh `report.json`) on all bundled failed jobs for GHA run **[27710372755](https://github.com/ROCm/TheRock/actions/runs/27710372755)**.
 
-- **Errors:** deterministic tool-only pass (grep + KB)
-- **Executive summary:** vLLM when `USE_VLLM=True` (Step 2)
+1. **Input:** raw `.log` files only from `log-analysis-agent/sample-runs/run-27710372755/` (not pre-baked reports)
+2. **Analyze:** `build_report()` — ERROR/FATAL, `hipErrorOutOfMemory`, gtest `[FAILED]`, KB lookup
+3. **Output:** `agents/notebook/out/run-27710372755/job-*/report.json` + `run_summary.json`
+4. **Then vLLM** on **every** failed job: `executive_summary.md` per job from ranked JSON
 
-**Output:** `agents/notebook/out/log-job-81992436725/report.json` + `executive_summary.md`
+Job `81992436725` (rocSPARSE OOM) is the demo focus, but all 8 bundled jobs get vLLM briefs when `USE_VLLM=True`.
 """
         ),
         code(
-            """from multi_agent_tools import run_log_analysis_for_path
+            """from multi_agent_tools import run_log_analysis_for_demo_run
 
-if not DEFAULT_DEMO_LOG.is_file():
-    raise FileNotFoundError(
-        f"Demo log missing: {DEFAULT_DEMO_LOG}\\n"
-        f"git pull and ensure sample-runs/run-{DEFAULT_DEMO_RUN_ID}/ is present."
-    )
-
-log_analysis_summary = run_log_analysis_for_path(
-    str(DEFAULT_DEMO_LOG),
+log_analysis_summary = run_log_analysis_for_demo_run(
     preset="therock_multi_arch",
     use_vllm_summary=USE_VLLM,
 )
@@ -227,11 +231,12 @@ print(log_analysis_summary)
 
 | Step | Artifact |
 |------|----------|
-| 5 | `agents/notebook/out/pr-<N>/report.json` |
-| 6 | `agents/notebook/out/log-job-81992436725/report.json` |
-| 6 | `agents/notebook/out/log-job-81992436725/executive_summary.md` |
+| 5 | `agents/notebook/out/pr-5572/report.json` + `executive_summary.md` |
+| 6 | `agents/notebook/out/run-27710372755/run_summary.json` |
+| 6 | `agents/notebook/out/run-27710372755/job-81992436725/report.json` |
+| 6 | `agents/notebook/out/run-27710372755/job-*/executive_summary.md` (all jobs) |
 
-Bundled samples also live under `change-impact-agent/sample-runs/` and `log-analysis-agent/sample-runs/run-27710372755/`.
+Bundled **log inputs** live under `log-analysis-agent/sample-runs/run-27710372755/`. Step 6 always regenerates analysis under `notebook/out/`.
 """
         ),
     ]
