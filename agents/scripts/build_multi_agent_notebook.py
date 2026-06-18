@@ -77,20 +77,82 @@ Monitor: `watch rocm-smi`
 import sys
 from pathlib import Path
 
+
+def _candidate_search_roots() -> list[Path]:
+    \"\"\"Roots to search when Path.cwd() is broken (deleted cwd / MI300 notebooks).\"\"\"
+    roots: list[Path] = []
+    env_agents = os.environ.get("THEROCK_AGENTS_DIR")
+    if env_agents:
+        roots.append(Path(env_agents))
+    for fixed in (
+        "/workspace/TheRock-old/agents",
+        "/workspace/TheRock/agents",
+        Path.home() / "TheRock-old" / "agents",
+        Path.home() / "TheRock" / "agents",
+    ):
+        roots.append(Path(fixed))
+    for key in ("PWD", "JUPYTER_SERVER_ROOT", "THEROCK_ROOT"):
+        val = os.environ.get(key)
+        if val:
+            roots.append(Path(val))
+    try:
+        from IPython import get_ipython
+
+        ip = get_ipython()
+        if ip is not None:
+            cfg = getattr(ip, "config", None)
+            if cfg:
+                root = cfg.get("ServerApp", {}).get("root_dir")
+                if root:
+                    roots.append(Path(root))
+    except Exception:
+        pass
+    try:
+        roots.append(Path.cwd().resolve())
+    except FileNotFoundError:
+        pass
+    # De-dupe while preserving order
+    seen: set[str] = set()
+    unique: list[Path] = []
+    for root in roots:
+        key = str(root)
+        if key in seen:
+            continue
+        seen.add(key)
+        unique.append(root)
+    return unique
+
+
 def resolve_agents_dir() -> Path:
-    start = Path.cwd().resolve()
-    for candidate in [start, *start.parents]:
-        if (candidate / "multi_agent_tools.py").is_file():
-            return candidate
-        if candidate.name == "notebook" and (candidate.parent / "multi_agent_tools.py").is_file():
-            return candidate.parent
-        if (candidate / "agents" / "multi_agent_tools.py").is_file():
-            return candidate / "agents"
-    raise RuntimeError("Start Jupyter from TheRock/agents/ or agents/notebook/")
+    for start in _candidate_search_roots():
+        try:
+            resolved_start = start.resolve()
+        except OSError:
+            continue
+        for candidate in [resolved_start, *resolved_start.parents]:
+            if (candidate / "multi_agent_tools.py").is_file():
+                return candidate
+            if candidate.name == "notebook" and (candidate.parent / "multi_agent_tools.py").is_file():
+                return candidate.parent
+            if (candidate / "agents" / "multi_agent_tools.py").is_file():
+                return candidate / "agents"
+    raise RuntimeError(
+        "Could not find agents/multi_agent_tools.py. Set THEROCK_AGENTS_DIR=/path/to/agents "
+        "or start Jupyter from TheRock-old/agents/notebook/"
+    )
+
 
 AGENTS_DIR = resolve_agents_dir()
 THEROCK_ROOT = AGENTS_DIR.parent if AGENTS_DIR.name == "agents" else AGENTS_DIR
 NOTEBOOK_OUT = AGENTS_DIR / "notebook" / "out"
+
+# Repair broken kernel cwd (e.g. after deleting sample-runs while cwd was inside it).
+try:
+    Path.cwd()
+except FileNotFoundError:
+    recover = AGENTS_DIR / "notebook" if (AGENTS_DIR / "notebook").is_dir() else AGENTS_DIR
+    os.chdir(recover)
+    print("Recovered kernel cwd →", recover)
 
 if str(AGENTS_DIR) not in sys.path:
     sys.path.insert(0, str(AGENTS_DIR))

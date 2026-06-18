@@ -6,6 +6,7 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import subprocess
 import sys
@@ -185,16 +186,40 @@ def _github_meta_for_bundled_job(job_id: int, run_meta: dict | None) -> dict | N
 
 
 def resolve_therock_root() -> Path:
-    start = Path.cwd().resolve()
-    for candidate in [start, *start.parents]:
-        if (candidate / ".git").is_dir() and (candidate / "agents" / "change-impact-agent").is_dir():
-            return candidate
-        if candidate.name == "TheRock" and (candidate / "agents").is_dir():
-            return candidate
+    roots: list[Path] = [AGENTS_DIR.parent]
+    env_root = os.environ.get("THEROCK_ROOT")
+    if env_root:
+        roots.insert(0, Path(env_root))
+    for fixed in ("/workspace/TheRock-old", "/workspace/TheRock"):
+        roots.append(Path(fixed))
+    try:
+        roots.append(Path.cwd().resolve())
+    except FileNotFoundError:
+        pass
+    for env_key in ("PWD", "JUPYTER_SERVER_ROOT"):
+        val = os.environ.get(env_key)
+        if val:
+            roots.append(Path(val))
+
+    seen: set[str] = set()
+    for start in roots:
+        key = str(start)
+        if key in seen:
+            continue
+        seen.add(key)
+        try:
+            resolved = start.resolve()
+        except OSError:
+            continue
+        for candidate in [resolved, *resolved.parents]:
+            if (candidate / ".git").is_dir() and (candidate / "agents" / "change-impact-agent").is_dir():
+                return candidate
+            if candidate.name == "TheRock" and (candidate / "agents").is_dir():
+                return candidate
     if (AGENTS_DIR.parent / "agents").is_dir():
         return AGENTS_DIR.parent
     raise RuntimeError(
-        "Could not find TheRock repo root. Start Jupyter from TheRock/ or agents/notebook/."
+        "Could not find TheRock repo root. Set THEROCK_ROOT or start from agents/notebook/."
     )
 
 
